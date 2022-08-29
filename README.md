@@ -27,9 +27,9 @@
 
 Bug fixes, issue reports and contributions are greatly appreciated.
 
-### Contrubutors
+### Contributors
 
-<a href="https://github.com/twpayne/chezmoi/graphs/contributors">
+<a href="https://github.com/tum-gis/sddi-ckan-k8s/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
 </a>
 
