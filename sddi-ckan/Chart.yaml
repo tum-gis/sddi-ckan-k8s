@@ -8,3 +8,6 @@ dependencies:
   - name: postgis
     version: "*"
     condition: postgis.enabled
+  - name: solr
+    version: "*"
+    condition: solr.enabled

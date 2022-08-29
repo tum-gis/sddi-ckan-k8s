@@ -17,6 +17,9 @@ global:
 postgis:
   enabled: true
 
+solr:
+  enabled: true
+
 # replicaCount: 1
 
 
