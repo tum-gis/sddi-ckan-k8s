@@ -27,6 +27,12 @@
 
 Bug fixes, issue reports and contributions are greatly appreciated.
 
+### Contrubutors
+
+<a href="https://github.com/twpayne/chezmoi/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
+</a>
+
 ## :mortar_board: Research
 
 ## :memo: License
@@ -34,3 +40,7 @@ Bug fixes, issue reports and contributions are greatly appreciated.
 This Helm chart is distributed under the Apache License 2.0. See [LICENSE](LICENSE) for more information.
 
 ## :handshake: Thanks
+
+<a href="https://github.com/twpayne/chezmoi/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
+</a>
