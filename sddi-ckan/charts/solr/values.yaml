@@ -24,6 +24,10 @@ resources:
     cpu: 1000m
     memory: 1Gi
 
+loadBalancer:
+  enabled: true
+
+
 nodeSelector: {}
 tolerations: []
 affinity: {}
