@@ -6,13 +6,12 @@ image:
   repository: reg.gitlab.brunowillenborg.de/bruno/ckan
   tag: latest
   pullPolicy: IfNotPresent
-
-
-imageCredentials:
-  registry: quay.io
-  username: someone
-  password: sillyness
-  email: someone@host.com
+  credentials:
+    secretName: ckan-sct-pull
+    registry: quay.io
+    username: someone
+    password: sillyness
+    email: someone@host.com
 
 imagePullSecrets:
   - name: ckan-sct-pull
