@@ -1,0 +1,73 @@
+{{- if .Values.enabled -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "solr.fullname" . }}-{{ .Values.component }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "solr.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+spec:
+  serviceName: {{ .Chart.Name }}-svc-headless
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "solr.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: {{ .Values.component }}
+  template:
+    metadata:
+      labels:
+        {{- include "solr.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: {{ .Values.component }}
+    spec:
+      securityContext:
+        runAsUser: 8983
+        runAsGroup: 8983
+        fsGroup: 8983
+
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "solr.fullname" . }}-pvc
+
+      containers:
+        - name: solr
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8983
+
+          volumeMounts:
+            - name: data
+              mountPath: /var/solr/data
+
+          # livenessProbe:
+          #   periodSeconds: 10
+          #   timeoutSeconds: 2
+          #   exec:
+          #     command: [ sh, -c, "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB" ]
+
+          # readinessProbe:
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 10
+          #   timeoutSeconds: 2
+          #   exec:
+          #     command: [ sh, -c, "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB" ]
+
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+{{- end -}}
