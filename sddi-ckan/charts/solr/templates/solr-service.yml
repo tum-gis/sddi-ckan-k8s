@@ -1,0 +1,22 @@
+{{- if .Values.enabled -}}
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-svc
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "solr.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+spec:
+  type: ClusterIP
+  selector:
+      {{- include "solr.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: {{ .Values.component }}
+  ports:
+    - protocol: TCP
+      port: 8983
+      targetPort: 8983
+
+{{- end -}}

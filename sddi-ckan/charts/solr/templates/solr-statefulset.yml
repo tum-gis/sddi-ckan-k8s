@@ -1,0 +1,122 @@
+{{- if .Values.enabled -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "solr.fullname" . }}-{{ .Values.component }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "solr.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+spec:
+  serviceName: {{ .Chart.Name }}-svc-headless
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "solr.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: {{ .Values.component }}
+  template:
+    metadata:
+      labels:
+        {{- include "solr.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: {{ .Values.component }}
+    spec:
+      securityContext:
+        runAsUser: 8983
+        fsGroup: 8983
+
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "solr.fullname" . }}-pvc
+        - name: init-files
+          configMap:
+            name: {{ include "solr.fullname" . }}-init
+            defaultMode: 0777
+        - name: workdir
+          emptyDir: {}
+
+      initContainers:
+
+        # - name: mkdir-core
+        #   image: bwibo/k8s-init-container
+        #   command:
+        #     - bash
+        #   args:
+        #     - -c
+        #     - 'mkdir -p /opt/solr/server/solr/$(SOLR_CORE)'
+
+        #   volumeMounts:
+        #     - name: workdir
+        #       mountPath: /opt/solr/server/solr
+
+        - name: init
+          image: bwibo/k8s-init-container
+          command:
+            - bash
+          args:
+            - -c
+            - '/data/init.sh'
+
+          volumeMounts:
+            - name: workdir
+              mountPath: /var/solr/data
+              subPathExpr: $(SOLR_CORE)
+            - name: init-files
+              mountPath: /data
+
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "solr.fullname" . }}-cfg
+
+      containers:
+        - name: solr
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8983
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "solr.fullname" . }}-cfg
+            # - secretRef:
+            #     name: {{ include "solr.fullname" . }}-sct
+
+          volumeMounts:
+            - name: data
+              mountPath: {{ .Values.persistence.mountPath }}
+
+            - name: workdir
+              mountPath: /var/solr/data
+              subPathExpr: $(SOLR_CORE)
+
+          # livenessProbe:
+          #   periodSeconds: 10
+          #   timeoutSeconds: 2
+          #   exec:
+          #     command: [ sh, -c, "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB" ]
+
+          # readinessProbe:
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 10
+          #   timeoutSeconds: 2
+          #   exec:
+          #     command: [ sh, -c, "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB" ]
+
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+{{- end -}}
