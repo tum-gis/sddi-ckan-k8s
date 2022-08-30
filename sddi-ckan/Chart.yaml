@@ -14,3 +14,6 @@ dependencies:
   - name: redis
     version: "*"
     condition: redis.enabled
+  - name: ckan
+    version: "*"
+    condition: ckan.enabled
