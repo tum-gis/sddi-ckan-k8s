@@ -17,8 +17,23 @@ global:
 postgis:
   enabled: true
 
+  loadBalancer:
+    enabled: false
+
 solr:
   enabled: true
+
+  loadBalancer:
+    enabled: false
+
+redis:
+  enabled: true
+
+  persistence:
+    enabled: false
+
+  loadBalancer:
+    enabled: false
 
 # replicaCount: 1
 
