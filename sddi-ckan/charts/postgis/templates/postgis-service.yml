@@ -1,0 +1,22 @@
+{{- if .Values.enabled -}}
+# Service ---------------------------------------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-svc
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "postgis.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+spec:
+  type: ClusterIP
+  selector:
+      {{- include "postgis.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: {{ .Values.component }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.global.db.port | default .Values.port }}
+      targetPort: 5432
+
+{{- end -}}

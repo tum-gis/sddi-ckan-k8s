@@ -1,0 +1,21 @@
+{{- if .Values.enabled -}}
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "postgis.fullname" . }}-pvc
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "postgis.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+spec:
+  accessModes:
+  {{- range .Values.persistence.accessModes }}
+    - {{ . }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.capacity }}
+
+{{- end -}}

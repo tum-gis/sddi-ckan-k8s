@@ -1,0 +1,81 @@
+
+enabled: true
+component: database
+replicaCount: 1
+
+# Create a LoadBalancer service for external Database access
+loadBalancer:
+  enabled: false
+
+image:
+  registry: postgis
+  repository: postgis
+  tag: 14-3.2-alpine
+  pullPolicy: IfNotPresent
+
+# Database settings
+port: 5432
+dbname: ckan_default
+
+auth:
+  username: ckan
+  password: changeMe
+
+authRO:
+  username: datastore_ro
+  password: changeMe
+
+# Persistence settings
+persistence:
+  # Ommit trailing / !
+  mountPath: /mydata
+  pgdataSubPath: /pgdata
+  accessModes:
+    - ReadWriteOnce
+  capacity: 4Gi
+
+resources:
+  limits:
+    cpu: 4000m
+    memory: 8Gi
+  requests:
+    cpu: 1000m
+    memory: 1Gi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+# Template after here ---------------------------------------------------------
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80

@@ -1,0 +1,84 @@
+{{- if .Values.enabled -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "postgis.fullname" . }}-{{ .Values.component }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "postgis.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+spec:
+  serviceName: {{ .Chart.Name }}-svc-headless
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "postgis.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: {{ .Values.component }}
+  template:
+    metadata:
+      labels:
+        {{- include "postgis.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: {{ .Values.component }}
+    spec:
+      volumes:
+        - name: postgresdata
+          persistentVolumeClaim:
+            claimName: {{ include "postgis.fullname" . }}-pvc
+        - name: dshm
+          emptyDir:
+            medium: Memory
+        - name: init
+          configMap:
+            name: {{ include "postgis.fullname" . }}-init
+
+      containers:
+        - name: postgis
+          image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 5432
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "postgis.fullname" . }}-cfg
+            - secretRef:
+                name: {{ include "postgis.fullname" . }}-sct
+
+          volumeMounts:
+            - mountPath: {{ .Values.persistence.mountPath }}
+              name: postgresdata
+            - mountPath: /dev/shm
+              name: dshm
+            - mountPath: /docker-entrypoint-initdb.d/
+              name: init
+
+          livenessProbe:
+            periodSeconds: 10
+            timeoutSeconds: 2
+            exec:
+              command: [ sh, -c, "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB" ]
+
+          readinessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 2
+            exec:
+              command: [ sh, -c, "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB" ]
+
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+{{- end -}}
