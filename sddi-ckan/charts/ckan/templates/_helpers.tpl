@@ -69,3 +69,39 @@ Create a pull secret for ckan
 {{- printf "{\"auths\":{\"%s\":{\"username\":\"%s\",\"password\":\"%s\",\"email\":\"%s\",\"auth\":\"%s\"}}}" .registry .username .password .email (printf "%s:%s" .username .password | b64enc) | b64enc }}
 {{- end }}
 {{- end }}
+
+{{/*
+SQL alchemy url
+*/}}
+{{- define "ckan.sqlalchemy.url" -}}
+  postgres://
+  {{- .Values.db.auth.username -}}:
+  {{- .Values.db.auth.password -}}@
+  {{- .Values.db.host -}}:
+  {{- .Values.db.port -}}/
+  {{- .Values.db.dbname -}}
+{{- end }}
+
+{{/*
+SQL alchemy url
+*/}}
+{{- define "ckan.datastore.write_url" -}}
+  postgresql://
+  {{- .Values.db.auth.username -}}:
+  {{- .Values.db.auth.password -}}@
+  {{- .Values.db.host -}}:
+  {{- .Values.db.port -}}/
+  {{- .Values.db.dbname -}}
+{{- end }}
+
+{{/*
+SQL alchemy url
+*/}}
+{{- define "ckan.datastore.read_url" -}}
+  postgresql://
+  {{- .Values.db.auth.username -}}:
+  {{- .Values.db.auth.password -}}@
+  {{- .Values.db.host -}}:
+  {{- .Values.db.port -}}/
+  {{- .Values.db.dbname -}}
+{{- end }}
