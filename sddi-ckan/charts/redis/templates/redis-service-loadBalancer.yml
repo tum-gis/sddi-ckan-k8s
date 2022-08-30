@@ -1,0 +1,23 @@
+{{- if .Values.enabled -}}
+{{- if .Values.loadBalancer.enabled -}}
+# Service ---------------------------------------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-svc-loadbalancer
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "redis.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+spec:
+  type: LoadBalancer
+  selector:
+      {{- include "redis.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: {{ .Values.component }}
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+{{- end -}}
+{{- end -}}

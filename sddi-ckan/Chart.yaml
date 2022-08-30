@@ -11,3 +11,6 @@ dependencies:
   - name: solr
     version: "*"
     condition: solr.enabled
+  - name: redis
+    version: "*"
+    condition: redis.enabled
