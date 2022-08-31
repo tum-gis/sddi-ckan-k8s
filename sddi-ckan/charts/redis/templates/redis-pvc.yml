@@ -9,6 +9,8 @@ metadata:
     {{- include "redis.labels" . | nindent 4 }}
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
+  annotations:
+    helm.sh/resource-policy: keep
 spec:
   accessModes:
   {{- range .Values.persistence.accessModes }}
