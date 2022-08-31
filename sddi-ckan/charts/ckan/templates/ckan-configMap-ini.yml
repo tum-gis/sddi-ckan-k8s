@@ -1,0 +1,13 @@
+{{- if .Values.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "ckan.fullname" . }}-cfg-ini
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "ckan.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: database
+data:
+{{ tpl (.Files.Glob "files/production.ini").AsConfig . | indent 2 }}
+{{- end -}}

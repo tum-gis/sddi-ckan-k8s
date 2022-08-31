@@ -85,23 +85,23 @@ SQL alchemy url
 {{/*
 SQL alchemy url
 */}}
-{{- define "ckan.datastore.write_url" -}}
+{{- define "ckan.datastore.rw.url" -}}
   postgresql://
-  {{- .Values.db.auth.username -}}:
-  {{- .Values.db.auth.password -}}@
-  {{- .Values.db.host -}}:
-  {{- .Values.db.port -}}/
-  {{- .Values.db.dbname -}}
+  {{- .Values.datastore.auth.rw.username -}}:
+  {{- .Values.datastore.auth.rw.password -}}@
+  {{- .Values.datastore.host -}}:
+  {{- .Values.datastore.port -}}/
+  {{- .Values.datastore.dbname -}}
 {{- end }}
 
 {{/*
 SQL alchemy url
 */}}
-{{- define "ckan.datastore.read_url" -}}
+{{- define "ckan.datastore.ro.url" -}}
   postgresql://
-  {{- .Values.db.auth.username -}}:
-  {{- .Values.db.auth.password -}}@
-  {{- .Values.db.host -}}:
-  {{- .Values.db.port -}}/
-  {{- .Values.db.dbname -}}
+  {{- .Values.datastore.auth.ro.username -}}:
+  {{- .Values.datastore.auth.ro.password -}}@
+  {{- .Values.datastore.host -}}:
+  {{- .Values.datastore.port -}}/
+  {{- .Values.datastore.dbname -}}
 {{- end }}

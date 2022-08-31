@@ -17,3 +17,6 @@ dependencies:
   - name: ckan
     version: "*"
     condition: ckan.enabled
+  - name: certIssuer
+    version: "*"
+    condition: certIssuer.enabled

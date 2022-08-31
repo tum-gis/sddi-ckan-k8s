@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ include "ckan.fullname" . }}-sct-db
+  name: {{ include "ckan.fullname" . }}-sct-solr
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "ckan.labels" . | nindent 4 }}
@@ -10,7 +10,9 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 type: Opaque
 stringData:
-  CKAN_SQLALCHEMY_URL: {{ include "ckan.sqlalchemy.url" . | quote }}
-  CKAN_DATASTORE_WRITE_URL: {{ include "ckan.datastore.rw.url" . | quote }}
-  CKAN_DATASTORE_READ_URL: {{ include "ckan.datastore.ro.url" . | quote }}
+  CKAN_SOLR_URL: {{ .Values.solr.url | quote }}
+  {{ if .Values.solr.user }}
+  CKAN_SOLR_USER: {{ .Values.solr.user | quote }}
+  CKAN_SOLR_PASSWORD: {{ .Values.solr.password | quote }}
+  {{- end -}}
 {{- end -}}

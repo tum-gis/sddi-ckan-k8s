@@ -3,8 +3,8 @@ component: frontend
 replicaCount: 1
 
 image:
-  repository: reg.gitlab.brunowillenborg.de/bruno/ckan
-  tag: latest
+  repository: ghcr.io/keitaroinc/ckan
+  tag: 2.9.5
   pullPolicy: IfNotPresent
   credentials:
     secretName: ckan-sct-pull
@@ -27,6 +27,67 @@ loadBalancer:
 #     - ReadWriteOnce
 #   capacity: 4Gi
 
+# General settings
+siteUrl: http://testing.sta.savenow.de/
+siteTitle: My CKAN Instance
+siteDescription: This is my CKAN instance for stuff.
+rootPath:
+siteId: my ckan_instance
+maxUploadSizeMB: 250
+
+# plugins: envvars image_view text_view recline_view datastore datapusher
+plugins: envvars image_view text_view recline_view datastore
+
+# Persistence -----------------------------------------------------------------
+persistence:
+  storagePath: /var/lib/ckan
+
+# CKAN database ---------------------------------------------------------------
+db:
+  host: &DBHost postgis-svc-headless
+  port: &DBPort 5432
+  dbname: &DBName ckan_default
+  auth:
+    username: &DBUser ckan
+    password: &DBPassword changeMe
+
+# Datastore -------------------------------------------------------------------
+datastore:
+  host: *DBHost
+  port: *DBPort
+  dbname: &DatastoreDBName datastore
+  auth:
+    ro:
+      username: &DatastoreROUsername datastore_ro
+      password: &DatastoreROUsername changeMe
+    rw:
+      username: &DatastoreRWUsername ckan
+      password: &DatastoreRWPassword changeMe
+
+# Redis -----------------------------------------------------------------------
+redis:
+  url: redis://redis-svc-headless:6379/0
+
+# Solr ------------------------------------------------------------------------
+solr:
+  url: http://solr-svc-headless:8983/solr/ckan
+  user:
+  password:
+
+# DataPusher ------------------------------------------------------------------
+datapusher:
+  url: http://datapusher-svc-headless:8800/
+
+# SMTP ------------------------------------------------------------------------
+smtp:
+  server: "smtpServerURLorIP:port"
+  user: "smtpUser"
+  password: "smtpPassword"
+  mailFrom: "postmaster@domain.com"
+  tls: "enabled"
+  startTls: "true"
+
+# Resources -------------------------------------------------------------------
 resources:
   limits:
     cpu: 500m
@@ -35,17 +96,20 @@ resources:
     cpu: 250m
     memory: 256Mi
 
-db:
-  host: postgis-srv
-  port: 5432
-  dbname: ckan_default
-  auth:
-    username: ckan
-    password: changeMe
+# Ingress ---------------------------------------------------------------------
+ingress:
+  certManager:
+    issuer: letsencrypt-staging
+
+http:
+  domain:
+  subpath:
+
 
 nodeSelector: {}
 tolerations: []
 affinity: {}
+
 
 
 

@@ -5,6 +5,14 @@
 name: ckan-stack
 
 global:
+  fqdn:
+
+  ingress:
+    certManager:
+      issuer: letsencrypt-staging
+  ssl:
+    adminEMail: user@example.de
+
   db:
     port:
     auth:

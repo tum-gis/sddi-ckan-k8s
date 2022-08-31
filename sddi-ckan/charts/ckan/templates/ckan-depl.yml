@@ -24,12 +24,42 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
+      volumes:
+        - name: config-ini
+          configMap:
+            name: {{ include "ckan.fullname" . }}-cfg-ini
+
       containers:
         - name: ckan
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 6379
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "ckan.fullname" . }}-cfg-env
+            - secretRef:
+                name: {{ include "ckan.fullname" . }}-sct-db
+            - secretRef:
+                name: {{ include "ckan.fullname" . }}-sct-smtp
+            - secretRef:
+                name: {{ include "ckan.fullname" . }}-sct-solr
+
+          volumeMounts:
+            # - name: data
+            #   mountPath: {{ .Values.persistence.storagePath }}
+            - name: config-ini
+              mountPath: /srv/app/production.ini
+              subPath: production.ini
+              # readOnly: true
+
+          # command:
+          #   - sh
+          # args:
+          #   - -c
+          #   - 'ls -lah /srv/app && cat /srv/app/production.ini'
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
