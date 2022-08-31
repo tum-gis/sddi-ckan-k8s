@@ -19,6 +19,12 @@ spec:
       labels:
         {{- include "ckan.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: {{ .Values.component }}
+      annotations:
+        checksum/configmap-env: {{ include (print $.Template.BasePath "/ckan-configMap-env.yml") . | sha256sum }}
+        checksum/configmap-ini: {{ include (print $.Template.BasePath "/ckan-configMap-ini.yml") . | sha256sum }}
+        checksum/secret-db: {{ include (print $.Template.BasePath "/ckan-sct-db.yml") . | sha256sum }}
+        checksum/secret-smtp: {{ include (print $.Template.BasePath "/ckan-sct-smtp.yml") . | sha256sum }}
+        checksum/secret-solr: {{ include (print $.Template.BasePath "/ckan-sct-solr.yml") . | sha256sum }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
