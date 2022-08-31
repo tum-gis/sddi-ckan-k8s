@@ -29,6 +29,10 @@ Bug fixes, issue reports and contributions are greatly appreciated.
 
 ### Contributors
 
+* This repo is based on the CKAN [Docker images](https://github.com/keitaroinc/docker-ckan)
+  and [Helm charts](https://github.com/keitaroinc/ckan-helm) of
+  [Keitaro](https://github.com/keitaroinc). Many thank's for your great work!
+
 <a href="https://github.com/tum-gis/sddi-ckan-k8s/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
 </a>
