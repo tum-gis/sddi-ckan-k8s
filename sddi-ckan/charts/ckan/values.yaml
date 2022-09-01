@@ -64,6 +64,12 @@ locale:
   offered: de en
   filtered_out: en_GB
 
+# Add additional CKAN settings to production.ini
+# Use |+ or |- after additionalSettings only for this to work
+additionalSettings: |+
+  # other ckan settings
+  # an even more settings
+
 # Persistence -----------------------------------------------------------------
 persistence:
   storagePath: /var/lib/ckan
