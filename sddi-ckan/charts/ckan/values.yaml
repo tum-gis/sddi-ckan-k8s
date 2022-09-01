@@ -51,6 +51,23 @@ db:
     username: &DBUser ckan
     password: &DBPassword changeMe
 
+auth:
+  anon_create_dataset: false
+  create_unowned_dataset: false
+  create_dataset_if_not_in_organization: false
+  user_create_groups: false
+  user_create_organizations: false
+  user_delete_groups: false
+  user_delete_organizations: false
+  create_user_via_api: false
+  create_user_via_web: true
+  roles_that_cascade_to_sub_groups:  admin editor member
+  public_user_details: true
+  public_activity_stream_detail: true
+  allow_dataset_collaborators: false
+  create_default_api_keys: false
+
+
 # Datastore -------------------------------------------------------------------
 datastore:
   host: *DBHost
