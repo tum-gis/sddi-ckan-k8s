@@ -31,25 +31,13 @@ loadBalancer:
 siteUrl: http://testing.sta.savenow.de/
 siteTitle: My CKAN Instance
 siteDescription: This is my CKAN instance for stuff.
-rootPath:
+siteLogo: /base/images/group_icons/work.svg
+favicon: /base/images/favicon.ico
 siteId: my ckan_instance
 maxUploadSizeMB: 250
 
 # plugins: envvars image_view text_view recline_view datastore datapusher
 plugins: envvars image_view text_view recline_view datastore
-
-# Persistence -----------------------------------------------------------------
-persistence:
-  storagePath: /var/lib/ckan
-
-# CKAN database ---------------------------------------------------------------
-db:
-  host: &DBHost postgis-svc-headless
-  port: &DBPort 5432
-  dbname: &DBName ckan_default
-  auth:
-    username: &DBUser ckan
-    password: &DBPassword changeMe
 
 auth:
   anon_create_dataset: false
@@ -67,6 +55,27 @@ auth:
   allow_dataset_collaborators: false
   create_default_api_keys: false
 
+dataset:
+  dataset.create_on_ui_requires_resources: false
+
+locale:
+  default: de
+  order: de en pt_BR ja it cs_CZ ca es fr el sv sr sr@latin no sk fi ru de pl nl bg ko_KR hu sa sl lv
+  offered: de en
+  filtered_out: en_GB
+
+# Persistence -----------------------------------------------------------------
+persistence:
+  storagePath: /var/lib/ckan
+
+# CKAN database ---------------------------------------------------------------
+db:
+  host: &DBHost postgis-svc-headless
+  port: &DBPort 5432
+  dbname: &DBName ckan_default
+  auth:
+    username: &DBUser ckan
+    password: &DBPassword changeMe
 
 # Datastore -------------------------------------------------------------------
 datastore:
