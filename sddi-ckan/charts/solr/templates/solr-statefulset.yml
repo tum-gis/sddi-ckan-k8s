@@ -30,6 +30,25 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "solr.fullname" . }}-pvc
+        - name: share
+          emptyDir: {}
+
+      initContainers:
+        - name: get-jts
+          image: bwibo/k8s-init-container
+          imagePullPolicy: Always
+          args:
+            - 'wget -O /mydata/jts-core-1.19.0.jar
+              "https://github.com/locationtech/jts/releases/download/1.19.0/jts-core-1.19.0.jar"
+              && chown -v 0:0 /mydata/jts-core-1.19.0.jar'
+
+          volumeMounts:
+            - name: share
+              mountPath: /mydata
+
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
 
       containers:
         - name: solr
@@ -41,6 +60,9 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/solr/data
+            - name: share
+              mountPath: /opt/solr/server/solr-webapp/webapp/WEB-INF/lib/jts-core-1.19.0.jar
+              subPath: jts-core-1.19.0.jar
 
           # livenessProbe:
           #   periodSeconds: 10
