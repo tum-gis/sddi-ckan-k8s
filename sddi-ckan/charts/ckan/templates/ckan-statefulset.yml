@@ -1,7 +1,7 @@
 {{- if .Values.enabled -}}
-{{- if not .Values.persistence.enabled -}}
+{{- if .Values.persistence.enabled -}}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "ckan.fullname" . }}-{{ .Values.component }}
   namespace: {{ .Release.Namespace | quote }}
@@ -10,6 +10,7 @@ metadata:
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
 spec:
+  serviceName: {{ .Chart.Name }}-svc-headless
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
@@ -33,19 +34,23 @@ spec:
       {{- end }}
 
       volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "ckan.fullname" . }}-pvc
         - name: config-ini
           configMap:
             name: {{ include "ckan.fullname" . }}-cfg-ini
-        - name: data
-          emptyDir: {}
 
+      {{ if .Values.persistence.enabled }}
       initContainers:
-        - name: set-volume-ownsership
-          image: busybox
-          command: ["sh", "-c", "mkdir -vp {{ .Values.persistence.storagePath }} && chown -R 92:92 {{ .Values.persistence.storagePath }}"]
-          volumeMounts:
-            - name: data
-              mountPath: {{ .Values.persistence.storagePath }}
+      - name: set-volume-ownsership
+        image: busybox
+        command: ["sh", "-c", "chown -R 92:92 {{ .Values.persistence.storagePath }}"]
+        volumeMounts:
+        - name: data
+          mountPath: {{ .Values.persistence.storagePath }}
+          readOnly: false
+      {{ end }}
 
       containers:
         - name: ckan
@@ -71,6 +76,12 @@ spec:
               mountPath: /srv/app/production.ini
               subPath: production.ini
               # readOnly: true
+
+          # command:
+          #   - sh
+          # args:
+          #   - -c
+          #   - 'ls -lah /srv/app && cat /srv/app/production.ini'
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

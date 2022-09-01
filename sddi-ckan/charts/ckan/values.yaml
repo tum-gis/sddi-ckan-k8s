@@ -72,7 +72,13 @@ additionalSettings: |+
 
 # Persistence -----------------------------------------------------------------
 persistence:
+  # Caution: If persistence is disabled data is stored in an emptyDir volume
+  # which is ephemeral! Only for testing!
+  enabled: true
   storagePath: /var/lib/ckan
+  accessModes:
+    - ReadWriteOnce
+  capacity: 4Gi
 
 # CKAN database ---------------------------------------------------------------
 db:

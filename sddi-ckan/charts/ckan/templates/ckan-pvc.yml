@@ -1,0 +1,23 @@
+{{- if .Values.enabled -}}
+{{ if .Values.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "ckan.fullname" . }}-pvc
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "ckan.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+  annotations:
+    helm.sh/resource-policy: keep
+spec:
+  accessModes:
+  {{- range .Values.persistence.accessModes }}
+    - {{ . }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.capacity }}
+{{- end -}}
+{{- end -}}
