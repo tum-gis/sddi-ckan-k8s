@@ -21,15 +21,23 @@
     * ckan\public\base\images\custom\dzm-logo.png
   * Bilder hinzugefügt in `.`:
     * ckan\public\base\images\logo_left.png
-    *
-
-
-* Production.ini
-  * Werte aus ENV auslesen mit Python?
-
-
 
 ## ToDos
 
-* Check, if the init SQL Mandana wrote is necessary:
-  * Lines: 16, 19, 29 of `configmap-init`
+## Code snippets
+
+### Create sysadmin
+
+#### Existing user
+
+```shell
+kubectl exec -t -i CKAN-POD_NAME -- \
+  ckan -c /srv/app/production.ini sysadmin add USERNAME
+```
+
+#### New user
+
+```shell
+kubectl exec -t -i CKAN-POD_NAME -- \
+  ckan -c /srv/app/production.ini sysadmin add USERNAME email=user@example.de name=Fristname Lastname
+```
