@@ -43,6 +43,9 @@ redis:
   loadBalancer:
     enabled: false
 
+datapusher:
+  enabled: true
+
 # replicaCount: 1
 
 

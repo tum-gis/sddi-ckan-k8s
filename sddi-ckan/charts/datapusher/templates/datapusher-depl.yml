@@ -1,26 +1,37 @@
+{{- if .Values.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "datapusher.fullname" . }}
+  name: {{ include "datapusher.fullname" . }}-{{ .Values.component }}
+  namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "datapusher.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       {{- include "datapusher.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: {{ .Values.component }}
   template:
     metadata:
       labels:
         {{- include "datapusher.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: {{ .Values.component }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ include "datapusher.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "datapusher.fullname" . }}-cfg
+
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -31,29 +42,20 @@ spec:
             - name: http
               containerPort: 8000
               protocol: TCP
-          env:
-            - name: DATAPUSHER_MAX_CONTENT_LENGTH
-              value: {{ .Values.datapusher.maxContentLength | quote }}
-            - name: DATAPUSHER_CHUNK_SIZE
-              value: {{ .Values.datapusher.chunkSize | quote }}
-            - name: DATAPUSHER_CHUNK_INSERT_ROWS
-              value: {{ .Values.datapusher.insertRows | quote }}
-            - name: DATAPUSHER_DOWNLOAD_TIMEOUT
-              value: {{ .Values.datapusher.downloadTimeout | quote }}
-            - name: DATAPUSHER_SSL_VERIFY
-              value: {{ .Values.datapusher.datapusherSslVerify | quote }}
-            - name: DATAPUSHER_REWRITE_RESOURCES
-              value: {{ .Values.datapusher.datapusherRewriteResources | quote }}
-            - name: DATAPUSHER_REWRITE_URL
-              value: {{ .Values.datapusher.datapusherRewriteUrl | quote }}
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "datapusher.fullname" . }}-cfg
+
           livenessProbe:
             httpGet:
               path: /
-              port: http
+              port: 8000
           readinessProbe:
             httpGet:
               path: /
-              port: http
+              port: 8000
+
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -67,4 +69,6 @@ spec:
     {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
+
     {{- end }}
+{{- end -}}
