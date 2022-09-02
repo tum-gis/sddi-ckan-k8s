@@ -20,7 +20,7 @@ persistence:
   # Annotations for PVCs
   annotations:
     # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
-    helm.sh/resource-policy: keep
+    # helm.sh/resource-policy: keep
 
 resources:
   limits:
