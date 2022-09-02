@@ -79,6 +79,10 @@ persistence:
   accessModes:
     - ReadWriteOnce
   capacity: 4Gi
+  # Annotations for PVCs
+  annotations:
+    # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
+    helm.sh/resource-policy: keep
 
 # CKAN database ---------------------------------------------------------------
 db:
@@ -148,7 +152,26 @@ nodeSelector: {}
 tolerations: []
 affinity: {}
 
+# Readyness and liveness checks -----------------------------------------------
 
+readiness:
+  # Inital delay seconds for the readiness probe
+  initialDelaySeconds: 30
+  #  Check interval for the readiness probe
+  periodSeconds: 10
+  # Failure threshold for the readiness probe
+  failureThreshold: 6
+  # Timeout interval for the readiness probe
+  timeoutSeconds: 10
+liveness:
+  # Initial delay for the liveness probe
+  initialDelaySeconds: 30
+  # Check interval for the liveness probe
+  periodSeconds: 10
+  # Failure threshold for the liveness probe
+  failureThreshold: 6
+  # Timeout interval for the liveness probe
+  timeoutSeconds: 10
 
 
 # # Default values for ckan.

@@ -43,7 +43,7 @@ spec:
 
       {{ if .Values.persistence.enabled }}
       initContainers:
-      - name: set-volume-ownsership
+      - name: init-data
         image: busybox
         command: ["sh", "-c", "chown -R 92:92 {{ .Values.persistence.storagePath }}"]
         volumeMounts:
@@ -57,7 +57,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 6379
+            - containerPort: 5000
 
           envFrom:
             - configMapRef:
@@ -75,6 +75,26 @@ spec:
             - name: config-ini
               mountPath: /srv/app/production.ini
               subPath: production.ini
+
+
+          readinessProbe:
+            httpGet:
+              path: /api/3/action/status_show
+              port: 5000
+            initialDelaySeconds: {{ .Values.readiness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readiness.periodSeconds }}
+            failureThreshold: {{ .Values.readiness.failureThreshold }}
+            timeoutSeconds: {{ .Values.readiness.timeoutSeconds }}
+
+          livenessProbe:
+            httpGet:
+              path: /api/3/action/status_show
+              port: 5000
+            initialDelaySeconds: {{ .Values.liveness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.liveness.periodSeconds }}
+            failureThreshold: {{ .Values.liveness.failureThreshold }}
+            timeoutSeconds: {{ .Values.liveness.timeoutSeconds }}
+
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
