@@ -42,7 +42,14 @@ spec:
       initContainers:
         - name: set-volume-ownsership
           image: busybox
-          command: ["sh", "-c", "mkdir -vp {{ .Values.persistence.storagePath }} && chown -R 92:92 {{ .Values.persistence.storagePath }}"]
+          command:
+            - sh
+          args:
+            - -c
+            - |
+              mkdir -vp {{ .Values.persistence.storagePath }}
+              chown -R 92:92 {{ .Values.persistence.storagePath }}
+
           volumeMounts:
             - name: data
               mountPath: {{ .Values.persistence.storagePath }}
@@ -70,7 +77,6 @@ spec:
             - name: config-ini
               mountPath: /srv/app/production.ini
               subPath: production.ini
-              # readOnly: true
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

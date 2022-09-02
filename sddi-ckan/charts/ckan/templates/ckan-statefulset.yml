@@ -75,13 +75,6 @@ spec:
             - name: config-ini
               mountPath: /srv/app/production.ini
               subPath: production.ini
-              # readOnly: true
-
-          # command:
-          #   - sh
-          # args:
-          #   - -c
-          #   - 'ls -lah /srv/app && cat /srv/app/production.ini'
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
