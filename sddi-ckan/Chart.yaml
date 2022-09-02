@@ -17,6 +17,9 @@ dependencies:
   - name: ckan
     version: "*"
     condition: ckan.enabled
+  - name: datapusher
+    version: "*"
+    condition: datapusher.enabled
   - name: certIssuer
     version: "*"
     condition: certIssuer.enabled
