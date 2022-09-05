@@ -55,6 +55,14 @@ auth:
   allow_dataset_collaborators: false
   create_default_api_keys: false
 
+# Create a sysadmin account
+# Note: Min. password length = 8 char
+sysadmin:
+  enabled: true
+  user: admin
+  password: changeMe
+  email: user@example.de
+
 dataset:
   dataset.create_on_ui_requires_resources: false
 

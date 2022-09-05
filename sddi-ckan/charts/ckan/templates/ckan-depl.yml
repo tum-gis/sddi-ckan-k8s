@@ -59,7 +59,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 6379
+            - containerPort: 5000
 
           envFrom:
             - configMapRef:
@@ -70,6 +70,10 @@ spec:
                 name: {{ include "ckan.fullname" . }}-sct-smtp
             - secretRef:
                 name: {{ include "ckan.fullname" . }}-sct-solr
+            {{ if .Values.sysadmin.enabled }}
+            - secretRef:
+                name: {{ include "ckan.fullname" . }}-sct-sysadmin
+            {{ end }}
 
           volumeMounts:
             - name: data
