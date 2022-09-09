@@ -3,6 +3,41 @@ entries:
   sddi-ckan:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-09-09T11:20:30.253773588Z"
+    dependencies:
+    - condition: postgis.enabled
+      name: postgis
+      repository: ""
+      version: '*'
+    - condition: solr.enabled
+      name: solr
+      repository: ""
+      version: '*'
+    - condition: redis.enabled
+      name: redis
+      repository: ""
+      version: '*'
+    - condition: ckan.enabled
+      name: ckan
+      repository: ""
+      version: '*'
+    - condition: datapusher.enabled
+      name: datapusher
+      repository: ""
+      version: '*'
+    - condition: certIssuer.enabled
+      name: certIssuer
+      repository: ""
+      version: '*'
+    description: A Helm chart for Kubernetes
+    digest: 74ebd2ad5759803f8b0618a5c59d999a128f47e6a744b2b19dbd751ecdabb1d3
+    name: sddi-ckan
+    type: application
+    urls:
+    - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-0.1.2/sddi-ckan-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2022-09-09T11:13:03.805058556Z"
     dependencies:
     - condition: postgis.enabled
@@ -36,4 +71,4 @@ entries:
     urls:
     - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-0.1.1/sddi-ckan-0.1.1.tgz
     version: 0.1.1
-generated: "2022-09-09T11:13:03.805067856Z"
+generated: "2022-09-09T11:20:30.253781888Z"
