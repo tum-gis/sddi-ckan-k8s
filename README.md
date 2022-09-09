@@ -21,6 +21,26 @@
 
 ## :rocket: Usage
 
+1. Get a fully-qualified domain name (FQDN) and configure it to point to the public IP address of
+   the LoadBalancer service of your Nginx ingress controller.
+
+2. Add and update Helm repo
+
+   ```console
+   helm repo add sddi-ckan https://tum-gis.github.io/sddi-ckan-k8s
+   helm repo update
+   ```
+
+
+4. Install stack
+
+   ```console
+   helm install ckan sddi-ckan/sddi-ckan \
+     -n ckan --create-namespace \
+     --atomic --wait \
+     --values my-values.yml
+   ```
+
 ## :construction_worker: Building
 
 ## :hammer_and_wrench: Contributing
