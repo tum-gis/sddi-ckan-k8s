@@ -1,0 +1,13 @@
+{{- if .Values.enabled -}}
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: self-signed
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "certIssuer.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: tum-gis-iot-stack-k8s
+    app.kubernetes.io/component: acme-ssl
+spec:
+  selfSigned: {}
+{{- end -}}
