@@ -9,21 +9,36 @@ A Helm chart for Kubernetes
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| chunkSize | string | `"16384"` |  |
+| autoscaling.enabled | bool | `false` | Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods. |
+| autoscaling.maxReplicas | int | `5` | Maximum number of replicas |
+| autoscaling.minReplicas | int | `1` | Minimum number of replicas |
+| autoscaling.targetCPUUtilizationPercentage | int | `80` | targetMemoryUtilizationPercentage: 80 |
+| chunkSize | string | `"16384"` | Size of chunks of the data that is being downloaded in bytes |
 | component | string | `"helper"` |  |
-| datapusherRewriteResources | string | `"True"` |  |
-| datapusherRewriteUrl | string | `"http://ckan-svc:5000/"` |  |
-| datapusherSslVerify | string | `"False"` |  |
-| downloadTimeout | string | `"30"` |  |
+| datapusherRewriteResources | string | `"True"` | Enable or disable (boolean) whether datapusher should rewrite resources uploaded to CKAN's filestore, since datapusher takes the CKAN Site URL value for generating the resource URL. Default: False |
+| datapusherRewriteUrl | string | `"http://ckan:5000/"` | Sets the rewrite URL that datapushed will rewrite resources that are uploaded to CKAN's filestore. Default: http://ckan:5000 |
+| datapusherSslVerify | string | `"False"` | Enable or disable (boolean) verification of SSL when trying to get resources. Default: True |
+| downloadTimeout | string | `"30"` | Timeout limit of the download request |
 | enabled | bool | `true` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/keitaroinc/datapusher"` |  |
-| image.tag | string | `"0.0.17"` |  |
-| imagePullSecrets | list | `[]` |  |
-| insertRows | string | `"250"` |  |
-| maxContentLength | string | `"10485760"` |  |
+| extraEnv | object | `{}` | Extra environment variables |
+| fullnameOverride | string | `"datapusher"` | Override fullname |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
+| image.repository | string | `"ghcr.io/keitaroinc/datapusher"` | Image repository |
+| image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
+| imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
+| insertRows | string | `"250"` | Number of rows to take from the data and upload them as chunks to datastore |
+| maxContentLength | string | `"10485760"` | Maximum size of content to be uploaded in bytes. |
+| nameOverride | string | `nil` | Override name |
 | nodeSelector | object | `{}` |  |
-| replicaCount | int | `1` |  |
+| podAnnotations | object | `{}` | Additional pod annotations |
+| podSecurityContext | object | `{}` |  |
+| replicaCount | int | `1` | Number of replicas. Only used if autoscaling.enabled = false |
+| securityContext | object | `{}` |  |
+| service.port | int | `8000` | Service port |
+| service.type | string | `"ClusterIP"` | Type of service |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
+| serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
+| serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | tolerations | list | `[]` |  |
 
 ----------------------------------------------

@@ -1,108 +1,85 @@
-component: helper
-replicaCount: 1
 enabled: true
+component: helper
+
+# -- Override name
+nameOverride:
+# -- Override fullname
+fullnameOverride: datapusher
 
 image:
+  # -- Image repository
   repository: ghcr.io/keitaroinc/datapusher
-  tag: 0.0.17
+  # -- Image pull policy
   pullPolicy: IfNotPresent
+   # -- Overrides the image tag whose default is the chart appVersion.
+  tag: ""
 
+# -- [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
 imagePullSecrets: []
 
-# Datapusher settings ---------------------------------------------------------
-# Maximum size of content to be uploaded in bytes.
+# -- Additional pod annotations
+podAnnotations: {}
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: false
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+# -- Extra environment variables
+extraEnv: {}
+
+service:
+  # -- Type of service
+  type: ClusterIP
+  # -- Service port
+  port: 8000
+
+# -- Number of replicas. Only used if autoscaling.enabled = false
+replicaCount: 1
+autoscaling:
+  # -- Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods.
+  enabled: false
+  # -- Minimum number of replicas
+  minReplicas: 1
+  # -- Maximum number of replicas
+  maxReplicas: 5
+  # -- targetMemoryUtilizationPercentage: 80
+  targetCPUUtilizationPercentage: 80
+
+# Datapusher settings
+# -- Maximum size of content to be uploaded in bytes.
 maxContentLength: "10485760"
-# Size of chunks of the data that is being downloaded in bytes
+# -- Size of chunks of the data that is being downloaded in bytes
 chunkSize: "16384"
-# Number of rows to take from the data and upload them as chunks to datastore
+# -- Number of rows to take from the data and upload them as chunks to datastore
 insertRows: "250"
-# Timeout limit of the download request
+# -- Timeout limit of the download request
 downloadTimeout: "30"
-# Enable or disable (boolean) verification of SSL when trying to get resources. Default: True
+# -- Enable or disable (boolean) verification of SSL when trying to get resources. Default: True
 datapusherSslVerify: "False"
-# Enable or disable (boolean) whether datapusher should rewrite resources uploaded to CKAN's filestore,
+# -- Enable or disable (boolean) whether datapusher should rewrite resources uploaded to CKAN's filestore,
 # since datapusher takes the CKAN Site URL value for generating the resource URL.
 # Default: False
 datapusherRewriteResources: "True"
-# Sets the rewrite URL that datapushed will rewrite resources that are uploaded to CKAN's filestore.
+# -- Sets the rewrite URL that datapushed will rewrite resources that are uploaded to CKAN's filestore.
 # Default: http://ckan:5000
-datapusherRewriteUrl: http://ckan-svc:5000/
+datapusherRewriteUrl: http://ckan:5000/
 
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
-
-# image:
-#   repository: nginx
-#   pullPolicy: IfNotPresent
-#   # Overrides the image tag whose default is the chart appVersion.
-#   tag: ""
-
-
-# serviceAccount:
-#   # Specifies whether a service account should be created
-#   create: true
-#   # Annotations to add to the service account
-#   annotations: {}
-#   # The name of the service account to use.
-#   # If not set and create is true, a name is generated using the fullname template
-#   name: ""
-
-# podAnnotations: {}
-
-# podSecurityContext: {}
-#   # fsGroup: 2000
-
-# securityContext: {}
-#   # capabilities:
-#   #   drop:
-#   #   - ALL
-#   # readOnlyRootFilesystem: true
-#   # runAsNonRoot: true
-#   # runAsUser: 1000
-
-# service:
-#   type: ClusterIP
-#   port: 80
-
-# ingress:
-#   enabled: false
-#   className: ""
-#   annotations: {}
-#     # kubernetes.io/ingress.class: nginx
-#     # kubernetes.io/tls-acme: "true"
-#   hosts:
-#     - host: chart-example.local
-#       paths:
-#         - path: /
-#           pathType: ImplementationSpecific
-#   tls: []
-#   #  - secretName: chart-example-tls
-#   #    hosts:
-#   #      - chart-example.local
-
-# resources: {}
-#   # We usually recommend not to specify default resources and to leave this as a conscious
-#   # choice for the user. This also increases chances charts run on environments with little
-#   # resources, such as Minikube. If you do want to specify resources, uncomment the following
-#   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-#   # limits:
-#   #   cpu: 100m
-#   #   memory: 128Mi
-#   # requests:
-#   #   cpu: 100m
-#   #   memory: 128Mi
-
-# autoscaling:
-#   enabled: false
-#   minReplicas: 1
-#   maxReplicas: 100
-#   targetCPUUtilizationPercentage: 80
-#   # targetMemoryUtilizationPercentage: 80
-
-# nodeSelector: {}
-
-# tolerations: []
-
-# affinity: {}

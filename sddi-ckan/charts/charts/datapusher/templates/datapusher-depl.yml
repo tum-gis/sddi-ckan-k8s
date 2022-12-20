@@ -2,35 +2,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "datapusher.fullname" . }}-{{ .Values.component }}
+  name: {{ include "datapusher.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "datapusher.labels" . | nindent 4 }}
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
 spec:
+  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "datapusher.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: {{ .Values.component }}
-  template:
-    metadata:
+      annotations:
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/datapusher-configMap.yml") . | sha256sum }}
       labels:
         {{- include "datapusher.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: {{ .Values.component }}
     spec:
-    {{- with .Values.imagePullSecrets }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}
+      serviceAccountName: {{ include "datapusher.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
       volumes:
         - name: config
           configMap:
-            name: {{ include "datapusher.fullname" . }}-cfg
+            name: {{ include "datapusher.fullname" . }}
 
       containers:
         - name: {{ .Chart.Name }}
@@ -45,7 +51,7 @@ spec:
 
           envFrom:
             - configMapRef:
-                name: {{ include "datapusher.fullname" . }}-cfg
+                name: {{ include "datapusher.fullname" . }}
 
           livenessProbe:
             httpGet:
@@ -69,6 +75,5 @@ spec:
     {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
-
     {{- end }}
 {{- end -}}
