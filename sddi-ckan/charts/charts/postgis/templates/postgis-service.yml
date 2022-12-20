@@ -1,9 +1,8 @@
 {{- if .Values.enabled -}}
-# Service ---------------------------------------------------------------------
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Chart.Name }}-svc
+  name: {{ .Chart.Name }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "postgis.labels" . | nindent 4 }}
@@ -18,5 +17,4 @@ spec:
     - protocol: TCP
       port: {{ .Values.global.db.port | default .Values.port }}
       targetPort: 5432
-
 {{- end -}}

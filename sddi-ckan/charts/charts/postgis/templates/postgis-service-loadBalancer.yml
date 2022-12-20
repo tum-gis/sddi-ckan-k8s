@@ -1,10 +1,9 @@
 {{- if .Values.enabled -}}
 {{- if .Values.loadBalancer.enabled -}}
-# Service ---------------------------------------------------------------------
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Chart.Name }}-svc-loadbalancer
+  name: {{ .Chart.Name }}-lb
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "postgis.labels" . | nindent 4 }}

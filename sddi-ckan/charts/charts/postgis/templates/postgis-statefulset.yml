@@ -2,29 +2,40 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "postgis.fullname" . }}-{{ .Values.component }}
+  name: {{ include "postgis.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "postgis.labels" . | nindent 4 }}
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
 spec:
-  serviceName: {{ .Chart.Name }}-svc-headless
-  replicas: {{ .Values.replicaCount }}
+  serviceName: {{ include "postgis.fullname" . }}-hl
   selector:
     matchLabels:
       {{- include "postgis.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: {{ .Values.component }}
   template:
     metadata:
+      annotations:
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
         {{- include "postgis.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: {{ .Values.component }}
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "postgis.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+
       volumes:
         - name: postgresdata
           persistentVolumeClaim:
-            claimName: {{ include "postgis.fullname" . }}-pvc
+            claimName: {{ include "postgis.fullname" . }}
         - name: dshm
           emptyDir:
             medium: Memory
@@ -33,17 +44,21 @@ spec:
             name: {{ include "postgis.fullname" . }}-init
 
       containers:
-        - name: postgis
-          image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 5432
+            - name: psql
+              containerPort: 5432
+              protocol: TCP
 
           envFrom:
             - configMapRef:
-                name: {{ include "postgis.fullname" . }}-cfg
+                name: {{ include "postgis.fullname" . }}
             - secretRef:
-                name: {{ include "postgis.fullname" . }}-sct
+                name: {{ include "postgis.fullname" . }}
 
           volumeMounts:
             - mountPath: {{ .Values.persistence.mountPath }}
@@ -80,5 +95,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-
 {{- end -}}

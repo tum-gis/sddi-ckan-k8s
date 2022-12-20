@@ -1,17 +1,49 @@
 
 enabled: true
 component: database
-replicaCount: 1
+
+# -- Override name
+nameOverride:
+# -- Override fullname
+fullnameOverride: postgis
 
 # Create a LoadBalancer service for external Database access
 loadBalancer:
   enabled: false
 
 image:
-  registry: postgis
-  repository: postgis
-  tag: 14-3.2-alpine
+  # -- Image repository
+  repository: postgis/postgis
+  # -- Image pull policy
   pullPolicy: IfNotPresent
+   # -- Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+# -- [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
+imagePullSecrets: []
+
+# -- Additional pod annotations
+podAnnotations: {}
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: false
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
 
 # Database settings
 port: 5432
@@ -25,17 +57,24 @@ authRO:
   username: datastore_ro
   password: changeMe
 
-# Persistence settings
+# -- Extra environment variables
+extraEnv: {}
+
 persistence:
-  # Ommit trailing / !
+  # -- StorageClass to use, leave empty to use default StorageClass.
+  storageClassName:
+  # -- Mount path of the storage. Omit trailing `/` !
   mountPath: /mydata
+  # -- Subpath inside `mountPath` for the postgres data folder
   pgdataSubPath: /pgdata
+  # -- Storage [access modes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
   accessModes:
     - ReadWriteOnce
+  # -- Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity)
   capacity: 4Gi
-  # Annotations for PVCs
-  annotations:
-    # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
+  # -- Additional annotations for PVC
+  # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
+  annotations: {}
     # helm.sh/resource-policy: keep
 
 resources:
@@ -49,38 +88,3 @@ resources:
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
-# Template after here ---------------------------------------------------------
-# nameOverride: ""
-# fullnameOverride: ""
-#
-# serviceAccount:
-#   # Specifies whether a service account should be created
-#   create: true
-#   # Annotations to add to the service account
-#   annotations: {}
-#   # The name of the service account to use.
-#   # If not set and create is true, a name is generated using the fullname template
-#   name: ""
-#
-# podAnnotations: {}
-#
-# podSecurityContext: {}
-#   # fsGroup: 2000
-#
-# securityContext: {}
-#   # capabilities:
-#   #   drop:
-#   #   - ALL
-#   # readOnlyRootFilesystem: true
-#   # runAsNonRoot: true
-#   # runAsUser: 1000
-#
-#
-# autoscaling:
-#   enabled: false
-#   minReplicas: 1
-#   maxReplicas: 100
-#   targetCPUUtilizationPercentage: 80
-#   # targetMemoryUtilizationPercentage: 80
-#

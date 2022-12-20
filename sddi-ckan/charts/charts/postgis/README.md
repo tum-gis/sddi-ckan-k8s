@@ -1,6 +1,6 @@
 # postgis
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 14-3.2-alpine](https://img.shields.io/badge/AppVersion-14--3.2--alpine-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 14-3.3-alpine](https://img.shields.io/badge/AppVersion-14--3.3--alpine-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -16,23 +16,32 @@ A Helm chart for Kubernetes
 | component | string | `"database"` |  |
 | dbname | string | `"ckan_default"` |  |
 | enabled | bool | `true` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.registry | string | `"postgis"` |  |
-| image.repository | string | `"postgis"` |  |
-| image.tag | string | `"14-3.2-alpine"` |  |
+| extraEnv | object | `{}` | Extra environment variables |
+| fullnameOverride | string | `"postgis"` | Override fullname |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
+| image.repository | string | `"postgis/postgis"` | Image repository |
+| image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
+| imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
 | loadBalancer.enabled | bool | `false` |  |
+| nameOverride | string | `nil` | Override name |
 | nodeSelector | object | `{}` |  |
-| persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
-| persistence.annotations | string | `nil` |  |
-| persistence.capacity | string | `"4Gi"` |  |
-| persistence.mountPath | string | `"/mydata"` |  |
-| persistence.pgdataSubPath | string | `"/pgdata"` |  |
+| persistence.accessModes | list | `["ReadWriteOnce"]` | Storage [access modes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) |
+| persistence.annotations | object | `{}` | Additional annotations for PVC Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall |
+| persistence.capacity | string | `"4Gi"` | Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity) |
+| persistence.mountPath | string | `"/mydata"` | Mount path of the storage. Omit trailing `/` ! |
+| persistence.pgdataSubPath | string | `"/pgdata"` | Subpath inside `mountPath` for the postgres data folder |
+| persistence.storageClassName | string | `nil` | StorageClass to use, leave empty to use default StorageClass. |
+| podAnnotations | object | `{}` | Additional pod annotations |
+| podSecurityContext | object | `{}` |  |
 | port | int | `5432` |  |
-| replicaCount | int | `1` |  |
 | resources.limits.cpu | string | `"4000m"` |  |
 | resources.limits.memory | string | `"8Gi"` |  |
 | resources.requests.cpu | string | `"1000m"` |  |
 | resources.requests.memory | string | `"1Gi"` |  |
+| securityContext | object | `{}` |  |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
+| serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
+| serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | tolerations | list | `[]` |  |
 
 ----------------------------------------------
