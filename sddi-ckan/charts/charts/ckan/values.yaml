@@ -1,24 +1,106 @@
 enabled: true
 component: frontend
-replicaCount: 1
+
+
+# -- Override name
+nameOverride:
+# -- Override fullname
+fullnameOverride: ckan
 
 image:
+  # -- Image repository
   repository: ghcr.io/keitaroinc/ckan
-  tag: 2.9.5
+  # [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
+   # -- Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+  # -- Create a image pully secret of type kubernetes.io/dockerconfigjson
   credentials:
+    # -- Name of the image pull secret to create
     secretName: ckan-sct-pull
+    # -- Image registry
     registry: quay.io
-    username: someone
-    password: sillyness
+    # -- Image registry username
+    username: user
+    # -- Image registry password
+    password: changeMe
+    # -- Image registry eMail address
     email: someone@host.com
 
+# -- [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
 imagePullSecrets:
   - name: ckan-sct-pull
 
-# Create a LoadBalancer service for external Database access
-loadBalancer:
+# -- Additional pod annotations
+podAnnotations: {}
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: false
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  # -- Type of service for http
+  type: ClusterIP
+  # -- Service port for http
+  port: 5000
+
+# -- Number of replicas. Only used if autoscaling.enabled = false
+replicaCount: 1
+autoscaling:
+  # -- Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods.
   enabled: false
+  # -- Minimum number of replicas
+  minReplicas: 1
+  # -- Maximum number of replicas
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# -- Ingress configuration
+ingress:
+  # -- Enable/disable ingress
+  enabled: true
+  # -- Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
+  # to use in Ingress routes.
+  className: nginx
+  # -- List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress.
+  # Note: All FQDNs will be used for Ingress hosts and TLS certificate.
+  # The global setting overwrites this setting. Note: The first domain in the list will be used
+  # as CKAN serviceRootURL and MQTT host.
+  domains: []
+  # -- Additional Ingress annotations
+  annotations:
+    # nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  # -- Make CKAN available at a subpath. By default caddy will be available from [DOMAIN]/
+  # Don't append or prepend :// or /
+  subpath:
+  certManager:
+    # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
+    issuerEmail: me@example.com
+    # -- Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster".
+    issuerType: namespace
+    # -- Name of the Issuer to use. For certManager.type = namespace
+    # `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available.
+    issuerName: letsencrypt-staging
+
+# -- Extra environment variables. Values need to be quoted.
+extraEnv: {}
 
 # persistence:
 #   enabled: true
@@ -80,14 +162,17 @@ additionalSettings: |+
 
 # Persistence -----------------------------------------------------------------
 persistence:
-  # Caution: If persistence is disabled data is stored in an emptyDir volume
-  # which is ephemeral! Only for testing!
+  # Enable/disable persistent data storage.
   enabled: true
+  # -- StorageClass to use, leave empty to use default StorageClass.
+  storageClassName:
+  # -- Mount path of the storage. Omit trailing `/` !
   storagePath: /var/lib/ckan
   accessModes:
     - ReadWriteOnce
+  # -- Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity)
   capacity: 4Gi
-  # Annotations for PVCs
+  # Additional annotations for PVCs
   annotations:
     # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
     # helm.sh/resource-policy: keep
@@ -147,15 +232,6 @@ resources:
     cpu: 250m
     memory: 256Mi
 
-# Ingress ---------------------------------------------------------------------
-ingress:
-  certManager:
-    issuer: letsencrypt-staging
-
-http:
-  domain:
-  subpath:
-
 nodeSelector: {}
 tolerations: []
 affinity: {}
@@ -180,87 +256,3 @@ liveness:
   failureThreshold: 6
   # Timeout interval for the liveness probe
   timeoutSeconds: 10
-
-
-# # Default values for ckan.
-# # This is a YAML-formatted file.
-# # Declare variables to be passed into your templates.
-
-# replicaCount: 1
-
-# image:
-#   repository: nginx
-#   pullPolicy: IfNotPresent
-#   # Overrides the image tag whose default is the chart appVersion.
-#   tag: ""
-
-# imagePullSecrets: []
-# nameOverride: ""
-# fullnameOverride: ""
-
-# serviceAccount:
-#   # Specifies whether a service account should be created
-#   create: true
-#   # Annotations to add to the service account
-#   annotations: {}
-#   # The name of the service account to use.
-#   # If not set and create is true, a name is generated using the fullname template
-#   name: ""
-
-# podAnnotations: {}
-
-# podSecurityContext: {}
-#   # fsGroup: 2000
-
-# securityContext: {}
-#   # capabilities:
-#   #   drop:
-#   #   - ALL
-#   # readOnlyRootFilesystem: true
-#   # runAsNonRoot: true
-#   # runAsUser: 1000
-
-# service:
-#   type: ClusterIP
-#   port: 80
-
-# ingress:
-#   enabled: false
-#   className: ""
-#   annotations: {}
-#     # kubernetes.io/ingress.class: nginx
-#     # kubernetes.io/tls-acme: "true"
-#   hosts:
-#     - host: chart-example.local
-#       paths:
-#         - path: /
-#           pathType: ImplementationSpecific
-#   tls: []
-#   #  - secretName: chart-example-tls
-#   #    hosts:
-#   #      - chart-example.local
-
-# resources: {}
-#   # We usually recommend not to specify default resources and to leave this as a conscious
-#   # choice for the user. This also increases chances charts run on environments with little
-#   # resources, such as Minikube. If you do want to specify resources, uncomment the following
-#   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-#   # limits:
-#   #   cpu: 100m
-#   #   memory: 128Mi
-#   # requests:
-#   #   cpu: 100m
-#   #   memory: 128Mi
-
-# autoscaling:
-#   enabled: false
-#   minReplicas: 1
-#   maxReplicas: 100
-#   targetCPUUtilizationPercentage: 80
-#   # targetMemoryUtilizationPercentage: 80
-
-# nodeSelector: {}
-
-# tolerations: []
-
-# affinity: {}

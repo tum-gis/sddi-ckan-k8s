@@ -20,15 +20,19 @@ A Helm chart for Kubernetes
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | datapusher.enabled | bool | `true` |  |
+| fullnameOverride | string | `""` | Override fullname |
 | global.db.auth.password | string | `nil` |  |
 | global.db.auth.username | string | `nil` |  |
 | global.db.authRO.password | string | `nil` |  |
 | global.db.authRO.username | string | `nil` |  |
 | global.db.port | string | `nil` |  |
-| global.fqdn | string | `nil` |  |
-| global.ingress.certManager.issuer | string | `"letsencrypt-staging"` |  |
-| global.ssl.adminEMail | string | `"user@example.de"` |  |
-| name | string | `"ckan-stack"` |  |
+| global.ingress | object | `{"certManager":{"issuerEmail":"me@example.com","issuerName":"letsencrypt-staging","issuerType":"namespace"},"className":"nginx","domains":["localhost"]}` | Fully qualified domain name, used for all Ingress routes. Use localhost for local testing deployments. |
+| global.ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
+| global.ingress.certManager.issuerName | string | `"letsencrypt-staging"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available. |
+| global.ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |
+| global.ingress.className | string | `"nginx"` | Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class) to use in Ingress routes. |
+| global.ingress.domains | list | `["localhost"]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. The global setting overwrites this setting in subcharts. |
+| nameOverride | string | `""` | Override name |
 | postgis.enabled | bool | `true` |  |
 | postgis.loadBalancer.enabled | bool | `false` |  |
 | redis.enabled | bool | `true` |  |

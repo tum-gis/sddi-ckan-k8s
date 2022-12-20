@@ -3,14 +3,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "ckan.fullname" . }}-{{ .Values.component }}
+  name: {{ include "ckan.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "ckan.labels" . | nindent 4 }}
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
 spec:
+  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "ckan.selectorLabels" . | nindent 6 }}
@@ -21,6 +23,9 @@ spec:
         {{- include "ckan.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: {{ .Values.component }}
       annotations:
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
         checksum/configmap-env: {{ include (print $.Template.BasePath "/ckan-configMap-env.yml") . | sha256sum }}
         checksum/configmap-ini: {{ include (print $.Template.BasePath "/ckan-configMap-ini.yml") . | sha256sum }}
         checksum/secret-db: {{ include (print $.Template.BasePath "/ckan-sct-db.yml") . | sha256sum }}
@@ -31,6 +36,9 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      serviceAccountName: {{ include "ckan.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
       volumes:
         - name: config-ini
@@ -55,11 +63,15 @@ spec:
               mountPath: {{ .Values.persistence.storagePath }}
 
       containers:
-        - name: ckan
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 5000
+            - name: http
+              containerPort: 5000
+              protocol: TCP
 
           envFrom:
             - configMapRef:
@@ -114,6 +126,5 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-
 {{- end -}}
 {{- end -}}

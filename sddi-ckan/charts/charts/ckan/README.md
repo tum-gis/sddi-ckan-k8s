@@ -24,6 +24,10 @@ A Helm chart for Kubernetes
 | auth.user_create_organizations | bool | `false` |  |
 | auth.user_delete_groups | bool | `false` |  |
 | auth.user_delete_organizations | bool | `false` |  |
+| autoscaling.enabled | bool | `false` | Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods. |
+| autoscaling.maxReplicas | int | `5` | Maximum number of replicas |
+| autoscaling.minReplicas | int | `1` | Minimum number of replicas |
+| autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | component | string | `"frontend"` |  |
 | datapusher.callback_url_base | string | `"http://ckan-svc:5000/"` |  |
 | datapusher.url | string | `"http://datapusher-svc:8000/"` |  |
@@ -41,46 +45,64 @@ A Helm chart for Kubernetes
 | db.host | string | `"postgis-svc-headless"` |  |
 | db.port | int | `5432` |  |
 | enabled | bool | `true` |  |
+| extraEnv | object | `{}` | Extra environment variables. Values need to be quoted. |
 | favicon | string | `"/base/images/favicon.ico"` |  |
-| http.domain | string | `nil` |  |
-| http.subpath | string | `nil` |  |
-| image.credentials.email | string | `"someone@host.com"` |  |
-| image.credentials.password | string | `"sillyness"` |  |
-| image.credentials.registry | string | `"quay.io"` |  |
-| image.credentials.secretName | string | `"ckan-sct-pull"` |  |
-| image.credentials.username | string | `"someone"` |  |
+| fullnameOverride | string | `"ckan"` | Override fullname |
+| image.credentials | object | `{"email":"someone@host.com","password":"changeMe","registry":"quay.io","secretName":"ckan-sct-pull","username":"user"}` | Create a image pully secret of type kubernetes.io/dockerconfigjson |
+| image.credentials.email | string | `"someone@host.com"` | Image registry eMail address |
+| image.credentials.password | string | `"changeMe"` | Image registry password |
+| image.credentials.registry | string | `"quay.io"` | Image registry |
+| image.credentials.secretName | string | `"ckan-sct-pull"` | Name of the image pull secret to create |
+| image.credentials.username | string | `"user"` | Image registry username |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/keitaroinc/ckan"` |  |
-| image.tag | string | `"2.9.5"` |  |
-| imagePullSecrets[0].name | string | `"ckan-sct-pull"` |  |
-| ingress.certManager.issuer | string | `"letsencrypt-staging"` |  |
+| image.repository | string | `"ghcr.io/keitaroinc/ckan"` | Image repository |
+| image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
+| imagePullSecrets | list | `[{"name":"ckan-sct-pull"}]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
+| ingress | object | `{"annotations":null,"certManager":{"issuerEmail":"me@example.com","issuerName":"letsencrypt-staging","issuerType":"namespace"},"className":"nginx","domains":[],"enabled":true,"subpath":null}` | Ingress configuration |
+| ingress.annotations | string | `nil` | Additional Ingress annotations |
+| ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
+| ingress.certManager.issuerName | string | `"letsencrypt-staging"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available. |
+| ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |
+| ingress.className | string | `"nginx"` | Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class) to use in Ingress routes. |
+| ingress.domains | list | `[]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. The global setting overwrites this setting. Note: The first domain in the list will be used as CKAN serviceRootURL and MQTT host. |
+| ingress.enabled | bool | `true` | Enable/disable ingress |
+| ingress.subpath | string | `nil` | Make CKAN available at a subpath. By default caddy will be available from [DOMAIN]/ Don't append or prepend :// or / |
 | liveness.failureThreshold | int | `6` |  |
 | liveness.initialDelaySeconds | int | `30` |  |
 | liveness.periodSeconds | int | `10` |  |
 | liveness.timeoutSeconds | int | `10` |  |
-| loadBalancer.enabled | bool | `false` |  |
 | locale.default | string | `"de"` |  |
 | locale.filtered_out | string | `"en_GB"` |  |
 | locale.offered | string | `"de en"` |  |
 | locale.order | string | `"de en pt_BR ja it cs_CZ ca es fr el sv sr sr@latin no sk fi ru de pl nl bg ko_KR hu sa sl lv"` |  |
 | maxUploadSizeMB | int | `250` |  |
+| nameOverride | string | `nil` | Override name |
 | nodeSelector | object | `{}` |  |
 | persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
 | persistence.annotations | string | `nil` |  |
-| persistence.capacity | string | `"4Gi"` |  |
+| persistence.capacity | string | `"4Gi"` | Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity) |
 | persistence.enabled | bool | `true` |  |
-| persistence.storagePath | string | `"/var/lib/ckan"` |  |
+| persistence.storageClassName | string | `nil` | StorageClass to use, leave empty to use default StorageClass. |
+| persistence.storagePath | string | `"/var/lib/ckan"` | Mount path of the storage. Omit trailing `/` ! |
 | plugins | string | `"envvars image_view text_view recline_view datastore datapusher"` |  |
+| podAnnotations | object | `{}` | Additional pod annotations |
+| podSecurityContext | object | `{}` |  |
 | readiness.failureThreshold | int | `6` |  |
 | readiness.initialDelaySeconds | int | `30` |  |
 | readiness.periodSeconds | int | `10` |  |
 | readiness.timeoutSeconds | int | `10` |  |
 | redis.url | string | `"redis://redis-svc-headless:6379/0"` |  |
-| replicaCount | int | `1` |  |
+| replicaCount | int | `1` | Number of replicas. Only used if autoscaling.enabled = false |
 | resources.limits.cpu | string | `"500m"` |  |
 | resources.limits.memory | string | `"1Gi"` |  |
 | resources.requests.cpu | string | `"250m"` |  |
 | resources.requests.memory | string | `"256Mi"` |  |
+| securityContext | object | `{}` |  |
+| service.port | int | `5000` | Service port for http |
+| service.type | string | `"ClusterIP"` | Type of service for http |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
+| serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
+| serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | siteDescription | string | `"This is my CKAN instance for stuff."` |  |
 | siteId | string | `"my ckan_instance"` |  |
 | siteLogo | string | `"/base/images/group_icons/work.svg"` |  |

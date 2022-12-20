@@ -1,38 +1,62 @@
 {{- if .Values.enabled -}}
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "ckan.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+{{- $domains:= coalesce .Values.global.ingress.domains .Values.ingress.domains }}
+{{- if empty $domains }}
+{{- fail "No ingress domains specified. Set either .Values.global.inress.domains[] or .Values.inress.domains[]." }}
+{{- end }}
+{{- $subpath := .Values.ingress.subpath -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "ckan.fullname" . }}-ing
+  name: {{ include "ckan.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "ckan.labels" . | nindent 4 }}
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
   annotations:
-    cert-manager.io/issuer: {{ .Values.global.ingress.certManager.issuer |
-      default .Values.ingress.certManager.issuer | quote }}
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    {{- if (and (not (empty (coalesce .Values.global.ingress.certManager.issuerName .Values.ingress.certManager.issuerName )))
+    (eq (coalesce .Values.global.ingress.certManager.issuerType .Values.ingress.certManager.issuerType) "cluster")) }}
+    cert-manager.io/cluster-issuer: {{ .Values.global.ingress.certManager.issuerName | default .Values.ingress.certManager.issuerName | quote }}
+    {{- end }}
+    {{- if (and (not (empty (coalesce .Values.global.ingress.certManager.issuerName .Values.ingress.certManager.issuerName )))
+    (eq (coalesce .Values.global.ingress.certManager.issuerType .Values.ingress.certManager.issuerType) "namespace")) }}
+    cert-manager.io/issuer: {{ .Values.global.ingress.certManager.issuerName | default .Values.ingress.certManager.issuerName | quote }}
+    {{- end }}
+    {{ if $subpath -}}
+    nginx.ingress.kubernetes.io/rewrite-target: "/$2"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^/{{ $subpath }}$ /{{ $subpath }}/ redirect;
+    {{- else -}}
     nginx.ingress.kubernetes.io/rewrite-target: "/$1"
-    # {{ if .Values.http.subpath -}}
-    # nginx.ingress.kubernetes.io/configuration-snippet: |
-    #   rewrite ^/{{ .Values.http.subpath }}$ /{{ .Values.http.subpath }}/ redirect;
-    # {{- end }}
+    {{- end}}
 spec:
-  ingressClassName: nginx
+  ingressClassName: {{ .Values.global.ingress.className | default .Values.ingress.className }}
   tls:
   - hosts:
-    - {{ .Values.global.fqdn }}
-    secretName: "{{ .Values.global.fqdn }}-cert"
+  {{- range $domains }}
+    - {{ . }}
+  {{- end }}
+    secretName: tls
   rules:
-  - host: {{ .Values.global.fqdn }}
+  {{- range $domains }}
+  - host: {{ . }}
     http:
       paths:
-      # - path:  /{{ .Values.http.subpath }}(/|$)(.*)
-      - path:  /(.*)
+      {{- if $subpath }}
+      - path: /{{ $subpath }}(/|$)(.*)
+      {{- end }}
+      {{- if not $subpath }}
+      - path: /(.*)
+      {{- end }}
         pathType: Prefix
         backend:
           service:
-            name: {{ .Chart.Name }}-svc
+            name: {{ $fullName }}
             port:
-              number: 5000
+              number: {{ $svcPort }}
+  {{- end }}
+{{- end -}}
 {{- end -}}

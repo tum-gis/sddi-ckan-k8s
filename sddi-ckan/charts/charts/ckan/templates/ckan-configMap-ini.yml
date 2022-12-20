@@ -8,7 +8,6 @@ metadata:
     {{- include "ckan.labels" . | nindent 4 }}
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: database
-    app.kubernetes.io/part-of: sddi-ckan
 data:
 {{ tpl (.Files.Glob "files/production.ini").AsConfig . | indent 2 }}
 {{- end -}}
