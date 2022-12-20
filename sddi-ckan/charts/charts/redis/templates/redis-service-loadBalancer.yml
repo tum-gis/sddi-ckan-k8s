@@ -1,10 +1,9 @@
 {{- if .Values.enabled -}}
 {{- if .Values.loadBalancer.enabled -}}
-# Service ---------------------------------------------------------------------
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Chart.Name }}-svc-loadbalancer
+   name: {{- include "redis.fullname" . }}-lb
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "redis.labels" . | nindent 4 }}
@@ -17,7 +16,7 @@ spec:
       app.kubernetes.io/component: {{ .Values.component }}
   ports:
     - protocol: TCP
-      port: 6379
+      port: {{ .Values.service.port }}
       targetPort: 6379
 {{- end -}}
 {{- end -}}

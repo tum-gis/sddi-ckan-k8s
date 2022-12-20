@@ -3,36 +3,52 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "redis.fullname" . }}-{{ .Values.component }}
+  name: {{ include "redis.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "redis.labels" . | nindent 4 }}
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
 spec:
-  serviceName: {{ .Chart.Name }}-svc-headless
-  replicas: {{ .Values.replicaCount }}
+  serviceName: {{ include "redis.fullname" . }}-hl
   selector:
     matchLabels:
       {{- include "redis.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: {{ .Values.component }}
   template:
     metadata:
+      annotations:
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
         {{- include "redis.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: {{ .Values.component }}
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "redis.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ include "redis.fullname" . }}-pvc
+            claimName: {{ include "redis.fullname" . }}
 
       containers:
-        - name: redis
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 6379
+            - name: redis
+              containerPort: 6379
+              protocol: TCP
 
           volumeMounts:
             - name: data
@@ -60,6 +76,5 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-
 {{- end -}}
 {{- end -}}

@@ -1,22 +1,20 @@
 {{- if .Values.enabled -}}
-# Service ---------------------------------------------------------------------
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Chart.Name }}-svc
+  name: {{- include "redis.fullname" . -}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "redis.labels" . | nindent 4 }}
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
 spec:
-  type: ClusterIP
+  type: {{ .Values.service.type }}
   selector:
       {{- include "redis.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: {{ .Values.component }}
   ports:
     - protocol: TCP
-      port: 6379
+      port: {{ .Values.service.port }}
       targetPort: 6379
-
 {{- end -}}
