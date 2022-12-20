@@ -29,20 +29,20 @@ A Helm chart for Kubernetes
 | autoscaling.minReplicas | int | `1` | Minimum number of replicas |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | component | string | `"frontend"` |  |
-| datapusher.callback_url_base | string | `"http://ckan-svc:5000/"` |  |
-| datapusher.url | string | `"http://datapusher-svc:8000/"` |  |
+| datapusher.callback_url_base | string | `"http://ckan:5000/"` |  |
+| datapusher.url | string | `"http://datapusher:8000/"` |  |
 | dataset."dataset.create_on_ui_requires_resources" | bool | `false` |  |
 | datastore.auth.ro.password | string | `"changeMe"` |  |
 | datastore.auth.ro.username | string | `"datastore_ro"` |  |
 | datastore.auth.rw.password | string | `"changeMe"` |  |
 | datastore.auth.rw.username | string | `"ckan"` |  |
 | datastore.dbname | string | `"datastore"` |  |
-| datastore.host | string | `"postgis-svc-headless"` |  |
+| datastore.host | string | `"postgis-hl"` |  |
 | datastore.port | int | `5432` |  |
 | db.auth.password | string | `"changeMe"` |  |
 | db.auth.username | string | `"ckan"` |  |
 | db.dbname | string | `"ckan_default"` |  |
-| db.host | string | `"postgis-svc-headless"` |  |
+| db.host | string | `"postgis-hl"` |  |
 | db.port | int | `5432` |  |
 | enabled | bool | `true` |  |
 | extraEnv | object | `{}` | Extra environment variables. Values need to be quoted. |
@@ -79,9 +79,9 @@ A Helm chart for Kubernetes
 | nameOverride | string | `nil` | Override name |
 | nodeSelector | object | `{}` |  |
 | persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
-| persistence.annotations | string | `nil` |  |
+| persistence.annotations | string | `nil` | Additional annotations for PVCs Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall |
 | persistence.capacity | string | `"4Gi"` | Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity) |
-| persistence.enabled | bool | `true` |  |
+| persistence.enabled | bool | `true` | Enable/disable persistent data storage. |
 | persistence.storageClassName | string | `nil` | StorageClass to use, leave empty to use default StorageClass. |
 | persistence.storagePath | string | `"/var/lib/ckan"` | Mount path of the storage. Omit trailing `/` ! |
 | plugins | string | `"envvars image_view text_view recline_view datastore datapusher"` |  |
@@ -91,7 +91,7 @@ A Helm chart for Kubernetes
 | readiness.initialDelaySeconds | int | `30` |  |
 | readiness.periodSeconds | int | `10` |  |
 | readiness.timeoutSeconds | int | `10` |  |
-| redis.url | string | `"redis://redis-svc-headless:6379/0"` |  |
+| redis.url | string | `"redis://redis-hl:6379/0"` |  |
 | replicaCount | int | `1` | Number of replicas. Only used if autoscaling.enabled = false |
 | resources.limits.cpu | string | `"500m"` |  |
 | resources.limits.memory | string | `"1Gi"` |  |
@@ -115,7 +115,7 @@ A Helm chart for Kubernetes
 | smtp.tls | string | `"enabled"` |  |
 | smtp.user | string | `"smtpUser"` |  |
 | solr.password | string | `nil` |  |
-| solr.url | string | `"http://solr-svc-headless:8983/solr/ckan"` |  |
+| solr.url | string | `"http://solr-hl:8983/solr/ckan"` |  |
 | solr.user | string | `nil` |  |
 | sysadmin.email | string | `"user@example.de"` |  |
 | sysadmin.enabled | bool | `true` |  |
