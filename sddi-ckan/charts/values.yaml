@@ -24,28 +24,33 @@ global:
       # `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available.
       issuerName: letsencrypt-staging
 
+  # -- Database settings. This is only required, if an external database shall be used.
   db:
+    # -- Database host
+    host:
+    # -- Database port
     port:
     auth:
+      # -- Database username of the rw user
       username:
+      # -- Database password of the rw user
       password:
     authRO:
+      # -- Database password of the ro user
       username:
+      # -- Database password of the ro user
       password:
 
 postgis:
+  # -- Enable/disable database instance. Disable, if an external database is used.
   enabled: true
-
-  loadBalancer:
-    enabled: false
 
 solr:
+  # -- Enable/disable Apache Solr instance. Disable, if an external Solr instance is used.
   enabled: true
 
-  loadBalancer:
-    enabled: false
-
 redis:
+  # -- Enable/disable Redis instance. Disable, if an external Redis instance is used.
   enabled: true
 
   persistence:
