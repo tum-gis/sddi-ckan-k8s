@@ -1,9 +1,8 @@
 {{- if .Values.enabled -}}
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Chart.Name }}-svc-headless
+  name: {{ include "solr.fullname" . }}-hl
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "solr.labels" . | nindent 4 }}
@@ -16,7 +15,6 @@ spec:
       app.kubernetes.io/component: {{ .Values.component }}
   ports:
     - protocol: TCP
-      port: 8983
+      port: {{ .Values.service.port }}
       targetPort: 8983
-
 {{- end -}}

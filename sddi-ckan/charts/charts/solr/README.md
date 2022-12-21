@@ -10,21 +10,33 @@ A Helm chart for Kubernetes
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | component | string | `"search"` |  |
-| core | string | `"ckan"` |  |
-| enabled | bool | `true` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ckan/ckan-solr"` |  |
-| image.tag | string | `"2.9-solr8"` |  |
-| loadBalancer.enabled | bool | `true` |  |
+| enabled | bool | `true` | Enable/disable solr |
+| fullnameOverride | string | `"solr"` | Override fullname |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
+| image.repository | string | `"ckan/ckan-solr"` | Image repository |
+| image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
+| imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
+| loadBalancer.enabled | bool | `false` | Enable/disable a LoadBalancer service for external Database access |
+| nameOverride | string | `nil` | Override name |
 | nodeSelector | object | `{}` |  |
-| persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
-| persistence.annotations | string | `nil` |  |
-| persistence.capacity | string | `"4Gi"` |  |
-| replicaCount | int | `1` |  |
+| persistence.accessModes | list | `["ReadWriteOnce"]` | Storage [access modes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) |
+| persistence.annotations | string | `nil` | Annotations for PVCs Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall |
+| persistence.capacity | string | `"4Gi"` | Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity) |
+| persistence.storageClassName | string | `nil` | StorageClass to use, leave empty to use default StorageClass. |
+| podAnnotations | object | `{}` | Additional pod annotations |
+| podSecurityContext.fsGroup | int | `8983` |  |
+| podSecurityContext.runAsGroup | int | `8983` |  |
+| podSecurityContext.runAsUser | int | `8983` |  |
 | resources.limits.cpu | string | `"2000m"` |  |
 | resources.limits.memory | string | `"8Gi"` |  |
 | resources.requests.cpu | string | `"1000m"` |  |
 | resources.requests.memory | string | `"1Gi"` |  |
+| securityContext | object | `{}` |  |
+| service.port | int | `8983` | Service port for http |
+| service.type | string | `"ClusterIP"` | Type of service for http |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
+| serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
+| serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | tolerations | list | `[]` |  |
 
 ----------------------------------------------

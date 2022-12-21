@@ -2,41 +2,51 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "solr.fullname" . }}-{{ .Values.component }}
+  name: {{ include "solr.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "solr.labels" . | nindent 4 }}
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
 spec:
-  serviceName: {{ .Chart.Name }}-svc-headless
-  replicas: {{ .Values.replicaCount }}
+  serviceName: {{ include "solr.fullname" . }}-hl
   selector:
     matchLabels:
       {{- include "solr.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: {{ .Values.component }}
   template:
     metadata:
+      annotations:
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
         {{- include "solr.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: {{ .Values.component }}
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "solr.serviceAccountName" . }}
       securityContext:
-        runAsUser: 8983
-        runAsGroup: 8983
-        fsGroup: 8983
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ include "solr.fullname" . }}-pvc
+            claimName: {{ include "solr.fullname" . }}
 
       containers:
-        - name: solr
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 8983
+            - name: solr
+              containerPort: 8983
+              protocol: TCP
 
           volumeMounts:
             - name: data
@@ -69,5 +79,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-
 {{- end -}}

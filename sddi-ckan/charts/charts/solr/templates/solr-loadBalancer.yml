@@ -1,10 +1,9 @@
 {{- if .Values.enabled -}}
 {{- if .Values.loadBalancer.enabled -}}
-# Service ---------------------------------------------------------------------
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Chart.Name }}-svc-loadbalancer
+  name: {{ include "solr.fullname" . }}-lb
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "solr.labels" . | nindent 4 }}
@@ -17,7 +16,7 @@ spec:
       app.kubernetes.io/component: {{ .Values.component }}
   ports:
     - protocol: TCP
-      port: 8983
+      port: {{ .Values.service.port }}
       targetPort: 8983
 {{- end -}}
 {{- end -}}
