@@ -2,6 +2,51 @@ apiVersion: v1
 entries:
   sddi-ckan:
   - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-12-22T17:48:46.44463369Z"
+    dependencies:
+    - condition: postgis.enabled
+      name: postgis
+      repository: ""
+      version: '*'
+    - condition: solr.enabled
+      name: solr
+      repository: ""
+      version: '*'
+    - condition: redis.enabled
+      name: redis
+      repository: ""
+      version: '*'
+    - condition: ckan.enabled
+      name: ckan
+      repository: ""
+      version: '*'
+    - condition: datapusher.enabled
+      name: datapusher
+      repository: ""
+      version: '*'
+    - condition: certIssuer.enabled
+      name: certIssuer
+      repository: ""
+      version: '*'
+    - alias: ingress-nginx
+      condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: ~4.4.0
+    - alias: cert-manager
+      condition: cert-manager.enabled
+      name: cert-manager
+      repository: https://charts.jetstack.io
+      version: ~1.10.0
+    description: A Helm chart for Kubernetes
+    digest: 256d6519ffb330fcdc19963bef860b544a3d021e00ef954784f6dbe9008dded7
+    name: sddi-ckan
+    type: application
+    urls:
+    - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-0.2.0/sddi-ckan-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: 1.16.0
     created: "2022-09-09T11:29:22.666206788Z"
     dependencies:
@@ -106,4 +151,4 @@ entries:
     urls:
     - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-0.1.1/sddi-ckan-0.1.1.tgz
     version: 0.1.1
-generated: "2022-09-09T11:29:22.666228488Z"
+generated: "2022-12-22T17:48:46.44467599Z"
