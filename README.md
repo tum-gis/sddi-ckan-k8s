@@ -37,7 +37,6 @@
   * Automatic SSL certificate issuing from e.g. Let's Encrypt
   * Optional dependency, usually not required
 
-
 ## :grey_exclamation: Requirements
 
 * Kubernetes cluster with Kubernetes `>= v1.20`
@@ -67,8 +66,6 @@
      --atomic --wait \
      --values my-values.yml
    ```
-
-## :construction_worker: Building
 
 ## :hammer_and_wrench: Contributing
 

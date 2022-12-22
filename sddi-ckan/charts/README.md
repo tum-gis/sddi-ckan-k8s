@@ -1,6 +1,6 @@
 # sddi-ckan
 
-![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -21,7 +21,7 @@ A Helm chart for Kubernetes
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| datapusher.enabled | bool | `true` |  |
+| datapusher.enabled | bool | `true` | Enable/disable datapusher |
 | fullnameOverride | string | `""` | Override fullname |
 | global.db | object | `{"auth":{"password":null,"username":null},"authRO":{"password":null,"username":null},"host":null,"port":null}` | Database settings. This is only required, if an external database shall be used. |
 | global.db.auth.password | string | `nil` | Database password of the rw user |
@@ -30,7 +30,6 @@ A Helm chart for Kubernetes
 | global.db.authRO.username | string | `nil` | Database password of the ro user |
 | global.db.host | string | `nil` | Database host |
 | global.db.port | string | `nil` | Database port |
-| global.ingress | object | `{"certManager":{"issuerEmail":"me@example.com","issuerName":"letsencrypt-staging","issuerType":"namespace"},"className":"nginx","domains":["localhost"]}` | Fully qualified domain name, used for all Ingress routes. Use localhost for local testing deployments. |
 | global.ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
 | global.ingress.certManager.issuerName | string | `"letsencrypt-staging"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available. |
 | global.ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |
@@ -39,8 +38,6 @@ A Helm chart for Kubernetes
 | nameOverride | string | `""` | Override name |
 | postgis.enabled | bool | `true` | Enable/disable database instance. Disable, if an external database is used. |
 | redis.enabled | bool | `true` | Enable/disable Redis instance. Disable, if an external Redis instance is used. |
-| redis.loadBalancer.enabled | bool | `false` |  |
-| redis.persistence.enabled | bool | `false` |  |
 | solr.enabled | bool | `true` | Enable/disable Apache Solr instance. Disable, if an external Solr instance is used. |
 
 ----------------------------------------------

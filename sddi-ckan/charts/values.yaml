@@ -4,8 +4,6 @@ nameOverride: ""
 fullnameOverride: ""
 
 global:
-  # -- Fully qualified domain name, used for all Ingress routes.
-  # Use localhost for local testing deployments.
   ingress:
     # -- Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
     # to use in Ingress routes.
@@ -53,11 +51,6 @@ redis:
   # -- Enable/disable Redis instance. Disable, if an external Redis instance is used.
   enabled: true
 
-  persistence:
-    enabled: false
-
-  loadBalancer:
-    enabled: false
-
 datapusher:
+  # -- Enable/disable datapusher
   enabled: true
