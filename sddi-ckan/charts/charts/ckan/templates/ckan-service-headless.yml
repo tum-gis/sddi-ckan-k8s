@@ -11,8 +11,8 @@ metadata:
 spec:
   clusterIP: None
   selector:
-      {{- include "ckan.selectorLabels" . | nindent 6 }}
-      app.kubernetes.io/component: {{ .Values.component }}
+    {{- include "ckan.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: {{ .Values.component }}
   ports:
     - protocol: TCP
       port: 5000

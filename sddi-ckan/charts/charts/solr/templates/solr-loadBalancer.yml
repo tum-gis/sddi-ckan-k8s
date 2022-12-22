@@ -12,8 +12,8 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-      {{- include "solr.selectorLabels" . | nindent 6 }}
-      app.kubernetes.io/component: {{ .Values.component }}
+    {{- include "solr.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: {{ .Values.component }}
   ports:
     - protocol: TCP
       port: {{ .Values.service.port }}

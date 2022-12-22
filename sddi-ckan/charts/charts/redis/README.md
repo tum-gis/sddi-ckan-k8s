@@ -15,13 +15,13 @@ A Helm chart for Kubernetes
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | component | string | `"database"` |  |
 | enabled | bool | `true` |  |
-| fullnameOverride | string | `""` | Override fullname |
+| fullnameOverride | string | `"redis"` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | image.repository | string | `"redis"` | Image repository |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
 | loadBalancer | object | `{"enabled":false}` | Create a LoadBalancer service for external Database access |
-| nameOverride | string | `""` | Override name |
+| nameOverride | string | `nil` | Override name |
 | nodeSelector | object | `{}` |  |
 | persistence.accessModes | list | `["ReadWriteOnce"]` | Mount path of the storage. Omit trailing `/` ! |
 | persistence.annotations | string | `nil` | Annotations for PVCs Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall |

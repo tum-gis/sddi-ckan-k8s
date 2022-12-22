@@ -71,7 +71,7 @@ spec:
 
           envFrom:
             - configMapRef:
-                name: {{ include "ckan.fullname" . }}-cfg-env
+                name: {{ include "ckan.fullname" . }}-env
             - secretRef:
                 name: {{ include "ckan.fullname" . }}-sct-db
             - secretRef:

@@ -1,9 +1,8 @@
 {{- if .Values.enabled -}}
-# Service ---------------------------------------------------------------------
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Chart.Name }}-hl
+  name: {{ include "postgis.fullname" . }}-hl
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "postgis.labels" . | nindent 4 }}

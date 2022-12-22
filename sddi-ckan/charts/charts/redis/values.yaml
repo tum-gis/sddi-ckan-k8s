@@ -2,9 +2,9 @@ enabled: true
 component: database
 
 # -- Override name
-nameOverride: ""
+nameOverride:
 # -- Override fullname
-fullnameOverride: ""
+fullnameOverride: redis
 
 image:
   # -- Image repository

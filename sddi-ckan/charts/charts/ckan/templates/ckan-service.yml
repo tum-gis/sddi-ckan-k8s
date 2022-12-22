@@ -11,8 +11,8 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   selector:
-      {{- include "ckan.selectorLabels" . | nindent 6 }}
-      app.kubernetes.io/component: {{ .Values.component }}
+    {{- include "ckan.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: {{ .Values.component }}
   ports:
     - name: http
       protocol: TCP
