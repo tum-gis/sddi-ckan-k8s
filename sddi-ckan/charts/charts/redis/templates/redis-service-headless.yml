@@ -3,17 +3,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{- include "redis.fullname" . }}-hl
+  name: {{ include "redis.fullname" . }}-hl
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    {{- include "redis.labels" . | nindent 4 }}
+   {{- include "redis.labels" . | nindent 4 }}
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
 spec:
   clusterIP: None
   selector:
-      {{- include "redis.selectorLabels" . | nindent 6 }}
-      app.kubernetes.io/component: {{ .Values.component }}
+    {{- include "redis.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: {{ .Values.component }}
   ports:
     - protocol: TCP
       port: {{ .Values.service.port }}

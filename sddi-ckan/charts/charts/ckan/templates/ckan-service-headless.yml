@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Chart.Name }}-hl
+  name: {{ include "ckan.fullname" . }}-hl
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "ckan.labels" . | nindent 4 }}

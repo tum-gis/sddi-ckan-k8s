@@ -1,7 +1,6 @@
 enabled: true
 component: frontend
 
-
 # -- Override name
 nameOverride:
 # -- Override fullname
@@ -99,15 +98,10 @@ ingress:
     # `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available.
     issuerName: letsencrypt-staging
 
+
 # -- Extra environment variables. Values need to be quoted.
 extraEnv: {}
 
-# persistence:
-#   enabled: true
-#   save: "60 1"
-#   accessModes:
-#     - ReadWriteOnce
-#   capacity: 4Gi
 
 # General settings
 siteUrl: https://my-ckan.de

@@ -37,7 +37,7 @@ spec:
       labels:
         {{- include "redis.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: {{ .Values.component }}
-    spec:
+
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

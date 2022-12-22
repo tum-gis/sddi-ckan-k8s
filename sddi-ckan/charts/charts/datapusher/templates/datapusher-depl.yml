@@ -16,6 +16,8 @@ spec:
     matchLabels:
       {{- include "datapusher.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: {{ .Values.component }}
+  template:
+    metadata:
       annotations:
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}

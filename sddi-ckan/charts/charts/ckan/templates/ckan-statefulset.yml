@@ -20,6 +20,7 @@ spec:
     metadata:
       labels:
         {{- include "ckan.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: {{ .Values.component }}
       annotations:
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}

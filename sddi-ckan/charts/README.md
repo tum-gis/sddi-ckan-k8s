@@ -14,6 +14,8 @@ A Helm chart for Kubernetes
 |  | postgis | * |
 |  | redis | * |
 |  | solr | * |
+| https://charts.jetstack.io | cert-manager(cert-manager) | ~1.10.0 |
+| https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ~4.4.0 |
 
 ## Values
 

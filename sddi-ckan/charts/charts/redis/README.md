@@ -15,16 +15,16 @@ A Helm chart for Kubernetes
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | component | string | `"database"` |  |
 | enabled | bool | `true` |  |
-| fullnameOverride | string | `"redis"` | Override fullname |
+| fullnameOverride | string | `""` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | image.repository | string | `"redis"` | Image repository |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
 | loadBalancer | object | `{"enabled":false}` | Create a LoadBalancer service for external Database access |
-| nameOverride | string | `nil` | Override name |
+| nameOverride | string | `""` | Override name |
 | nodeSelector | object | `{}` |  |
 | persistence.accessModes | list | `["ReadWriteOnce"]` | Mount path of the storage. Omit trailing `/` ! |
-| persistence.annotations | object | `{}` | Annotations for PVCs Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall |
+| persistence.annotations | string | `nil` | Annotations for PVCs Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall |
 | persistence.capacity | string | `"4Gi"` | Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity) |
 | persistence.enabled | bool | `true` | Enable/disable persistent data storage |
 | persistence.save | string | `"60 1"` | Redis [save](https://redis.io/commands/save/) args |

@@ -2,9 +2,9 @@ enabled: true
 component: database
 
 # -- Override name
-nameOverride:
+nameOverride: ""
 # -- Override fullname
-fullnameOverride: redis
+fullnameOverride: ""
 
 image:
   # -- Image repository
@@ -58,7 +58,7 @@ persistence:
   capacity: 4Gi
   # -- Annotations for PVCs
     # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
-  annotations: {}
+  annotations:
     # helm.sh/resource-policy: keep
 
 # -- Number of replicas. Only used if autoscaling.enabled = false
