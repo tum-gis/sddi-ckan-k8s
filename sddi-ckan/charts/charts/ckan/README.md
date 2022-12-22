@@ -67,10 +67,10 @@ A Helm chart for Kubernetes
 | ingress.domains | list | `[]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. The global setting overwrites this setting. Note: The first domain in the list will be used as CKAN serviceRootURL and MQTT host. |
 | ingress.enabled | bool | `true` | Enable/disable ingress |
 | ingress.subpath | string | `nil` | Make CKAN available at a subpath. By default caddy will be available from [DOMAIN]/ Don't append or prepend :// or / |
-| liveness.failureThreshold | int | `6` |  |
-| liveness.initialDelaySeconds | int | `30` |  |
-| liveness.periodSeconds | int | `10` |  |
-| liveness.timeoutSeconds | int | `10` |  |
+| liveness.failureThreshold | int | `6` | Failure threshold for the liveness probe |
+| liveness.initialDelaySeconds | int | `60` | Initial delay for the liveness probe |
+| liveness.periodSeconds | int | `10` | Check interval for the liveness probe |
+| liveness.timeoutSeconds | int | `10` | Timeout interval for the liveness probe |
 | locale.default | string | `"de"` |  |
 | locale.filtered_out | string | `"en_GB"` |  |
 | locale.offered | string | `"de en"` |  |
@@ -87,10 +87,10 @@ A Helm chart for Kubernetes
 | plugins | string | `"envvars image_view text_view recline_view datastore datapusher"` |  |
 | podAnnotations | object | `{}` | Additional pod annotations |
 | podSecurityContext | object | `{}` |  |
-| readiness.failureThreshold | int | `6` |  |
-| readiness.initialDelaySeconds | int | `30` |  |
-| readiness.periodSeconds | int | `10` |  |
-| readiness.timeoutSeconds | int | `10` |  |
+| readiness.failureThreshold | int | `6` | Failure threshold for the readiness probe |
+| readiness.initialDelaySeconds | int | `60` | Inital delay seconds for the readiness probe |
+| readiness.periodSeconds | int | `10` | Check interval for the readiness probe |
+| readiness.timeoutSeconds | int | `10` | Timeout interval for the readiness probe |
 | redis.url | string | `"redis://redis-hl:6379/0"` |  |
 | replicaCount | int | `1` | Number of replicas. Only used if autoscaling.enabled = false |
 | resources.limits.cpu | string | `"500m"` |  |

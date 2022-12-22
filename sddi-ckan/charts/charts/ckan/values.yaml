@@ -231,22 +231,21 @@ tolerations: []
 affinity: {}
 
 # Readyness and liveness checks -----------------------------------------------
-
 readiness:
-  # Inital delay seconds for the readiness probe
-  initialDelaySeconds: 30
-  #  Check interval for the readiness probe
+  # -- Inital delay seconds for the readiness probe
+  initialDelaySeconds: 60
+  # -- Check interval for the readiness probe
   periodSeconds: 10
-  # Failure threshold for the readiness probe
+  # -- Failure threshold for the readiness probe
   failureThreshold: 6
-  # Timeout interval for the readiness probe
+  # -- Timeout interval for the readiness probe
   timeoutSeconds: 10
 liveness:
-  # Initial delay for the liveness probe
-  initialDelaySeconds: 30
-  # Check interval for the liveness probe
+  # -- Initial delay for the liveness probe
+  initialDelaySeconds: 60
+  # -- Check interval for the liveness probe
   periodSeconds: 10
-  # Failure threshold for the liveness probe
+  # -- Failure threshold for the liveness probe
   failureThreshold: 6
-  # Timeout interval for the liveness probe
+  # -- Timeout interval for the liveness probe
   timeoutSeconds: 10
