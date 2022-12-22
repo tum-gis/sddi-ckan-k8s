@@ -15,7 +15,7 @@
 </p>
 
 **Warning**:
-> This repository is an early stage of development. Use it at your own risk!
+> This repository is in development. Use it at your own risk!
 
 ## :inbox_tray: Components
 
@@ -80,8 +80,6 @@ Bug fixes, issue reports and contributions are greatly appreciated.
 <a href="https://github.com/tum-gis/sddi-ckan-k8s/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
 </a>
-
-## :mortar_board: Research
 
 ## :memo: License
 
