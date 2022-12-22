@@ -19,6 +19,32 @@
 
 ## :inbox_tray: Components
 
+* [CKAN](https://ckan.org/)
+  * World leading open source data management system
+* [PostgreSQL](https://www.postgresql.org/) with [PostGIS](https://postgis.net/)
+  spatial extension
+  * Open source database with powerful support for spatial data
+* [Apache Solr](https://solr.apache.org/)
+  * Open source search, navigation, and indexing engine
+* [Redis](https://redis.io/)
+  * Open source in-memory database
+* [CKAN Datapusher](https://github.com/ckan/datapusher)
+  * A standalone web service that pushes data files from a CKAN site resources into its DataStore
+* [NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/)
+  * Route traffic to the applications of the stack
+  * Optional dependency, usually not required
+* [cert-manager](https://cert-manager.io/docs/)
+  * Automatic SSL certificate issuing from e.g. Let's Encrypt
+  * Optional dependency, usually not required
+
+
+## :grey_exclamation: Requirements
+
+* Kubernetes cluster with Kubernetes `>= v1.20`
+  * For testing 2 -3 nodes with 2-4 CPUs and 4-8 GiB RAM will be sufficient
+  * Persistent storage using a suitable  [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/),
+  usually a default for managed Kubernetes clusters.
+
 ## :rocket: Usage
 
 1. Get a fully-qualified domain name (FQDN) and configure it to point to the public IP address of
@@ -31,8 +57,9 @@
    helm repo update
    ```
 
+3. Create a configuration file according to your needs: `my-values.yml`
 
-4. Install stack
+4. Install the stack
 
    ```console
    helm install ckan sddi-ckan/sddi-ckan \
