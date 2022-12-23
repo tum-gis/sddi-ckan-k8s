@@ -1,0 +1,84 @@
+# Global settings -------------------------------------------------------------
+# -- Override name
+nameOverride: ""
+# -- Override fullname
+fullnameOverride: iotstack
+
+global:
+  # -- Fully qualified domain name, used for all Ingress routes.
+  # Use localhost for local testing deployments.
+  ingress:
+    # -- Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
+    # to use in Ingress routes.
+    className: nginx
+    # -- List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress.
+    # Note: All FQDNs will be used for Ingress hosts and TLS certificate.
+    # The global setting overwrites this setting in subcharts.
+    domains:
+      - localhost
+    certManager:
+      # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
+      issuerEmail: me@example.com
+      # -- Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster".
+      issuerType: namespace
+      # -- Name of the Issuer to use. For certManager.type = namespace
+      # `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available.
+      issuerName: self-signed
+
+# Nginx ingress configuration -------------------------------------------------
+# This needs to be enabled, if you don't have nginx-ingress already installed
+# in your cluster.
+ingress-nginx:
+  enabled: false
+  controller:
+    replicaCount: 1
+    loadBalancerIP: 127.0.0.1
+
+# cert-manager configuration --------------------------------------------------
+# Disable cert-manager and certIssuer for local testing, they are not required.
+# Nginx ingress will create a self-signed certificate for testing automatically.
+
+# If you want to try out cert-manager, make sure install CRDs BEFORE you install the chart.
+# Make sure to enable certIssuer and configure ingress settings accordingly, see above.
+# For local testing issuerType = namespace and issuerName = self-signed is recommended.
+# (see here: https://cert-manager.io/docs/installation/helm/#3-install-customresourcedefinitions )
+cert-manager:
+  enabled: false
+
+certIssuer:
+  enabled: false
+
+# FROST-Server PostGIS database configuration ---------------------------------
+frostdb:
+  enabled: true
+
+# FROST-Webserver PostGIS database configuration ------------------------------
+frostweb:
+  enabled: true
+  replicaCount: 2
+
+# Grafana v9 configuration ----------------------------------------------------
+grafana:
+  enabled: true
+  replicaCount: 2
+  database:
+    enabled: false
+
+# Grafana v7 configuration ----------------------------------------------------
+grafana7:
+  enabled: true
+  replicaCount: 2
+  database:
+    enabled: false
+
+# Node-RED configuration ------------------------------------------------------
+nodered:
+  enabled: true
+  replicaCount: 1
+  persistence:
+    enabled: true
+
+# Caddy configuration ---------------------------------------------------------
+# The caddy webserver is not required.
+caddy:
+  enabled: false
