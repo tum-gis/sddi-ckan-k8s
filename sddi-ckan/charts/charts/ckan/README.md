@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.5](https://img.shields.io/badge/AppVersion-2.9.5-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.7](https://img.shields.io/badge/AppVersion-2.9.7-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -37,16 +37,16 @@ A Helm chart for Kubernetes
 | featured.groups | string | `"dataset online-application online-service project software method device geoobject"` |  |
 | featured.orgs | string | `"bayerische-vermessungsverwaltung lehrstuhl-fur-geoinformatik bayern-innovativ"` |  |
 | fullnameOverride | string | `"ckan"` | Override fullname |
-| image.credentials | object | `{"email":"someone@host.com","password":"changeMe","registry":"quay.io","secretName":"ckan-sct-pull","username":"user"}` | Create a image pully secret of type kubernetes.io/dockerconfigjson |
+| image.credentials | object | `{"email":"someone@host.com","password":"changeMe","registry":"quay.io","secretName":"ckan-pull-sct","username":"user"}` | Create a image pully secret of type kubernetes.io/dockerconfigjson |
 | image.credentials.email | string | `"someone@host.com"` | Image registry eMail address |
 | image.credentials.password | string | `"changeMe"` | Image registry password |
 | image.credentials.registry | string | `"quay.io"` | Image registry |
-| image.credentials.secretName | string | `"ckan-sct-pull"` | Name of the image pull secret to create |
+| image.credentials.secretName | string | `"ckan-pull-sct"` | Name of the image pull secret to create |
 | image.credentials.username | string | `"user"` | Image registry username |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/keitaroinc/ckan"` | Image repository |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
-| imagePullSecrets | list | `[{"name":"ckan-sct-pull"}]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
+| imagePullSecrets | list | `[{"name":"ckan-pull-sct"}]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
 | ingress | object | `{"annotations":null,"certManager":{"issuerEmail":"me@example.com","issuerName":"letsencrypt-staging","issuerType":"namespace"},"className":"nginx","domains":[],"enabled":true,"subpath":null}` | Ingress configuration |
 | ingress.annotations | string | `nil` | Additional Ingress annotations |
 | ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
