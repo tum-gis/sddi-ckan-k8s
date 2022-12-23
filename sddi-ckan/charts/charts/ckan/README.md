@@ -8,30 +8,17 @@ A Helm chart for Kubernetes
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalSettings | string | `"# other ckan settings\n# an even more settings\n\n"` |  |
 | affinity | object | `{}` |  |
-| auth.allow_dataset_collaborators | bool | `false` |  |
-| auth.anon_create_dataset | bool | `false` |  |
-| auth.create_dataset_if_not_in_organization | bool | `false` |  |
-| auth.create_default_api_keys | bool | `false` |  |
-| auth.create_unowned_dataset | bool | `false` |  |
-| auth.create_user_via_api | bool | `false` |  |
-| auth.create_user_via_web | bool | `true` |  |
-| auth.public_activity_stream_detail | bool | `true` |  |
-| auth.public_user_details | bool | `true` |  |
-| auth.roles_that_cascade_to_sub_groups | string | `"admin editor member"` |  |
-| auth.user_create_groups | bool | `false` |  |
-| auth.user_create_organizations | bool | `false` |  |
-| auth.user_delete_groups | bool | `false` |  |
-| auth.user_delete_organizations | bool | `false` |  |
+| auth | object | `{"allow_dataset_collaborators":false,"anon_create_dataset":false,"create_dataset_if_not_in_organization":false,"create_default_api_keys":false,"create_unowned_dataset":false,"create_user_via_api":false,"create_user_via_web":true,"public_activity_stream_detail":true,"public_user_details":true,"roles_that_cascade_to_sub_groups":"admin editor member","user_create_groups":false,"user_create_organizations":false,"user_delete_groups":false,"user_delete_organizations":false}` | CKAN auth settings |
 | autoscaling.enabled | bool | `false` | Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods. |
 | autoscaling.maxReplicas | int | `5` | Maximum number of replicas |
 | autoscaling.minReplicas | int | `1` | Minimum number of replicas |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | component | string | `"frontend"` |  |
 | datapusher.callback_url_base | string | `"http://ckan:5000/"` |  |
+| datapusher.formats | string | `"csv xls xlsx tsv application/csv application/vnd.ms-excel application/vnd.openxmlform"` |  |
 | datapusher.url | string | `"http://datapusher:8000/"` |  |
-| dataset."dataset.create_on_ui_requires_resources" | bool | `false` |  |
+| dataset.create_on_ui_requires_resources | bool | `false` |  |
 | datastore.auth.ro.password | string | `"changeMe"` |  |
 | datastore.auth.ro.username | string | `"datastore_ro"` |  |
 | datastore.auth.rw.password | string | `"changeMe"` |  |
@@ -39,14 +26,16 @@ A Helm chart for Kubernetes
 | datastore.dbname | string | `"datastore"` |  |
 | datastore.host | string | `"postgis-hl"` |  |
 | datastore.port | int | `5432` |  |
-| db.auth.password | string | `"changeMe"` |  |
-| db.auth.username | string | `"ckan"` |  |
-| db.dbname | string | `"ckan_default"` |  |
-| db.host | string | `"postgis-hl"` |  |
-| db.port | int | `5432` |  |
+| db.auth.password | string | `"changeMe"` | Database password |
+| db.auth.username | string | `"ckan"` | Database username |
+| db.dbname | string | `"ckan_default"` | Database name |
+| db.host | string | `"postgis-hl"` | Database host |
+| db.port | int | `5432` | Database port |
 | enabled | bool | `true` |  |
-| extraEnv | object | `{}` | Extra environment variables. Values need to be quoted. |
-| favicon | string | `"/base/images/favicon.ico"` |  |
+| extraEnv | object | `{}` | Extra environment variables. Values need to be quoted. This can be used to overwrite CKAN settings in production.ini. See [ckanext-envvars](https://github.com/okfn/ckanext-envvars) for variable naming conventions. |
+| favicon | string | `"/webassets/images/favicon.ico"` | Path to CKAN favicon |
+| featured.groups | string | `"dataset online-application online-service project software method device geoobject"` |  |
+| featured.orgs | string | `"bayerische-vermessungsverwaltung lehrstuhl-fur-geoinformatik bayern-innovativ"` |  |
 | fullnameOverride | string | `"ckan"` | Override fullname |
 | image.credentials | object | `{"email":"someone@host.com","password":"changeMe","registry":"quay.io","secretName":"ckan-sct-pull","username":"user"}` | Create a image pully secret of type kubernetes.io/dockerconfigjson |
 | image.credentials.email | string | `"someone@host.com"` | Image registry eMail address |
@@ -83,10 +72,12 @@ A Helm chart for Kubernetes
 | persistence.capacity | string | `"4Gi"` | Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity) |
 | persistence.enabled | bool | `true` | Enable/disable persistent data storage. |
 | persistence.storageClassName | string | `nil` | StorageClass to use, leave empty to use default StorageClass. |
-| persistence.storagePath | string | `"/var/lib/ckan"` | Mount path of the storage. Omit trailing `/` ! |
-| plugins | string | `"envvars image_view text_view recline_view datastore datapusher"` |  |
+| persistence.storagePath | string | `"/var/lib/ckan"` | Mount path of the CKAN storage. Omit trailing `/`! This option is used for CKAN__STORAGE_PATH env var too! |
+| plugins | string | `"envvars image_view text_view recline_view datastore datapusher"` | Enable/disable CKAN plugins/extensions |
 | podAnnotations | object | `{}` | Additional pod annotations |
 | podSecurityContext | object | `{}` |  |
+| preview.direct | string | `"png jpg gif"` |  |
+| preview.loadable | string | `"html htm rdf+xml owl+xml xml n3 n-triples turtle plain atom csv tsv rss txt json"` |  |
 | readiness.failureThreshold | int | `6` | Failure threshold for the readiness probe |
 | readiness.initialDelaySeconds | int | `60` | Inital delay seconds for the readiness probe |
 | readiness.periodSeconds | int | `10` | Check interval for the readiness probe |
@@ -104,10 +95,10 @@ A Helm chart for Kubernetes
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | siteDescription | string | `"This is my CKAN instance for stuff."` |  |
-| siteId | string | `"my ckan_instance"` |  |
-| siteLogo | string | `"/base/images/group_icons/work.svg"` |  |
-| siteTitle | string | `"My CKAN Instance"` |  |
-| siteUrl | string | `"https://my-ckan.de"` |  |
+| siteId | string | `"my_ckan_instance"` |  |
+| siteLogo | string | `"/webassets/images/group_icons/work.svg"` | Path to CKAN site logo image |
+| siteTitle | string | `"My CKAN instance"` |  |
+| siteUrl | string | `"https://my-ckan.de"` | CKAN site url. This should match a domain name of CKAN specified in global.ingress.domains |
 | smtp.mailFrom | string | `"postmaster@domain.com"` |  |
 | smtp.password | string | `"smtpPassword"` |  |
 | smtp.server | string | `"smtpServerURLorIP:port"` |  |
@@ -122,6 +113,8 @@ A Helm chart for Kubernetes
 | sysadmin.password | string | `"changeMe"` |  |
 | sysadmin.user | string | `"admin"` |  |
 | tolerations | list | `[]` |  |
+| webassets | object | `{"path":"/srv/app/data/webassets"}` | Webassets settings |
+| webassets.path | string | `"/srv/app/data/webassets"` | Webassets storage path |
 
 ----------------------------------------------
 Autogenerated from chart metadata using [helm-docs v1.11.0](https://github.com/norwoodj/helm-docs/releases/v1.11.0)

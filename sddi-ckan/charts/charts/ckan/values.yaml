@@ -98,23 +98,31 @@ ingress:
     # `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available.
     issuerName: letsencrypt-staging
 
-
-# -- Extra environment variables. Values need to be quoted.
-extraEnv: {}
-
-
 # General settings
+# -- CKAN site url. This should match a domain name of CKAN specified in global.ingress.domains
 siteUrl: https://my-ckan.de
-siteTitle: My CKAN Instance
+siteTitle: My CKAN instance
+siteId: my_ckan_instance
 siteDescription: This is my CKAN instance for stuff.
-siteLogo: /base/images/group_icons/work.svg
-favicon: /base/images/favicon.ico
-siteId: my ckan_instance
+# -- Path to CKAN site logo image
+siteLogo: /webassets/images/group_icons/work.svg
+# -- Path to CKAN favicon
+favicon: /webassets/images/favicon.ico
+# favicon: /base/images/favicon.ico
 maxUploadSizeMB: 250
 
-# plugins: envvars image_view text_view recline_view datastore datapusher
+preview:
+  direct: png jpg gif
+  loadable: html htm rdf+xml owl+xml xml n3 n-triples turtle plain atom csv tsv rss txt json
+
+featured:
+  groups: dataset online-application online-service project software method device geoobject
+  orgs: bayerische-vermessungsverwaltung lehrstuhl-fur-geoinformatik bayern-innovativ
+
+# -- Enable/disable CKAN plugins/extensions
 plugins: envvars image_view text_view recline_view datastore datapusher
 
+# -- CKAN auth settings
 auth:
   anon_create_dataset: false
   create_unowned_dataset: false
@@ -140,7 +148,7 @@ sysadmin:
   email: user@example.de
 
 dataset:
-  dataset.create_on_ui_requires_resources: false
+  create_on_ui_requires_resources: false
 
 locale:
   default: de
@@ -148,11 +156,16 @@ locale:
   offered: de en
   filtered_out: en_GB
 
-# Add additional CKAN settings to production.ini
-# Use |+ or |- after additionalSettings only for this to work
-additionalSettings: |+
-  # other ckan settings
-  # an even more settings
+# -- Webassets settings
+webassets:
+  # -- Webassets storage path
+  path: /srv/app/data/webassets
+
+# -- Extra environment variables. Values need to be quoted. This can be used to overwrite CKAN
+# settings in production.ini.
+# See [ckanext-envvars](https://github.com/okfn/ckanext-envvars) for variable naming conventions.
+extraEnv: {}
+  # CKAN__BEAKER__SESSION_SECRET: theSecret
 
 # Persistence -----------------------------------------------------------------
 persistence:
@@ -160,7 +173,8 @@ persistence:
   enabled: true
   # -- StorageClass to use, leave empty to use default StorageClass.
   storageClassName:
-  # -- Mount path of the storage. Omit trailing `/` !
+  # -- Mount path of the CKAN storage. Omit trailing `/`! This option is used
+  # for CKAN__STORAGE_PATH env var too!
   storagePath: /var/lib/ckan
   accessModes:
     - ReadWriteOnce
@@ -173,11 +187,16 @@ persistence:
 
 # CKAN database ---------------------------------------------------------------
 db:
+  # -- Database host
   host: &DBHost postgis-hl
+  # -- Database port
   port: &DBPort 5432
+  # -- Database name
   dbname: &DBName ckan_default
   auth:
+    # -- Database username
     username: &DBUser ckan
+    # -- Database password
     password: &DBPassword changeMe
 
 # Datastore -------------------------------------------------------------------
@@ -207,6 +226,7 @@ solr:
 datapusher:
   url: http://datapusher:8000/
   callback_url_base: http://ckan:5000/
+  formats: "csv xls xlsx tsv application/csv application/vnd.ms-excel application/vnd.openxmlform"
 
 # SMTP ------------------------------------------------------------------------
 smtp:

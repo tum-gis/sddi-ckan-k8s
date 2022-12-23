@@ -13,4 +13,6 @@ stringData:
   CKAN_SQLALCHEMY_URL: {{ include "ckan.sqlalchemy.url" . | quote }}
   CKAN_DATASTORE_WRITE_URL: {{ include "ckan.datastore.rw.url" . | quote }}
   CKAN_DATASTORE_READ_URL: {{ include "ckan.datastore.ro.url" . | quote }}
+  CKAN_REDIS_URL: {{ .Values.redis.url | quote }}
+  CKAN_DATAPUSHER_URL: {{ .Values.datapusher.url | quote }}
 {{- end -}}

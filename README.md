@@ -50,8 +50,9 @@ The documentation for this helm chart is available in [sddi-ckan/charts](sddi-ck
 
 * Kubernetes cluster with Kubernetes `>= v1.20`
   * For testing 2 -3 nodes with 2-4 CPUs and 4-8 GiB RAM will be sufficient
-  * Persistent storage using a suitable  [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/),
-  usually a default for managed Kubernetes clusters.
+  * Persistent storage using a suitable
+    [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/),
+    usually a default for managed Kubernetes clusters.
 
 ## Mangaged Kubernetes services provisioning
 

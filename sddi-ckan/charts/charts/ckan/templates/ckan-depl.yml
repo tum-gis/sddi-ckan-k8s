@@ -27,7 +27,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
         checksum/configmap-env: {{ include (print $.Template.BasePath "/ckan-configMap-env.yml") . | sha256sum }}
-        checksum/configmap-ini: {{ include (print $.Template.BasePath "/ckan-configMap-ini.yml") . | sha256sum }}
         checksum/secret-db: {{ include (print $.Template.BasePath "/ckan-sct-db.yml") . | sha256sum }}
         checksum/secret-smtp: {{ include (print $.Template.BasePath "/ckan-sct-smtp.yml") . | sha256sum }}
         checksum/secret-solr: {{ include (print $.Template.BasePath "/ckan-sct-solr.yml") . | sha256sum }}
@@ -40,27 +39,14 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
-      volumes:
-        - name: config-ini
-          configMap:
-            name: {{ include "ckan.fullname" . }}-cfg-ini
-        - name: data
-          emptyDir: {}
-
       initContainers:
-        - name: set-volume-ownsership
-          image: busybox
-          command:
-            - sh
-          args:
-            - -c
-            - |
-              mkdir -vp {{ .Values.persistence.storagePath }}
-              chown -R 92:92 {{ .Values.persistence.storagePath }}
-
-          volumeMounts:
-            - name: data
-              mountPath: {{ .Values.persistence.storagePath }}
+      - name: init-data
+        image: busybox
+        command: ["sh", "-c", "chown -R 92:92 {{ .Values.persistence.storagePath }}"]
+        volumeMounts:
+        - name: data
+          mountPath: {{ .Values.persistence.storagePath }}
+          readOnly: false
 
       containers:
         - name: {{ .Chart.Name }}
@@ -86,13 +72,6 @@ spec:
             - secretRef:
                 name: {{ include "ckan.fullname" . }}-sct-sysadmin
             {{ end }}
-
-          volumeMounts:
-            - name: data
-              mountPath: {{ .Values.persistence.storagePath }}
-            - name: config-ini
-              mountPath: /srv/app/production.ini
-              subPath: production.ini
 
           readinessProbe:
             httpGet:

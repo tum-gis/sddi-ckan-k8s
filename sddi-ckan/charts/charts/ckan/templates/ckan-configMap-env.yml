@@ -9,13 +9,59 @@ metadata:
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: database
 data:
-  CKAN_REDIS_URL: {{ .Values.redis.url | quote }}
+  # Native CKAN env vars ------------------------------------------------------
   CKAN_SITE_ID: {{ .Values.siteId | quote }}
   CKAN_SITE_URL: {{ .Values.siteUrl | quote }}
   CKAN_STORAGE_PATH: {{ .Values.persistence.storagePath | quote }}
-  CKAN_DATAPUSHER_URL: {{ .Values.datapusher.url | quote }}
   CKAN_MAX_UPLOAD_SIZE_MB: {{ .Values.maxUploadSizeMB | quote }}
+  # Storage path
+  CKAN_STORAGE_PATH: {{ .Values.persistence.storagePath | quote }}
+
+  # Additional env vars using ckanext-envvars ---------------------------------
+  # https://github.com/okfn/ckanext-envvars
+  # Auth settings
+  CKAN__AUTH__ANON_CREATE_DATASET: {{ .Values.auth.anon_create_dataset | quote }}
+  CKAN__AUTH__CREATE_UNOWNED_DATASET: {{ .Values.auth.create_unowned_dataset | quote }}
+  CKAN__AUTH__CREATE_DATASET_IF_NOT_IN_ORGANIZATION : {{ .Values.auth.create_dataset_if_not_in_organization | quote }}
+  CKAN__AUTH__USER_CREATE_GROUPS: {{ .Values.auth.user_create_groups | quote }}
+  CKAN__AUTH__USER_CREATE_ORGANIZATIONS: {{ .Values.auth.user_create_organizations | quote }}
+  CKAN__AUTH__USER_DELETE_GROUPS: {{ .Values.auth.user_delete_groups | quote }}
+  CKAN__AUTH__USER_DELETE_ORGANIZATIONS: {{ .Values.auth.user_delete_organizations | quote }}
+  CKAN__AUTH__CREATE_USER_VIA_API: {{ .Values.auth.create_user_via_api | quote }}
+  CKAN__AUTH__CREATE_USER_VIA_WEB: {{ .Values.auth.create_user_via_web | quote }}
+  CKAN__AUTH__ROLES_THAT_CASCADE_TO_SUB_GROUPS: {{ .Values.auth.roles_that_cascade_to_sub_groups | quote }}
+  CKAN__AUTH__PUBLIC_USER_DETAILS: {{ .Values.auth.public_user_details | quote }}
+  CKAN__AUTH__PUBLIC_ACTIVITY_STREAM_DETAIL: {{ .Values.auth.public_activity_stream_detail | quote }}
+  CKAN__AUTH__ALLOW_DATASET_COLLABORATORS: {{ .Values.auth.allow_dataset_collaborators | quote }}
+  CKAN__AUTH__CREATE_DEFAULT_API_KEYS: {{ .Values.auth.create_default_api_keys | quote }}
+  # Plugins
+  CKAN__PLUGINS: {{ .Values.plugins | quote }}
+  # Site customization settings
+  CKAN__SITE_TITLE: {{ .Values.siteTitle | quote }}
+  CKAN__SITE_DESCRIPTION: {{ .Values.siteDescription | quote }}
+  CKAN__SITE_LOGO: {{ .Values.siteLogo | quote }}
+  CKAN__FAVICON: {{ .Values.favicon | quote }}
+  # Locale settings
+  CKAN__LOCALE_DEFAULT: {{ .Values.locale.default | quote }}
+  CKAN__LOCALE_ORDER: {{ .Values.locale.order | quote }}
+  CKAN__LOCALES_OFFERED: {{ .Values.locale.offered | quote }}
+  CKAN__LOCALES_FILTERED_OUT: {{ .Values.locale.filtered_out | quote }}
+  # Datapusher
+  CKAN__DATAPUSHER__CALLBACK_URL_BASE: {{ .Values.datapusher.callback_url_base | quote }}
+  CKAN__DATAPUSHER_FORMATS: {{ .Values.datapusher.formats | quote }}
+  # Preview settings
+  CKAN__PREVIEW__DIRECT: {{ .Values.preview.direct | quote }}
+  CKAN__PREVIEW__LOADABLE: {{ .Values.preview.loadable | quote }}
+  # Featured settings
+  CKAN__FEATURED_GROUPS: {{ .Values.featured.groups | quote }}
+  CKAN__FEATURED_ORGS: {{ .Values.featured.orgs | quote }}
+
+  # Others
+  CKAN__DATASET__CREATE_ON_UI_REQUIRES_RESOURCES: {{ .Values.dataset.create_on_ui_requires_resources | quote }}
+  CKAN__WEBASSETS__PATH: {{ .Values.webassets.path | quote }}
+  # Additional env vars from values.yaml
   {{- with .Values.extraEnv }}
     {{- toYaml . | nindent 2 }}
   {{- end }}
 {{- end -}}
+cat
