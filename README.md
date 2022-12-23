@@ -53,6 +53,11 @@ The documentation for this helm chart is available in [sddi-ckan/charts](sddi-ck
   * Persistent storage using a suitable  [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/),
   usually a default for managed Kubernetes clusters.
 
+## Mangaged Kubernetes services provisioning
+
+Examples on how to provision a managed Kubernetes service for this Helm chart are available in the
+[provisioning](provisioning) folder.
+
 ## :rocket: Usage
 
 1. Get a fully-qualified domain name (FQDN) and configure it to point to the public IP address of
