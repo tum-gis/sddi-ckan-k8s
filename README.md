@@ -37,6 +37,15 @@
   * Automatic SSL certificate issuing from e.g. Let's Encrypt
   * Optional dependency, usually not required
 
+## :question: Getting started
+
+To get this up an running in seconds, check out the [examples](examples). You will find examples for:
+
+* [Basic example for a local cluster using Docker Desktop](examples/docker-desktop/)
+* [Basic example for a local cluster using `minikube`](examples/minikube/)
+
+The documentation for this helm chart is available in [sddi-ckan/charts](sddi-ckan/charts).
+
 ## :grey_exclamation: Requirements
 
 * Kubernetes cluster with Kubernetes `>= v1.20`
