@@ -2,8 +2,19 @@ apiVersion: v2
 name: sddi-ckan
 description: A Helm chart for Kubernetes
 type: application
-version: 0.3.0
+home: https://github.com/tum-gis/sddi-ckan-k8s
+sources:
+  - https://github.com/tum-gis/sddi-ckan-k8s
+
+version: 0.4.0
 appVersion: "0.0.1"
+kubeVersion: ">= 1.23.0"
+
+maintainers:
+  - email: b.willenborg@tum.de
+    name: Bruno Willenborg
+    url: https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/
+
 dependencies:
   - name: postgis
     version: "*"

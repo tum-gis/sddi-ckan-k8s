@@ -80,6 +80,15 @@ datapusherRewriteResources: "True"
 # Default: http://ckan:5000
 datapusherRewriteUrl: http://ckan:5000/
 
+# Resources -------------------------------------------------------------------
+resources:
+  limits:
+    cpu: 1000m
+    memory: 500Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
 nodeSelector: {}
 tolerations: []
 affinity: {}
