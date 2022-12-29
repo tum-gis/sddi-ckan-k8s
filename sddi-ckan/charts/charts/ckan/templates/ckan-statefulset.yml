@@ -46,7 +46,7 @@ spec:
       initContainers:
       - name: init-data
         image: busybox
-        command: ["sh", "-c", "chown -R 92:92 {{ .Values.persistence.storagePath }}"]
+        command: ["sh", "-c", "chown -Rv 92:92 {{ .Values.persistence.storagePath }}"]
         volumeMounts:
         - name: data
           mountPath: {{ .Values.persistence.storagePath }}
