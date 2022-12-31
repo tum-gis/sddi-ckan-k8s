@@ -32,6 +32,9 @@ metadata:
     {{- else -}}
     nginx.ingress.kubernetes.io/rewrite-target: "/$1"
     {{- end}}
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   ingressClassName: {{ .Values.global.ingress.className | default .Values.ingress.className }}
   tls:
