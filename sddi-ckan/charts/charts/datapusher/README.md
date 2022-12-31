@@ -1,6 +1,6 @@
 # datapusher
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.17](https://img.shields.io/badge/AppVersion-0.0.17-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.17](https://img.shields.io/badge/AppVersion-0.0.17-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -33,6 +33,10 @@ A Helm chart for Kubernetes
 | podAnnotations | object | `{}` | Additional pod annotations |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` | Number of replicas. Only used if autoscaling.enabled = false |
+| resources.limits.cpu | string | `"1000m"` |  |
+| resources.limits.memory | string | `"500Mi"` |  |
+| resources.requests.cpu | string | `"250m"` |  |
+| resources.requests.memory | string | `"256Mi"` |  |
 | securityContext | object | `{}` |  |
 | service.port | int | `8000` | Service port |
 | service.type | string | `"ClusterIP"` | Type of service |
