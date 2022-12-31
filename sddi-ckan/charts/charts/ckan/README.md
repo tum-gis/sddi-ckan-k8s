@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.7](https://img.shields.io/badge/AppVersion-2.9.7-informational?style=flat-square)
+![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.7](https://img.shields.io/badge/AppVersion-2.9.7-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -47,7 +47,7 @@ A Helm chart for Kubernetes
 | image.repository | string | `"ghcr.io/keitaroinc/ckan"` | Image repository |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[{"name":"ckan-pull-sct"}]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
-| ingress | object | `{"annotations":null,"certManager":{"issuerEmail":"me@example.com","issuerName":"letsencrypt-staging","issuerType":"namespace"},"className":"nginx","domains":[],"enabled":true,"subpath":null}` | Ingress configuration |
+| ingress | object | `{"annotations":null,"certManager":{"issuerEmail":"me@example.com","issuerName":"letsencrypt-staging","issuerType":"namespace"},"className":"nginx","domains":[],"enabled":true}` | Ingress configuration |
 | ingress.annotations | string | `nil` | Additional Ingress annotations |
 | ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
 | ingress.certManager.issuerName | string | `"letsencrypt-staging"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available. |
@@ -55,7 +55,6 @@ A Helm chart for Kubernetes
 | ingress.className | string | `"nginx"` | Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class) to use in Ingress routes. |
 | ingress.domains | list | `[]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. The global setting overwrites this setting. Note: The first domain in the list will be used as CKAN serviceRootURL and MQTT host. |
 | ingress.enabled | bool | `true` | Enable/disable ingress |
-| ingress.subpath | string | `nil` | Make CKAN available at a subpath. By default caddy will be available from [DOMAIN]/ Don't append or prepend :// or / |
 | liveness.failureThreshold | int | `6` | Failure threshold for the liveness probe |
 | liveness.initialDelaySeconds | int | `60` | Initial delay for the liveness probe |
 | liveness.periodSeconds | int | `10` | Check interval for the liveness probe |
@@ -98,7 +97,7 @@ A Helm chart for Kubernetes
 | siteId | string | `"my_ckan_instance"` |  |
 | siteLogo | string | `"/webassets/images/group_icons/work.svg"` | Path to CKAN site logo image |
 | siteTitle | string | `"My CKAN instance"` |  |
-| siteUrl | string | `"https://my-ckan.de"` | CKAN site url. This should match a domain name of CKAN specified in global.ingress.domains |
+| siteUrl | string | `"https://my-ckan.de"` | CKAN site url. This should match a domain name of CKAN specified in global.ingress.domains. https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url |
 | smtp.mailFrom | string | `"postmaster@domain.com"` |  |
 | smtp.password | string | `"smtpPassword"` |  |
 | smtp.server | string | `"smtpServerURLorIP:port"` |  |

@@ -86,9 +86,6 @@ ingress:
   # -- Additional Ingress annotations
   annotations:
     # nginx.ingress.kubernetes.io/ssl-redirect: "true"
-  # -- Make CKAN available at a subpath. By default caddy will be available from [DOMAIN]/
-  # Don't append or prepend :// or /
-  subpath:
   certManager:
     # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
     issuerEmail: me@example.com
@@ -99,7 +96,8 @@ ingress:
     issuerName: letsencrypt-staging
 
 # General settings
-# -- CKAN site url. This should match a domain name of CKAN specified in global.ingress.domains
+# -- CKAN site url. This should match a domain name of CKAN specified in global.ingress.domains.
+# https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url
 siteUrl: https://my-ckan.de
 siteTitle: My CKAN instance
 siteId: my_ckan_instance

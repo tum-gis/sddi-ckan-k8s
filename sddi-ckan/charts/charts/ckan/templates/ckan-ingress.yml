@@ -6,7 +6,6 @@
 {{- if empty $domains }}
 {{- fail "No ingress domains specified. Set either .Values.global.inress.domains[] or .Values.inress.domains[]." }}
 {{- end }}
-{{- $subpath := .Values.ingress.subpath -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -25,13 +24,7 @@ metadata:
     (eq (coalesce .Values.global.ingress.certManager.issuerType .Values.ingress.certManager.issuerType) "namespace")) }}
     cert-manager.io/issuer: {{ .Values.global.ingress.certManager.issuerName | default .Values.ingress.certManager.issuerName | quote }}
     {{- end }}
-    {{ if $subpath -}}
-    nginx.ingress.kubernetes.io/rewrite-target: "/$2"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      rewrite ^/{{ $subpath }}$ /{{ $subpath }}/ redirect;
-    {{- else -}}
     nginx.ingress.kubernetes.io/rewrite-target: "/$1"
-    {{- end}}
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
@@ -48,12 +41,7 @@ spec:
   - host: {{ . }}
     http:
       paths:
-      {{- if $subpath }}
-      - path: /{{ $subpath }}(/|$)(.*)
-      {{- end }}
-      {{- if not $subpath }}
       - path: /(.*)
-      {{- end }}
         pathType: Prefix
         backend:
           service:
