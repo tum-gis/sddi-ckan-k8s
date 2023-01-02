@@ -1,8 +1,7 @@
-# Global settings -------------------------------------------------------------
 # -- Override name
 nameOverride: ""
 # -- Override fullname
-fullnameOverride: iotstack
+fullnameOverride: ""
 
 global:
   # -- Fully qualified domain name, used for all Ingress routes.
@@ -20,16 +19,16 @@ global:
       # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
       issuerEmail: me@example.com
       # -- Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster".
-      issuerType: namespace
+      issuerType:
       # -- Name of the Issuer to use. For certManager.type = namespace
       # `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available.
-      issuerName: self-signed
+      issuerName:
 
 # Nginx ingress configuration -------------------------------------------------
-# This needs to be enabled, if you don't have nginx-ingress already installed
+# This needs to be enabled, if you don't have nginx-ingress installed already
 # in your cluster.
 ingress-nginx:
-  enabled: false
+  enabled: true
   controller:
     replicaCount: 1
     loadBalancerIP: 127.0.0.1
@@ -48,37 +47,43 @@ cert-manager:
 certIssuer:
   enabled: false
 
-# FROST-Server PostGIS database configuration ---------------------------------
-frostdb:
+# ckan configuration ----------------------------------------------------------
+ckan:
   enabled: true
 
-# FROST-Webserver PostGIS database configuration ------------------------------
-frostweb:
-  enabled: true
-  replicaCount: 2
-
-# Grafana v9 configuration ----------------------------------------------------
-grafana:
-  enabled: true
-  replicaCount: 2
-  database:
-    enabled: false
-
-# Grafana v7 configuration ----------------------------------------------------
-grafana7:
-  enabled: true
-  replicaCount: 2
-  database:
-    enabled: false
-
-# Node-RED configuration ------------------------------------------------------
-nodered:
-  enabled: true
-  replicaCount: 1
   persistence:
-    enabled: true
+    enabled: false
+    # Annotations for PVCs
+    annotations:
+      # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
+      # helm.sh/resource-policy: keep
 
-# Caddy configuration ---------------------------------------------------------
-# The caddy webserver is not required.
-caddy:
-  enabled: false
+  plugins:
+  # envvars image_view text_view recline_view datastore datapusher hierarchy_display hierarchy_form
+  # hierarchy_group_form geo_view geojson_view wmts_view shp_view display_group form_group
+  # plugins: stats text_view image_view recline_view hierarchy_display hierarchy_form
+  # scheming_datasets repeating composite display_group form_group spatial_metadata spatial_query
+  # resource_proxy geojson_view relation disqus temporalsearch userautoaddgroup restricted
+  # gdpr importerexporter
+
+  siteUrl: https://localhost
+
+  image:
+    repository: ghcr.io/keitaroinc/ckan
+
+  imagePullSecrets:
+    - name: *ckan-pull-sct
+
+  # Readyness and liveness checks -----------------------------------------------
+  startup:
+    # -- Inital delay seconds for the startup probe.
+    initialDelaySeconds: 60
+    # -- Check interval for the startup probe
+    periodSeconds: 10
+    # -- Failure threshold for the startup probe
+    failureThreshold: 60
+    # -- Timeout interval for the startup probe
+    # Note: The CKAN pod may take some time to startup on slow systems, e.g. one
+    # testing clusters. Make sure to set this value high enough to avoid the pod
+    # being restarted before it has fully initialized.
+    timeoutSeconds: 10
