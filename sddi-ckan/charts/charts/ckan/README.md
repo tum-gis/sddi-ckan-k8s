@@ -72,15 +72,15 @@ A Helm chart for Kubernetes
 | persistence.enabled | bool | `true` | Enable/disable persistent data storage. |
 | persistence.storageClassName | string | `nil` | StorageClass to use, leave empty to use default StorageClass. |
 | persistence.storagePath | string | `"/var/lib/ckan"` | Mount path of the CKAN storage. Omit trailing `/`! This option is used for CKAN__STORAGE_PATH env var too! |
-| plugins | string | `"envvars image_view text_view recline_view datastore datapusher"` | Enable/disable CKAN plugins/extensions |
+| plugins | string | `nil` | Override CKAN plugins/extensions specified in the CKAN image Warning: Only edit this if you know what you are doing. If the plugin list does not match the plugins installed in the image errors can occure. |
 | podAnnotations | object | `{}` | Additional pod annotations |
 | podSecurityContext | object | `{}` |  |
 | preview.direct | string | `"png jpg gif"` |  |
 | preview.loadable | string | `"html htm rdf+xml owl+xml xml n3 n-triples turtle plain atom csv tsv rss txt json"` |  |
-| readiness.failureThreshold | int | `6` | Failure threshold for the readiness probe |
-| readiness.initialDelaySeconds | int | `60` | Inital delay seconds for the readiness probe |
-| readiness.periodSeconds | int | `10` | Check interval for the readiness probe |
-| readiness.timeoutSeconds | int | `10` | Timeout interval for the readiness probe |
+| readiness.failureThreshold | int | `6` | Failure threshold for the liveness probe |
+| readiness.initialDelaySeconds | int | `60` | Initial delay for the liveness probe |
+| readiness.periodSeconds | int | `10` | Check interval for the liveness probe |
+| readiness.timeoutSeconds | int | `10` | Timeout interval for the liveness probe |
 | redis.url | string | `"redis://redis-hl:6379/0"` |  |
 | replicaCount | int | `1` | Number of replicas. Only used if autoscaling.enabled = false |
 | resources.limits.cpu | string | `"500m"` |  |
@@ -107,6 +107,10 @@ A Helm chart for Kubernetes
 | solr.password | string | `nil` |  |
 | solr.url | string | `"http://solr-hl:8983/solr/ckan"` |  |
 | solr.user | string | `nil` |  |
+| startup.failureThreshold | int | `6` | Failure threshold for the startup probe |
+| startup.initialDelaySeconds | int | `60` | Inital delay seconds for the startup probe. Note: The CKAN pod may take some time to startup on slow systems, e.g. one testing clusters. Make sure to set this values high enough to avoid the pod being restarted before it has fully initialized. |
+| startup.periodSeconds | int | `10` | Check interval for the startup probe |
+| startup.timeoutSeconds | int | `10` | Timeout interval for the startup probe |
 | sysadmin.email | string | `"user@example.de"` |  |
 | sysadmin.enabled | bool | `true` |  |
 | sysadmin.password | string | `"changeMe"` |  |

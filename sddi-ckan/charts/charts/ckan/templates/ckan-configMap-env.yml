@@ -35,7 +35,9 @@ data:
   CKAN__AUTH__ALLOW_DATASET_COLLABORATORS: {{ .Values.auth.allow_dataset_collaborators | quote }}
   CKAN__AUTH__CREATE_DEFAULT_API_KEYS: {{ .Values.auth.create_default_api_keys | quote }}
   # Plugins
+  {{ if .Values.plugins -}}
   CKAN__PLUGINS: {{ .Values.plugins | quote }}
+  {{- end }}
   # Site customization settings
   CKAN__SITE_TITLE: {{ .Values.siteTitle | quote }}
   CKAN__SITE_DESCRIPTION: {{ .Values.siteDescription | quote }}
