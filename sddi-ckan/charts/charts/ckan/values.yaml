@@ -117,8 +117,11 @@ featured:
   groups: dataset online-application online-service project software method device geoobject
   orgs: bayerische-vermessungsverwaltung lehrstuhl-fur-geoinformatik bayern-innovativ
 
-# -- Enable/disable CKAN plugins/extensions
-plugins: envvars image_view text_view recline_view datastore datapusher
+# -- Override CKAN plugins/extensions specified in the CKAN image
+# Warning: Only edit this if you know what you are doing. If the plugin list does
+# not match the plugins installed in the image errors can occure.
+plugins:
+  # envvars image_view text_view recline_view datastore datapusher
 
 # -- CKAN auth settings
 auth:
@@ -249,14 +252,26 @@ tolerations: []
 affinity: {}
 
 # Readyness and liveness checks -----------------------------------------------
-readiness:
-  # -- Inital delay seconds for the readiness probe
+startup:
+  # -- Inital delay seconds for the startup probe.
+  # Note: The CKAN pod may take some time to startup on slow systems, e.g. one
+  # testing clusters. Make sure to set this values high enough to avoid the pod
+  # being restarted before it has fully initialized.
   initialDelaySeconds: 60
-  # -- Check interval for the readiness probe
+  # -- Check interval for the startup probe
   periodSeconds: 10
-  # -- Failure threshold for the readiness probe
+  # -- Failure threshold for the startup probe
   failureThreshold: 6
-  # -- Timeout interval for the readiness probe
+  # -- Timeout interval for the startup probe
+  timeoutSeconds: 10
+readiness:
+  # -- Initial delay for the liveness probe
+  initialDelaySeconds: 60
+  # -- Check interval for the liveness probe
+  periodSeconds: 10
+  # -- Failure threshold for the liveness probe
+  failureThreshold: 6
+  # -- Timeout interval for the liveness probe
   timeoutSeconds: 10
 liveness:
   # -- Initial delay for the liveness probe
