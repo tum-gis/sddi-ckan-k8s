@@ -3,6 +3,7 @@
 ## General
 
 * [ ] NOTES.md remove when not needed any longer.
+* [ ] Update image URLs in examples, when final images are online in Docker registry.
 
 ## CKAN
 
