@@ -77,13 +77,14 @@ persistence:
   annotations: {}
     # helm.sh/resource-policy: keep
 
+# Resources -------------------------------------------------------------------
 resources:
   limits:
-    cpu: 4000m
-    memory: 8Gi
+    cpu: 2000m
+    memory: 4Gi
   requests:
     cpu: 1000m
-    memory: 1Gi
+    memory: 2Gi
 
 nodeSelector: {}
 tolerations: []

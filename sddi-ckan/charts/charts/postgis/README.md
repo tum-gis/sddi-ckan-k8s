@@ -34,10 +34,10 @@ A Helm chart for Kubernetes
 | podAnnotations | object | `{}` | Additional pod annotations |
 | podSecurityContext | object | `{}` |  |
 | port | int | `5432` |  |
-| resources.limits.cpu | string | `"4000m"` |  |
-| resources.limits.memory | string | `"8Gi"` |  |
+| resources.limits.cpu | string | `"2000m"` |  |
+| resources.limits.memory | string | `"4Gi"` |  |
 | resources.requests.cpu | string | `"1000m"` |  |
-| resources.requests.memory | string | `"1Gi"` |  |
+| resources.requests.memory | string | `"2Gi"` |  |
 | securityContext | object | `{}` |  |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
