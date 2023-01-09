@@ -108,6 +108,7 @@ siteLogo: /webassets/images/group_icons/work.svg
 favicon: /webassets/images/favicon.ico
 # favicon: /base/images/favicon.ico
 maxUploadSizeMB: 250
+debug: False
 
 preview:
   direct: png jpg gif

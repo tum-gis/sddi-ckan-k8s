@@ -61,6 +61,7 @@ data:
   # Others
   CKAN__DATASET__CREATE_ON_UI_REQUIRES_RESOURCES: {{ .Values.dataset.create_on_ui_requires_resources | quote }}
   CKAN__WEBASSETS__PATH: {{ .Values.webassets.path | quote }}
+  CKAN___DEBUG: {{ .Values.debug | quote }}
   # Additional env vars from values.yaml
   {{- with .Values.extraEnv }}
     {{- toYaml . | nindent 2 }}
