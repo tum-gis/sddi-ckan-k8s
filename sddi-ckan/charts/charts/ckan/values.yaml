@@ -107,7 +107,9 @@ siteLogo: /webassets/images/group_icons/work.svg
 # -- Path to CKAN favicon
 favicon: /webassets/images/favicon.ico
 # favicon: /base/images/favicon.ico
+# -- Max file upload size in MB.
 maxUploadSizeMB: 250
+# -- Enable CKAN debug mode
 debug: False
 
 preview:
@@ -120,8 +122,9 @@ featured:
 
 # -- Override CKAN plugins/extensions specified in the CKAN image
 # Warning: Only edit this if you know what you are doing. If the plugin list does
-# not match the plugins installed in the image errors can occure.
-plugins:
+# not match the plugins installed in the image errors can occur.
+plugins: >-
+
   # envvars image_view text_view recline_view datastore datapusher
 
 # -- CKAN auth settings
