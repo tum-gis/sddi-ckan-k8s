@@ -2,7 +2,7 @@ enabled: true
 component: frontend
 
 # -- Override name
-nameOverride:
+nameOverride: ""
 # -- Override fullname
 fullnameOverride: ckan
 
@@ -125,7 +125,7 @@ featured:
 # not match the plugins installed in the image errors can occur.
 plugins: >-
 
-  # envvars image_view text_view recline_view datastore datapusher
+# envvars image_view text_view recline_view datastore datapusher
 
 # -- CKAN auth settings
 auth:

@@ -65,7 +65,7 @@ A Helm chart for Kubernetes
 | locale.offered | string | `"de en"` |  |
 | locale.order | string | `"de en pt_BR ja it cs_CZ ca es fr el sv sr sr@latin no sk fi ru de pl nl bg ko_KR hu sa sl lv"` |  |
 | maxUploadSizeMB | int | `250` | Max file upload size in MB. |
-| nameOverride | string | `nil` | Override name |
+| nameOverride | string | `""` | Override name |
 | nodeSelector | object | `{}` |  |
 | persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
 | persistence.annotations | string | `nil` | Additional annotations for PVCs Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall |
@@ -73,7 +73,7 @@ A Helm chart for Kubernetes
 | persistence.enabled | bool | `true` | Enable/disable persistent data storage. |
 | persistence.storageClassName | string | `nil` | StorageClass to use, leave empty to use default StorageClass. |
 | persistence.storagePath | string | `"/var/lib/ckan"` | Mount path of the CKAN storage. Omit trailing `/`! This option is used for CKAN__STORAGE_PATH env var too! |
-| plugins | string | `"\n# envvars image_view text_view recline_view datastore datapusher"` | Override CKAN plugins/extensions specified in the CKAN image Warning: Only edit this if you know what you are doing. If the plugin list does not match the plugins installed in the image errors can occur. |
+| plugins | string | `""` | Override CKAN plugins/extensions specified in the CKAN image Warning: Only edit this if you know what you are doing. If the plugin list does not match the plugins installed in the image errors can occur. |
 | podAnnotations | object | `{}` | Additional pod annotations |
 | podSecurityContext | object | `{}` |  |
 | preview.direct | string | `"png jpg gif"` |  |
