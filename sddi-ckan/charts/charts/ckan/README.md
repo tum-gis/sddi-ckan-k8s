@@ -64,7 +64,7 @@ A Helm chart for Kubernetes
 | locale.filtered_out | string | `"en_GB"` |  |
 | locale.offered | string | `"de en"` |  |
 | locale.order | string | `"de en pt_BR ja it cs_CZ ca es fr el sv sr sr@latin no sk fi ru de pl nl bg ko_KR hu sa sl lv"` |  |
-| maxUploadSizeMB | int | `250` | Max file upload size in MB. |
+| maxUploadSizeMB | int | `250` | Max file upload size in MB. Note: This setting is mapped to the `nginx.ingress.kubernetes.io/proxy-body-size: "600m"` and `nginx.org/client-max-body-size: "600m"` CKAN Ingress annotations too. |
 | nameOverride | string | `""` | Override name |
 | nodeSelector | object | `{}` |  |
 | persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
