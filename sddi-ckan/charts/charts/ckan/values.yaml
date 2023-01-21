@@ -107,7 +107,9 @@ siteLogo: /webassets/images/group_icons/work.svg
 # -- Path to CKAN favicon
 favicon: /webassets/images/favicon.ico
 # favicon: /base/images/favicon.ico
-# -- Max file upload size in MB.
+# -- Max file upload size in MB. Note: This setting is mapped to the
+# `nginx.ingress.kubernetes.io/proxy-body-size: "600m"` and
+# `nginx.org/client-max-body-size: "600m"` CKAN Ingress annotations too.
 maxUploadSizeMB: 250
 # -- Enable CKAN debug mode
 debug: False

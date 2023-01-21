@@ -28,6 +28,8 @@ metadata:
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
+    nginx.ingress.kubernetes.io/proxy-body-size: "{{ .Values.maxUploadSizeMB }}m"
+    nginx.org/client-max-body-size: "{{ .Values.maxUploadSizeMB }}m"
 spec:
   ingressClassName: {{ .Values.global.ingress.className | default .Values.ingress.className }}
   tls:
