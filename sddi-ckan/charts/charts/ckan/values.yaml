@@ -13,22 +13,9 @@ image:
   pullPolicy: IfNotPresent
    # -- Overrides the image tag whose default is the chart appVersion.
   tag: ""
-  # -- Create a image pully secret of type kubernetes.io/dockerconfigjson
-  credentials:
-    # -- Name of the image pull secret to create
-    secretName: &ckan-pull-sct ckan-pull-sct
-    # -- Image registry
-    registry: quay.io
-    # -- Image registry username
-    username: user
-    # -- Image registry password
-    password: changeMe
-    # -- Image registry eMail address
-    email: someone@host.com
 
 # -- [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
-imagePullSecrets:
-  - name: *ckan-pull-sct
+imagePullSecrets: []
 
 # -- Additional pod annotations
 podAnnotations: {}
