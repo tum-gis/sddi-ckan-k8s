@@ -19,10 +19,10 @@ spec:
   template:
     metadata:
       annotations:
+        checksum/configmap: {{ include (print $.Template.BasePath "/datapusher-configMap.yml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-        checksum/configmap: {{ include (print $.Template.BasePath "/datapusher-configMap.yml") . | sha256sum }}
       labels:
         {{- include "datapusher.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: {{ .Values.component }}
