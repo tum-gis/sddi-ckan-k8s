@@ -12,7 +12,12 @@ metadata:
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
+    {{- if .Values.persistence.enabled }}
+    kind: StatefulSet
+    {{- end }}
+    {{- if not .Values.persistence.enabled }}
     kind: Deployment
+    {{- end }}
     name: {{ include "ckan.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
