@@ -57,9 +57,11 @@ data:
   # Featured settings
   CKAN__FEATURED_GROUPS: {{ .Values.featured.groups | quote }}
   CKAN__FEATURED_ORGS: {{ .Values.featured.orgs | quote }}
+  # eMail settings
+  CKAN__ACTIVITY_STREAMS_EMAIL_NOTIFICATIONS: {{ .Values.email.activity_streams_email_notifications | quote }}
 
   # Others
-  CKAN__DATASET__CREATE_ON_UI_REQUIRES_RESOURCES: {{ .Values.dataset.create_on_ui_requires_resources | quote }}
+  CKAN__DATASET__CREATE_ON_UI_REQUIRES_RESOURCES: {{ .Values.form.create_on_ui_requires_resources | quote }}
   CKAN__WEBASSETS__PATH: {{ .Values.webassets.path | quote }}
   CKAN___DEBUG: {{ .Values.debug | quote }}
   # Additional env vars from values.yaml

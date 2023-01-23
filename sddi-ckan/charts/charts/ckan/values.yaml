@@ -1,4 +1,8 @@
+
+# -- Enable/disable CKAN
 enabled: true
+
+# -- Role of CKAN in this chart
 component: frontend
 
 # -- Override name
@@ -46,29 +50,29 @@ service:
   # -- Service port for http
   port: 5000
 
-# -- Number of replicas. Only used if autoscaling.enabled = false
+# -- Number of replicas. Only used if `autoscaling.enabled = false`.
 replicaCount: 1
 autoscaling:
   # -- Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods.
+  # Check requirements of [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
   enabled: false
   # -- Minimum number of replicas
   minReplicas: 1
   # -- Maximum number of replicas
   maxReplicas: 5
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  # -- [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
+  targetCPUUtilizationPercentage:
+  # -- [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
+  targetMemoryUtilizationPercentage:
 
-# -- Ingress configuration
 ingress:
-  # -- Enable/disable ingress
+  # -- Enable/disable Ingress.
   enabled: true
   # -- Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
   # to use in Ingress routes.
   className: nginx
   # -- List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress.
-  # Note: All FQDNs will be used for Ingress hosts and TLS certificate.
-  # The global setting overwrites this setting. Note: The first domain in the list will be used
-  # as CKAN serviceRootURL and MQTT host.
+  # Note: All FQDNs will be used for Ingress hosts and TLS certificate. Note: Set `siteUrl` accordingly!
   domains: []
   # -- Additional Ingress annotations
   annotations:
@@ -83,17 +87,23 @@ ingress:
     issuerName: letsencrypt-staging
 
 # General settings
-# -- CKAN site url. This should match a domain name of CKAN specified in global.ingress.domains.
-# https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url
+# -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`.
+# [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url)
 siteUrl: https://my-ckan.de
+# -- Title of the CKAN instance, displayed in Browser windows/tab name
 siteTitle: My CKAN instance
-siteId: my_ckan_instance
+# -- [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id)
+siteId: default
+# -- [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description)
 siteDescription: This is my CKAN instance for stuff.
-# -- Path to CKAN site logo image
-siteLogo: /webassets/images/group_icons/work.svg
-# -- Path to CKAN favicon
+# -- Path to CKAN site logo image. Custom logos will usually be located in `/webassets/`.
+# See `webassets.path` setting.
+# [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo)
+siteLogo: /base/images/ckan-logo.png
+# -- Path to CKAN favicon. Custom logos will usually be located in `/webassets/`.
+# See `webassets.path` setting.
+# [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo)
 favicon: /webassets/images/favicon.ico
-# favicon: /base/images/favicon.ico
 # -- Max file upload size in MB. Note: This setting is mapped to the
 # `nginx.ingress.kubernetes.io/proxy-body-size: "600m"` and
 # `nginx.org/client-max-body-size: "600m"` CKAN Ingress annotations too.
@@ -109,40 +119,47 @@ featured:
   groups: dataset online-application online-service project software method device geoobject
   orgs: bayerische-vermessungsverwaltung lehrstuhl-fur-geoinformatik bayern-innovativ
 
+form:
+  # -- CKAN form settings, see
+  # [CKAN configuration form](https://docs.ckan.org/en/latest/maintaining/configuration.html#form-settings)
+  create_on_ui_requires_resources: false
+
 # -- Override CKAN plugins/extensions specified in the CKAN image
 # Warning: Only edit this if you know what you are doing. If the plugin list does
-# not match the plugins installed in the image errors can occur.
+# not match the plugins installed in the image errors can occur. See
+# and [CKAN configuration](https://docs.ckan.org/en/latest/maintaining/configuration.html#)
+# [CKAN configuration plugins](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-plugins)
 plugins: >-
 
 # envvars image_view text_view recline_view datastore datapusher
 
-# -- CKAN auth settings
 auth:
+  # -- CKAN authorization settings. See
+  # [CKAN configuration docs](https://docs.ckan.org/en/latest/maintaining/configuration.html#authorization-settings).
+  allow_dataset_collaborators: false
   anon_create_dataset: false
-  create_unowned_dataset: false
   create_dataset_if_not_in_organization: false
+  create_default_api_keys: false
+  create_unowned_dataset: false
+  create_user_via_api: false
+  create_user_via_web: true
+  public_activity_stream_detail: true
+  public_user_details: true
+  roles_that_cascade_to_sub_groups:  admin editor member
   user_create_groups: false
   user_create_organizations: false
   user_delete_groups: false
   user_delete_organizations: false
-  create_user_via_api: false
-  create_user_via_web: true
-  roles_that_cascade_to_sub_groups:  admin editor member
-  public_user_details: true
-  public_activity_stream_detail: true
-  allow_dataset_collaborators: false
-  create_default_api_keys: false
 
-# Create a sysadmin account
-# Note: Min. password length = 8 char
 sysadmin:
+  # -- Enable/disable creating of a CKAN admin user at first startup.
   enabled: true
+  # -- CKAN admin username
   user: admin
+  # -- CKAN admin password: Note: Min. password length = 8 chars!
   password: changeMe
+  # -- CKAN admin eMail address
   email: user@example.de
-
-dataset:
-  create_on_ui_requires_resources: false
 
 locale:
   default: de
@@ -163,7 +180,8 @@ extraEnv: {}
 
 # Persistence -----------------------------------------------------------------
 persistence:
-  # -- Enable/disable persistent data storage.
+  # -- Enable/disable persistent data storage. Note: Persistence should only be disabled for testing!
+  # With persistence disabled CKAN data is stored in an ephemeral emptyDir volume!
   enabled: true
   # -- StorageClass to use, leave empty to use default StorageClass.
   storageClassName:
@@ -171,6 +189,7 @@ persistence:
   # for CKAN__STORAGE_PATH env var too!
   storagePath: /var/lib/ckan
   accessModes:
+  # -- [k8s: Persistent volume access modes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
     - ReadWriteOnce
   # -- Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity)
   capacity: 4Gi
@@ -208,30 +227,52 @@ datastore:
 
 # Redis -----------------------------------------------------------------------
 redis:
+  # -- Redis endpoint for CKAN.
+  # This should be set to cluster internal Redis service domain.
+  # [CKAN configuration Redis](https://docs.ckan.org/en/latest/maintaining/configuration.html#redis-settings)
   url: redis://redis-hl:6379/0
 
 # Solr ------------------------------------------------------------------------
 solr:
+  # -- Solr endpoint for CKAN.
+  # This should be set to cluster internal Solr service domain.
+  # [CKAN configuration Solr URL](https://docs.ckan.org/en/latest/maintaining/configuration.html#solr-url)
   url: http://solr-hl:8983/solr/ckan
+  # -- # [CKAN configuration Solr user](https://docs.ckan.org/en/latest/maintaining/configuration.html#solr-user)
   user:
+  # -- # [CKAN configuration Solr user](https://docs.ckan.org/en/latest/maintaining/configuration.html#solr-password)
   password:
 
 # DataPusher ------------------------------------------------------------------
 datapusher:
-  url: http://datapusher:8000/
+  # -- See [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings)
+  api_token:
+  # -- This should be set to cluster internal ckan service domain.
   callback_url_base: http://ckan:5000/
   formats: "csv xls xlsx tsv application/csv application/vnd.ms-excel application/vnd.openxmlform"
+  # -- DataPusher endpoint of CKAN. This should be set to the cluster internal DataPusher service domain.
+  url: http://datapusher:8000/
 
-# SMTP ------------------------------------------------------------------------
 smtp:
+  # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   server: "smtpServerURLorIP:port"
+  # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   user: "smtpUser"
+  # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   password: "smtpPassword"
+  # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   mailFrom: "postmaster@domain.com"
+  # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   tls: "enabled"
+  # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   startTls: "true"
 
-# Resources -------------------------------------------------------------------
+
+email:
+  # -- [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings)
+  activity_streams_email_notifications: False
+
+# -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 resources:
   limits:
     cpu: 500m
@@ -240,11 +281,14 @@ resources:
     cpu: 250m
     memory: 256Mi
 
+# -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 nodeSelector: {}
+# -- [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 tolerations: []
+# -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 affinity: {}
 
-# Readyness and liveness checks -----------------------------------------------
+
 startup:
   # -- Inital delay seconds for the startup probe.
   # Note: The CKAN pod may take some time to startup on slow systems, e.g. one

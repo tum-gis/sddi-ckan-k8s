@@ -8,17 +8,31 @@ A Helm chart for Kubernetes
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` |  |
-| auth | object | `{"allow_dataset_collaborators":false,"anon_create_dataset":false,"create_dataset_if_not_in_organization":false,"create_default_api_keys":false,"create_unowned_dataset":false,"create_user_via_api":false,"create_user_via_web":true,"public_activity_stream_detail":true,"public_user_details":true,"roles_that_cascade_to_sub_groups":"admin editor member","user_create_groups":false,"user_create_organizations":false,"user_delete_groups":false,"user_delete_organizations":false}` | CKAN auth settings |
-| autoscaling.enabled | bool | `false` | Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods. |
+| affinity | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
+| auth.allow_dataset_collaborators | bool | `false` | CKAN authorization settings. See [CKAN configuration docs](https://docs.ckan.org/en/latest/maintaining/configuration.html#authorization-settings). |
+| auth.anon_create_dataset | bool | `false` |  |
+| auth.create_dataset_if_not_in_organization | bool | `false` |  |
+| auth.create_default_api_keys | bool | `false` |  |
+| auth.create_unowned_dataset | bool | `false` |  |
+| auth.create_user_via_api | bool | `false` |  |
+| auth.create_user_via_web | bool | `true` |  |
+| auth.public_activity_stream_detail | bool | `true` |  |
+| auth.public_user_details | bool | `true` |  |
+| auth.roles_that_cascade_to_sub_groups | string | `"admin editor member"` |  |
+| auth.user_create_groups | bool | `false` |  |
+| auth.user_create_organizations | bool | `false` |  |
+| auth.user_delete_groups | bool | `false` |  |
+| auth.user_delete_organizations | bool | `false` |  |
+| autoscaling.enabled | bool | `false` | Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods. Check requirements of [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | autoscaling.maxReplicas | int | `5` | Maximum number of replicas |
 | autoscaling.minReplicas | int | `1` | Minimum number of replicas |
-| autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
-| component | string | `"frontend"` |  |
-| datapusher.callback_url_base | string | `"http://ckan:5000/"` |  |
+| autoscaling.targetCPUUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
+| autoscaling.targetMemoryUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
+| component | string | `"frontend"` | Role of CKAN in this chart |
+| datapusher.api_token | string | `nil` | See [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings) |
+| datapusher.callback_url_base | string | `"http://ckan:5000/"` | This should be set to cluster internal ckan service domain. |
 | datapusher.formats | string | `"csv xls xlsx tsv application/csv application/vnd.ms-excel application/vnd.openxmlform"` |  |
-| datapusher.url | string | `"http://datapusher:8000/"` |  |
-| dataset.create_on_ui_requires_resources | bool | `false` |  |
+| datapusher.url | string | `"http://datapusher:8000/"` | DataPusher endpoint of CKAN. This should be set to the cluster internal DataPusher service domain. |
 | datastore.auth.ro.password | string | `"changeMe"` |  |
 | datastore.auth.ro.username | string | `"datastore_ro"` |  |
 | datastore.auth.rw.password | string | `"changeMe"` |  |
@@ -32,24 +46,25 @@ A Helm chart for Kubernetes
 | db.host | string | `"postgis-hl"` | Database host |
 | db.port | int | `5432` | Database port |
 | debug | bool | `false` | Enable CKAN debug mode |
-| enabled | bool | `true` |  |
+| email.activity_streams_email_notifications | bool | `false` | [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings) |
+| enabled | bool | `true` | Enable/disable CKAN |
 | extraEnv | object | `{}` | Extra environment variables. Values need to be quoted. This can be used to overwrite CKAN settings in production.ini. See [ckanext-envvars](https://github.com/okfn/ckanext-envvars) for variable naming conventions. |
-| favicon | string | `"/webassets/images/favicon.ico"` | Path to CKAN favicon |
+| favicon | string | `"/webassets/images/favicon.ico"` | Path to CKAN favicon. Custom logos will usually be located in `/webassets/`. See `webassets.path` setting. [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo) |
 | featured.groups | string | `"dataset online-application online-service project software method device geoobject"` |  |
 | featured.orgs | string | `"bayerische-vermessungsverwaltung lehrstuhl-fur-geoinformatik bayern-innovativ"` |  |
+| form.create_on_ui_requires_resources | bool | `false` | CKAN form settings, see [CKAN configuration form](https://docs.ckan.org/en/latest/maintaining/configuration.html#form-settings) |
 | fullnameOverride | string | `"ckan"` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/keitaroinc/ckan"` | Image repository |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
-| ingress | object | `{"annotations":null,"certManager":{"issuerEmail":"me@example.com","issuerName":"letsencrypt-staging","issuerType":"namespace"},"className":"nginx","domains":[],"enabled":true}` | Ingress configuration |
 | ingress.annotations | string | `nil` | Additional Ingress annotations |
 | ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
 | ingress.certManager.issuerName | string | `"letsencrypt-staging"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available. |
 | ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |
 | ingress.className | string | `"nginx"` | Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class) to use in Ingress routes. |
-| ingress.domains | list | `[]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. The global setting overwrites this setting. Note: The first domain in the list will be used as CKAN serviceRootURL and MQTT host. |
-| ingress.enabled | bool | `true` | Enable/disable ingress |
+| ingress.domains | list | `[]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. Note: Set `siteUrl` accordingly! |
+| ingress.enabled | bool | `true` | Enable/disable Ingress. |
 | liveness.failureThreshold | int | `6` | Failure threshold for the liveness probe |
 | liveness.initialDelaySeconds | int | `60` | Initial delay for the liveness probe |
 | liveness.periodSeconds | int | `10` | Check interval for the liveness probe |
@@ -60,14 +75,14 @@ A Helm chart for Kubernetes
 | locale.order | string | `"de en pt_BR ja it cs_CZ ca es fr el sv sr sr@latin no sk fi ru de pl nl bg ko_KR hu sa sl lv"` |  |
 | maxUploadSizeMB | int | `250` | Max file upload size in MB. Note: This setting is mapped to the `nginx.ingress.kubernetes.io/proxy-body-size: "600m"` and `nginx.org/client-max-body-size: "600m"` CKAN Ingress annotations too. |
 | nameOverride | string | `""` | Override name |
-| nodeSelector | object | `{}` |  |
-| persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
+| nodeSelector | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
+| persistence.accessModes[0] | string | `"ReadWriteOnce"` | [k8s: Persistent volume access modes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) |
 | persistence.annotations | string | `nil` | Additional annotations for PVCs Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall |
 | persistence.capacity | string | `"4Gi"` | Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity) |
-| persistence.enabled | bool | `true` | Enable/disable persistent data storage. |
+| persistence.enabled | bool | `true` | Enable/disable persistent data storage. Note: Persistence should only be disabled for testing! With persistence disabled CKAN data is stored in an ephemeral emptyDir volume! |
 | persistence.storageClassName | string | `nil` | StorageClass to use, leave empty to use default StorageClass. |
 | persistence.storagePath | string | `"/var/lib/ckan"` | Mount path of the CKAN storage. Omit trailing `/`! This option is used for CKAN__STORAGE_PATH env var too! |
-| plugins | string | `""` | Override CKAN plugins/extensions specified in the CKAN image Warning: Only edit this if you know what you are doing. If the plugin list does not match the plugins installed in the image errors can occur. |
+| plugins | string | `""` | Override CKAN plugins/extensions specified in the CKAN image Warning: Only edit this if you know what you are doing. If the plugin list does not match the plugins installed in the image errors can occur. See and [CKAN configuration](https://docs.ckan.org/en/latest/maintaining/configuration.html#) [CKAN configuration plugins](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-plugins) |
 | podAnnotations | object | `{}` | Additional pod annotations |
 | podSecurityContext | object | `{}` |  |
 | preview.direct | string | `"png jpg gif"` |  |
@@ -76,41 +91,38 @@ A Helm chart for Kubernetes
 | readiness.initialDelaySeconds | int | `60` | Initial delay for the liveness probe |
 | readiness.periodSeconds | int | `10` | Check interval for the liveness probe |
 | readiness.timeoutSeconds | int | `10` | Timeout interval for the liveness probe |
-| redis.url | string | `"redis://redis-hl:6379/0"` |  |
-| replicaCount | int | `1` | Number of replicas. Only used if autoscaling.enabled = false |
-| resources.limits.cpu | string | `"500m"` |  |
-| resources.limits.memory | string | `"1Gi"` |  |
-| resources.requests.cpu | string | `"250m"` |  |
-| resources.requests.memory | string | `"256Mi"` |  |
+| redis.url | string | `"redis://redis-hl:6379/0"` | Redis endpoint for CKAN. This should be set to cluster internal Redis service domain. [CKAN configuration Redis](https://docs.ckan.org/en/latest/maintaining/configuration.html#redis-settings) |
+| replicaCount | int | `1` | Number of replicas. Only used if `autoscaling.enabled = false`. |
+| resources | object | `{"limits":{"cpu":"500m","memory":"1Gi"},"requests":{"cpu":"250m","memory":"256Mi"}}` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | securityContext | object | `{}` |  |
 | service.port | int | `5000` | Service port for http |
 | service.type | string | `"ClusterIP"` | Type of service for http |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
-| siteDescription | string | `"This is my CKAN instance for stuff."` |  |
-| siteId | string | `"my_ckan_instance"` |  |
-| siteLogo | string | `"/webassets/images/group_icons/work.svg"` | Path to CKAN site logo image |
-| siteTitle | string | `"My CKAN instance"` |  |
-| siteUrl | string | `"https://my-ckan.de"` | CKAN site url. This should match a domain name of CKAN specified in global.ingress.domains. https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url |
-| smtp.mailFrom | string | `"postmaster@domain.com"` |  |
-| smtp.password | string | `"smtpPassword"` |  |
-| smtp.server | string | `"smtpServerURLorIP:port"` |  |
-| smtp.startTls | string | `"true"` |  |
-| smtp.tls | string | `"enabled"` |  |
-| smtp.user | string | `"smtpUser"` |  |
-| solr.password | string | `nil` |  |
-| solr.url | string | `"http://solr-hl:8983/solr/ckan"` |  |
-| solr.user | string | `nil` |  |
+| siteDescription | string | `"This is my CKAN instance for stuff."` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description) |
+| siteId | string | `"default"` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id) |
+| siteLogo | string | `"/base/images/ckan-logo.png"` | Path to CKAN site logo image. Custom logos will usually be located in `/webassets/`. See `webassets.path` setting. [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo) |
+| siteTitle | string | `"My CKAN instance"` | Title of the CKAN instance, displayed in Browser windows/tab name |
+| siteUrl | string | `"https://my-ckan.de"` | CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`. [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url) |
+| smtp.mailFrom | string | `"postmaster@domain.com"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
+| smtp.password | string | `"smtpPassword"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
+| smtp.server | string | `"smtpServerURLorIP:port"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
+| smtp.startTls | string | `"true"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
+| smtp.tls | string | `"enabled"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
+| smtp.user | string | `"smtpUser"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
+| solr.password | string | `nil` | # [CKAN configuration Solr user](https://docs.ckan.org/en/latest/maintaining/configuration.html#solr-password) |
+| solr.url | string | `"http://solr-hl:8983/solr/ckan"` | Solr endpoint for CKAN. This should be set to cluster internal Solr service domain. [CKAN configuration Solr URL](https://docs.ckan.org/en/latest/maintaining/configuration.html#solr-url) |
+| solr.user | string | `nil` | # [CKAN configuration Solr user](https://docs.ckan.org/en/latest/maintaining/configuration.html#solr-user) |
 | startup.failureThreshold | int | `6` | Failure threshold for the startup probe |
 | startup.initialDelaySeconds | int | `60` | Inital delay seconds for the startup probe. Note: The CKAN pod may take some time to startup on slow systems, e.g. one testing clusters. Make sure to set this values high enough to avoid the pod being restarted before it has fully initialized. |
 | startup.periodSeconds | int | `10` | Check interval for the startup probe |
 | startup.timeoutSeconds | int | `10` | Timeout interval for the startup probe |
-| sysadmin.email | string | `"user@example.de"` |  |
-| sysadmin.enabled | bool | `true` |  |
-| sysadmin.password | string | `"changeMe"` |  |
-| sysadmin.user | string | `"admin"` |  |
-| tolerations | list | `[]` |  |
+| sysadmin.email | string | `"user@example.de"` | CKAN admin eMail address |
+| sysadmin.enabled | bool | `true` | Enable/disable creating of a CKAN admin user at first startup. |
+| sysadmin.password | string | `"changeMe"` | CKAN admin password: Note: Min. password length = 8 chars! |
+| sysadmin.user | string | `"admin"` | CKAN admin username |
+| tolerations | list | `[]` | [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |
 | webassets | object | `{"path":"/srv/app/data/webassets"}` | Webassets settings |
 | webassets.path | string | `"/srv/app/data/webassets"` | Webassets storage path |
 
