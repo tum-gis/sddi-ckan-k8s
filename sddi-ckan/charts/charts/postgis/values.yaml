@@ -1,22 +1,24 @@
-
+# -- Enable/disable PostGIS database
 enabled: true
+
+# -- Role of PostGIS database in this chart
 component: database
 
 # -- Override name
-nameOverride:
+nameOverride: ""
 # -- Override fullname
 fullnameOverride: postgis
 
-# Create a LoadBalancer service for external Database access
 loadBalancer:
+  # -- Create a LoadBalancer service for external Database access
   enabled: false
 
 image:
-  # -- Image repository
+  # -- [Image repository](https://kubernetes.io/docs/concepts/containers/images/)
   repository: postgis/postgis
-  # -- Image pull policy
+  # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
-   # -- Overrides the image tag whose default is the chart appVersion.
+  # -- Overrides the image tag whose default is the chart `appVersion`.
   tag: ""
 
 # -- [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
@@ -34,9 +36,11 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
 podSecurityContext: {}
   # fsGroup: 2000
 
+# -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
 securityContext: {}
   # capabilities:
   #   drop:
@@ -45,16 +49,21 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-# Database settings
+# -- Database port
 port: 5432
+# -- Database name
 dbname: ckan_default
 
 auth:
+  # -- Database username of the rw user. Database RW username for CKAN and CKAN datastore DB.
   username: ckan
+  # -- Database password of the rw user. Database RW username for CKAN and CKAN datastore DB.
   password: changeMe
 
 authRO:
+  # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
   username: datastore_ro
+  # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
   password: changeMe
 
 # -- Extra environment variables

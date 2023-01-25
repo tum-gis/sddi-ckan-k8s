@@ -37,11 +37,11 @@ Kubernetes: `>= 1.23.0`
 |-----|------|---------|-------------|
 | datapusher.enabled | bool | `true` | Enable/disable datapusher |
 | fullnameOverride | string | `""` | Override fullname |
-| global.db | object | `{"auth":{"password":null,"username":null},"authRO":{"password":null,"username":null},"host":null,"port":null}` | Database settings. This is only required, if an external database shall be used. |
-| global.db.auth.password | string | `nil` | Database password of the rw user |
-| global.db.auth.username | string | `nil` | Database username of the rw user |
-| global.db.authRO.password | string | `nil` | Database password of the ro user |
-| global.db.authRO.username | string | `nil` | Database password of the ro user |
+| global.db.auth.password | string | `nil` | Database password of the rw user. Database RW username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. |
+| global.db.auth.username | string | `nil` | Database username of the rw user. Database RW username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. |
+| global.db.authRO.password | string | `nil` | Database password of the ro user. Database RO username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. |
+| global.db.authRO.username | string | `nil` | Database password of the ro user. Database RO username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. |
+| global.db.dbname | string | `nil` | Database name. This is used in database charts for CKAN database initialization. |
 | global.db.host | string | `nil` | Database host |
 | global.db.port | string | `nil` | Database port |
 | global.ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |

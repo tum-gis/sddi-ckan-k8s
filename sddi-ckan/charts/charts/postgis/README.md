@@ -9,21 +9,21 @@ A Helm chart for Kubernetes
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| auth.password | string | `"changeMe"` |  |
-| auth.username | string | `"ckan"` |  |
-| authRO.password | string | `"changeMe"` |  |
-| authRO.username | string | `"datastore_ro"` |  |
-| component | string | `"database"` |  |
-| dbname | string | `"ckan_default"` |  |
-| enabled | bool | `true` |  |
+| auth.password | string | `"changeMe"` | Database password of the rw user. Database RW username for CKAN and CKAN datastore DB. |
+| auth.username | string | `"ckan"` | Database username of the rw user. Database RW username for CKAN and CKAN datastore DB. |
+| authRO.password | string | `"changeMe"` | Database password of the ro user. Database RO username for CKAN and CKAN datastore DB. |
+| authRO.username | string | `"datastore_ro"` | Database password of the ro user. Database RO username for CKAN and CKAN datastore DB. |
+| component | string | `"database"` | Role of PostGIS database in this chart |
+| dbname | string | `"ckan_default"` | Database name |
+| enabled | bool | `true` | Enable/disable PostGIS database |
 | extraEnv | object | `{}` | Extra environment variables |
 | fullnameOverride | string | `"postgis"` | Override fullname |
-| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
-| image.repository | string | `"postgis/postgis"` | Image repository |
-| image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
+| image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |
+| image.repository | string | `"postgis/postgis"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
+| image.tag | string | `""` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
-| loadBalancer.enabled | bool | `false` |  |
-| nameOverride | string | `nil` | Override name |
+| loadBalancer.enabled | bool | `false` | Create a LoadBalancer service for external Database access |
+| nameOverride | string | `""` | Override name |
 | nodeSelector | object | `{}` |  |
 | persistence.accessModes | list | `["ReadWriteOnce"]` | Storage [access modes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) |
 | persistence.annotations | object | `{}` | Additional annotations for PVC Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall |
@@ -32,13 +32,13 @@ A Helm chart for Kubernetes
 | persistence.pgdataSubPath | string | `"/pgdata"` | Subpath inside `mountPath` for the postgres data folder |
 | persistence.storageClassName | string | `nil` | StorageClass to use, leave empty to use default StorageClass. |
 | podAnnotations | object | `{}` | Additional pod annotations |
-| podSecurityContext | object | `{}` |  |
-| port | int | `5432` |  |
+| podSecurityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
+| port | int | `5432` | Database port |
 | resources.limits.cpu | string | `"2000m"` |  |
 | resources.limits.memory | string | `"4Gi"` |  |
 | resources.requests.cpu | string | `"1000m"` |  |
 | resources.requests.memory | string | `"2Gi"` |  |
-| securityContext | object | `{}` |  |
+| securityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |

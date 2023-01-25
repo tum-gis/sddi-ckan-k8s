@@ -4,34 +4,19 @@ nameOverride: ""
 fullnameOverride: ""
 
 global:
-  # -- Fully qualified domain name, used for all Ingress routes.
-  # Use localhost for local testing deployments.
   ingress:
     # -- Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
     # to use in Ingress routes.
     className: nginx
-    # -- List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress.
-    # Note: All FQDNs will be used for Ingress hosts and TLS certificate.
-    # The global setting overwrites this setting in subcharts.
-    domains:
-      - localhost
     certManager:
       # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
       issuerEmail: me@example.com
-      # -- Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster".
-      issuerType:
-      # -- Name of the Issuer to use. For certManager.type = namespace
-      # `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available.
-      issuerName:
 
 # Nginx ingress configuration -------------------------------------------------
 # This needs to be enabled, if you don't have nginx-ingress installed already
 # in your cluster.
 ingress-nginx:
   enabled: true
-  controller:
-    replicaCount: 1
-    loadBalancerIP: 127.0.0.1
 
 # cert-manager configuration --------------------------------------------------
 # Disable cert-manager and certIssuer for local testing, they are not required.
@@ -53,26 +38,17 @@ ckan:
 
   persistence:
     enabled: false
-    # Annotations for PVCs
-    annotations:
-      # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
-      # helm.sh/resource-policy: keep
-
-  plugins:
-  # envvars image_view text_view recline_view datastore datapusher hierarchy_display hierarchy_form
-  # hierarchy_group_form geo_view geojson_view wmts_view shp_view display_group form_group
-  # plugins: stats text_view image_view recline_view hierarchy_display hierarchy_form
-  # scheming_datasets repeating composite display_group form_group spatial_metadata spatial_query
-  # resource_proxy geojson_view relation disqus temporalsearch userautoaddgroup restricted
-  # gdpr importerexporter
 
   siteUrl: https://localhost
 
   image:
-    repository: ghcr.io/keitaroinc/ckan
+    repository: reg.gitlab.brunowillenborg.de/ckan
+    tag: sddi-spatial
 
   imagePullSecrets:
-    - name: *ckan-pull-sct
+    - name: ckan-pull-sct
+
+  debug: False
 
   # Readyness and liveness checks -----------------------------------------------
   startup:
