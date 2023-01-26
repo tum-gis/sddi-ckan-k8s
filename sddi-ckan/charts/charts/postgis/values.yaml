@@ -61,6 +61,7 @@ db:
     username: ckan
     # -- CKAN database username. Note: This values is overwritten by `global.db.auth.password`, if set.
     password: changeMe
+
 datastore:
   # -- CKAN datastore database host. Note: This values is overwritten by `global.datastore.host`, if set.
   host: postgis-hl
