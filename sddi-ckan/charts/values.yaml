@@ -31,24 +31,15 @@ global:
     # If set, this values will overwrite the value in the database chart.
     dbname:
     auth:
-      rw:
-        # -- Database username of the rw user. Database RW username for CKAN and CKAN datastore DB.
-        # This is used in database charts for CKAN database initialization.
-        # If set, this values will overwrite the value in the database chart.
-        username:
-        # -- Database password of the rw user. Database RW username for CKAN and CKAN datastore DB.
-        # This is used in database charts for CKAN database initialization.
-        # If set, this values will overwrite the value in the database chart.
-        password:
-      ro:
-        # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
-        # This is used in database charts for CKAN database initialization.
-        # If set, this values will overwrite the value in the database chart.
-        username:
-        # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
-        # This is used in database charts for CKAN database initialization.
-        # If set, this values will overwrite the value in the database chart.
-        password:
+      # -- Database username.
+      # This is used in database charts for CKAN database initialization.
+      # If set, this values will overwrite the value in the database chart.
+      username:
+      # -- Database password.
+      # This is used in database charts for CKAN database initialization.
+      # If set, this values will overwrite the value in the database chart.
+      password:
+
   datastore:
     # -- CKAN datastore database host.
     # This is used in database charts for CKAN database initialization.
