@@ -56,17 +56,21 @@ dbname: ckan_default
 
 auth:
   # -- Database username of the rw user. Database RW username for CKAN and CKAN datastore DB.
+  # Note: This value is overwritten by `global.db.auth.username`, if set.
   username: ckan
   # -- Database password of the rw user. Database RW username for CKAN and CKAN datastore DB.
+  # Note: This value is overwritten by `global.db.auth.password`, if set.
   password: changeMe
 
 authRO:
   # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
+  # Note: This value is overwritten by `global.db.authRO.username`, if set.
   username: datastore_ro
   # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
+  # Note: This value is overwritten by `global.db.authRO.password`, if set.
   password: changeMe
 
-# -- Extra environment variables
+# -- Extra environment variables for PostGIS.
 extraEnv: {}
 
 persistence:
@@ -86,15 +90,21 @@ persistence:
   annotations: {}
     # helm.sh/resource-policy: keep
 
-# Resources -------------------------------------------------------------------
 resources:
   limits:
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     cpu: 2000m
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     memory: 4Gi
   requests:
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     cpu: 1000m
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     memory: 2Gi
 
+# -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 nodeSelector: {}
+# -- [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 tolerations: []
+# -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 affinity: {}

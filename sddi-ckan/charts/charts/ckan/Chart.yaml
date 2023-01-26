@@ -1,6 +1,17 @@
 apiVersion: v2
 name: ckan
-description: A Helm chart for Kubernetes
+description: A Helm chart for SDDI enabled CKAN
 type: application
-version: 0.3.0
+
+home: https://github.com/tum-gis/sddi-ckan-k8s/
+sources:
+  - https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/ckan
+  - https://github.com/keitaroinc/docker-ckan
+
+version: 0.4.0
 appVersion: "2.9.7"
+
+maintainers:
+  - email: b.willenborg@tum.de
+    name: Bruno Willenborg
+    url: https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/

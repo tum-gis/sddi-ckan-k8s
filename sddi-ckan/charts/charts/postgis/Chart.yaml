@@ -1,6 +1,17 @@
 apiVersion: v2
 name: postgis
-description: A Helm chart for Kubernetes
+description: A Helm chart a simple PostGIS database pre-configured for CKAN
 type: application
-version: 0.1.0
+
+home: https://github.com/tum-gis/sddi-ckan-k8s/
+sources:
+  - https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/postgis
+  - https://registry.hub.docker.com/r/postgis/postgis/
+
+version: 0.2.0
 appVersion: "14-3.3-alpine"
+
+maintainers:
+  - email: b.willenborg@tum.de
+    name: Bruno Willenborg
+    url: https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/

@@ -1,5 +1,18 @@
 apiVersion: v2
 name: solr
-description: A Helm chart for Kubernetes
-version: 0.1.0
+description: A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
+
+home: https://github.com/tum-gis/sddi-ckan-k8s/
+sources:
+  - https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/solr
+  - https://github.com/tum-gis/solr-ckan-spatial
+  - https://github.com/ckan/ckan-solr
+  - https://github.com/ckan/ckanext-spatial
+
+version: 0.2.0
 appVersion: "2.9-solr8"
+
+maintainers:
+  - email: b.willenborg@tum.de
+    name: Bruno Willenborg
+    url: https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/

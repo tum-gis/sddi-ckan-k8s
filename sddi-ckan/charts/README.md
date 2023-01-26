@@ -2,7 +2,7 @@
 
 ![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
-A Helm chart for Kubernetes
+Helm Chart for an SDDI enabled CKAN catalog
 
 **Homepage:** <https://github.com/tum-gis/sddi-ckan-k8s>
 
@@ -35,13 +35,13 @@ Kubernetes: `>= 1.23.0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| datapusher.enabled | bool | `true` | Enable/disable datapusher |
+| datapusher.enabled | bool | `true` | Enable/disable Datapusher |
 | fullnameOverride | string | `""` | Override fullname |
-| global.db.auth.password | string | `nil` | Database password of the rw user. Database RW username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. |
-| global.db.auth.username | string | `nil` | Database username of the rw user. Database RW username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. |
-| global.db.authRO.password | string | `nil` | Database password of the ro user. Database RO username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. |
-| global.db.authRO.username | string | `nil` | Database password of the ro user. Database RO username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. |
-| global.db.dbname | string | `nil` | Database name. This is used in database charts for CKAN database initialization. |
+| global.db.auth.password | string | `nil` | Database password of the rw user. Database RW username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
+| global.db.auth.username | string | `nil` | Database username of the rw user. Database RW username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
+| global.db.authRO.password | string | `nil` | Database password of the ro user. Database RO username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
+| global.db.authRO.username | string | `nil` | Database password of the ro user. Database RO username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
+| global.db.dbname | string | `nil` | Database name. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
 | global.db.host | string | `nil` | Database host |
 | global.db.port | string | `nil` | Database port |
 | global.ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |

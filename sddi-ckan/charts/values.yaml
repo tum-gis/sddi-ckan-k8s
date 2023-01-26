@@ -28,20 +28,25 @@ global:
     # -- Database port
     port:
     # -- Database name. This is used in database charts for CKAN database initialization.
+    # If set, this values will overwrite the value in the database chart.
     dbname:
     auth:
       # -- Database username of the rw user. Database RW username for CKAN and CKAN datastore DB.
       # This is used in database charts for CKAN database initialization.
+      # If set, this values will overwrite the value in the database chart.
       username:
       # -- Database password of the rw user. Database RW username for CKAN and CKAN datastore DB.
       # This is used in database charts for CKAN database initialization.
+      # If set, this values will overwrite the value in the database chart.
       password:
     authRO:
       # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
       # This is used in database charts for CKAN database initialization.
+      # If set, this values will overwrite the value in the database chart.
       username:
       # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
       # This is used in database charts for CKAN database initialization.
+      # If set, this values will overwrite the value in the database chart.
       password:
 
 postgis:
@@ -57,5 +62,5 @@ redis:
   enabled: true
 
 datapusher:
-  # -- Enable/disable datapusher
+  # -- Enable/disable Datapusher
   enabled: true

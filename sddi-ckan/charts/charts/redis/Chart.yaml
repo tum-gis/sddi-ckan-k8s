@@ -1,6 +1,18 @@
 apiVersion: v2
 name: redis
-description: A Helm chart for Kubernetes
+description: A Helm chart for basic Redis for use with CKAN
 type: application
-version: 0.1.0
-appVersion: "7.0.7-alpine"
+
+home: https://github.com/tum-gis/sddi-ckan-k8s/
+sources:
+  - https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/redis
+  - https://hub.docker.com/_/redis
+
+
+version: 0.2.0
+appVersion: "7.0.8-alpine"
+
+maintainers:
+  - email: b.willenborg@tum.de
+    name: Bruno Willenborg
+    url: https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/

@@ -1,19 +1,20 @@
-# -- Enable/disable solr
+# -- Enable/disable Solr
 enabled: true
+
+# -- Role of Solr in this chart
 component: search
 
 # -- Override name
-nameOverride:
+nameOverride: ""
 # -- Override fullname
 fullnameOverride: solr
 
-
 image:
-  # -- Image repository
+  # -- [Image repository](https://kubernetes.io/docs/concepts/containers/images/)
   repository: ckan/ckan-solr
-  # -- Image pull policy
+  # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
-   # -- Overrides the image tag whose default is the chart appVersion.
+  # -- Overrides the image tag whose default is the chart `appVersion`.
   tag: ""
 
 # -- [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
@@ -31,11 +32,13 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
 podSecurityContext:
   runAsUser: 8983
   runAsGroup: 8983
   fsGroup: 8983
 
+# -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
 securityContext: {}
   # capabilities:
   #   drop:
@@ -69,12 +72,19 @@ persistence:
 
 resources:
   limits:
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     cpu: 2000m
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     memory: 8Gi
   requests:
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     cpu: 1000m
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     memory: 1Gi
 
+# -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 nodeSelector: {}
+# -- [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 tolerations: []
+# -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 affinity: {}

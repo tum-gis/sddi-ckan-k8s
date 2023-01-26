@@ -1,20 +1,24 @@
+# -- Enable/disable Redis
 enabled: true
-component: database
+
+# -- Role of Redis in this chart
+component: cache
 
 # -- Override name
-nameOverride:
+nameOverride: ""
 # -- Override fullname
 fullnameOverride: redis
 
 image:
-  # -- Image repository
+  # -- [Image repository](https://kubernetes.io/docs/concepts/containers/images/)
   repository: redis
-  # -- Image pull policy
+  # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
-   # -- Overrides the image tag whose default is the chart appVersion.
+  # -- Overrides the image tag whose default is the chart `appVersion`.
   tag: ""
 
-# -- Create a LoadBalancer service for external Database access
+
+# -- Create an additional LoadBalancer service for external redis access
 loadBalancer:
   enabled: false
 
@@ -33,9 +37,11 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
 podSecurityContext: {}
   # fsGroup: 2000
 
+# -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
 securityContext: {}
   # capabilities:
   #   drop:
@@ -61,17 +67,20 @@ persistence:
   annotations:
     # helm.sh/resource-policy: keep
 
-# -- Number of replicas. Only used if autoscaling.enabled = false
+# -- Number of replicas. Only used if `autoscaling.enabled = false`.
 replicaCount: 1
 autoscaling:
   # -- Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods.
+  # Check requirements of [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
   enabled: false
   # -- Minimum number of replicas
   minReplicas: 1
   # -- Maximum number of replicas
   maxReplicas: 5
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage:
+  # -- [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
+  targetCPUUtilizationPercentage:
+  # -- [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
+  targetMemoryUtilizationPercentage:
 
 service:
   # -- Type of service for http
@@ -81,12 +90,19 @@ service:
 
 resources:
   limits:
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     cpu: 500m
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     memory: 1Gi
   requests:
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     cpu: 250m
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     memory: 256Mi
 
+# -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 nodeSelector: {}
+# -- [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 tolerations: []
+# -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 affinity: {}
