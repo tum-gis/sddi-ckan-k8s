@@ -51,9 +51,6 @@ data:
   # Datapusher
   CKAN__DATAPUSHER__CALLBACK_URL_BASE: {{ .Values.datapusher.callback_url_base | quote }}
   CKAN__DATAPUSHER_FORMATS: {{ .Values.datapusher.formats | quote }}
-  # Preview settings
-  CKAN__PREVIEW__DIRECT: {{ .Values.preview.direct | quote }}
-  CKAN__PREVIEW__LOADABLE: {{ .Values.preview.loadable | quote }}
   # Featured settings
   CKAN__FEATURED_GROUPS: {{ .Values.featured.groups | quote }}
   CKAN__FEATURED_ORGS: {{ .Values.featured.orgs | quote }}
