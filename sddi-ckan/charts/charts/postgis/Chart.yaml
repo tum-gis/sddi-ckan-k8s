@@ -8,7 +8,7 @@ sources:
   - https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/postgis
   - https://registry.hub.docker.com/r/postgis/postgis/
 
-version: 0.4.0
+version: 0.4.1
 appVersion: "14-3.3-alpine"
 
 maintainers:

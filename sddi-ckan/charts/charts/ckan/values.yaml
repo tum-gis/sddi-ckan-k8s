@@ -279,7 +279,7 @@ datapusher:
   # -- This should be set to cluster internal ckan service domain.
   # # -- [CKAN DataPusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-datapusher-callback-url-base)
   callback_url_base: http://ckan:5000/
-  formats: "csv xls xlsx tsv application/csv application/vnd.ms-excel application/vnd.openxmlform"
+  formats: "csv xls tsv application/csv"
   # -- DataPusher endpoint of CKAN. This should be set to the cluster internal DataPusher service domain.
   url: http://datapusher:8000/
 
@@ -296,7 +296,6 @@ smtp:
   tls: "enabled"
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   startTls: "true"
-
 
 email:
   # -- [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings)
