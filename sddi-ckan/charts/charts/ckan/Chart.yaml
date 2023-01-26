@@ -8,7 +8,7 @@ sources:
   - https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/ckan
   - https://github.com/keitaroinc/docker-ckan
 
-version: 0.4.1
+version: 0.5.0
 appVersion: "2.9.7"
 
 maintainers:

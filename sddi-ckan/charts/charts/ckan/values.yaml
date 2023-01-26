@@ -249,7 +249,7 @@ datastore:
     rw:
       # -- CKAN datastore read write username, used to build `ckan.datastore.write_url` see
       # [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings)
-      username: ckan
+      username: datastore_rw
       # -- CKAN datastore read write passowrd, used to build `ckan.datastore.write_url` see
       # [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings)
       password: changeMe

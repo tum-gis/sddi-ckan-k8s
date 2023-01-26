@@ -49,26 +49,36 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-# -- Database port
-port: 5432
-# -- Database name
-dbname: ckan_default
-
-auth:
-  # -- Database username of the rw user. Database RW username for CKAN and CKAN datastore DB.
-  # Note: This value is overwritten by `global.db.auth.username`, if set.
-  username: ckan
-  # -- Database password of the rw user. Database RW username for CKAN and CKAN datastore DB.
-  # Note: This value is overwritten by `global.db.auth.password`, if set.
-  password: changeMe
-
-authRO:
-  # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
-  # Note: This value is overwritten by `global.db.authRO.username`, if set.
-  username: datastore_ro
-  # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
-  # Note: This value is overwritten by `global.db.authRO.password`, if set.
-  password: changeMe
+db:
+  # -- CKAN database host. Note: This values is overwritten by `global.db.host`, if set.
+  host: postgis
+  # -- CKAN database port. Note: This values is overwritten by `global.db.port`, if set.
+  port: 5432
+  # -- CKAN database name. Note: This values is overwritten by `global.db.dbname`, if set.
+  dbname: ckan_default
+  auth:
+    # -- CKAN database username. Note: This values is overwritten by `global.db.auth.username`, if set.
+    username: ckan
+    # -- CKAN database username. Note: This values is overwritten by `global.db.auth.password`, if set.
+    password: changeMe
+datastore:
+  # -- CKAN datastore database host. Note: This values is overwritten by `global.datastore.host`, if set.
+  host: postgis-hl
+  # -- CKAN datastore database port. Note: This values is overwritten by `global.datastore.port`, if set.
+  port: 5432
+  # -- CKAN datastore database name. Note: This values is overwritten by `global.datastore.dbname`, if set.
+  dbname: datastore
+  auth:
+    ro:
+      # -- CKAN datastore database read-only username. Note: This values is overwritten by `global.datastore.auth.ro.username`, if set.
+      username: datastore_ro
+      # -- CKAN datastore database read-only password. Note: This values is overwritten by `global.datastore.auth.ro.password`, if set.
+      password: changeMe
+    rw:
+      # -- CKAN datastore database read-write username. Note: This values is overwritten by `global.datastore.auth.rw.username`, if set.
+      username: datastore_rw
+      # -- CKAN datastore database read-write password. Note: This values is overwritten by `global.datastore.auth.rw.password`, if set.
+      password: changeMe
 
 # -- Extra environment variables for PostGIS.
 extraEnv: {}

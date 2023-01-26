@@ -1,6 +1,6 @@
 # postgis
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 14-3.3-alpine](https://img.shields.io/badge/AppVersion-14--3.3--alpine-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 14-3.3-alpine](https://img.shields.io/badge/AppVersion-14--3.3--alpine-informational?style=flat-square)
 
 A Helm chart a simple PostGIS database pre-configured for CKAN
 
@@ -22,12 +22,19 @@ A Helm chart a simple PostGIS database pre-configured for CKAN
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
-| auth.password | string | `"changeMe"` | Database password of the rw user. Database RW username for CKAN and CKAN datastore DB. Note: This value is overwritten by `global.db.auth.password`, if set. |
-| auth.username | string | `"ckan"` | Database username of the rw user. Database RW username for CKAN and CKAN datastore DB. Note: This value is overwritten by `global.db.auth.username`, if set. |
-| authRO.password | string | `"changeMe"` | Database password of the ro user. Database RO username for CKAN and CKAN datastore DB. Note: This value is overwritten by `global.db.authRO.password`, if set. |
-| authRO.username | string | `"datastore_ro"` | Database password of the ro user. Database RO username for CKAN and CKAN datastore DB. Note: This value is overwritten by `global.db.authRO.username`, if set. |
 | component | string | `"database"` | Role of PostGIS database in this chart |
-| dbname | string | `"ckan_default"` | Database name |
+| datastore.auth.ro.password | string | `"changeMe"` | CKAN datastore database read-only password. Note: This values is overwritten by `global.datastore.auth.ro.password`, if set. |
+| datastore.auth.ro.username | string | `"datastore_ro"` | CKAN datastore database read-only username. Note: This values is overwritten by `global.datastore.auth.ro.username`, if set. |
+| datastore.auth.rw.password | string | `"changeMe"` | CKAN datastore database read-write password. Note: This values is overwritten by `global.datastore.auth.rw.password`, if set. |
+| datastore.auth.rw.username | string | `"datastore_rw"` | CKAN datastore database read-write username. Note: This values is overwritten by `global.datastore.auth.rw.username`, if set. |
+| datastore.dbname | string | `"datastore"` | CKAN datastore database name. Note: This values is overwritten by `global.datastore.dbname`, if set. |
+| datastore.host | string | `"postgis-hl"` | CKAN datastore database host. Note: This values is overwritten by `global.datastore.host`, if set. |
+| datastore.port | int | `5432` | CKAN datastore database port. Note: This values is overwritten by `global.datastore.port`, if set. |
+| db.auth.password | string | `"changeMe"` | CKAN database username. Note: This values is overwritten by `global.db.auth.password`, if set. |
+| db.auth.username | string | `"ckan"` | CKAN database username. Note: This values is overwritten by `global.db.auth.username`, if set. |
+| db.dbname | string | `"ckan_default"` | CKAN database name. Note: This values is overwritten by `global.db.dbname`, if set. |
+| db.host | string | `"postgis"` | CKAN database host. Note: This values is overwritten by `global.db.host`, if set. |
+| db.port | int | `5432` | CKAN database port. Note: This values is overwritten by `global.db.port`, if set. |
 | enabled | bool | `true` | Enable/disable PostGIS database |
 | extraEnv | object | `{}` | Extra environment variables for PostGIS. |
 | fullnameOverride | string | `"postgis"` | Override fullname |
@@ -46,7 +53,6 @@ A Helm chart a simple PostGIS database pre-configured for CKAN
 | persistence.storageClassName | string | `nil` | StorageClass to use, leave empty to use default StorageClass. |
 | podAnnotations | object | `{}` | Additional pod annotations |
 | podSecurityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
-| port | int | `5432` | Database port |
 | resources.limits.cpu | string | `"2000m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.limits.memory | string | `"4Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.requests.cpu | string | `"1000m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |

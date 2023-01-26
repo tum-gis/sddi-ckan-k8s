@@ -16,7 +16,7 @@ spec:
     app.kubernetes.io/component: {{ .Values.component }}
   ports:
     - protocol: TCP
-      port: {{ .Values.global.db.port | default .Values.port }}
+      port: {{ .Values.global.db.port | default .Values.db.port }}
       targetPort: 5432
 {{- end -}}
 {{- end -}}

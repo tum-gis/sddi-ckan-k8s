@@ -10,13 +10,26 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 data:
   initdb.sql: |-
-    CREATE ROLE {{ .Values.global.db.authRO.username | default .Values.authRO.username | quote }}
-      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.db.authRO.username | default .Values.authRO.password | squote }};
-    CREATE DATABASE datastore OWNER {{ .Values.global.db.auth.username | default .Values.auth.username | quote }} ENCODING 'utf-8';
-    GRANT ALL PRIVILEGES ON DATABASE datastore TO {{ .Values.global.db.auth.username | default .Values.auth.username | quote }};
 
+    # Create PostGIS extension in default (=CKAN) database
     CREATE EXTENSION POSTGIS;
-    ALTER VIEW geometry_columns OWNER TO {{ .Values.global.db.auth.username | default .Values.auth.username | quote }};
-    ALTER TABLE spatial_ref_sys OWNER TO {{ .Values.global.db.auth.username | default .Values.auth.username | quote }};
+    ALTER VIEW geometry_columns OWNER TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
+    ALTER TABLE spatial_ref_sys OWNER TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
 
+    # Create datastore users
+    # read-only
+    CREATE ROLE {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }}
+      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.password | squote }};
+
+    # read-write
+    CREATE ROLE {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
+      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.password | squote }};
+
+    # Create datastore database. It should be owned by the CKAN main database user.
+    CREATE DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }} OWNER
+      {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }} ENCODING 'utf-8';
+
+    # CKAN main database user should have all privileges
+    GRANT ALL PRIVILEGES ON DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
+       TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
 {{- end -}}

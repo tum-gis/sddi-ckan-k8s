@@ -66,11 +66,11 @@ SQL alchemy url
 */}}
 {{- define "ckan.sqlalchemy.url" -}}
   postgres://
-  {{- .Values.db.auth.username -}}:
-  {{- .Values.db.auth.password -}}@
-  {{- .Values.db.host -}}:
-  {{- .Values.db.port -}}/
-  {{- .Values.db.dbname -}}
+  {{- .Values.global.db.auth.username | default .Values.db.auth.username -}}:
+  {{- .Values.global.db.auth.password | default .Values.db.auth.password -}}@
+  {{- .Values.global.db.host | default .Values.db.host -}}:
+  {{- .Values.global.db.port | default .Values.db.port -}}/
+  {{- .Values.global.db.dbname | default .Values.db.dbname -}}
 {{- end }}
 
 {{/*
@@ -78,11 +78,11 @@ SQL alchemy url
 */}}
 {{- define "ckan.datastore.rw.url" -}}
   postgresql://
-  {{- .Values.datastore.auth.rw.username -}}:
-  {{- .Values.datastore.auth.rw.password -}}@
-  {{- .Values.datastore.host -}}:
-  {{- .Values.datastore.port -}}/
-  {{- .Values.datastore.dbname -}}
+  {{- .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username -}}:
+  {{- .Values.global.datastore.auth.rw.password | default .Values.datastore.auth.rw.password -}}@
+  {{- .Values.global.datastore.host | default .Values.datastore.host -}}:
+  {{- .Values.global.datastore.port | default .Values.datastore.port -}}/
+  {{- .Values.global.datastore.dbname | default .Values.datastore.dbname -}}
 {{- end }}
 
 {{/*
@@ -90,9 +90,9 @@ SQL alchemy url
 */}}
 {{- define "ckan.datastore.ro.url" -}}
   postgresql://
-  {{- .Values.datastore.auth.ro.username -}}:
-  {{- .Values.datastore.auth.ro.password -}}@
-  {{- .Values.datastore.host -}}:
-  {{- .Values.datastore.port -}}/
-  {{- .Values.datastore.dbname -}}
+  {{- .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username -}}:
+  {{- .Values.global.datastore.auth.ro.password | default .Values.datastore.auth.ro.password -}}@
+  {{- .Values.global.datastore.host | default .Values.datastore.host -}}:
+  {{- .Values.global.datastore.port | default .Values.datastore.port -}}/
+  {{- .Values.global.datastore.dbname | default .Values.datastore.dbname -}}
 {{- end }}

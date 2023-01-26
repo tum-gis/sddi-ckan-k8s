@@ -23,31 +23,64 @@ global:
       issuerName: letsencrypt-staging
 
   db:
-    # -- Database host
+    # -- CKAN database host.
     host:
-    # -- Database port
+    # -- CKAN database port.
     port:
     # -- Database name. This is used in database charts for CKAN database initialization.
     # If set, this values will overwrite the value in the database chart.
     dbname:
     auth:
-      # -- Database username of the rw user. Database RW username for CKAN and CKAN datastore DB.
-      # This is used in database charts for CKAN database initialization.
-      # If set, this values will overwrite the value in the database chart.
-      username:
-      # -- Database password of the rw user. Database RW username for CKAN and CKAN datastore DB.
-      # This is used in database charts for CKAN database initialization.
-      # If set, this values will overwrite the value in the database chart.
-      password:
-    authRO:
-      # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
-      # This is used in database charts for CKAN database initialization.
-      # If set, this values will overwrite the value in the database chart.
-      username:
-      # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
-      # This is used in database charts for CKAN database initialization.
-      # If set, this values will overwrite the value in the database chart.
-      password:
+      rw:
+        # -- Database username of the rw user. Database RW username for CKAN and CKAN datastore DB.
+        # This is used in database charts for CKAN database initialization.
+        # If set, this values will overwrite the value in the database chart.
+        username:
+        # -- Database password of the rw user. Database RW username for CKAN and CKAN datastore DB.
+        # This is used in database charts for CKAN database initialization.
+        # If set, this values will overwrite the value in the database chart.
+        password:
+      ro:
+        # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
+        # This is used in database charts for CKAN database initialization.
+        # If set, this values will overwrite the value in the database chart.
+        username:
+        # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
+        # This is used in database charts for CKAN database initialization.
+        # If set, this values will overwrite the value in the database chart.
+        password:
+  datastore:
+    # -- CKAN datastore database host.
+    # This is used in database charts for CKAN database initialization.
+    # If set, this values will overwrite the value in the database chart.
+    host:
+    # -- CKAN datastore database port.
+    # This is used in database charts for CKAN database initialization.
+    # If set, this values will overwrite the value in the database chart.
+    port:
+    # -- CKAN datastore database name.
+    # This is used in database charts for CKAN database initialization.
+    # If set, this values will overwrite the value in the database chart.
+    dbname:
+    auth:
+      ro:
+        # -- CKAN datastore database read-only username.
+        # This is used in database charts for CKAN database initialization.
+        # If set, this values will overwrite the value in the database chart.
+        username:
+        # -- CKAN datastore database read-only password.
+        # This is used in database charts for CKAN database initialization.
+        # If set, this values will overwrite the value in the database chart.
+        password:
+      rw:
+        # -- CKAN datastore database read-write username.
+        # This is used in database charts for CKAN database initialization.
+        # If set, this values will overwrite the value in the database chart.
+        username:
+        # -- CKAN datastore database read-write password.
+        # This is used in database charts for CKAN database initialization.
+        # If set, this values will overwrite the value in the database chart.
+        password:
 
 postgis:
   # -- Enable/disable database instance. Disable, if an external database is used.
