@@ -18,11 +18,11 @@ data:
     -- Create datastore users
     -- read-only
     CREATE ROLE {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }}
-      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.password | squote }};
+      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.ro.password | default .Values.datastore.auth.ro.password | squote }};
 
     -- read-write
     CREATE ROLE {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
-      SUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.password | squote }};
+      SUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.rw.password | default .Values.datastore.auth.rw.password | squote }};
 
     CREATE DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }} OWNER
       {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }} ENCODING 'utf-8';
