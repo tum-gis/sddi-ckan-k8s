@@ -24,54 +24,53 @@ global:
 
   db:
     # -- CKAN database host.
-    host:
+    host: postgis-hl
     # -- CKAN database port.
-    port:
+    port: 5432
     # -- Database name. This is used in database charts for CKAN database initialization.
     # If set, this values will overwrite the value in the database chart.
-    dbname:
+    dbname: ckan_default
     auth:
-      # -- Database username.
+      # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
       # This is used in database charts for CKAN database initialization.
       # If set, this values will overwrite the value in the database chart.
-      username:
-      # -- Database password.
+      username: ckan
+      # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
       # This is used in database charts for CKAN database initialization.
       # If set, this values will overwrite the value in the database chart.
-      password:
-
+      password: changeMe
   datastore:
     # -- CKAN datastore database host.
     # This is used in database charts for CKAN database initialization.
     # If set, this values will overwrite the value in the database chart.
-    host:
+    host: postgis-hl
     # -- CKAN datastore database port.
     # This is used in database charts for CKAN database initialization.
     # If set, this values will overwrite the value in the database chart.
-    port:
+    port: 5432
     # -- CKAN datastore database name.
     # This is used in database charts for CKAN database initialization.
     # If set, this values will overwrite the value in the database chart.
-    dbname:
+    dbname: datastore
     auth:
       ro:
         # -- CKAN datastore database read-only username.
         # This is used in database charts for CKAN database initialization.
         # If set, this values will overwrite the value in the database chart.
-        username:
+        username: datastore_ro
         # -- CKAN datastore database read-only password.
         # This is used in database charts for CKAN database initialization.
         # If set, this values will overwrite the value in the database chart.
-        password:
+        password: changeMe
       rw:
         # -- CKAN datastore database read-write username.
         # This is used in database charts for CKAN database initialization.
         # If set, this values will overwrite the value in the database chart.
-        username:
+        username: datastore_rw
         # -- CKAN datastore database read-write password.
         # This is used in database charts for CKAN database initialization.
         # If set, this values will overwrite the value in the database chart.
-        password:
+        password: changeMe
 
 postgis:
   # -- Enable/disable database instance. Disable, if an external database is used.
