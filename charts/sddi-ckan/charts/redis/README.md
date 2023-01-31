@@ -2,7 +2,7 @@
 
 ![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.0.8-alpine](https://img.shields.io/badge/AppVersion-7.0.8--alpine-informational?style=flat-square)
 
-A Helm chart for basic Redis for use with CKAN
+A Helm chart for basic Redis for use with CKAN.
 
 **Homepage:** <https://github.com/tum-gis/sddi-ckan-k8s/>
 
