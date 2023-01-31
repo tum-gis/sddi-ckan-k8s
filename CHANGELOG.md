@@ -22,7 +22,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Deprecated
 
-## [sddi-ckan-0.7.2] - 2023-01-31
+## [sddi-ckan-0.1.0] - 2023-01-31
 
 ### Added
 
@@ -39,7 +39,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Deprecated
 
-## [sddi-ckan-0.7.1] - 2023-01-31
+## [sddi-ckan-0.0.0] - 2023-01-31
 
 - Initial release
 
@@ -57,6 +57,6 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Deprecated
 
-[sddi-ckan-0.7.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.7.1...sddi-ckan-0.7.2
-[sddi-ckan-0.7.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.1.0...sddi-ckan-0.7.1
+[sddi-ckan-0.1.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.0.0...sddi-ckan-0.1.0
+[sddi-ckan-0.0.0]: https://github.com/tum-gis/sddi-ckan-k8s/releases/tag/sddi-ckan-0.0.0
 [template]: https://keepachangelog.com/en/1.0.0/
