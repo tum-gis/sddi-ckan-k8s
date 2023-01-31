@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 0.5.1](https://img.shields.io/badge/Version-0.5.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.7](https://img.shields.io/badge/AppVersion-2.9.7-informational?style=flat-square)
+![Version: 0.6.0](https://img.shields.io/badge/Version-0.6.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.7](https://img.shields.io/badge/AppVersion-2.9.7-informational?style=flat-square)
 
 A Helm chart for SDDI enabled CKAN
 
@@ -78,8 +78,15 @@ A Helm chart for SDDI enabled CKAN
 | ingress.className | string | `"nginx"` | Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class) to use in Ingress routes. |
 | ingress.domains | list | `[]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. Note: Set `siteUrl` accordingly! |
 | ingress.enabled | bool | `true` | Enable/disable Ingress. |
+| ingress.stickySessions.enabled | bool | `true` | Enable/disable sticks sessions, see [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/). |
+| ingress.stickySessions.sessionCookie.affinityMode | string | `"balanced"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
+| ingress.stickySessions.sessionCookie.changeOnFailure | string | `"true"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
+| ingress.stickySessions.sessionCookie.maxAge | string | `"172800"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
+| ingress.stickySessions.sessionCookie.name | string | `"route"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
+| ingress.stickySessions.sessionCookie.path | string | `"/"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
+| ingress.stickySessions.sessionCookie.secure | string | `"false"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | liveness.failureThreshold | int | `6` | Failure threshold for the liveness probe |
-| liveness.initialDelaySeconds | int | `60` | Initial delay for the liveness probe |
+| liveness.initialDelaySeconds | int | `20` | Initial delay for the liveness probe |
 | liveness.periodSeconds | int | `10` | Check interval for the liveness probe |
 | liveness.timeoutSeconds | int | `10` | Timeout interval for the liveness probe |
 | locale.default | string | `"de"` | CKAN default locale, see [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings) |
@@ -99,7 +106,7 @@ A Helm chart for SDDI enabled CKAN
 | podAnnotations | object | `{}` | Additional pod annotations |
 | podSecurityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | readiness.failureThreshold | int | `6` | Failure threshold for the liveness probe |
-| readiness.initialDelaySeconds | int | `60` | Initial delay for the liveness probe |
+| readiness.initialDelaySeconds | int | `20` | Initial delay for the liveness probe |
 | readiness.periodSeconds | int | `10` | Check interval for the liveness probe |
 | readiness.timeoutSeconds | int | `10` | Timeout interval for the liveness probe |
 | redis.url | string | `"redis://redis-hl:6379/0"` | Redis endpoint for CKAN. This should be set to cluster internal Redis service domain. [CKAN configuration Redis](https://docs.ckan.org/en/latest/maintaining/configuration.html#redis-settings) |
@@ -128,8 +135,8 @@ A Helm chart for SDDI enabled CKAN
 | solr.password | string | `nil` | # [CKAN configuration Solr user](https://docs.ckan.org/en/latest/maintaining/configuration.html#solr-password) |
 | solr.url | string | `"http://solr-hl:8983/solr/ckan"` | Solr endpoint for CKAN. This should be set to cluster internal Solr service domain. [CKAN configuration Solr URL](https://docs.ckan.org/en/latest/maintaining/configuration.html#solr-url) |
 | solr.user | string | `nil` | # [CKAN configuration Solr user](https://docs.ckan.org/en/latest/maintaining/configuration.html#solr-user) |
-| startup.failureThreshold | int | `6` | Failure threshold for the startup probe |
-| startup.initialDelaySeconds | int | `60` | Inital delay seconds for the startup probe. Note: The CKAN pod may take some time to startup on slow systems, e.g. one testing clusters. Make sure to set this values high enough to avoid the pod being restarted before it has fully initialized. |
+| startup.failureThreshold | int | `20` | Failure threshold for the startup probe |
+| startup.initialDelaySeconds | int | `10` | Inital delay seconds for the startup probe. Note: The CKAN pod may take some time to startup on slow systems, e.g. one testing clusters. Make sure to set this values high enough to avoid the pod being restarted before it has fully initialized. |
 | startup.periodSeconds | int | `10` | Check interval for the startup probe |
 | startup.timeoutSeconds | int | `10` | Timeout interval for the startup probe |
 | sysadmin.email | string | `"user@example.de"` | CKAN admin eMail address |

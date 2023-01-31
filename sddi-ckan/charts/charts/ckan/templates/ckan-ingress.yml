@@ -30,13 +30,16 @@ metadata:
     {{- end }}
     nginx.ingress.kubernetes.io/proxy-body-size: "{{ .Values.maxUploadSizeMB }}m"
     nginx.org/client-max-body-size: "{{ .Values.maxUploadSizeMB }}m"
-
+    {{- if .Values.ingress.stickySessions.enabled }}
     # https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/
     nginx.ingress.kubernetes.io/affinity: "cookie"
-    nginx.ingress.kubernetes.io/affinity-mode: "balanced"
-    nginx.ingress.kubernetes.io/session-cookie-name: "route"
-    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
-    nginx.ingress.kubernetes.io/session-cookie-change-on-failure: "true"
+    nginx.ingress.kubernetes.io/affinity-mode: {{ .Values.ingress.stickySessions.sessionCookie.affinityMode | quote }}
+    nginx.ingress.kubernetes.io/session-cookie-name: {{ .Values.ingress.stickySessions.sessionCookie.name | quote }}
+    nginx.ingress.kubernetes.io/session-cookie-max-age: {{ .Values.ingress.stickySessions.sessionCookie.maxAge | quote }}
+    nginx.ingress.kubernetes.io/session-cookie-secure: {{ .Values.ingress.stickySessions.sessionCookie.secure | quote }}
+    nginx.ingress.kubernetes.io/session-cookie-path: {{ .Values.ingress.stickySessions.sessionCookie.path | quote }}
+    nginx.ingress.kubernetes.io/session-cookie-change-on-failure: {{ .Values.ingress.stickySessions.sessionCookie.changeOnFailure | quote }}
+    {{- end }}
 spec:
   ingressClassName: {{ .Values.global.ingress.className | default .Values.ingress.className }}
   tls:

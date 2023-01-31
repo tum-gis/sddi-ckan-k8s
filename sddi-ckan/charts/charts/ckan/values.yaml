@@ -87,6 +87,23 @@ ingress:
     # -- Name of the Issuer to use. For certManager.type = namespace
     # `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available.
     issuerName: letsencrypt-staging
+  stickySessions:
+    # -- Enable/disable sticks sessions, see
+    # [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/).
+    enabled: true
+    sessionCookie:
+      # -- [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/)
+      affinityMode: "balanced"
+      # -- [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/)
+      changeOnFailure: "true"
+      # -- [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/)
+      name: "route"
+      # -- [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/)
+      maxAge: "172800"
+      # -- [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/)
+      path: "/"
+      # -- [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/)
+      secure: "false"
 
 # General settings
 # -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`.
@@ -326,16 +343,16 @@ startup:
   # Note: The CKAN pod may take some time to startup on slow systems, e.g. one
   # testing clusters. Make sure to set this values high enough to avoid the pod
   # being restarted before it has fully initialized.
-  initialDelaySeconds: 60
+  initialDelaySeconds: 10
   # -- Check interval for the startup probe
   periodSeconds: 10
   # -- Failure threshold for the startup probe
-  failureThreshold: 6
+  failureThreshold: 20
   # -- Timeout interval for the startup probe
   timeoutSeconds: 10
 readiness:
   # -- Initial delay for the liveness probe
-  initialDelaySeconds: 60
+  initialDelaySeconds: 20
   # -- Check interval for the liveness probe
   periodSeconds: 10
   # -- Failure threshold for the liveness probe
@@ -344,7 +361,7 @@ readiness:
   timeoutSeconds: 10
 liveness:
   # -- Initial delay for the liveness probe
-  initialDelaySeconds: 60
+  initialDelaySeconds: 20
   # -- Check interval for the liveness probe
   periodSeconds: 10
   # -- Failure threshold for the liveness probe
