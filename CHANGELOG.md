@@ -19,7 +19,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 - Initial release to helm repo
 
-## Changed
+### Changed
 
 - Use Solr image with spatial support: `ckan/ckan-solr:2.9-solr8` -> `ckan/ckan-solr:2.9-solr8-spatial`
 
