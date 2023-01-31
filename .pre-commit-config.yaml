@@ -5,4 +5,4 @@ repos:
       - id: helm-docs
         args:
           # Make the tool search for charts only under the `example-charts` directory
-          - --chart-search-root=sddi-ckan/charts
+          - --chart-search-root=charts/sddi-ckan
