@@ -1,0 +1,57 @@
+apiVersion: v1
+entries:
+  sddi-ckan:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2023-01-31T16:27:46.806286972Z"
+    dependencies:
+    - condition: postgis.enabled
+      name: postgis
+      repository: ""
+      version: '*'
+    - condition: solr.enabled
+      name: solr
+      repository: ""
+      version: '*'
+    - condition: redis.enabled
+      name: redis
+      repository: ""
+      version: '*'
+    - condition: ckan.enabled
+      name: ckan
+      repository: ""
+      version: '*'
+    - condition: datapusher.enabled
+      name: datapusher
+      repository: ""
+      version: '*'
+    - condition: certIssuer.enabled
+      name: certIssuer
+      repository: ""
+      version: '*'
+    - alias: ingress-nginx
+      condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: ~4.4.0
+    - alias: cert-manager
+      condition: cert-manager.enabled
+      name: cert-manager
+      repository: https://charts.jetstack.io
+      version: ~1.11.0
+    description: Helm Chart for an SDDI enabled CKAN catalog.
+    digest: 38915047429ba27f7f47307dd551dd001e1e07956920f95fc4c8d5ead05b6eed
+    home: https://github.com/tum-gis/sddi-ckan-k8s
+    kubeVersion: '>= 1.23.0'
+    maintainers:
+    - email: b.willenborg@tum.de
+      name: Bruno Willenborg
+      url: https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/
+    name: sddi-ckan
+    sources:
+    - https://github.com/tum-gis/sddi-ckan-k8s
+    type: application
+    urls:
+    - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-0.1.0/sddi-ckan-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-01-31T16:27:46.806297372Z"
