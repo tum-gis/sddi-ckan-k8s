@@ -2,7 +2,7 @@
 
 ![Version: 0.4.2](https://img.shields.io/badge/Version-0.4.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 14-3.3-alpine](https://img.shields.io/badge/AppVersion-14--3.3--alpine-informational?style=flat-square)
 
-A Helm chart a simple PostGIS database pre-configured for CKAN.
+A Helm chart for sa simple PostGIS database pre-configured for CKAN.
 
 **Homepage:** <https://github.com/tum-gis/sddi-ckan-k8s/>
 
