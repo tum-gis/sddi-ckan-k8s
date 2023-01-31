@@ -1,8 +1,0 @@
-  # -- Enable/disable namespace [Issuers](https://cert-manager.io/docs/concepts/issuer/) for CertManager.
-enabled: true
-  # -- eMail address for registration with Let's Encrypt account.
-  # Note: This is overwritten by `global.ingress.certManager.issuerEmail`, if set.
-issuerEmail: example@email.com
-  # -- Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
-  # to use. Note: This is overwritten by `global.ingress.className`, if set.
-className: nginx
