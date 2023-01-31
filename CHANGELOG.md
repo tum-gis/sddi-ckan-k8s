@@ -14,6 +14,8 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Changed
 
+- Minor docs changes
+
 ### Removed
 
 ### Fixed

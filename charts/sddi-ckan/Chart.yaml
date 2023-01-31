@@ -1,10 +1,11 @@
 apiVersion: v2
 name: sddi-ckan
-description: Helm Chart for an SDDI enabled CKAN catalog.
+description: Helm Chart for a SDDI enabled CKAN catalog.
 type: application
 home: https://github.com/tum-gis/sddi-ckan-k8s
 sources:
   - https://github.com/tum-gis/sddi-ckan-k8s
+  - https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure
 
 version: 0.1.0
 appVersion: "0.0.1"

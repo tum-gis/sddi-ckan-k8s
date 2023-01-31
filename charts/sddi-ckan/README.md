@@ -2,7 +2,7 @@
 
 ![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
-Helm Chart for an SDDI enabled CKAN catalog.
+Helm Chart for a SDDI enabled CKAN catalog.
 
 **Homepage:** <https://github.com/tum-gis/sddi-ckan-k8s>
 
@@ -15,6 +15,7 @@ Helm Chart for an SDDI enabled CKAN catalog.
 ## Source Code
 
 * <https://github.com/tum-gis/sddi-ckan-k8s>
+* <https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure>
 
 ## Requirements
 
