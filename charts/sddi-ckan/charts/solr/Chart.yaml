@@ -5,11 +5,10 @@ description: A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 home: https://github.com/tum-gis/sddi-ckan-k8s/
 sources:
   - https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/solr
-  - https://github.com/tum-gis/solr-ckan-spatial
   - https://github.com/ckan/ckan-solr
   - https://github.com/ckan/ckanext-spatial
 
-version: 0.3.0
+version: 0.3.1
 appVersion: "2.9-solr8-spatial"
 
 maintainers:

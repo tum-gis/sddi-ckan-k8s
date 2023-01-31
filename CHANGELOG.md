@@ -8,42 +8,20 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
-## [Unreleased]
-
-### Added
+## [sddi-ckan-0.2.0] - 2023-01-31
 
 ### Changed
 
 - Minor docs changes
-
-### Removed
-
-### Fixed
-
-### Security
-
-### Deprecated
+- Minor changes to default config
 
 ## [sddi-ckan-0.1.0] - 2023-01-31
 
-### Added
+- Initial release to helm repo
 
-- Added `CHANGELOG.md`
-
-### Changed
+## Changed
 
 - Use Solr image with spatial support: `ckan/ckan-solr:2.9-solr8` -> `ckan/ckan-solr:2.9-solr8-spatial`
-### Removed
-
-### Fixed
-
-### Security
-
-### Deprecated
-
-## [sddi-ckan-0.0.0] - 2023-01-31
-
-- Initial release
 
 ## [template] - 2023-01-31
 
@@ -59,6 +37,6 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Deprecated
 
-[sddi-ckan-0.1.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.0.0...sddi-ckan-0.1.0
-[sddi-ckan-0.0.0]: https://github.com/tum-gis/sddi-ckan-k8s/releases/tag/sddi-ckan-0.0.0
+[sddi-ckan-0.2.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.1.0...sddi-ckan-0.2.0
+[sddi-ckan-0.1.0]: https://github.com/tum-gis/sddi-ckan-k8s/releases/tag/sddi-ckan-0.1.0
 [template]: https://keepachangelog.com/en/1.0.0/

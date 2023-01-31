@@ -1,6 +1,6 @@
 # solr
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![AppVersion: 2.9-solr8-spatial](https://img.shields.io/badge/AppVersion-2.9--solr8--spatial-informational?style=flat-square)
+![Version: 0.3.1](https://img.shields.io/badge/Version-0.3.1-informational?style=flat-square) ![AppVersion: 2.9-solr8-spatial](https://img.shields.io/badge/AppVersion-2.9--solr8--spatial-informational?style=flat-square)
 
 A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 
@@ -15,7 +15,6 @@ A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 ## Source Code
 
 * <https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/solr>
-* <https://github.com/tum-gis/solr-ckan-spatial>
 * <https://github.com/ckan/ckan-solr>
 * <https://github.com/ckan/ckanext-spatial>
 
@@ -24,7 +23,7 @@ A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
-| component | string | `"search"` | Role of Solr in this chart |
+| component | string | `"index"` | Role of Solr in this chart |
 | enabled | bool | `true` | Enable/disable Solr |
 | fullnameOverride | string | `"solr"` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |

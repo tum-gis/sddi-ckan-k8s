@@ -3,7 +3,7 @@
 enabled: true
 
 # -- Role of CKAN in this chart
-component: frontend
+component: ckan
 
 # -- Override name
 nameOverride: ""
@@ -221,7 +221,7 @@ persistence:
   # -- Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity)
   capacity: 4Gi
   # -- Additional annotations for PVCs
-  # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
+  # Set `helm.sh/resource-policy: keep` to avoid deletion of PVCs on helm upgrade/uninstall
   annotations:
   # helm.sh/resource-policy: keep
 
@@ -340,9 +340,6 @@ affinity: {}
 
 startup:
   # -- Inital delay seconds for the startup probe.
-  # Note: The CKAN pod may take some time to startup on slow systems, e.g. one
-  # testing clusters. Make sure to set this values high enough to avoid the pod
-  # being restarted before it has fully initialized.
   initialDelaySeconds: 10
   # -- Check interval for the startup probe
   periodSeconds: 10

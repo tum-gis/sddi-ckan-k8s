@@ -2,7 +2,7 @@
 enabled: true
 
 # -- Role of Solr in this chart
-component: search
+component: index
 
 # -- Override name
 nameOverride: ""

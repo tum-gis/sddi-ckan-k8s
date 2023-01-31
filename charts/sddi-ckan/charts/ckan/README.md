@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 0.6.0](https://img.shields.io/badge/Version-0.6.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.7](https://img.shields.io/badge/AppVersion-2.9.7-informational?style=flat-square)
+![Version: 0.6.2](https://img.shields.io/badge/Version-0.6.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.7](https://img.shields.io/badge/AppVersion-2.9.7-informational?style=flat-square)
 
 A Helm chart for SDDI enabled CKAN.
 
@@ -41,7 +41,7 @@ A Helm chart for SDDI enabled CKAN.
 | autoscaling.minReplicas | int | `1` | Minimum number of replicas |
 | autoscaling.targetCPUUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | autoscaling.targetMemoryUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
-| component | string | `"frontend"` | Role of CKAN in this chart |
+| component | string | `"ckan"` | Role of CKAN in this chart |
 | datapusher.api_token | string | `nil` | See [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings) |
 | datapusher.callback_url_base | string | `"http://ckan:5000/"` | This should be set to cluster internal ckan service domain. # -- [CKAN DataPusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-datapusher-callback-url-base) |
 | datapusher.formats | string | `"csv xls tsv application/csv"` |  |
@@ -97,7 +97,7 @@ A Helm chart for SDDI enabled CKAN.
 | nameOverride | string | `""` | Override name |
 | nodeSelector | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
 | persistence.accessModes[0] | string | `"ReadWriteOnce"` | [k8s: Persistent volume access modes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) |
-| persistence.annotations | string | `nil` | Additional annotations for PVCs Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall |
+| persistence.annotations | string | `nil` | Additional annotations for PVCs Set `helm.sh/resource-policy: keep` to avoid deletion of PVCs on helm upgrade/uninstall |
 | persistence.capacity | string | `"4Gi"` | Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity) |
 | persistence.enabled | bool | `true` | Enable/disable persistent data storage. Note: Persistence should only be disabled for testing! With persistence disabled CKAN data is stored in an ephemeral emptyDir volume! |
 | persistence.storageClassName | string | `nil` | StorageClass to use, leave empty to use default StorageClass. |
@@ -136,7 +136,7 @@ A Helm chart for SDDI enabled CKAN.
 | solr.url | string | `"http://solr-hl:8983/solr/ckan"` | Solr endpoint for CKAN. This should be set to cluster internal Solr service domain. [CKAN configuration Solr URL](https://docs.ckan.org/en/latest/maintaining/configuration.html#solr-url) |
 | solr.user | string | `nil` | # [CKAN configuration Solr user](https://docs.ckan.org/en/latest/maintaining/configuration.html#solr-user) |
 | startup.failureThreshold | int | `20` | Failure threshold for the startup probe |
-| startup.initialDelaySeconds | int | `10` | Inital delay seconds for the startup probe. Note: The CKAN pod may take some time to startup on slow systems, e.g. one testing clusters. Make sure to set this values high enough to avoid the pod being restarted before it has fully initialized. |
+| startup.initialDelaySeconds | int | `10` | Inital delay seconds for the startup probe. |
 | startup.periodSeconds | int | `10` | Check interval for the startup probe |
 | startup.timeoutSeconds | int | `10` | Timeout interval for the startup probe |
 | sysadmin.email | string | `"user@example.de"` | CKAN admin eMail address |
