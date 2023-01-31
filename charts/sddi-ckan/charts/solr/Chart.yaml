@@ -9,8 +9,8 @@ sources:
   - https://github.com/ckan/ckan-solr
   - https://github.com/ckan/ckanext-spatial
 
-version: 0.2.0
-appVersion: "2.9-solr8"
+version: 0.3.0
+appVersion: "2.9-solr8-spatial"
 
 maintainers:
   - email: b.willenborg@tum.de

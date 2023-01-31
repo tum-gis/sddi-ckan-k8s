@@ -1,6 +1,6 @@
 # solr
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![AppVersion: 2.9-solr8](https://img.shields.io/badge/AppVersion-2.9--solr8-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![AppVersion: 2.9-solr8-spatial](https://img.shields.io/badge/AppVersion-2.9--solr8--spatial-informational?style=flat-square)
 
 A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 
