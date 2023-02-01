@@ -129,3 +129,6 @@ scheduler.json
 # */charts
 requirements.lock
 Chart.lock
+
+# VS-Code
+.vscode/

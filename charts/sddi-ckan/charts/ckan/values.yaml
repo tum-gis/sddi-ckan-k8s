@@ -53,6 +53,7 @@ service:
   port: 5000
 
 # -- Number of replicas. Only used if `autoscaling.enabled = false`.
+# Note: `replicaCount > 1` requires to enable persistent data storage (`persistence.enabled = true`).
 replicaCount: 1
 autoscaling:
   # -- Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods.
@@ -336,7 +337,6 @@ nodeSelector: {}
 tolerations: []
 # -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 affinity: {}
-
 
 startup:
   # -- Inital delay seconds for the startup probe.

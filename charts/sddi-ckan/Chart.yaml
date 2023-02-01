@@ -1,6 +1,8 @@
 apiVersion: v2
 name: sddi-ckan
-description: Helm Chart for a SDDI enabled CKAN catalog.
+description: >
+  Helm Chart for a SDDI enabled CKAN catalog.
+  See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md) for changes.
 type: application
 home: https://github.com/tum-gis/sddi-ckan-k8s
 sources:

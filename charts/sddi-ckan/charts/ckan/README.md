@@ -110,7 +110,7 @@ A Helm chart for SDDI enabled CKAN.
 | readiness.periodSeconds | int | `10` | Check interval for the liveness probe |
 | readiness.timeoutSeconds | int | `10` | Timeout interval for the liveness probe |
 | redis.url | string | `"redis://redis-hl:6379/0"` | Redis endpoint for CKAN. This should be set to cluster internal Redis service domain. [CKAN configuration Redis](https://docs.ckan.org/en/latest/maintaining/configuration.html#redis-settings) |
-| replicaCount | int | `1` | Number of replicas. Only used if `autoscaling.enabled = false`. |
+| replicaCount | int | `1` | Number of replicas. Only used if `autoscaling.enabled = false`. Note: `replicaCount > 1` requires to enable persistent data storage (`persistence.enabled = true`). |
 | resources.limits.cpu | string | `"500m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.limits.memory | string | `"1Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.requests.cpu | string | `"250m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
