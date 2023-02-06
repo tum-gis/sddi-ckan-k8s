@@ -15,4 +15,5 @@ stringData:
   CKAN_SMTP_USER: {{ .Values.smtp.user | quote }}
   CKAN_SMTP_PASSWORD: {{ .Values.smtp.password | quote }}
   CKAN_SMTP_MAIL_FROM: {{ .Values.smtp.mailFrom | quote }}
+  CKAN___SMTP__REPLY__TO: {{ .Values.smtp.replyTo | quote }}
 {{- end -}}

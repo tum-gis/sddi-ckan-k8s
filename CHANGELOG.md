@@ -12,6 +12,9 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Added
 
+- Expose CKAN [smtp_reply_to](https://docs.ckan.org/en/2.9/maintaining/configuration.html#smtp-reply-to)
+  in `values.yml`
+
 ### Changed
 
 - Docs update
