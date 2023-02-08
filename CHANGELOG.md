@@ -8,6 +8,25 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
+## [unreleased] - 2023-01-31
+
+### Added
+
+- Exposed `ckan.site_intro_text`, `ckan.site_about` and `ckan.activity_streams_enabled`
+
+### Changed
+
+### Removed
+
+### Fixed
+
+- Expose CKAN [smtp_reply_to](https://docs.ckan.org/en/2.9/maintaining/configuration.html#smtp-reply-to) in env var
+- Fixed env var `CKAN__DATAPUSHER__FORMATS`
+
+### Security
+
+### Deprecated
+
 ## [sddi-ckan-0.2.1] - 2023-02-08
 
 ### Added

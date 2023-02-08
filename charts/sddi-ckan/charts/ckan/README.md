@@ -21,6 +21,8 @@ A Helm chart for SDDI enabled CKAN.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| activityStreams.emailNotifications | bool | `true` | [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings) |
+| activityStreams.enabled | bool | `true` | [CKAN config enable activity streams](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-activity-streams-enabled) |
 | affinity | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
 | auth.allow_dataset_collaborators | bool | `false` | CKAN authorization settings. See [CKAN configuration docs](https://docs.ckan.org/en/latest/maintaining/configuration.html#authorization-settings). |
 | auth.anon_create_dataset | bool | `false` |  |
@@ -59,7 +61,6 @@ A Helm chart for SDDI enabled CKAN.
 | db.host | string | `"postgis-hl"` | CKAN database host, used to build `sqlalchemy.url` see [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings) |
 | db.port | int | `5432` | CKAN database port, used to build `sqlalchemy.url` see [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings) |
 | debug | bool | `false` | Enable CKAN debug mode. Requires additional setup, see [CKAN configuration debug](https://docs.ckan.org/en/latest/maintaining/configuration.html#debug) |
-| email.activity_streams_email_notifications | bool | `false` | [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings) |
 | enabled | bool | `true` | Enable/disable CKAN |
 | extraEnv | object | `{}` | Extra environment variables. Values need to be quoted. This can be used to overwrite or extend [CKAN settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-configuration-file). See [ckanext-envvars](https://github.com/okfn/ckanext-envvars) for variable naming conventions. |
 | favicon | string | `"/webassets/images/favicon.ico"` | Path to CKAN favicon. Custom logos will usually be located in `/webassets/`. See `webassets.path` setting. [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo) |
@@ -121,8 +122,10 @@ A Helm chart for SDDI enabled CKAN.
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
+| siteAbout | string | `"My CKAN about info."` | [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about) |
 | siteDescription | string | `"This is my CKAN instance for stuff."` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description) |
 | siteId | string | `"default"` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id) |
+| siteIntroText | string | `"This is the intro to my CKAN instance."` | CKAN config intro text](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-intro-text) |
 | siteLogo | string | `"/base/images/ckan-logo.png"` | Path to CKAN site logo image. Custom logos will usually be located in `/webassets/`. See `webassets.path` setting. [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo) |
 | siteTitle | string | `"My CKAN instance"` | Title of the CKAN instance, displayed in Browser windows/tab name |
 | siteUrl | string | `"https://my-ckan.de"` | CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`. [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url) |

@@ -41,8 +41,10 @@ data:
   # Site customization settings
   CKAN__SITE_TITLE: {{ .Values.siteTitle | quote }}
   CKAN__SITE_DESCRIPTION: {{ .Values.siteDescription | quote }}
+  CKAN__SITE_INTRO_TEXT: {{ .Values.siteIntroText | quote }}
   CKAN__SITE_LOGO: {{ .Values.siteLogo | quote }}
   CKAN__FAVICON: {{ .Values.favicon | quote }}
+  CKAN__SITE_ABOUT: {{ .Values.siteAbout | quote }}
   # Locale settings
   CKAN__LOCALE_DEFAULT: {{ .Values.locale.default | quote }}
   CKAN__LOCALE_ORDER: {{ .Values.locale.order | quote }}
@@ -50,12 +52,13 @@ data:
   CKAN__LOCALES_FILTERED_OUT: {{ .Values.locale.filtered_out | quote }}
   # Datapusher
   CKAN__DATAPUSHER__CALLBACK_URL_BASE: {{ .Values.datapusher.callback_url_base | quote }}
-  CKAN__DATAPUSHER_FORMATS: {{ .Values.datapusher.formats | quote }}
+  CKAN__DATAPUSHER__FORMATS: {{ .Values.datapusher.formats | quote }}
   # Featured settings
   CKAN__FEATURED_GROUPS: {{ .Values.featured.groups | quote }}
   CKAN__FEATURED_ORGS: {{ .Values.featured.orgs | quote }}
-  # eMail settings
-  CKAN__ACTIVITY_STREAMS_EMAIL_NOTIFICATIONS: {{ .Values.email.activity_streams_email_notifications | quote }}
+  # Activity stream settings
+  CKAN__ACTIVITY_STREAMS_ENABLED: {{ .Values.activityStreams.enabled | quote }}
+  CKAN__ACTIVITY_STREAMS_EMAIL_NOTIFICATIONS: {{ .Values.activityStreams.emailNotifications | quote }}
 
   # Others
   CKAN__DATASET__CREATE_ON_UI_REQUIRES_RESOURCES: {{ .Values.form.create_on_ui_requires_resources | quote }}

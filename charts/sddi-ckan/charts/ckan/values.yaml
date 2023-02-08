@@ -116,10 +116,14 @@ siteTitle: My CKAN instance
 siteId: default
 # -- [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description)
 siteDescription: This is my CKAN instance for stuff.
+# -- CKAN config intro text](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-intro-text)
+siteIntroText: This is the intro to my CKAN instance.
 # -- Path to CKAN site logo image. Custom logos will usually be located in `/webassets/`.
 # See `webassets.path` setting.
 # [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo)
 siteLogo: /base/images/ckan-logo.png
+# -- [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about)
+siteAbout: My CKAN about info.
 # -- Path to CKAN favicon. Custom logos will usually be located in `/webassets/`.
 # See `webassets.path` setting.
 # [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo)
@@ -317,9 +321,11 @@ smtp:
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   replyTo: "None"
 
-email:
+activityStreams:
+  # -- [CKAN config enable activity streams](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-activity-streams-enabled)
+  enabled: True
   # -- [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings)
-  activity_streams_email_notifications: False
+  emailNotifications: True
 
 resources:
   limits:
