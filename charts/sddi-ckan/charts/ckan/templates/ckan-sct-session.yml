@@ -11,6 +11,7 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 type: Opaque
 stringData:
+  CKAN___BEAKER__SESSION_KEY: {{ .Values.session.beakerSessionKey | default "ckan" | quote }}
   CKAN___BEAKER__SESSION__SECRET: {{ .Values.session.beakerSessionSecret | default (randAlphaNum 64) | quote }}
 {{- end -}}
 {{- end -}}
