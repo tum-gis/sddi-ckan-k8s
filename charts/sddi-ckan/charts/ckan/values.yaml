@@ -184,6 +184,11 @@ sysadmin:
   # -- CKAN admin eMail address
   email: user@example.de
 
+  session:
+    # -- [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret), if left
+    # empty, a [64 char random AlphaNum}(https://docs.gomplate.ca/functions/random/#random-alphanum) is used.
+    beakerSessionSecret:
+
 locale:
   # -- CKAN default locale, see
   # [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings)
@@ -208,7 +213,7 @@ webassets:
 # extend [CKAN settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-configuration-file).
 # See [ckanext-envvars](https://github.com/okfn/ckanext-envvars) for variable naming conventions.
 extraEnv: {}
-  # CKAN__BEAKER__SESSION_SECRET: theSecret
+  # CKAN___SOME_VARIABLE: "someValues"
 
 # Persistence -----------------------------------------------------------------
 persistence:

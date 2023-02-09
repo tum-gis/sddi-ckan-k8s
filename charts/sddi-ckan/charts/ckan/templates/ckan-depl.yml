@@ -30,6 +30,7 @@ spec:
         checksum/secret-db: {{ include (print $.Template.BasePath "/ckan-sct-db.yml") . | sha256sum }}
         checksum/secret-smtp: {{ include (print $.Template.BasePath "/ckan-sct-smtp.yml") . | sha256sum }}
         checksum/secret-solr: {{ include (print $.Template.BasePath "/ckan-sct-solr.yml") . | sha256sum }}
+        checksum/secret-session: {{ include (print $.Template.BasePath "/ckan-sct-session.yml") . | sha256sum }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -81,6 +82,8 @@ spec:
                 name: {{ include "ckan.fullname" . }}-sct-smtp
             - secretRef:
                 name: {{ include "ckan.fullname" . }}-sct-solr
+            - secretRef:
+                name: {{ include "ckan.fullname" . }}-sct-session
             {{ if .Values.sysadmin.enabled }}
             - secretRef:
                 name: {{ include "ckan.fullname" . }}-sct-sysadmin

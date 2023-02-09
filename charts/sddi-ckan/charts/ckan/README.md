@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 0.6.3](https://img.shields.io/badge/Version-0.6.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.7](https://img.shields.io/badge/AppVersion-2.9.7-informational?style=flat-square)
+![Version: 0.6.4](https://img.shields.io/badge/Version-0.6.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.7](https://img.shields.io/badge/AppVersion-2.9.7-informational?style=flat-square)
 
 A Helm chart for SDDI enabled CKAN.
 
@@ -146,6 +146,7 @@ A Helm chart for SDDI enabled CKAN.
 | sysadmin.email | string | `"user@example.de"` | CKAN admin eMail address |
 | sysadmin.enabled | bool | `true` | Enable/disable creating of a CKAN admin user at first startup. |
 | sysadmin.password | string | `"changeMe"` | CKAN admin password: Note: Min. password length = 8 chars! |
+| sysadmin.session.beakerSessionSecret | string | `nil` | [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret), if left empty, a [64 char random AlphaNum}(https://docs.gomplate.ca/functions/random/#random-alphanum) is used. |
 | sysadmin.user | string | `"admin"` | CKAN admin username |
 | tolerations | list | `[]` | [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |
 | webassets.path | string | `"/srv/app/data/webassets/"` | Webassets storage path, see [CKAN webassets settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#webassets-settings) This should point to the location of webassets in the CKAN image |

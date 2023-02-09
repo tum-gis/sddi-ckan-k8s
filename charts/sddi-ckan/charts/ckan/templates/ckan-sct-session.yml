@@ -1,0 +1,16 @@
+{{- if .Values.enabled -}}
+{{- if .Values.sysadmin.enabled -}}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "ckan.fullname" . }}-sct-session
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "ckan.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+type: Opaque
+stringData:
+  CKAN___BEAKER__SESSION__SECRET: {{ .Values.session.beakerSessionSecret | default (randAlphaNum 64) | quote }}
+{{- end -}}
+{{- end -}}
