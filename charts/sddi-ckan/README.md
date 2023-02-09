@@ -1,6 +1,6 @@
 # sddi-ckan
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
+![Version: 0.3.1](https://img.shields.io/badge/Version-0.3.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
 Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md) for changes.
 
@@ -36,6 +36,8 @@ Kubernetes: `>= 1.23.0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| cert-manager.enabled | bool | `false` | Enable/disable cert-manager. |
+| certIssuer.enabled | bool | `true` | Enable/disable namespace Issuers for cert-manager. |
 | datapusher.enabled | bool | `true` | Enable/disable Datapusher |
 | fullnameOverride | string | `""` | Override fullname |
 | global.datastore.auth.ro.password | string | `"changeMe"` | CKAN datastore database read-only password. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
@@ -55,6 +57,7 @@ Kubernetes: `>= 1.23.0`
 | global.ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |
 | global.ingress.className | string | `"nginx"` | Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class) to use in Ingress routes. |
 | global.ingress.domains | list | `["localhost"]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. The global setting overwrites this setting in subcharts. |
+| ingress-nginx.enabled | bool | `false` | Enable/disable Nginx ingress controller. |
 | nameOverride | string | `""` | Override name |
 | postgis.enabled | bool | `true` | Enable/disable database instance. Disable, if an external database is used. |
 | redis.enabled | bool | `true` | Enable/disable Redis instance. Disable, if an external Redis instance is used. |

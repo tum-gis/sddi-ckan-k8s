@@ -87,3 +87,15 @@ redis:
 datapusher:
   # -- Enable/disable Datapusher
   enabled: true
+
+ingress-nginx:
+  # -- Enable/disable Nginx ingress controller.
+  enabled: false
+
+cert-manager:
+  # -- Enable/disable cert-manager.
+  enabled: false
+
+certIssuer:
+  # -- Enable/disable namespace Issuers for cert-manager.
+  enabled: true
