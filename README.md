@@ -84,8 +84,6 @@ To get this up an running in seconds, check out the [examples](examples). You wi
 - [Basic example for a local cluster using Docker Desktop](examples/docker-desktop/)
 - [Basic example for a local cluster using `minikube`](examples/minikube/)
 
-The documentation for this helm chart is available in [sddi-ckan/charts](sddi-ckan/charts).
-
 ## :grey_exclamation: Requirements
 
 - Kubernetes cluster with Kubernetes `>= v1.20`
