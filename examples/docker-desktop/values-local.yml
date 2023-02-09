@@ -41,15 +41,6 @@ ckan:
 
   siteUrl: https://localhost
 
-  image:
-    repository: reg.gitlab.brunowillenborg.de/ckan
-    tag: sddi-spatial
-
-  imagePullSecrets:
-    - name: ckan-pull-sct
-
-  debug: False
-
   # Readyness and liveness checks -----------------------------------------------
   startup:
     # -- Inital delay seconds for the startup probe.
