@@ -184,13 +184,13 @@ sysadmin:
   # -- CKAN admin eMail address
   email: user@example.de
 
-  session:
-    # -- [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret), if left
-    # empty, a [64 char random AlphaNum}(https://docs.gomplate.ca/functions/random/#random-alphanum) is used.
-    beakerSessionSecret:
-    # -- [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key),
-    # defaults to *ckan* if left empty.
-    beakerSessionKey: ckan-session
+session:
+  # -- [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret), if left
+  # empty, a [64 char random AlphaNum}(https://docs.gomplate.ca/functions/random/#random-alphanum) is used.
+  beakerSessionSecret:
+  # -- [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key),
+  # defaults to *ckan* if left empty.
+  beakerSessionKey: ckan-session
 
 locale:
   # -- CKAN default locale, see
