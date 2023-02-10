@@ -1,9 +1,10 @@
 # Local cluster example using Minikube
 
-This example deploys the CKAN stack on a local `minikube` cluster.
+This example deploys the SDDI-CKAN stack on a local `minikube` cluster.
 This is especially useful for testing, developing, and for educational purposes.
-This example is only tested with a Kubernetes single node cluster on
-[`minikube`](https://minikube.sigs.k8s.io) using the Docker deployment method.
+
+> **Note:** This example is only tested with a Kubernetes single node cluster on
+> [`minikube`](https://minikube.sigs.k8s.io) using the Docker deployment method.
 
 ## :eye_speech_bubble: Requirements
 
@@ -33,13 +34,14 @@ This example is only tested with a Kubernetes single node cluster on
     helm repo update
     ```
 
-3. Deploy the chart with the default configuration specified in [values-local.yml](values-local.yml):
+3. Deploy the chart with the default configuration specified in
+   [values-local.yml](values-local.yml):
 
     ```bash
     helm install ckan sddi-ckan/sddi-ckan \
       -n ckan --create-namespace \
       --atomic --wait \
-      --values "https://raw.githubusercontent.com/tum-gis/sddi-ckan-k8s/main/examples/minikube/values-minkube.yml
+      --values "https://raw.githubusercontent.com/tum-gis/sddi-ckan-k8s/main/examples/minikube/values-minkube.yml"
     ```
 
     > **Tip**: In `minikube` setups with low hardware resources the deployment may timeout,
@@ -87,9 +89,10 @@ This example is only tested with a Kubernetes single node cluster on
 
 ## :hammer_and_wrench: Customization
 
-If you want to change the default configuration (which is highly recommended to change the default password),
-download a copy of [values-minikube.yml](values-minikube.yml).
-Edit the file locally and install the chart using your local configuration:
+If you want to change the default configuration (which is highly recommended
+to change the default password), download a copy of
+[values-minikube.yml](values-minikube.yml). Edit the file locally and install
+the chart using your local configuration:
 
 ```bash
 helm install ckan sddi-ckan/sddi-ckan \
