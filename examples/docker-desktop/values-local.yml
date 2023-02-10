@@ -1,22 +1,16 @@
-# -- Override name
-nameOverride: ""
-# -- Override fullname
-fullnameOverride: ""
-
 global:
   ingress:
-    # -- Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
-    # to use in Ingress routes.
     className: nginx
     certManager:
-      # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
       issuerEmail: me@example.com
+    domains:
+      - localhost
 
 # Nginx ingress configuration -------------------------------------------------
 # This needs to be enabled, if you don't have nginx-ingress installed already
 # in your cluster.
 ingress-nginx:
-  enabled: true
+  enabled: false
 
 # cert-manager configuration --------------------------------------------------
 # Disable cert-manager and certIssuer for local testing, they are not required.
@@ -41,7 +35,10 @@ ckan:
 
   siteUrl: https://localhost
 
-  # Readyness and liveness checks -----------------------------------------------
+  # Startup -------------------------------------------------------------------
+  # Depending on the hardware and configuration of you minikube cluster the
+  # startup ofCKAN may be slow. Thus, the default settings for the startup
+  # check may be too strict and `failureThreshold` needs to be increased.
   startup:
     # -- Inital delay seconds for the startup probe.
     initialDelaySeconds: 60

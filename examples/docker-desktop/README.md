@@ -1,6 +1,7 @@
 # Local cluster example using Docker Desktop
 
-This example installs the stack on a local cluster. This is especially useful for testing, developing, and for educational purposes.
+This example deploys the SDDI-CKAN stack on a local `docker-desktop` cluster.
+This is especially useful for testing, developing, and for educational purposes.
 
 > **Note:** This example has been tested with a Kubernetes single node cluster provided by
 > [Docker Desktop](https://www.docker.com/products/docker-desktop/) on Windows 10.
@@ -17,10 +18,10 @@ This example installs the stack on a local cluster. This is especially useful fo
 
 ## :rocket: Usage
 
-1. Get the helm repos of all dependencies
+1. Add the Helm repos for all dependencies
 
     ```bash
-    helm repo add iot-stack https://tum-gis.github.io/sddi-ckan-k8s
+    helm repo add sddi-ckan https://tum-gis.github.io/sddi-ckan-k8s
 
     # Optional, comment out if nginx-ingress controller is already installed in your cluster
     helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -32,29 +33,38 @@ This example installs the stack on a local cluster. This is especially useful fo
     helm repo update
     ```
 
-2. Install the chart with the default configuration specified in [values-local.yml](values-local.yml):
+2. Deploy the chart with the default configuration specified in
+   [values-local.yml](values-local.yml):
 
     ```bash
-    helm install iot-stack iot-stack/tum-gis-iot-stack-k8s \
-      -n iot-stack --create-namespace \
+    helm install ckan sddi-ckan/sddi-ckan \
+      -n ckan --create-namespace \
       --atomic --wait \
-      --timeout 10m \
-      --values "https://raw.githubusercontent.com/tum-gis/tum-gis-iot-stack-k8s/main/examples/local/values-local.yml"
+      --values "https://raw.githubusercontent.com/tum-gis/sddi-ckan-k8s/main/examples/docker-desktop/values-local.yml"
     ```
+    > **Tip**: In `docker-desktop` setups with low hardware resources the deployment may timeout,
+    > especially at first run, when all images have to be pulled.
+    > If you are running into timeouts, add `--timeout 10m` to the `helm install`
+    > command.
 
-3. After the chart has installed successfully, CKAN is availalbe at https://localhost/.
+3. After the chart has installed successfully, CKAN is available at https://localhost.
+   A system admin user has been created automatically. The credentials are:
 
-All services can be accessed with the username `admin` and password `changeMe`.
+     ```text
+     username  admin
+     password  changeMe
+     ```
 
 ## :hammer_and_wrench: Customization
 
-If you want to change the default configuration (which is highly recommended to change the default password),
-download a copy of [values-local.yml](values-local.yml).
-Edit the file locally and install the chart using your local configuration:
+If you want to change the default configuration (which is highly recommended
+to change the default password), download a copy of
+[values-local.yml](values-local.yml). Edit the file locally and install
+the chart using your local configuration:
 
 ```bash
-helm install iot-stack iot-stack/tum-gis-iot-stack-k8s \
-  -n iot-stack --create-namespace \
+helm install ckan sddi-ckan/sddi-ckan \
+  -n ckan --create-namespace \
   --atomic --wait \
   --values my-local-values.yml
 ```
