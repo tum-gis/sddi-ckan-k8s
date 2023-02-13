@@ -49,7 +49,7 @@ For local testing check out the [examples](examples).
 - [Managed Kubernetes services provisioning](#managed-kubernetes-services-provisioning)
 - [:rocket: Basic usage](#rocket-basic-usage)
 - [:hammer\_and\_wrench: Contributing](#hammer_and_wrench-contributing)
-  - [:construction\_worker: Repository setup](#construction_worker-repository-setup)
+  - [Repository setup](#repository-setup)
     - [Build Chart documentation](#build-chart-documentation)
   - [Contributors](#contributors)
 - [:memo: License](#memo-license)
@@ -144,7 +144,7 @@ Helm chart are available in the [provisioning](provisioning) folder.
 
 Bug fixes, issue reports and contributions are greatly appreciated.
 
-### :construction_worker: Repository setup
+### Repository setup
 
 #### Build Chart documentation
 
