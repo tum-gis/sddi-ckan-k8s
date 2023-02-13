@@ -1,34 +1,14 @@
-# Global settings -------------------------------------------------------------
-# -- Override name
-nameOverride: ""
-# -- Override fullname
-fullnameOverride: "iot-stack"
-
 global:
-  # -- Fully qualified domain name, used for all Ingress routes.
-  # Use localhost for local testing deployments.
   ingress:
-    # -- Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
-    # to use in Ingress routes.
     className: nginx
-    # -- List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress.
-    # Note: All FQDNs will be used for Ingress hosts and TLS certificate.
-    # The global setting overwrites this setting in subcharts.
+    certManager:
+      issuerEmail: me@example.com
     domains:
       - myhost.info
-    certManager:
-      # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
-      issuerEmail: me@example.com
-      # -- Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster".
-      issuerType: namespace
-      # -- Name of the Issuer to use. For certManager.type = namespace
-      # `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available.
-      issuerName: letsencrypt-staging
-
 
 # Nginx ingress configuration -------------------------------------------------
-# This needs to be enabled, ONLY if you don't have nginx-ingress already installed
-# in your cluster. For minikube this is usually not required.
+# This needs to be enabled, if you don't have nginx-ingress installed already
+# in your cluster.
 ingress-nginx:
   enabled: false
 
@@ -46,38 +26,28 @@ cert-manager:
 certIssuer:
   enabled: false
 
-
-# FROST-Server PostGIS database configuration ---------------------------------
-frostdb:
+# ckan configuration ----------------------------------------------------------
+ckan:
   enabled: true
 
-# FROST-Webserver PostGIS database configuration ------------------------------
-frostweb:
-  enabled: true
-  replicaCount: 2
-
-# Grafana v9 configuration ----------------------------------------------------
-grafana:
-  enabled: true
-  replicaCount: 2
-  database:
-    enabled: false
-
-# Grafana v7 configuration ----------------------------------------------------
-grafana7:
-  enabled: true
-  replicaCount: 2
-  database:
-    enabled: false
-
-# Node-RED configuration ------------------------------------------------------
-nodered:
-  enabled: true
-  replicaCount: 1
   persistence:
-    enabled: true
+    enabled: false
 
-# Caddy configuration ---------------------------------------------------------
-# The caddy webserver is not required.
-caddy:
-  enabled: false
+  siteUrl: https://myhost.info
+
+  # Startup -------------------------------------------------------------------
+  # Depending on the hardware and configuration of you minikube cluster the
+  # startup ofCKAN may be slow. Thus, the default settings for the startup
+  # check may be too strict and `failureThreshold` needs to be increased.
+  startup:
+    # -- Inital delay seconds for the startup probe.
+    initialDelaySeconds: 60
+    # -- Check interval for the startup probe
+    periodSeconds: 10
+    # -- Failure threshold for the startup probe
+    failureThreshold: 60
+    # -- Timeout interval for the startup probe
+    # Note: The CKAN pod may take some time to startup on slow systems, e.g. one
+    # testing clusters. Make sure to set this value high enough to avoid the pod
+    # being restarted before it has fully initialized.
+    timeoutSeconds: 10
