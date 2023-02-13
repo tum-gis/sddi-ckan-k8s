@@ -16,28 +16,15 @@ resource "azurerm_kubernetes_cluster" "this" {
   # Configure Azure k8s addons
   azure_policy_enabled             = false
   http_application_routing_enabled = var.use_azure_ingress_controller
-  # aci_connector_linux {
-  #   subnet_name = module.network.vnet_name
-  # }
+
 
   # default pool
   default_node_pool {
     name       = "default"
     vm_size    = var.k8s_default_node_type
     node_count = var.k8s_default_node_count
-    # pod_subnet_id = module.network.vnet_subnets[1]
-    # enable_auto_scaling = true
-    # min_count           = 2
-    # max_count           = 3
   }
 }
-
-# k8s default namespace -------------------------------------------------------
-# data "kubernetes_namespace" "default" {
-#   metadata {
-#     name = "default"
-#   }
-# }
 
 # Get access to k8s node resource group
 data "azurerm_resource_group" "k8s-node" {
