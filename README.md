@@ -17,7 +17,7 @@
   </a>
 </p>
 
-This chart deploys a self contained [CKAN data catalog](https://ckan.org) extended to support the [Smart District Data Infrastructure (SDDI)](https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure/) with with all of its dependencies.
+This chart deploys a self contained [CKAN data catalog](https://ckan.org) with all of its dependencies. CKAN is extended to support the [Smart District Data Infrastructure (SDDI)](https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure/).
 
 ## :zzz: TL;DR
 
@@ -49,9 +49,9 @@ For local testing check out the [examples](examples).
 - [Managed Kubernetes services provisioning](#managed-kubernetes-services-provisioning)
 - [:rocket: Basic usage](#rocket-basic-usage)
 - [:hammer\_and\_wrench: Contributing](#hammer_and_wrench-contributing)
+  - [:construction\_worker: Repository setup](#construction_worker-repository-setup)
+    - [Build Chart documentation](#build-chart-documentation)
   - [Contributors](#contributors)
-- [:construction\_worker: Building](#construction_worker-building)
-  - [Build Chart documentation](#build-chart-documentation)
 - [:memo: License](#memo-license)
 - [:handshake: Thanks](#handshake-thanks)
 
@@ -144,33 +144,36 @@ Helm chart are available in the [provisioning](provisioning) folder.
 
 Bug fixes, issue reports and contributions are greatly appreciated.
 
-### Contributors
+### :construction_worker: Repository setup
 
-- This repo is based on the CKAN [Docker images](https://github.com/keitaroinc/docker-ckan)
-  and [Helm charts](https://github.com/keitaroinc/ckan-helm) of
-  [Keitaro](https://github.com/keitaroinc). Many thank's for your great work!
+#### Build Chart documentation
 
-<a href="https://github.com/tum-gis/sddi-ckan-k8s/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
-</a>
-
-## :construction_worker: Building
-
-### Build Chart documentation
-
-The documentation of this chart is generated using
+The documentation of this chart is located in this repository in the
+[charts/sddi-ckan](charts/sddi-ckan) folder and consists of Markdown files,
+that are generated using
 [norwoodj/helm-docs](https://github.com/norwoodj/helm-docs).
-
-To update the markdown documentation of this chart using Docker run this from
-the repo root.
-
-```shell
-docker run --rm --volume "$PWD/sddi-ckan/charts:/helm-docs" -u $(id -u) jnorwood/helm-docs:latest
-```
+To keep the documentation in sync with the source files, it is recommended
+to use [`pre-commit`](https://github.com/pre-commit/pre-commit) to automatically
+update the docs with every commit.
 
 To setup `pre-commit` to automatically update the documentation before each
 commit, follow the steps described in [norwoodj/helm-docs: Usage](https://github.com/norwoodj/helm-docs#usage) and use the [.pre-commit-config.yaml](.pre-commit-config.yaml)
 in this repo.
+
+To update the Markdown documentation manually using Docker run this from
+the repo root.
+
+```shell
+docker run --rm -u $(id -u) --name helm-docs \
+    --volume "$PWD/sddi-ckan/charts:/helm-docs" \
+  jnorwood/helm-docs:latest
+```
+
+### Contributors
+
+<a href="https://github.com/tum-gis/sddi-ckan-k8s/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
+</a>
 
 ## :memo: License
 
