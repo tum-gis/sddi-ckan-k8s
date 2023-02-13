@@ -1,0 +1,8 @@
+Congratulations, CKAN is now available at:
+
+{{- with .Values.global.ingress.domains }}
+  {{ toYaml . | nindent 2 }}
+{{- end }}
+
+
+{{ .Values.ckan.ingress.domains }}
