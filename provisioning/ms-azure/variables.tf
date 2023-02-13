@@ -8,7 +8,7 @@ variable "location" {
 
 variable "resource_group_name" {
   type        = string
-  default     = "rg-sta-k8s"
+  default     = "rg-k8s"
   description = "Name of the resource group in which all services shall be started."
 }
 
@@ -25,7 +25,7 @@ variable "k8s_default_node_count" {
 
 variable "k8s_default_node_type" {
   type        = string
-  default     = "Standard_B1s"
+  default     = "Standard_A2v2"
   description = "VM type of the default pool."
 }
 
