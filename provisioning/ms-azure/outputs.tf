@@ -45,12 +45,8 @@ resource "local_file" "kubeconfig" {
   content    = azurerm_kubernetes_cluster.this.kube_config_raw
 }
 
-# Azure DNS Zone
-# output "dns-zone" {
-#   value = azurerm_dns_zone.this.name
-# }
-
-# Warning - This could destroy your kubectl config file. Only use if you know what your're doing!
+# Warning - This could destroy your kubectl config file!
+# Only use if you know what your're doing!
 # resource "local_file" "kubeconfig-userhome" {
 #   depends_on = [azurerm_kubernetes_cluster.this]
 #   filename   = pathexpand("~/.kube/config")
