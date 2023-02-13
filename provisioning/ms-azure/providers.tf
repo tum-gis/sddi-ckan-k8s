@@ -8,13 +8,15 @@ terraform {
     }
   }
 
-  # Remote backend configuration
-  backend "azurerm" {
-    resource_group_name  = "tfstate"
-    storage_account_name = "tfstatek8s0815"
-    container_name       = "tfstate"
-    key                  = "tfstate-key"
-  }
+  # Remote backend configuration ----------------------------------------------
+  # Uncomment, to use Azure as remote backend:
+  # https://developer.hashicorp.com/terraform/language/settings/backends/azurerm
+  # backend "azurerm" {
+  #   resource_group_name  = "tfstate"
+  #   storage_account_name = "tfstatek8s0815"
+  #   container_name       = "tfstate"
+  #   key                  = "tfstate-key"
+  # }
 }
 
 provider "azurerm" {
