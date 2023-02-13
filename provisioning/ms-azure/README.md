@@ -1,25 +1,57 @@
 # Microsoft Azure Kubernetes Service
 
-The Terraform scripts provided here can be used to provision an instance of
-[Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes).
+This folder contains a basic example for provisioning a "Managed Kubernetes Cluster"
+from Microsoft Azure using [Terraform](https://www.terraform.io/).
+The Terrafom scripts deploy an instance of
+[Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-us/products/kubernetes-service/) with two [node pools](https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes#clusters-and-nodes)
+of customizable
+[Azure VM types](https://docs.microsoft.com/de-de/azure/virtual-machines/sizes-general)
+called `default` and `database` pool.
 
-* [Official docs](https://azure.microsoft.com/en-us/products/kubernetes-service/)
-* [Terraform](https://www.terraform.io/)
+This is just a basic example. For detailed information on all configuration
+options visit the [`azurerm_kubernetes_cluster`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster) docs.
 
+## Requirements
 
+* [Azure CLI installed](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
+* [Terraform installed](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+* Microsoft Azure subscription
 
 ## :hammer_and_wrench: Usage
 
-```bash
-terraform plan -out plan.json \
-  -var resource_group_name="myaks" \
-  -var 'contact_emails=["me@example.com","other@example.com"]' \
-  -var k8s_default_node_type="Standard_A2_v2" \
-  -var k8s_default_node_count=2 \
-  -var k8s_database_node_type="Standard_D4s_v3" \
-  -var k8s_database_node_count=1
-```
+1. Clone this repo and switch to the [provisioning/ms-azure](provisioning/ms-azure) folder.
 
-```bash
-terraform apply plan.json
-```
+    ```bash
+    git clone --depth 1 https://github.com/tum-gis/sddi-ckan-k8s
+    cd sddi-ckan-k8s/provisioning/ms-azure
+    ```
+
+2. Run Terraform initialization
+
+    ```bash
+    terraform init
+    ```
+
+3. Decide for [Azure VM types](https://docs.microsoft.com/de-de/azure/virtual-machines/sizes-general) and count
+   for both node pools, a name of the `ressource group`, and provide one or more eMail addresses for budget warning notifications. Pass these options to
+   `terraform plan` to create an execution plan.
+
+    ```bash
+    terraform plan -out plan.json \
+      -var resource_group_name="ckan-aks-rg" \
+      -var 'contact_emails=["me@example.com","other@example.com"]' \
+      -var k8s_default_node_type="Standard_A2_v2" \
+      -var k8s_default_node_count=2 \
+      -var k8s_database_node_type="Standard_D4s_v3" \
+      -var k8s_database_node_count=1
+    ```
+
+4. Apply the plan to book the specified resources.
+
+    ```bash
+    terraform apply plan.json
+    ```
+
+5. The access credentials of the AKS instance are output in `.kubeconfig`.
+   Store the credentials in a safe place and add them to your
+   `~/.kube/config` file to use them with e.g. `kubectl`. After that it is recommended to delete the file.
