@@ -39,8 +39,8 @@ A Helm chart for SDDI enabled CKAN.
 | auth.user_delete_groups | bool | `false` |  |
 | auth.user_delete_organizations | bool | `false` |  |
 | autoscaling.enabled | bool | `false` | Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods. Check requirements of [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
-| autoscaling.maxReplicas | int | `5` | Maximum number of replicas |
-| autoscaling.minReplicas | int | `1` | Minimum number of replicas |
+| autoscaling.maxReplicas | int | `5` | Maximum number of replicas **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and, if Pods run on different nodes, a storage that supports RWX. |
+| autoscaling.minReplicas | int | `1` | Minimum number of replicas. **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and, if Pods run on different nodes, a storage that supports RWX. |
 | autoscaling.targetCPUUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | autoscaling.targetMemoryUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | component | string | `"ckan"` | Role of CKAN in this chart |
@@ -111,7 +111,7 @@ A Helm chart for SDDI enabled CKAN.
 | readiness.periodSeconds | int | `10` | Check interval for the liveness probe |
 | readiness.timeoutSeconds | int | `10` | Timeout interval for the liveness probe |
 | redis.url | string | `"redis://redis-hl:6379/0"` | Redis endpoint for CKAN. This should be set to cluster internal Redis service domain. [CKAN configuration Redis](https://docs.ckan.org/en/latest/maintaining/configuration.html#redis-settings) |
-| replicaCount | int | `1` | Number of replicas. Only used if `autoscaling.enabled = false`. Note: `replicaCount > 1` requires to enable persistent data storage (`persistence.enabled = true`). |
+| replicaCount | int | `1` | Number of replicas. Only used if `autoscaling.enabled = false`. **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and, if Pods run on different nodes, a storage that supports RWX. |
 | resources.limits.cpu | string | `"500m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.limits.memory | string | `"1Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.requests.cpu | string | `"250m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |

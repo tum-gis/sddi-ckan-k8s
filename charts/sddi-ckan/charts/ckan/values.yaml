@@ -53,15 +53,20 @@ service:
   port: 5000
 
 # -- Number of replicas. Only used if `autoscaling.enabled = false`.
-# Note: `replicaCount > 1` requires to enable persistent data storage (`persistence.enabled = true`).
+  # **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and,
+  # if Pods run on different nodes, a storage that supports RWX.
 replicaCount: 1
 autoscaling:
   # -- Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods.
   # Check requirements of [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
   enabled: false
-  # -- Minimum number of replicas
+  # -- Minimum number of replicas.
+  # **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and,
+  # if Pods run on different nodes, a storage that supports RWX.
   minReplicas: 1
   # -- Maximum number of replicas
+  # **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and,
+  # if Pods run on different nodes, a storage that supports RWX.
   maxReplicas: 5
   # -- [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
   targetCPUUtilizationPercentage:
