@@ -36,7 +36,9 @@ helm install ckan sddi-ckan/sddi-ckan \
   --set 'global.ingress.issuerEmail=myemailaddress@example.de'
 ```
 
-For local testing check out the [examples](examples).
+For local testing check out the [minikube](examples/minikube) and
+[docker-desktop](examples/docker-desktop) examples. For a public testing
+instance within minutes look into the [Play-with-k8s](examples/play-with-k8s) example.
 
 ## :book: Table of content
 

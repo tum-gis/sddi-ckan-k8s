@@ -1,0 +1,53 @@
+global:
+  ingress:
+    className: nginx
+    certManager:
+      issuerEmail: me@example.com
+    domains:
+      - myhost.info
+
+# Nginx ingress configuration -------------------------------------------------
+# This needs to be enabled, if you don't have nginx-ingress installed already
+# in your cluster.
+ingress-nginx:
+  enabled: false
+
+# cert-manager configuration --------------------------------------------------
+# Disable cert-manager and certIssuer for local testing, they are not required.
+# Nginx ingress will create a self-signed certificate for testing automatically.
+
+# If you want to try out cert-manager, make sure install CRDs BEFORE you install the chart.
+# Make sure to enable certIssuer and configure ingress settings accordingly, see above.
+# For local testing issuerType = namespace and issuerName = self-signed is recommended.
+# (see here: https://cert-manager.io/docs/installation/helm/#3-install-customresourcedefinitions )
+cert-manager:
+  enabled: true
+
+certIssuer:
+  enabled: true
+
+# ckan configuration ----------------------------------------------------------
+ckan:
+  enabled: true
+
+  persistence:
+    enabled: false
+
+  siteUrl: https://myhost.info
+
+  # Startup -------------------------------------------------------------------
+  # Depending on the hardware and configuration of you minikube cluster the
+  # startup ofCKAN may be slow. Thus, the default settings for the startup
+  # check may be too strict and `failureThreshold` needs to be increased.
+  startup:
+    # -- Inital delay seconds for the startup probe.
+    initialDelaySeconds: 60
+    # -- Check interval for the startup probe
+    periodSeconds: 10
+    # -- Failure threshold for the startup probe
+    failureThreshold: 60
+    # -- Timeout interval for the startup probe
+    # Note: The CKAN pod may take some time to startup on slow systems, e.g. one
+    # testing clusters. Make sure to set this value high enough to avoid the pod
+    # being restarted before it has fully initialized.
+    timeoutSeconds: 10
