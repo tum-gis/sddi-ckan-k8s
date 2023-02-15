@@ -39,7 +39,6 @@ spec:
             claimName: {{ include "redis.fullname" . }}
 
       containers:
-      containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
