@@ -12,7 +12,6 @@ data:
   # Native CKAN env vars ------------------------------------------------------
   CKAN_SITE_ID: {{ .Values.siteId | quote }}
   CKAN_SITE_URL: {{ .Values.siteUrl | quote }}
-  CKAN_STORAGE_PATH: {{ .Values.persistence.storagePath | quote }}
   CKAN_MAX_UPLOAD_SIZE_MB: {{ .Values.maxUploadSizeMB | quote }}
   # Storage path
   CKAN_STORAGE_PATH: {{ .Values.persistence.storagePath | quote }}

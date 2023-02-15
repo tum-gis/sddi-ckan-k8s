@@ -8,6 +8,22 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
+## [unreleased] - YYYY-MM-DD
+
+### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+- Removed duplicate env var from `ckan-configMap-env.yml`
+
+### Security
+
+### Deprecated
+
 ## [sddi-ckan-0.3.2] - 2023-02-14
 
 ### Changed
