@@ -18,4 +18,5 @@ spec:
       protocol: TCP
       port: {{ .Values.service.port }}
       targetPort: 5000
+  # sessionAffinity: ClientIP
 {{- end -}}

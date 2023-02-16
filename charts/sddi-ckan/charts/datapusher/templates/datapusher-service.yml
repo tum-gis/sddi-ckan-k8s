@@ -17,4 +17,5 @@ spec:
     - protocol: TCP
       port: {{ .Values.service.port }}
       targetPort: 8000
+  # sessionAffinity: ClientIP
 {{- end -}}
