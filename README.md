@@ -46,7 +46,7 @@ For local testing check out the [examples](examples).
 - [:question: Getting started](#question-getting-started)
 - [:grey\_exclamation: Requirements](#grey_exclamation-requirements)
 - [:page\_with\_curl: Documentation](#page_with_curl-documentation)
-- [Managed Kubernetes services provisioning](#managed-kubernetes-services-provisioning)
+- [:cloud: Managed Kubernetes services provisioning](#cloud-managed-kubernetes-services-provisioning)
 - [:rocket: Basic usage](#rocket-basic-usage)
 - [:hammer\_and\_wrench: Contributing](#hammer_and_wrench-contributing)
   - [Repository setup](#repository-setup)
@@ -112,7 +112,7 @@ External dependencies are documented here:
 - [ingress-nginx](https://kubernetes.github.io/ingress-nginx/)
 - [cert-manager](https://cert-manager.io/docs/)
 
-## Managed Kubernetes services provisioning
+## :cloud: Managed Kubernetes services provisioning
 
 Examples on how to provision a managed Kubernetes service to deploy this
 Helm chart are available in the [provisioning](provisioning) folder.
