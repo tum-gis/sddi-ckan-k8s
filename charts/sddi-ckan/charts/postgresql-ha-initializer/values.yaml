@@ -1,10 +1,10 @@
 nameOverride: ""
-fullnameOverride: "psql-ha"
+fullnameOverride: "postgresql-ha-initializer"
 enabled: true
 
 db:
   # -- CKAN database host. Note: This values is overwritten by `global.db.host`, if set.
-  host: postgis
+  host: postgis-hl
   # -- CKAN database port. Note: This values is overwritten by `global.db.port`, if set.
   port: 5432
   # -- CKAN database name. Note: This values is overwritten by `global.db.dbname`, if set.

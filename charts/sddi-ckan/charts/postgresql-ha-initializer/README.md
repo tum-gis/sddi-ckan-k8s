@@ -18,10 +18,10 @@ A Helm chart for Kubernetes
 | db.auth.password | string | `"changeMe"` | CKAN database username. Note: This values is overwritten by `global.db.auth.password`, if set. |
 | db.auth.username | string | `"ckan"` | CKAN database username. Note: This values is overwritten by `global.db.auth.username`, if set. |
 | db.dbname | string | `"ckan_default"` | CKAN database name. Note: This values is overwritten by `global.db.dbname`, if set. |
-| db.host | string | `"postgis"` | CKAN database host. Note: This values is overwritten by `global.db.host`, if set. |
+| db.host | string | `"postgis-hl"` | CKAN database host. Note: This values is overwritten by `global.db.host`, if set. |
 | db.port | int | `5432` | CKAN database port. Note: This values is overwritten by `global.db.port`, if set. |
 | enabled | bool | `true` |  |
-| fullnameOverride | string | `"psql-ha"` |  |
+| fullnameOverride | string | `"postgresql-ha-initializer"` |  |
 | nameOverride | string | `""` |  |
 
 ----------------------------------------------
