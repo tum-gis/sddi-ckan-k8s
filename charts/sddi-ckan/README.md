@@ -27,7 +27,7 @@ Kubernetes: `>= 1.23.0`
 |  | ckan | * |
 |  | datapusher | * |
 |  | postgis | * |
-|  | postgresql-ha-initializer | * |
+|  | psqlinit(postgresql-ha-initializer) | * |
 |  | redis | * |
 |  | solr | * |
 | https://charts.bitnami.com/bitnami | postgresql-ha(postgresql-ha) | <=9.4.11 |

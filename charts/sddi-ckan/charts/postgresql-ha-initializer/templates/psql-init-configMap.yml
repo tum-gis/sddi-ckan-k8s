@@ -2,7 +2,6 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-metadata:
   name: {{ include "postgresql-ha-initializer.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
@@ -10,32 +9,47 @@ metadata:
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
 data:
-  01-initdb.sql: |
-    -- Create PostGIS extension in default (=CKAN) database
-    CREATE EXTENSION POSTGIS;
-    ALTER VIEW geometry_columns OWNER TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
-    ALTER TABLE spatial_ref_sys OWNER TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
+  01-create-roles.sh: |
+    #!/bin/bash
+    set -e
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
 
-  02-initdb.sql: |
-    -- Create datastore users
-    -- read-only
-    CREATE ROLE {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }}
-      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.ro.password | default .Values.datastore.auth.ro.password | squote }};
+      -- CREATE datastore DB roles
+      -- read-write
+      CREATE ROLE {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
+        SUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.rw.password | default .Values.datastore.auth.rw.password | squote }};
+      -- read-only
+      CREATE ROLE {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }}
+        NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.ro.password | default .Values.datastore.auth.ro.password | squote }};
 
-  03-initdb.sql: |
-    -- read-write
-    CREATE ROLE {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
-      SUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.rw.password | default .Values.datastore.auth.rw.password | squote }};
+    EOSQL
 
-  04-initdb.sql: |
-    -- CREATE datastore database
-    CREATE DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }} OWNER
-      {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }} ENCODING 'utf-8';
+  02-setupPostGIS.sh: |
+    #!/bin/bash
+    set -e
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
 
-  05-initdb.sql: |
-    GRANT ALL ON ALL TABLES IN SCHEMA public TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
+      -- Create PostGIS extension in default (=CKAN) database
+      CREATE EXTENSION POSTGIS;
+      ALTER VIEW geometry_columns OWNER TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
+      ALTER TABLE spatial_ref_sys OWNER TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
 
-  06-initdb.sql: |
-    GRANT ALL ON ALL TABLES IN SCHEMA public TO {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }};
+    EOSQL
+
+  03-createDatastoreDB.sh: |
+    #!/bin/bash
+    set -e
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+
+      -- CREATE datastore database
+      CREATE DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }} OWNER
+        {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }} ENCODING 'utf-8';
+
+      GRANT ALL PRIVILEGES ON DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
+        TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
+
+      GRANT CONNECT ON DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
+        TO {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }};
+    EOSQL
 
 {{- end -}}

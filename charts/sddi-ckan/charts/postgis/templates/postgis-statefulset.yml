@@ -42,11 +42,9 @@ spec:
         # - name: init
         #   configMap:
         #     name: {{ include "postgis.fullname" . }}-init
-        {{- if .Values.initdbScriptsCM }}
         - name: custom-init-scripts
           configMap:
-            name: {{ .Values.initdbScriptsCM }}
-        {{- end }}
+            name: {{ include "postgresql-ha-initializer.fullname" . }}
 
       containers:
         - name: {{ .Chart.Name }}

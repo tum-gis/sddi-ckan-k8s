@@ -53,5 +53,6 @@ dependencies:
     version: "<=9.4.11"
     repository: https://charts.bitnami.com/bitnami
   - name: postgresql-ha-initializer
+    alias: psqlinit
     version: "*"
     condition: postgresql-ha-initializer.enabled
