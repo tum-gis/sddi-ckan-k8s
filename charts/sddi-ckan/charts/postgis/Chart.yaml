@@ -9,7 +9,7 @@ sources:
   - https://registry.hub.docker.com/r/postgis/postgis/
 
 version: 0.4.2
-appVersion: "14-3.3-alpine"
+appVersion: "15-3.3-alpine"
 
 maintainers:
   - email: b.willenborg@tum.de

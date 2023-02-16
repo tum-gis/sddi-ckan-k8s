@@ -8,6 +8,7 @@ A Helm chart for Kubernetes
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| component | string | `"helper"` |  |
 | datastore.auth.ro.password | string | `"changeMe"` | CKAN datastore database read-only password. Note: This values is overwritten by `global.datastore.auth.ro.password`, if set. |
 | datastore.auth.ro.username | string | `"datastore_ro"` | CKAN datastore database read-only username. Note: This values is overwritten by `global.datastore.auth.ro.username`, if set. |
 | datastore.auth.rw.password | string | `"changeMe"` | CKAN datastore database read-write password. Note: This values is overwritten by `global.datastore.auth.rw.password`, if set. |

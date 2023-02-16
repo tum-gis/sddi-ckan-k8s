@@ -1,6 +1,8 @@
 nameOverride: ""
 fullnameOverride: "postgresql-ha-initializer"
+
 enabled: true
+component: helper
 
 db:
   # -- CKAN database host. Note: This values is overwritten by `global.db.host`, if set.

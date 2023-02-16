@@ -39,12 +39,9 @@ spec:
         - name: dshm
           emptyDir:
             medium: Memory
-        # - name: init
-        #   configMap:
-        #     name: {{ include "postgis.fullname" . }}-init
-        - name: custom-init-scripts
+        - name: init
           configMap:
-            name: {{ include "postgresql-ha-initializer.fullname" . }}
+            name: {{ include "postgis.fullname" . }}-init
 
       containers:
         - name: {{ .Chart.Name }}

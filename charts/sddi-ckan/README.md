@@ -27,10 +27,11 @@ Kubernetes: `>= 1.23.0`
 |  | ckan | * |
 |  | datapusher | * |
 |  | postgis | * |
-|  | psqlinit(postgresql-ha-initializer) | * |
+|  | postgresql-ha-initializer | * |
 |  | redis | * |
 |  | solr | * |
-| https://charts.bitnami.com/bitnami | postgresql-ha(postgresql-ha) | <=9.4.11 |
+| https://charts.bitnami.com/bitnami | common | >=2.0.0 |
+| https://charts.bitnami.com/bitnami | postgresql-ha(postgresql-ha) | >=9.4.11 |
 | https://charts.jetstack.io | cert-manager(cert-manager) | ~1.11.0 |
 | https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ~4.4.0 |
 
