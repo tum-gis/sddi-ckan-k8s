@@ -39,9 +39,14 @@ spec:
         - name: dshm
           emptyDir:
             medium: Memory
-        - name: init
+        # - name: init
+        #   configMap:
+        #     name: {{ include "postgis.fullname" . }}-init
+        {{- if .Values.initdbScriptsCM }}
+        - name: custom-init-scripts
           configMap:
-            name: {{ include "postgis.fullname" . }}-init
+            name: {{ .Values.initdbScriptsCM }}
+        {{- end }}
 
       containers:
         - name: {{ .Chart.Name }}
@@ -67,6 +72,11 @@ spec:
               name: dshm
             - mountPath: /docker-entrypoint-initdb.d/
               name: init
+            {{- if .Values.initdbScriptsCM }}
+            - name: custom-init-scripts
+              mountPath: /docker-entrypoint-initdb.d/
+            {{- end }}
+
 
           livenessProbe:
             periodSeconds: 10

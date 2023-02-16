@@ -42,6 +42,7 @@ A Helm chart for sa simple PostGIS database pre-configured for CKAN.
 | image.repository | string | `"postgis/postgis"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
+| initdbScriptsCM | string | `""` |  |
 | loadBalancer.enabled | bool | `false` | Create a LoadBalancer service for external Database access |
 | nameOverride | string | `""` | Override name |
 | nodeSelector | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |

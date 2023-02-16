@@ -81,6 +81,9 @@ datastore:
       # -- CKAN datastore database read-write password. Note: This values is overwritten by `global.datastore.auth.rw.password`, if set.
       password: changeMe
 
+# InitDBScripsCM
+initdbScriptsCM: ""
+
 # -- Extra environment variables for PostGIS.
 extraEnv: {}
 

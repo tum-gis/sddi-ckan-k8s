@@ -1,0 +1,254 @@
+# -- Override name
+nameOverride: ""
+# -- Override fullname
+fullnameOverride: ""
+
+global:
+  ingress:
+    # -- Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
+    # to use in Ingress routes.
+    className: nginx-internal
+    # -- List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress.
+    # Note: All FQDNs will be used for Ingress hosts and TLS certificate.
+    # The global setting overwrites this setting in subcharts.
+    domains:
+      - k8s.gis
+    certManager:
+      # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
+      issuerEmail: me@example.com
+      # -- Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster".
+      issuerType: namespace
+      # -- Name of the Issuer to use. For certManager.type = namespace
+      # `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available.
+      issuerName: self-signed
+
+postgis:
+  enabled: false
+  loadBalancer:
+    enabled: false
+  persistence:
+    enabled: true
+    # Annotations for PVCs
+    annotations:
+      # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
+      # helm.sh/resource-policy: keep
+  nodeSelector:
+    kubernetes.io/hostname: ssd
+
+solr:
+  enabled: true
+
+  image:
+    # repository: ghcr.io/keitaroinc/ckan
+    # tag: ""
+    repository: reg.gitlab.brunowillenborg.de/ckan/solr
+    tag: 2.9-solr8
+    # repository: reg.gitlab.brunowillenborg.de/bruno/ckan
+    # tag: sddi
+    pullPolicy: Always
+
+  imagePullSecrets:
+    - name: ckan-pull-sct
+
+  loadBalancer:
+    enabled: false
+  persistence:
+    enabled: true
+    # Annotations for PVCs
+    annotations:
+      # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
+      # helm.sh/resource-policy: keep
+  nodeSelector:
+    kubernetes.io/hostname: ssd
+
+redis:
+  enabled: true
+
+  persistence:
+    enabled: true
+    # Annotations for PVCs
+    # annotations: {}
+      # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
+      # helm.sh/resource-policy: keep
+  nodeSelector:
+    kubernetes.io/hostname: threadripper
+
+  loadBalancer:
+    enabled: false
+
+ckan:
+  enabled: true
+
+  maxUploadSizeMB: "300"
+
+  persistence:
+    enabled: true
+    accessModes:
+    - ReadWriteMany
+    # Annotations for PVCs
+    annotations:
+      # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
+      # helm.sh/resource-policy: keep
+
+  # plugins: >-
+  #  envvars image_view text_view recline_view datastore datapusher resource_proxy geo_view geojson_view wmts_view shp_view hierarchy_display hierarchy_form hierarchy_group_form scheming_datasets datesearch composite restricted repeating
+
+  #  envvars image_view text_view recline_view datastore datapusher hierarchy_display hierarchy_form
+  #  hierarchy_group_form geo_view geojson_view wmts_view shp_view display_group form_group
+  # plugins: stats text_view image_view recline_view hierarchy_display hierarchy_form
+  # scheming_datasets repeating composite display_group form_group spatial_metadata spatial_query
+  # resource_proxy geojson_view relation disqus temporalsearch userautoaddgroup restricted
+  # gdpr importerexporter
+
+  siteUrl: https://k8s.gis
+
+  image:
+    repository: reg.gitlab.brunowillenborg.de/ckan/sddi-spatial
+    tag: 2.9.7-focal
+
+  imagePullSecrets:
+    - name: ckan-pull-sct
+
+  nodeSelector:
+    kubernetes.io/hostname: threadripper
+
+  resources:
+    limits:
+      cpu: 32000m
+      memory: 32Gi
+    requests:
+      cpu: 2000m
+      memory: 2Gi
+
+  smtp:
+    server: "send.one.com:587"
+    user: "support@brunowillenborg.de"
+    password: "7UWgZKF#i3rlIbPp5k53RvY6lNHX!n"
+    mailFrom: "support@brunowillenborg.de"
+    tls: "enabled"
+    startTls: "false"
+
+  email:
+    activity_streams_email_notifications: True
+
+  extraEnv:
+    CKAN__CSRF_PROTECTION_IGNORE_EXTENSIONS: "true"
+
+  datapusher:
+    # -- See [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings)
+    api_token:
+    # -- This should be set to cluster internal ckan service domain.
+    formats: "csv xls xlsx tsv application/csv application/vnd.ms-excel application/vnd.openxmlform"
+    # -- DataPusher endpoint of CKAN. This should be set to the cluster internal DataPusher service domain.
+    url: http://datapusher:8000/
+    callback_url_base: http://ckan:5000/
+
+  # -- Number of replicas. Only used if autoscaling.enabled = false
+  replicaCount: 1
+  autoscaling:
+    # -- Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods.
+    enabled: true
+    # -- Minimum number of replicas
+    minReplicas: 2
+    # -- Maximum number of replicas
+    maxReplicas: 5
+    # targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+
+  readiness:
+    # Inital delay seconds for the readiness probe
+    initialDelaySeconds: 30
+    #  Check interval for the readiness probe
+    periodSeconds: 10
+    # Failure threshold for the readiness probe
+    failureThreshold: 6
+    # Timeout interval for the readiness probe
+    timeoutSeconds: 10
+  liveness:
+    # Initial delay for the liveness probe
+    initialDelaySeconds: 30
+    # Check interval for the liveness probe
+    periodSeconds: 10
+    # Failure threshold for the liveness probe
+    failureThreshold: 6
+    # Timeout interval for the liveness probe
+    timeoutSeconds: 10
+  startup:
+    # -- Inital delay seconds for the startup probe.
+    initialDelaySeconds: 30
+    # -- Check interval for the startup probe
+    periodSeconds: 10
+    # -- Failure threshold for the startup probe
+    failureThreshold: 60
+    # -- Timeout interval for the startup probe
+    # Note: The CKAN pod may take some time to startup on slow systems, e.g. one
+    # testing clusters. Make sure to set this value high enough to avoid the pod
+    # being restarted before it has fully initialized.
+    timeoutSeconds: 10
+
+datapusher:
+  enabled: true
+
+  replicaCount: 1
+  autoscaling:
+    # -- Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods.
+    enabled: true
+    # -- Minimum number of replicas
+    minReplicas: 2
+    # -- Maximum number of replicas
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 80
+    targetMemoryUtilizationPercentage: 80
+
+  nodeSelector:
+    kubernetes.io/hostname: threadripper
+
+cert-manager:
+  enabled: false
+
+ingress-nginx:
+  enabled: false
+
+postgresql-ha:
+  enabled: true
+
+  global:
+    postgresql:
+      username: postgres
+      password: changeMe
+      database: postgres
+      repmgrUsername: repmgr
+      repmgrPassword: changeMe
+      repmgrDatabase: repmgr
+    pgpool:
+      adminUsername: pool
+      adminPassword: changeMe
+
+  postgresql:
+    replicaCount: 3
+    extraVolumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 512Mi
+      - name: citydb
+        emptyDir: {}
+
+    initdbScripts:
+    01_installPostgis.sql: |
+      -- Create PostGIS extension in default (=CKAN) database
+      CREATE EXTENSION POSTGIS;
+      ALTER VIEW geometry_columns OWNER TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
+      ALTER TABLE spatial_ref_sys OWNER TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
+
+      -- Create datastore users
+      -- read-only
+      CREATE ROLE {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }}
+        NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.password | squote }};
+
+      -- read-write
+      CREATE ROLE {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
+        SUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.password | squote }};
+
+      CREATE DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }} OWNER
+        {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }} ENCODING 'utf-8';
