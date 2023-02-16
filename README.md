@@ -31,9 +31,9 @@ helm repo add sddi-ckan "https://tum-gis.github.io/sddi-ckan-k8s"
 helm repo update
 helm install ckan sddi-ckan/sddi-ckan \
   --atomic --wait -n ckan --create-namespace \
-  --set 'global.ingress.domains={"www.my-sddi-ckan.de"}' \
-  --set 'ckan.siteUrl={"https://www.my-sddi-ckan.de"}' \
-  --set 'global.ingress.issuerEmail=myemailaddress@example.de'
+  --set 'global.ingress.domains={www.my-sddi-ckan.de}' \
+  --set 'ckan.siteUrl=https://www.my-sddi-ckan.de' \
+  --set 'global.ingress.certManager.issuerEmail=myemailaddress@example.de'
 ```
 
 For local testing check out the [examples](examples).
