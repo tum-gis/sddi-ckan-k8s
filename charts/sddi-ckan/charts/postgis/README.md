@@ -1,6 +1,6 @@
 # postgis
 
-![Version: 0.4.2](https://img.shields.io/badge/Version-0.4.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 14-3.3-alpine](https://img.shields.io/badge/AppVersion-14--3.3--alpine-informational?style=flat-square)
+![Version: 0.4.3](https://img.shields.io/badge/Version-0.4.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 14-3.3-alpine](https://img.shields.io/badge/AppVersion-14--3.3--alpine-informational?style=flat-square)
 
 A Helm chart for sa simple PostGIS database pre-configured for CKAN.
 
@@ -33,7 +33,7 @@ A Helm chart for sa simple PostGIS database pre-configured for CKAN.
 | db.auth.password | string | `"changeMe"` | CKAN database username. Note: This values is overwritten by `global.db.auth.password`, if set. |
 | db.auth.username | string | `"ckan"` | CKAN database username. Note: This values is overwritten by `global.db.auth.username`, if set. |
 | db.dbname | string | `"ckan_default"` | CKAN database name. Note: This values is overwritten by `global.db.dbname`, if set. |
-| db.host | string | `"postgis"` | CKAN database host. Note: This values is overwritten by `global.db.host`, if set. |
+| db.host | string | `"postgis-hl"` | CKAN database host. Note: This values is overwritten by `global.db.host`, if set. |
 | db.port | int | `5432` | CKAN database port. Note: This values is overwritten by `global.db.port`, if set. |
 | enabled | bool | `true` | Enable/disable PostGIS database |
 | extraEnv | object | `{}` | Extra environment variables for PostGIS. |
