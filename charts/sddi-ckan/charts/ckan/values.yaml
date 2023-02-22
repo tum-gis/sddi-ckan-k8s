@@ -190,12 +190,29 @@ sysadmin:
   email: user@example.de
 
 session:
-  # -- [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret), if left
-  # empty, a [64 char random AlphaNum}(https://docs.gomplate.ca/functions/random/#random-alphanum) is used.
+  # -- [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret):
+  # If left empty, a [64 char random AlphaNum}(https://docs.gomplate.ca/functions/random/#random-alphanum) is used.
+  # **Note:** In a cluster environment this values need to be the same on each instance.
   beakerSessionSecret:
   # -- [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key),
   # defaults to *ckan* if left empty.
   beakerSessionKey: ckan-session
+
+apiToken:
+  # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-nbytes)
+  nBytes: 64
+  # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-algorithm)
+  algorithm: HS256
+  # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-encode-secret):
+  # If left empty, a random 64 char alpha numberic sring is generate.
+  # **Note:** In a cluster environment it is recommended  to overwrite the default.
+  # Check the docs! Depending on `apiToken.algorithm` additional restricitions apply to this values.
+  encodeSecret:
+  # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-decode-secret):
+  # If left empty, a random 64 char alpha numberic sring is generate.
+  # **Note:** In a cluster environment it is recommended  to overwrite the default.
+  # Check the docs! Depending on `apiToken.algorithm` additional restricitions apply to this values.
+  decodeSecret:
 
 locale:
   # -- CKAN default locale, see

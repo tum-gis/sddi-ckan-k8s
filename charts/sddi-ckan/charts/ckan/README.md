@@ -25,6 +25,10 @@ A Helm chart for SDDI enabled CKAN.
 | activityStreams.emailNotifications | bool | `true` | [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings) |
 | activityStreams.enabled | bool | `true` | [CKAN config enable activity streams](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-activity-streams-enabled) |
 | affinity | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
+| apiToken.algorithm | string | `"HS256"` | [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-algorithm) |
+| apiToken.decodeSecret | string | `nil` | [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-decode-secret): If left empty, a random 64 char alpha numberic sring is generate. **Note:** In a cluster environment it is recommended  to overwrite the default. Check the docs! Depending on `apiToken.algorithm` additional restricitions apply to this values. |
+| apiToken.encodeSecret | string | `nil` | [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-encode-secret): If left empty, a random 64 char alpha numberic sring is generate. **Note:** In a cluster environment it is recommended  to overwrite the default. Check the docs! Depending on `apiToken.algorithm` additional restricitions apply to this values. |
+| apiToken.nBytes | int | `64` | [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-nbytes) |
 | auth.allow_dataset_collaborators | bool | `false` | CKAN authorization settings. See [CKAN configuration docs](https://docs.ckan.org/en/latest/maintaining/configuration.html#authorization-settings). |
 | auth.anon_create_dataset | bool | `false` |  |
 | auth.create_dataset_if_not_in_organization | bool | `false` |  |
@@ -124,7 +128,7 @@ A Helm chart for SDDI enabled CKAN.
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | session.beakerSessionKey | string | `"ckan-session"` | [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key), defaults to *ckan* if left empty. |
-| session.beakerSessionSecret | string | `nil` | [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret), if left empty, a [64 char random AlphaNum}(https://docs.gomplate.ca/functions/random/#random-alphanum) is used. |
+| session.beakerSessionSecret | string | `nil` | [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret): If left empty, a [64 char random AlphaNum}(https://docs.gomplate.ca/functions/random/#random-alphanum) is used. **Note:** In a cluster environment this values need to be the same on each instance. |
 | siteAbout | string | `"My CKAN about info."` | [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about) |
 | siteDescription | string | `"This is my CKAN instance for stuff."` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description) |
 | siteId | string | `"default"` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id) |
