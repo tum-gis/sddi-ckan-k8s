@@ -50,8 +50,6 @@ securityContext: {}
   # runAsUser: 1000
 
 db:
-  # -- CKAN database host. Note: This values is overwritten by `global.db.host`, if set.
-  host: postgis-hl
   # -- CKAN database port. Note: This values is overwritten by `global.db.port`, if set.
   port: 5432
   # -- CKAN database name. Note: This values is overwritten by `global.db.dbname`, if set.
@@ -63,8 +61,6 @@ db:
     password: changeMe
 
 datastore:
-  # -- CKAN datastore database host. Note: This values is overwritten by `global.datastore.host`, if set.
-  host: postgis-hl
   # -- CKAN datastore database port. Note: This values is overwritten by `global.datastore.port`, if set.
   port: 5432
   # -- CKAN datastore database name. Note: This values is overwritten by `global.datastore.dbname`, if set.

@@ -28,12 +28,10 @@ A Helm chart for sa simple PostGIS database pre-configured for CKAN.
 | datastore.auth.rw.password | string | `"changeMe"` | CKAN datastore database read-write password. Note: This values is overwritten by `global.datastore.auth.rw.password`, if set. |
 | datastore.auth.rw.username | string | `"datastore_rw"` | CKAN datastore database read-write username. Note: This values is overwritten by `global.datastore.auth.rw.username`, if set. |
 | datastore.dbname | string | `"datastore"` | CKAN datastore database name. Note: This values is overwritten by `global.datastore.dbname`, if set. |
-| datastore.host | string | `"postgis-hl"` | CKAN datastore database host. Note: This values is overwritten by `global.datastore.host`, if set. |
 | datastore.port | int | `5432` | CKAN datastore database port. Note: This values is overwritten by `global.datastore.port`, if set. |
 | db.auth.password | string | `"changeMe"` | CKAN database username. Note: This values is overwritten by `global.db.auth.password`, if set. |
 | db.auth.username | string | `"ckan"` | CKAN database username. Note: This values is overwritten by `global.db.auth.username`, if set. |
 | db.dbname | string | `"ckan_default"` | CKAN database name. Note: This values is overwritten by `global.db.dbname`, if set. |
-| db.host | string | `"postgis-hl"` | CKAN database host. Note: This values is overwritten by `global.db.host`, if set. |
 | db.port | int | `5432` | CKAN database port. Note: This values is overwritten by `global.db.port`, if set. |
 | enabled | bool | `true` | Enable/disable PostGIS database |
 | extraEnv | object | `{}` | Extra environment variables for PostGIS. |
