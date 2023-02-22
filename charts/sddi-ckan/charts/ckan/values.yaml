@@ -204,14 +204,14 @@ apiToken:
   # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-algorithm)
   algorithm: HS256
   # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-encode-secret):
-  # If left empty, a random 64 char alpha numberic sring is generate.
-  # **Note:** In a cluster environment it is recommended  to overwrite the default.
-  # Check the docs! Depending on `apiToken.algorithm` additional restricitions apply to this values.
+  # If left empty, a random 64 char alpha numberic string is generated.
+  # **Note:** In a production environment the default needs to be overwritten.
+  # Check the docs! Depending on `apiToken.algorithm` additional restricitions apply to this settings.
   encodeSecret:
   # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-decode-secret):
-  # If left empty, a random 64 char alpha numberic sring is generate.
-  # **Note:** In a cluster environment it is recommended  to overwrite the default.
-  # Check the docs! Depending on `apiToken.algorithm` additional restricitions apply to this values.
+  # If left empty, a random 64 char alpha numberic string is generated.
+  # **Note:** In a production environment the default needs to be overwritten.
+  # Check the docs! Depending on `apiToken.algorithm` additional restricitions apply to this settings.
   decodeSecret:
 
 locale:
