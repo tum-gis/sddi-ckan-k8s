@@ -1,5 +1,4 @@
 {{- if .Values.enabled -}}
-{{- if .Values.sysadmin.enabled -}}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -13,5 +12,4 @@ type: Opaque
 stringData:
   CKAN___BEAKER__SESSION_KEY: {{ .Values.session.beakerSessionKey | default "ckan" | quote }}
   CKAN___BEAKER__SESSION__SECRET: {{ .Values.session.beakerSessionSecret | default (randAlphaNum 64) | quote }}
-{{- end -}}
 {{- end -}}

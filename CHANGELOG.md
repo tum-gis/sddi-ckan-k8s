@@ -21,6 +21,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Fixed
 
 - Removed duplicate env var from `ckan-configMap-env.yml`
+- Fixed setting Beaker settings not enabled if sysadmin user creation disabled
 
 ### Security
 
