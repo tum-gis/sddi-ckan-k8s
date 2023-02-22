@@ -6,9 +6,10 @@ type: application
 home: https://github.com/tum-gis/sddi-ckan-k8s/
 sources:
   - https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/ckan
+  - https://github.com/tum-gis/ckan-docker
   - https://github.com/keitaroinc/docker-ckan
 
-version: 0.7.1
+version: 0.8.0
 appVersion: "0.0.2"
 
 maintainers:

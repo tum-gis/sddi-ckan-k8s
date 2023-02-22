@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 0.7.1](https://img.shields.io/badge/Version-0.7.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
+![Version: 0.8.0](https://img.shields.io/badge/Version-0.8.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
 
 A Helm chart for SDDI enabled CKAN.
 
@@ -15,6 +15,7 @@ A Helm chart for SDDI enabled CKAN.
 ## Source Code
 
 * <https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/ckan>
+* <https://github.com/tum-gis/ckan-docker>
 * <https://github.com/keitaroinc/docker-ckan>
 
 ## Values
