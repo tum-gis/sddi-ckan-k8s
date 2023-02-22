@@ -8,24 +8,20 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
-## [unreleased] - YYYY-MM-DD
+## [sddi-ckan-0.4.0] - 2320-02-22
 
 ### Added
 
+- Expose [CKAN API token](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-settings) setting
+
 ### Changed
 
-- Minor change to PostGIS default values
-
-### Removed
+- Removed unused values for PostGIS
 
 ### Fixed
 
 - Removed duplicate env var from `ckan-configMap-env.yml`
 - Fixed setting Beaker settings not enabled if sysadmin user creation disabled
-
-### Security
-
-### Deprecated
 
 ## [sddi-ckan-0.3.2] - 2023-02-14
 
@@ -111,6 +107,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Deprecated
 
+[sddi-ckan-0.4.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.3.2...sddi-ckan-0.4.0
 [sddi-ckan-0.3.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.3.1...sddi-ckan-0.3.2
 [sddi-ckan-0.3.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.3.0...sddi-ckan-0.3.1
 [sddi-ckan-0.3.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.2.2...sddi-ckan-0.3.0
