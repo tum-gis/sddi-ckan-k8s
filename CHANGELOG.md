@@ -17,6 +17,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Changed
 
 - Removed unused values for PostGIS
+- Some minor docs changes
 
 ### Fixed
 
