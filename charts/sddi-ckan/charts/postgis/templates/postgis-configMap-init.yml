@@ -19,19 +19,55 @@ data:
     psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
 
     -- CKAN role
-    CREATE ROLE {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }}
-      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
-      PASSWORD {{ .Values.global.db.auth.password | default .Values.db.auth.password | squote }};
+    DO
+    \$do\$
+    BEGIN
+      IF EXISTS (
+          SELECT FROM pg_catalog.pg_roles
+          WHERE  rolname = {{ .Values.global.db.auth.username | default .Values.db.auth.username | squote }}) THEN
+
+          RAISE NOTICE 'Role {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }} already exists. Skipping.';
+      ELSE
+        CREATE ROLE {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }}
+          NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+          PASSWORD {{ .Values.global.db.auth.password | default .Values.db.auth.password | squote }};
+      END IF;
+    END
+    \$do\$;
 
     -- Datastore RW
-    CREATE ROLE {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
-      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
-      PASSWORD {{ .Values.global.datastore.auth.rw.password | default .Values.datastore.auth.rw.password | squote }};
+    DO
+    \$do\$
+    BEGIN
+      IF EXISTS (
+          SELECT FROM pg_catalog.pg_roles
+          WHERE  rolname = {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | squote }}) THEN
+
+          RAISE NOTICE 'Role {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }} already exists. Skipping.';
+      ELSE
+        CREATE ROLE {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
+          NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+          PASSWORD {{ .Values.global.datastore.auth.rw.password | default .Values.datastore.auth.rw.password | squote }};
+      END IF;
+    END
+    \$do\$;
 
     -- Datastore RO
-    CREATE ROLE {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }}
-      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
-      PASSWORD {{ .Values.global.datastore.auth.ro.password | default .Values.datastore.auth.ro.password | squote }};
+    DO
+    \$do\$
+    BEGIN
+      IF EXISTS (
+          SELECT FROM pg_catalog.pg_roles
+          WHERE  rolname = {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | squote }}) THEN
+
+          RAISE NOTICE 'Role {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }} already exists. Skipping.';
+      ELSE
+        CREATE ROLE {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }}
+          NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+          PASSWORD {{ .Values.global.datastore.auth.ro.password | default .Values.datastore.auth.ro.password | squote }};
+      END IF;
+    END
+    \$do\$;
 
     EOSQL
 
@@ -44,17 +80,26 @@ data:
     echo "Create databases..."
 
     export PGPASSWORD="$POSTGRES_PASSWORD"
+
+    # CKAN database
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" -tc \
+      "SELECT 1 FROM pg_database WHERE datname = {{ .Values.global.db.dbname | default .Values.db.dbname | squote }}" | grep -q 1 || \
+      psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+
+      CREATE DATABASE {{ .Values.global.db.dbname | default .Values.db.dbname | quote }}
+      OWNER {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }}
+      ENCODING 'utf-8';
+
+    EOSQL
+
+    # Datastore database
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" -tc \
+      "SELECT 1 FROM pg_database WHERE datname = {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | squote }}" | grep -q 1 || \
     psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
 
-    -- CKAN database
-    CREATE DATABASE {{ .Values.global.db.dbname | default .Values.db.dbname | quote }}
-    OWNER {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }}
-    ENCODING 'utf-8';
-
-    -- Datastore database
-    CREATE DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
-    OWNER {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
-    ENCODING 'utf-8';
+      CREATE DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
+      OWNER {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
+      ENCODING 'utf-8';
 
     EOSQL
 
