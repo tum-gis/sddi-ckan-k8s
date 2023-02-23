@@ -8,9 +8,7 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
-## [unreleased] - YYYY-MM-DD
-
-### Added
+## [sddi-ckan-0.5.0] - 2023-03-23
 
 ### Changed
 
@@ -18,17 +16,10 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 - Update PostGIS chart to PostgreSQL 15, PostGIS 3.3
 - Reworked database initialization scripts
   - Made role and database creation idempotent
-- DB users for CKAN and datastore databases are no longer superusers.
-  Separate credentials for the postgres database superuser can now be
-  specified in values.
-
-### Removed
-
-### Fixed
-
-### Security
-
-### Deprecated
+  - DB users for CKAN and datastore databases are no longer superusers.
+    Separate credentials for the postgres database superuser can now be
+    specified
+- Set chart `appVersion` according to CKAN SDDI image version
 
 ## [sddi-ckan-0.4.0] - 2320-02-22
 
@@ -130,6 +121,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Deprecated
 
+[sddi-ckan-0.5.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.4.0...sddi-ckan-0.5.0
 [sddi-ckan-0.4.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.3.2...sddi-ckan-0.4.0
 [sddi-ckan-0.3.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.3.1...sddi-ckan-0.3.2
 [sddi-ckan-0.3.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.3.0...sddi-ckan-0.3.1
