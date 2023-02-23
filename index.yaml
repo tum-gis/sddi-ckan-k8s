@@ -2,6 +2,61 @@ apiVersion: v1
 entries:
   sddi-ckan:
   - apiVersion: v2
+    appVersion: 0.0.2
+    created: "2023-02-23T15:00:54.963092198Z"
+    dependencies:
+    - condition: postgis.enabled
+      name: postgis
+      repository: ""
+      version: '*'
+    - condition: solr.enabled
+      name: solr
+      repository: ""
+      version: '*'
+    - condition: redis.enabled
+      name: redis
+      repository: ""
+      version: '*'
+    - condition: ckan.enabled
+      name: ckan
+      repository: ""
+      version: '*'
+    - condition: datapusher.enabled
+      name: datapusher
+      repository: ""
+      version: '*'
+    - condition: certIssuer.enabled
+      name: certIssuer
+      repository: ""
+      version: '*'
+    - alias: ingress-nginx
+      condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: ~4.4.0
+    - alias: cert-manager
+      condition: cert-manager.enabled
+      name: cert-manager
+      repository: https://charts.jetstack.io
+      version: ~1.11.0
+    description: 'Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md)
+      for changes. '
+    digest: bc369a626a7f876ef5a59f30ecd8fceb8ed943ecf0d7832d7063e815fd4a7d5d
+    home: https://github.com/tum-gis/sddi-ckan-k8s
+    kubeVersion: '>= 1.23.0'
+    maintainers:
+    - email: b.willenborg@tum.de
+      name: Bruno Willenborg
+      url: https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/
+    name: sddi-ckan
+    sources:
+    - https://github.com/tum-gis/sddi-ckan-k8s
+    - https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure
+    type: application
+    urls:
+    - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-0.5.0/sddi-ckan-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v2
     appVersion: 0.0.1
     created: "2023-02-22T13:58:06.183674327Z"
     dependencies:
@@ -438,4 +493,4 @@ entries:
     urls:
     - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-0.1.0/sddi-ckan-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-22T13:58:06.183703529Z"
+generated: "2023-02-23T15:00:54.963254999Z"
