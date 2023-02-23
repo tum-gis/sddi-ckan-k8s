@@ -112,7 +112,8 @@ ingress:
       secure: "false"
 
 # General settings
-# -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`.
+# -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`
+# and include the protocol e.g. (`https://my.domain.de`).
 # [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url)
 siteUrl: https://my-ckan.de
 # -- Title of the CKAN instance, displayed in Browser windows/tab name
