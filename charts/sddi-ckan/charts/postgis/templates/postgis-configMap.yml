@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: database
 data:
-  POSTGRES_DB: {{ .Values.global.db.dbname | default .Values.db.dbname | quote }}
+  POSTGRES_DB: {{ .Values.global.db.postgresDbname | default .Values.db.postgresDbname | quote }}
   PGDATA: "{{ .Values.persistence.mountPath }}{{ .Values.persistence.pgdataSubPath }}"
   {{- with .Values.extraEnv }}
     {{- toYaml . | nindent 2 }}

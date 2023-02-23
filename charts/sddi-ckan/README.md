@@ -1,6 +1,6 @@
 # sddi-ckan
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
 
 Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md) for changes.
 
@@ -40,18 +40,21 @@ Kubernetes: `>= 1.23.0`
 | certIssuer.enabled | bool | `true` | Enable/disable namespace Issuers for cert-manager. |
 | datapusher.enabled | bool | `true` | Enable/disable Datapusher |
 | fullnameOverride | string | `""` | Override fullname |
-| global.datastore.auth.ro.password | string | `"changeMe"` | CKAN datastore database read-only password. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
-| global.datastore.auth.ro.username | string | `"datastore_ro"` | CKAN datastore database read-only username. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
-| global.datastore.auth.rw.password | string | `"changeMe"` | CKAN datastore database read-write password. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
-| global.datastore.auth.rw.username | string | `"datastore_rw"` | CKAN datastore database read-write username. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
-| global.datastore.dbname | string | `"datastore"` | CKAN datastore database name. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
-| global.datastore.host | string | `"postgis-hl"` | CKAN datastore database host. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
-| global.datastore.port | int | `5432` | CKAN datastore database port. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
-| global.db.auth.password | string | `"changeMe"` | Database password of the ro user. Database RO username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
-| global.db.auth.username | string | `"ckan"` | Database password of the ro user. Database RO username for CKAN and CKAN datastore DB. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
-| global.db.dbname | string | `"ckan_default"` | Database name. This is used in database charts for CKAN database initialization. If set, this values will overwrite the value in the database chart. |
-| global.db.host | string | `"postgis-hl"` | CKAN database host. |
-| global.db.port | int | `5432` | CKAN database port. |
+| global.datastore.auth.ro.password | string | `"changeMe"` | CKAN datastore database read-only password. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
+| global.datastore.auth.ro.username | string | `"datastore_ro"` | CKAN datastore database read-only username. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
+| global.datastore.auth.rw.password | string | `"changeMe"` | CKAN datastore database read-write password. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
+| global.datastore.auth.rw.username | string | `"datastore_rw"` | CKAN datastore database read-write username. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
+| global.datastore.dbname | string | `"datastore"` | CKAN datastore database name. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
+| global.datastore.host | string | `"postgis-hl"` | CKAN datastore database host. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
+| global.datastore.port | int | `5432` | CKAN datastore database port. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
+| global.db.auth.password | string | `"changeMe"` | Database password for the CKAN database user. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
+| global.db.auth.postgresPassword | string | `"changeMe"` | Postgres database password. This is the password of the database superuser. Used to set `POSTGRES_PASSWORD`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/) for more. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
+| global.db.auth.postgresUsername | string | `"postgres"` | Postgres database username. This is the username of the database superuser. Used to set `POSTGRES_USERNAME`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/) for more. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
+| global.db.auth.username | string | `"ckan"` | Database username for the CKAN database. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
+| global.db.dbname | string | `"ckan_default"` | Database name of the CKAN database. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
+| global.db.host | string | `"postgis-hl"` | Database host of the CKAN database. |
+| global.db.port | int | `5432` | Database port of the CKAN database. |
+| global.db.postgresDbname | string | `"postgres"` | Postgres database username. This is the name of the default superuser database. Used to set `POSTGRES_DB`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/) for more. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
 | global.ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
 | global.ingress.certManager.issuerName | string | `"letsencrypt-staging"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available. |
 | global.ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |

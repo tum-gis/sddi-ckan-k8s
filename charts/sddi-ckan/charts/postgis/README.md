@@ -1,6 +1,6 @@
 # postgis
 
-![Version: 0.4.3](https://img.shields.io/badge/Version-0.4.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 14-3.3-alpine](https://img.shields.io/badge/AppVersion-14--3.3--alpine-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 15-3.3-alpine](https://img.shields.io/badge/AppVersion-15--3.3--alpine-informational?style=flat-square)
 
 A Helm chart for sa simple PostGIS database pre-configured for CKAN.
 
@@ -28,11 +28,13 @@ A Helm chart for sa simple PostGIS database pre-configured for CKAN.
 | datastore.auth.rw.password | string | `"changeMe"` | CKAN datastore database read-write password. Note: This values is overwritten by `global.datastore.auth.rw.password`, if set. |
 | datastore.auth.rw.username | string | `"datastore_rw"` | CKAN datastore database read-write username. Note: This values is overwritten by `global.datastore.auth.rw.username`, if set. |
 | datastore.dbname | string | `"datastore"` | CKAN datastore database name. Note: This values is overwritten by `global.datastore.dbname`, if set. |
-| datastore.port | int | `5432` | CKAN datastore database port. Note: This values is overwritten by `global.datastore.port`, if set. |
-| db.auth.password | string | `"changeMe"` | CKAN database username. Note: This values is overwritten by `global.db.auth.password`, if set. |
-| db.auth.username | string | `"ckan"` | CKAN database username. Note: This values is overwritten by `global.db.auth.username`, if set. |
-| db.dbname | string | `"ckan_default"` | CKAN database name. Note: This values is overwritten by `global.db.dbname`, if set. |
-| db.port | int | `5432` | CKAN database port. Note: This values is overwritten by `global.db.port`, if set. |
+| db.auth.password | string | `"changeMe"` | Database password for the CKAN database user. Note: This values is overwritten by `global.db.auth.password`, if set. |
+| db.auth.postgresPassword | string | `"changeMe"` | Postgres database password. This is the password of the database superuser. Used to set `POSTGRES_PASSWORD`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/) for more. Note: This values is overwritten by `global.db.auth.postgresPassword`, if set. |
+| db.auth.postgresUsername | string | `"postgres"` | Postgres database username. This is the username of the database superuser. Used to set `POSTGRES_USERNAME`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/) for more. Note: This values is overwritten by `global.db.auth.postgresUsername`, if set. |
+| db.auth.username | string | `"ckan"` | Database username for the CKAN database. Note: This values is overwritten by `global.db.auth.username`, if set. |
+| db.dbname | string | `"ckan_default"` | Database name of the CKAN database. Note: This values is overwritten by `global.db.dbname`, if set. |
+| db.port | int | `5432` | Database port. Note: This values is overwritten by `global.db.port`, if set. |
+| db.postgresDbname | string | `"postgres"` | Postgres database username. This is the name of the default superuser database. Used to set `POSTGRES_DB`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/) for more. Note: This values is overwritten by `global.db.postgresDbname`, if set. |
 | enabled | bool | `true` | Enable/disable PostGIS database |
 | extraEnv | object | `{}` | Extra environment variables for PostGIS. |
 | fullnameOverride | string | `"postgis"` | Override fullname |

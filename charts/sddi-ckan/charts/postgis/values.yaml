@@ -50,31 +50,51 @@ securityContext: {}
   # runAsUser: 1000
 
 db:
-  # -- CKAN database port. Note: This values is overwritten by `global.db.port`, if set.
+  # -- Database port. Note: This values is overwritten by `global.db.port`, if set.
   port: 5432
-  # -- CKAN database name. Note: This values is overwritten by `global.db.dbname`, if set.
+  # -- Database name of the CKAN database.
+  # Note: This values is overwritten by `global.db.dbname`, if set.
   dbname: ckan_default
+  # -- Postgres database username. This is the name of the default superuser database.
+  # Used to set `POSTGRES_DB`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/)
+  # for more.
+  # Note: This values is overwritten by `global.db.postgresDbname`, if set.
+  postgresDbname: postgres
   auth:
-    # -- CKAN database username. Note: This values is overwritten by `global.db.auth.username`, if set.
+    # -- Database username for the CKAN database.
+    # Note: This values is overwritten by `global.db.auth.username`, if set.
     username: ckan
-    # -- CKAN database username. Note: This values is overwritten by `global.db.auth.password`, if set.
+    # -- Database password for the CKAN database user.
+    # Note: This values is overwritten by `global.db.auth.password`, if set.
     password: changeMe
+    # -- Postgres database username. This is the username of the database superuser.
+    # Used to set `POSTGRES_USERNAME`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/)
+    # for more.
+    # Note: This values is overwritten by `global.db.auth.postgresUsername`, if set.
+    postgresUsername: postgres
+    # -- Postgres database password. This is the password of the database superuser.
+    # Used to set `POSTGRES_PASSWORD`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/)
+    # for more.
+    # Note: This values is overwritten by `global.db.auth.postgresPassword`, if set.
+    postgresPassword: changeMe
 
 datastore:
-  # -- CKAN datastore database port. Note: This values is overwritten by `global.datastore.port`, if set.
-  port: 5432
   # -- CKAN datastore database name. Note: This values is overwritten by `global.datastore.dbname`, if set.
   dbname: datastore
   auth:
     ro:
-      # -- CKAN datastore database read-only username. Note: This values is overwritten by `global.datastore.auth.ro.username`, if set.
+      # -- CKAN datastore database read-only username.
+      # Note: This values is overwritten by `global.datastore.auth.ro.username`, if set.
       username: datastore_ro
-      # -- CKAN datastore database read-only password. Note: This values is overwritten by `global.datastore.auth.ro.password`, if set.
+      # -- CKAN datastore database read-only password.
+      # Note: This values is overwritten by `global.datastore.auth.ro.password`, if set.
       password: changeMe
     rw:
-      # -- CKAN datastore database read-write username. Note: This values is overwritten by `global.datastore.auth.rw.username`, if set.
+      # -- CKAN datastore database read-write username.
+      # Note: This values is overwritten by `global.datastore.auth.rw.username`, if set.
       username: datastore_rw
-      # -- CKAN datastore database read-write password. Note: This values is overwritten by `global.datastore.auth.rw.password`, if set.
+      # -- CKAN datastore database read-write password.
+      # Note: This values is overwritten by `global.datastore.auth.rw.password`, if set.
       password: changeMe
 
 # -- Extra environment variables for PostGIS.

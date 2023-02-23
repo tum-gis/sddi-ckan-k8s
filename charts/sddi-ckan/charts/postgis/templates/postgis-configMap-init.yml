@@ -9,21 +9,73 @@ metadata:
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
 data:
-  initdb.sql: |-
-    -- Create PostGIS extension in default (=CKAN) database
-    CREATE EXTENSION POSTGIS;
+  01_createRoles.sh: |
+    #!/bin/bash
+    set -e
+
+    echo "create roles..."
+
+    export PGPASSWORD="$POSTGRES_PASSWORD"
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+
+    -- CKAN role
+    CREATE ROLE {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }}
+      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+      PASSWORD {{ .Values.global.db.auth.password | default .Values.db.auth.password | squote }};
+
+    -- Datastore RW
+    CREATE ROLE {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
+      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+      PASSWORD {{ .Values.global.datastore.auth.rw.password | default .Values.datastore.auth.rw.password | squote }};
+
+    -- Datastore RO
+    CREATE ROLE {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }}
+      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+      PASSWORD {{ .Values.global.datastore.auth.ro.password | default .Values.datastore.auth.ro.password | squote }};
+
+    EOSQL
+
+    echo "Create roles...done!"
+
+  02_createDatabases.sh: |
+    #!/bin/bash
+    set -e
+
+    echo "Create databases..."
+
+    export PGPASSWORD="$POSTGRES_PASSWORD"
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+
+    -- CKAN database
+    CREATE DATABASE {{ .Values.global.db.dbname | default .Values.db.dbname | quote }}
+    OWNER {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }}
+    ENCODING 'utf-8';
+
+    -- Datastore database
+    CREATE DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
+    OWNER {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
+    ENCODING 'utf-8';
+
+    EOSQL
+
+    echo "Create databases...done!"
+
+  03_createPostGIS.sh: |
+    #!/bin/bash
+    set -e
+
+    echo "Create PostGIS..."
+
+    export PGPASSWORD="$POSTGRES_PASSWORD"
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" \
+      --dbname {{ .Values.global.db.dbname | default .Values.db.dbname | quote }} <<-EOSQL
+
+    CREATE EXTENSION postgis;
     ALTER VIEW geometry_columns OWNER TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
     ALTER TABLE spatial_ref_sys OWNER TO {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }};
 
-    -- Create datastore users
-    -- read-only
-    CREATE ROLE {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }}
-      NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.ro.password | default .Values.datastore.auth.ro.password | squote }};
+    EOSQL
 
-    -- read-write
-    CREATE ROLE {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
-      SUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD {{ .Values.global.datastore.auth.rw.password | default .Values.datastore.auth.rw.password | squote }};
+    echo "Create PostGIS...done!"
 
-    CREATE DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }} OWNER
-      {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }} ENCODING 'utf-8';
 {{- end -}}

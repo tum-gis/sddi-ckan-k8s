@@ -15,6 +15,11 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Changed
 
 - Minor docs update for CKAN api token values
+- Update PostGIS chart to PostgreSQL 15, PostGIS 3.3
+- Reworked database initialization scripts
+- DB users for CKAN and datastore databases are no longer superusers.
+  Separate credentials for the postgres database superuser can now be
+  specified in values.
 
 ### Removed
 

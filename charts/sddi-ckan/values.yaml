@@ -23,53 +23,73 @@ global:
       issuerName: letsencrypt-staging
 
   db:
-    # -- CKAN database host.
+    # -- Database host of the CKAN database.
     host: postgis-hl
-    # -- CKAN database port.
+    # -- Database port of the CKAN database.
     port: 5432
-    # -- Database name. This is used in database charts for CKAN database initialization.
-    # If set, this values will overwrite the value in the database chart.
+    # -- Database name of the CKAN database.
+    # This is used in the PostGIS chart for database initialization.
+    # If set, this values will overwrite the value in the PostGIS chart.
     dbname: ckan_default
+    # -- Postgres database username. This is the name of the default superuser database.
+    # Used to set `POSTGRES_DB`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/)
+    # for more.
+    # This is used in the PostGIS chart for database initialization.
+    # If set, this values will overwrite the value in the PostGIS chart.
+    postgresDbname: postgres
     auth:
-      # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
-      # This is used in database charts for CKAN database initialization.
-      # If set, this values will overwrite the value in the database chart.
+      # -- Database username for the CKAN database.
+      # This is used in the PostGIS chart for database initialization.
+      # If set, this values will overwrite the value in the PostGIS chart.
       username: ckan
-      # -- Database password of the ro user. Database RO username for CKAN and CKAN datastore DB.
-      # This is used in database charts for CKAN database initialization.
-      # If set, this values will overwrite the value in the database chart.
+      # -- Database password for the CKAN database user.
+      # This is used in the PostGIS chart for database initialization.
+      # If set, this values will overwrite the value in the PostGIS chart.
       password: changeMe
+      # -- Postgres database username. This is the username of the database superuser.
+      # Used to set `POSTGRES_USERNAME`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/)
+      # for more.
+      # This is used in the PostGIS chart for database initialization.
+      # If set, this values will overwrite the value in the PostGIS chart.
+      postgresUsername: postgres
+      # -- Postgres database password. This is the password of the database superuser.
+      # Used to set `POSTGRES_PASSWORD`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/)
+      # for more.
+      # This is used in the PostGIS chart for database initialization.
+      # If set, this values will overwrite the value in the PostGIS chart.
+      postgresPassword: changeMe
+
   datastore:
     # -- CKAN datastore database host.
-    # This is used in database charts for CKAN database initialization.
-    # If set, this values will overwrite the value in the database chart.
+    # This is used in the PostGIS chart for database initialization.
+    # If set, this values will overwrite the value in the PostGIS chart.
     host: postgis-hl
     # -- CKAN datastore database port.
-    # This is used in database charts for CKAN database initialization.
-    # If set, this values will overwrite the value in the database chart.
+    # This is used in the PostGIS chart for database initialization.
+    # If set, this values will overwrite the value in the PostGIS chart.
     port: 5432
     # -- CKAN datastore database name.
-    # This is used in database charts for CKAN database initialization.
-    # If set, this values will overwrite the value in the database chart.
+    # This is used in the PostGIS chart for database initialization.
+    # If set, this values will overwrite the value in the PostGIS chart.
     dbname: datastore
     auth:
-      ro:
-        # -- CKAN datastore database read-only username.
-        # This is used in database charts for CKAN database initialization.
-        # If set, this values will overwrite the value in the database chart.
-        username: datastore_ro
-        # -- CKAN datastore database read-only password.
-        # This is used in database charts for CKAN database initialization.
-        # If set, this values will overwrite the value in the database chart.
-        password: changeMe
       rw:
         # -- CKAN datastore database read-write username.
-        # This is used in database charts for CKAN database initialization.
-        # If set, this values will overwrite the value in the database chart.
+        # This is used in the PostGIS chart for database initialization.
+        # If set, this values will overwrite the value in the PostGIS chart.
         username: datastore_rw
         # -- CKAN datastore database read-write password.
-        # This is used in database charts for CKAN database initialization.
-        # If set, this values will overwrite the value in the database chart.
+        # This is used in the PostGIS chart for database initialization.
+        # If set, this values will overwrite the value in the PostGIS chart.
+        password: changeMe
+      ro:
+        # -- CKAN datastore database read-only username.
+        # This is used in the PostGIS chart for database initialization.
+        # If set, this values will overwrite the value in the PostGIS chart.
+        username: datastore_ro
+        # -- CKAN datastore database read-only password.
+        # This is used in the PostGIS chart for database initialization.
+        # If set, this values will overwrite the value in the PostGIS chart.
         password: changeMe
 
 postgis:
