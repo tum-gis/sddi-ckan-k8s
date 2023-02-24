@@ -13,7 +13,7 @@ data:
     #!/bin/bash
     set -e
 
-    echo "create roles..."
+    echo "Create roles..."
 
     export PGPASSWORD="$POSTGRES_PASSWORD"
     psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
@@ -69,6 +69,23 @@ data:
     END
     \$do\$;
 
+    -- Datapusher
+    DO
+    \$do\$
+    BEGIN
+      IF EXISTS (
+          SELECT FROM pg_catalog.pg_roles
+          WHERE  rolname = {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | squote }}) THEN
+
+          RAISE NOTICE 'Role {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username  | quote }} already exists. Skipping.';
+      ELSE
+        CREATE ROLE {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | quote }}
+          NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+          PASSWORD {{ .Values.global.datapusher.db.auth.password | default .Values.datapusher.auth.password  | squote }};
+      END IF;
+    END
+    \$do\$;
+
     EOSQL
 
     echo "Create roles...done!"
@@ -99,6 +116,17 @@ data:
 
       CREATE DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
       OWNER {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
+      ENCODING 'utf-8';
+
+    EOSQL
+
+    # Datapusher jobs database
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" -tc \
+      "SELECT 1 FROM pg_database WHERE datname = {{ .Values.global.datapusher.db.dbname | default .Values.datapusher.dbname | squote }}" | grep -q 1 || \
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+
+      CREATE DATABASE {{ .Values.global.datapusher.db.dbname | default .Values.datapusher.dbname | quote }}
+      OWNER {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username  | quote }}
       ENCODING 'utf-8';
 
     EOSQL

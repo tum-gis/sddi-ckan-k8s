@@ -40,6 +40,12 @@ Kubernetes: `>= 1.23.0`
 | certIssuer.enabled | bool | `true` | Enable/disable namespace Issuers for cert-manager. |
 | datapusher.enabled | bool | `true` | Enable/disable Datapusher |
 | fullnameOverride | string | `""` | Override fullname |
+| global.datapusher.db.auth.password | string | `"changeMe"` |  |
+| global.datapusher.db.auth.username | string | `"datapusher"` |  |
+| global.datapusher.db.dbname | string | `"datapusher_jobs"` |  |
+| global.datapusher.db.enabled | bool | `false` |  |
+| global.datapusher.db.host | string | `"postgis"` |  |
+| global.datapusher.db.port | int | `5432` |  |
 | global.datastore.auth.ro.password | string | `"changeMe"` | CKAN datastore database read-only password. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
 | global.datastore.auth.ro.username | string | `"datastore_ro"` | CKAN datastore database read-only username. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
 | global.datastore.auth.rw.password | string | `"changeMe"` | CKAN datastore database read-write password. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |

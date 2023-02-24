@@ -30,9 +30,16 @@ A Helm chart for CKAN Datapusher.
 | autoscaling.targetMemoryUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | chunkSize | string | `"16384"` | Size of chunks of the data that is being downloaded in bytes |
 | component | string | `"datapusher"` | Role of CKAN Datapusher in this chart |
+| databaseUri | string | `"sqlite:////srv/app/job_store.db"` | SQLAlchemy Database URL for job store, see [Datapusher config](https://github.com/ckan/datapusher#datapusher-configuration) for more. Note: If `db.enabled` this setting is ignored. |
 | datapusherRewriteResources | string | `"True"` | Enable or disable (boolean) whether Datapusher should rewrite resources uploaded to CKAN's filestore, since Datapusher takes the CKAN Site URL value for generating the resource URL. Default: False |
 | datapusherRewriteUrl | string | `"http://ckan:5000/"` | Sets the rewrite URL that Datapusher will rewrite resources that are uploaded to CKAN's filestore. Default: http://ckan:5000 |
 | datapusherSslVerify | string | `"False"` | Enable or disable (boolean) verification of SSL when trying to get resources. Default: True |
+| db.auth.password | string | `nil` |  |
+| db.auth.username | string | `nil` |  |
+| db.dbname | string | `nil` |  |
+| db.enabled | bool | `false` | Enable/disable Datapusher jobs database backend. If set to false, `databaseUri` is used. |
+| db.host | string | `nil` | Host of the Datapusher Jobs database |
+| db.port | string | `nil` |  |
 | downloadTimeout | string | `"30"` | Timeout limit of the download request |
 | enabled | bool | `true` | Enable/disable CKAN Datapusher |
 | extraEnv | object | `{}` | Extra environment variables. Values need to be quoted. This can be used to overwrite or extend [CKAN settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-configuration-file). See [ckanext-envvars](https://github.com/okfn/ckanext-envvars) for variable naming conventions. |

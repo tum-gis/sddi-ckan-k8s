@@ -89,6 +89,22 @@ datapusherRewriteResources: "True"
 # -- Sets the rewrite URL that Datapusher will rewrite resources that are uploaded to CKAN's filestore.
 # Default: http://ckan:5000
 datapusherRewriteUrl: http://ckan:5000/
+# -- SQLAlchemy Database URL for job store, see
+# [Datapusher config](https://github.com/ckan/datapusher#datapusher-configuration) for more.
+# Note: If `db.enabled` this setting is ignored.
+databaseUri: 'sqlite:////srv/app/job_store.db'
+
+db:
+  # -- Enable/disable Datapusher jobs database backend.
+  # If set to false, `databaseUri` is used.
+  enabled: false
+  # -- Host of the Datapusher Jobs database
+  host:
+  port:
+  dbname:
+  auth:
+    username:
+    password:
 
 resources:
   limits:

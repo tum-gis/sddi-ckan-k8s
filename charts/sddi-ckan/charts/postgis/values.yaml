@@ -97,6 +97,14 @@ datastore:
       # Note: This values is overwritten by `global.datastore.auth.rw.password`, if set.
       password: changeMe
 
+datapusher:
+  host: postgis
+  port: 5432
+  dbname: datapusher_jobs
+  auth:
+    username: datapusher
+    password: changeMe
+
 # -- Extra environment variables for PostGIS.
 extraEnv: {}
 

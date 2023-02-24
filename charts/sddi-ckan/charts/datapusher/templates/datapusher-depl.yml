@@ -20,6 +20,7 @@ spec:
     metadata:
       annotations:
         checksum/configmap: {{ include (print $.Template.BasePath "/datapusher-configMap.yml") . | sha256sum }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/datapusher-sct-db.yml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -54,6 +55,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "datapusher.fullname" . }}
+            - secretRef:
+                name: {{ include "datapusher.fullname" . }}-sct-db
 
           livenessProbe:
             httpGet:
