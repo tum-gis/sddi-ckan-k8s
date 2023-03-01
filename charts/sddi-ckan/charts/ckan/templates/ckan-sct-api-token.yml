@@ -15,4 +15,5 @@ stringData:
   CKAN___API_TOKEN__JWT__ALGORITHM: {{ .Values.apiToken.algorithm | quote }}
   CKAN___API_TOKEN__JWT__ENCODE__SECRET: {{ .Values.apiToken.encodeSecret | default $defaultAPIToken | quote }}
   CKAN___API_TOKEN__JWT__DECODE__SECRET: {{ .Values.apiToken.decodeSecret | default $defaultAPIToken | quote }}
+  CKAN__DATAPUSHER__API_TOKEN: {{ .Values.datapusher.apiToken | quote }}
 {{- end -}}

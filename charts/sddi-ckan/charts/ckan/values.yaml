@@ -327,8 +327,9 @@ solr:
 
 # DataPusher ------------------------------------------------------------------
 datapusher:
-  # -- See [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings)
-  api_token:
+  # -- Datapusher API token, see
+  # [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings)
+  apiToken:
   # -- This should be set to cluster internal ckan service domain.
   # # -- [CKAN DataPusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-datapusher-callback-url-base)
   callback_url_base: http://ckan:5000/
