@@ -265,7 +265,7 @@ persistence:
 db:
   # -- CKAN database host, used to build `sqlalchemy.url` see
   # [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings)
-  host: postgis-hl
+  host: postgis
   # -- CKAN database port, used to build `sqlalchemy.url` see
   # [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings)
   port: 5432
@@ -284,7 +284,7 @@ db:
 datastore:
   # -- CKAN datastore host, used to build `ckan.datastore.read/write_url` see
   # [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings)
-  host: postgis-hl
+  host: postgis
     # -- CKAN datastore port, used to build `ckan.datastore.read/write_url` see
   # [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings)
   port: 5432

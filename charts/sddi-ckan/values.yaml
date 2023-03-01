@@ -24,7 +24,7 @@ global:
 
   db:
     # -- Database host of the CKAN database.
-    host: postgis-hl
+    host: postgis
     # -- Database port of the CKAN database.
     port: 5432
     # -- Database name of the CKAN database.
@@ -63,7 +63,7 @@ global:
     # -- CKAN datastore database host.
     # This is used in the PostGIS chart for database initialization.
     # If set, this values will overwrite the value in the PostGIS chart.
-    host: postgis-hl
+    host: postgis
     # -- CKAN datastore database port.
     # This is used in the PostGIS chart for database initialization.
     # If set, this values will overwrite the value in the PostGIS chart.
