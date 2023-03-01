@@ -92,7 +92,7 @@ datapusherRewriteUrl: http://ckan:5000/
 # -- SQLAlchemy Database URL for job store, see
 # [Datapusher config](https://github.com/ckan/datapusher#datapusher-configuration) for more.
 # Note: If `db.enabled` this setting is ignored.
-databaseUri: 'sqlite:////srv/app/job_store.db'
+databaseUri: 'sqlite:////tmp/job_store.db'
 
 db:
   # -- Enable/disable Datapusher jobs database backend.
