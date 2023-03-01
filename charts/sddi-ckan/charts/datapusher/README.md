@@ -31,9 +31,9 @@ A Helm chart for CKAN Datapusher.
 | chunkSize | string | `"16384"` | Size of chunks of the data that is being downloaded in bytes |
 | component | string | `"datapusher"` | Role of CKAN Datapusher in this chart |
 | databaseUri | string | `"sqlite:////tmp/job_store.db"` | SQLAlchemy Database URL for job store, see [Datapusher config](https://github.com/ckan/datapusher#datapusher-configuration) for more. Note: If `db.enabled` this setting is ignored. |
-| datapusherRewriteResources | string | `"True"` | Enable or disable (boolean) whether Datapusher should rewrite resources uploaded to CKAN's filestore, since Datapusher takes the CKAN Site URL value for generating the resource URL. Default: False |
+| datapusherRewriteResources | bool | `true` | Enable or disable (boolean) whether Datapusher should rewrite resources uploaded to CKAN's filestore, since Datapusher takes the CKAN Site URL value for generating the resource URL. Default: False |
 | datapusherRewriteUrl | string | `"http://ckan:5000/"` | Sets the rewrite URL that Datapusher will rewrite resources that are uploaded to CKAN's filestore. Default: http://ckan:5000 |
-| datapusherSslVerify | string | `"False"` | Enable or disable (boolean) verification of SSL when trying to get resources. Default: True |
+| datapusherSslVerify | bool | `false` | Enable or disable (boolean) verification of SSL when trying to get resources. Default: True |
 | db.auth.password | string | `nil` |  |
 | db.auth.username | string | `nil` |  |
 | db.dbname | string | `nil` |  |

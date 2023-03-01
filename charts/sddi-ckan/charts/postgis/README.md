@@ -40,6 +40,7 @@ A Helm chart for sa simple PostGIS database pre-configured for CKAN.
 | db.dbname | string | `"ckan_default"` | Database name of the CKAN database. Note: This values is overwritten by `global.db.dbname`, if set. |
 | db.port | int | `5432` | Database port. Note: This values is overwritten by `global.db.port`, if set. |
 | db.postgresDbname | string | `"postgres"` | Postgres database username. This is the name of the default superuser database. Used to set `POSTGRES_DB`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/) for more. Note: This values is overwritten by `global.db.postgresDbname`, if set. |
+| debug.queryLogging | bool | `false` | Enable/disable query logging |
 | enabled | bool | `true` | Enable/disable PostGIS database |
 | extraEnv | object | `{}` | Extra environment variables for PostGIS. |
 | fullnameOverride | string | `"postgis"` | Override fullname |
@@ -62,7 +63,7 @@ A Helm chart for sa simple PostGIS database pre-configured for CKAN.
 | resources.limits.memory | string | `"4Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.requests.cpu | string | `"1000m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.requests.memory | string | `"2Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
-| securityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
+| securityContext | string | `nil` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |

@@ -41,13 +41,13 @@ podSecurityContext: {}
   # fsGroup: 2000
 
 # -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
-securityContext: {}
+securityContext:
   # capabilities:
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
-  # runAsUser: 1000
+  # runAsUser: 72
 
 db:
   # -- Database port. Note: This values is overwritten by `global.db.port`, if set.
@@ -124,6 +124,10 @@ persistence:
   # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
   annotations: {}
     # helm.sh/resource-policy: keep
+
+debug:
+  # -- Enable/disable query logging
+  queryLogging: false
 
 resources:
   limits:

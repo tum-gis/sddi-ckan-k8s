@@ -54,6 +54,17 @@ spec:
               containerPort: 5432
               protocol: TCP
 
+          {{- if .Values.debug.queryLogging }}
+          args:
+            - postgres
+            - "-c"
+            - "logging_collector=off"
+            - "-c"
+            - "log_destination=stderr"
+            - "-c"
+            - "log_statement=all"
+          {{- end }}
+
           envFrom:
             - configMapRef:
                 name: {{ include "postgis.fullname" . }}
@@ -61,12 +72,12 @@ spec:
                 name: {{ include "postgis.fullname" . }}
 
           volumeMounts:
-            - mountPath: {{ .Values.persistence.mountPath }}
-              name: postgresdata
-            - mountPath: /dev/shm
-              name: dshm
-            - mountPath: /docker-entrypoint-initdb.d/
-              name: init
+            - name: postgresdata
+              mountPath: {{ .Values.persistence.mountPath }}
+            - name: dshm
+              mountPath: /dev/shm
+            - name: init
+              mountPath: /docker-entrypoint-initdb.d/
 
           livenessProbe:
             periodSeconds: 10

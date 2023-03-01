@@ -81,11 +81,11 @@ insertRows: "250"
 # -- Timeout limit of the download request
 downloadTimeout: "30"
 # -- Enable or disable (boolean) verification of SSL when trying to get resources. Default: True
-datapusherSslVerify: "False"
+datapusherSslVerify: False
 # -- Enable or disable (boolean) whether Datapusher should rewrite resources uploaded to CKAN's filestore,
 # since Datapusher takes the CKAN Site URL value for generating the resource URL.
 # Default: False
-datapusherRewriteResources: "True"
+datapusherRewriteResources: True
 # -- Sets the rewrite URL that Datapusher will rewrite resources that are uploaded to CKAN's filestore.
 # Default: http://ckan:5000
 datapusherRewriteUrl: http://ckan:5000/
