@@ -58,6 +58,22 @@ spec:
           mountPath: {{ .Values.persistence.storagePath }}
           readOnly: false
 
+      - name: pg-ready
+        image: bwibo/k8s-init-container
+        command:
+          - pg_isready
+        env:
+          - name: PGHOST
+            value: {{ .Values.global.db.host | default .Values.db.host | quote }}
+          - name: PGPORT
+            value: {{ .Values.global.db.port | default .Values.db.port | quote }}
+          - name: PGDATABASE
+            value: {{ .Values.global.db.dbname | default .Values.db.dbname | quote }}
+          - name: PGUSER
+            value: {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }}
+          - name: PGPASSWORD
+            value: {{ .Values.global.db.auth.password | default .Values.db.auth.password | quote }}
+
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
