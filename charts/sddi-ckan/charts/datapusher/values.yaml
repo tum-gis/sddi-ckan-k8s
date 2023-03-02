@@ -11,7 +11,7 @@ fullnameOverride: datapusher
 
 image:
   # -- [Image repository](https://kubernetes.io/docs/concepts/containers/images/)
-  repository: ghcr.io/keitaroinc/datapusher
+  repository: tumgis/ckan-datapusher
   # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
    # -- Overrides the image tag whose default is the chart `appVersion`.
@@ -95,16 +95,34 @@ datapusherRewriteUrl: http://ckan:5000/
 databaseUri: 'sqlite:////tmp/job_store.db'
 
 db:
-  # -- Enable/disable Datapusher jobs database backend.
+  # -- Enable/disable PostgreSQL as database backend for
+  # [Datapusher](https://github.com/ckan/datapusher#high-availability-setup).
   # If set to false, `databaseUri` is used.
-  enabled: false
-  # -- Host of the Datapusher Jobs database
-  host:
-  port:
-  dbname:
+  # Note: This values is overwritten by `global.datapusher.db.enabled`, if set.
+  enabled: true
+  # -- Jobs database host.
+  # If set, this values will overwrite the value in the Datapusher chart.
+  # Note: This values is overwritten by `global.datapusher.db.host`, if set.
+  host: postgis
+  # -- Jobs database port.
+  # If set, this values will overwrite the value in the Datapusher chart.
+  # Note: This values is overwritten by `global.datapusher.db.port`, if set.
+  port: 5432
+  # -- Jobs database name.
+  # If set, this values will overwrite the value in the Datapusher chart.
+  # Note: This values is overwritten by `global.datapusher.db.dbname`, if set.
+  dbname: datapusher_jobs
   auth:
-    username:
-    password:
+    # -- Jobs database username.
+    # If set, this values will overwrite the value in the Datapusher chart.
+    # Note: This values is overwritten by `global.datapusher.db.auth.username`, if set.
+    username: datapusher
+    # -- Jobs database password.
+    # If set, this values will overwrite the value in the Datapusher chart.
+    # Note: This values is overwritten by `global.datapusher.db.auth.password`, if set.
+    password: changeMe
+
+
 
 resources:
   limits:

@@ -94,12 +94,24 @@ global:
 
   datapusher:
     db:
-      enabled: false
+      # -- Enable/disable PostgreSQL as database backend for
+      # [Datapusher](https://github.com/ckan/datapusher#high-availability-setup).
+      enabled: true
+      # -- Jobs database host.
+      # If set, this values will overwrite the value in the Datapusher chart.
       host: postgis
+      # -- Jobs database port.
+      # If set, this values will overwrite the value in the Datapusher chart.
       port: 5432
+      # -- Jobs database name.
+      # If set, this values will overwrite the value in the Datapusher chart.
       dbname: datapusher_jobs
       auth:
+        # -- Jobs database username.
+        # If set, this values will overwrite the value in the Datapusher chart.
         username: datapusher
+        # -- Jobs database password.
+        # If set, this values will overwrite the value in the Datapusher chart.
         password: changeMe
 
 postgis:
