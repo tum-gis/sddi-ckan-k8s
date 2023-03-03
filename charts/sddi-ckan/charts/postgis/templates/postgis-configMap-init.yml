@@ -151,16 +151,17 @@ data:
 
     echo "Create PostGIS...done!"
 
-  04_defaultPermissionsDatastore.sh: |
+  04_setDatastorePersmissions.sh: |
     #!/bin/bash
     set -e
 
-    echo "Alter default permissions on datastore..."
+    echo "Set datastore permissions..."
 
     export PGPASSWORD="$POSTGRES_PASSWORD"
     psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" \
       --dbname {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }} <<-EOSQL
 
+      -- Datastore ro user
       GRANT CONNECT
         ON DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
         TO {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }};
@@ -172,21 +173,7 @@ data:
         SELECT ON TABLES
         TO {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }};
 
-    EOSQL
-
-    echo "Alter default permissions on datastore...done!"
-
-  05_datapusherInit.sh: |
-    #!/bin/bash
-    set -e
-
-    echo "Init datapusher-plus..."
-
-    export PGPASSWORD="$POSTGRES_PASSWORD"
-    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" \
-      --dbname {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }} <<-EOSQL
-
-      -- GRANT CREATE, CONNECT, TEMPORARY
+      -- Datapusher user
       GRANT ALL PRIVILEGES
       ON DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
         TO {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | quote }};
@@ -196,6 +183,6 @@ data:
 
     EOSQL
 
-    echo "Init datapusher-plus...done!"
+    echo "Alter default permissions on datastore...done!"
 
 {{- end -}}
