@@ -99,6 +99,7 @@ A Helm chart for SDDI enabled CKAN.
 | locale.filtered_out | string | `"en_GB"` | CKAN locales filtered out, see [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings) |
 | locale.offered | string | `"de en"` | CKAN locales offered, see [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings) |
 | locale.order | string | `"de en pt_BR ja it cs_CZ ca es fr el sv sr sr@latin no sk fi ru de pl nl bg ko_KR hu sa sl lv"` | CKAN locale order, see [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings) |
+| maintenanceMode | bool | `false` | Enable/disable maintenance mode. This is used to set MAINTENANCE_MODE env var. **Note:** Check, if this setting is supported by the CKAN image you are using. Set to "true" to enable. |
 | maxUploadSizeMB | int | `250` | Max file upload size in MB. Note: This setting is mapped to the `nginx.ingress.kubernetes.io/proxy-body-size: "600m"` and `nginx.org/client-max-body-size: "600m"` CKAN Ingress annotations too. |
 | nameOverride | string | `""` | Override name |
 | nodeSelector | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |

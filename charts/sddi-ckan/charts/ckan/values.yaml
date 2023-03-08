@@ -141,6 +141,9 @@ maxUploadSizeMB: 250
 # -- Enable CKAN debug mode. Requires additional setup, see
 # [CKAN configuration debug](https://docs.ckan.org/en/latest/maintaining/configuration.html#debug)
 debug: False
+# -- Enable/disable maintenance mode. This is used to set MAINTENANCE_MODE env var.
+# **Note:** Check, if this setting is supported by the CKAN image you are using. Set to "true" to enable.
+maintenanceMode: false
 
 featured:
   # -- [CKAN featured groups settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-featured-groups)

@@ -14,6 +14,9 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 - Added init containers to CKAN and Datapusher to wait for DB to be ready (`pg_isready`)
 - Trigger chart releaser on pushes to `release/**` to enable pre-releases
+- Added setting to enable/disable MAINTENANCE_MODE, if supported by the CKAN Docker image.
+  - Maintenance mode skips CKAN initialization steps like database init.
+  - Supported e.g. by `keitaroinc/docker-ckan`, `ckan/ckan-base`, `tum-gis/ckan-docker` images
 
 ### Changed
 
@@ -28,6 +31,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Fixed
 
 - `ckan.datapusher.api_token` was not set as env var
+- Only set `CKAN__WEBASSETS__PATH`, if a values is specified.
 
 ## [sddi-ckan-0.5.0] - 2023-02-23
 
