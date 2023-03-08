@@ -232,8 +232,9 @@ locale:
 webassets:
   # -- Webassets storage path, see
   # [CKAN webassets settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#webassets-settings)
-  # This should point to the location of webassets in the CKAN image
-  path: "/srv/app/data/webassets/"
+  # This should point to the location of webassets in the CKAN image. The path may vary depending on the
+  # CKAN Docker image used.
+  path:
 
 # -- Extra environment variables. Values need to be quoted. This can be used to overwrite or
 # extend [CKAN settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-configuration-file).
@@ -380,13 +381,13 @@ affinity: {}
 
 startup:
   # -- Inital delay seconds for the startup probe.
-  initialDelaySeconds: 10
+  initialDelaySeconds: 2
   # -- Check interval for the startup probe
-  periodSeconds: 10
+  periodSeconds: 2
   # -- Failure threshold for the startup probe
-  failureThreshold: 20
+  failureThreshold: 200
   # -- Timeout interval for the startup probe
-  timeoutSeconds: 10
+  timeoutSeconds: 2
 readiness:
   # -- Initial delay for the liveness probe
   initialDelaySeconds: 20

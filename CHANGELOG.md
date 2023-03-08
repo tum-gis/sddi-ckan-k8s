@@ -23,6 +23,8 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Removed
 
+- Default values for `ckan.webassets.path` for better support of different CKAN Docker images.
+
 ### Fixed
 
 - `ckan.datapusher.api_token` was not set as env var
