@@ -127,7 +127,7 @@ siteIntroText: This is the intro to my CKAN instance.
 # -- Path to CKAN site logo image. Custom logos will usually be located in `/webassets/`.
 # See `webassets.path` setting.
 # [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo)
-siteLogo: /base/images/ckan-logo.png
+siteLogo: /base/images/logo_left.png
 # -- [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about)
 siteAbout: My CKAN about info.
 # -- Path to CKAN favicon. Custom logos will usually be located in `/webassets/`.
