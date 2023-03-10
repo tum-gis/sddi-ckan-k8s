@@ -174,7 +174,7 @@ docker run --rm -u $(id -u) --name helm-docs \
 ### Contributors
 
 <a href="https://github.com/tum-gis/sddi-ckan-k8s/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
+  <img  style="width: 5vw; min-width: 5px;" src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
 </a>
 
 ## :mortar_board: Research
