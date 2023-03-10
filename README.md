@@ -53,6 +53,8 @@ For local testing check out the [examples](examples).
     - [Build Chart documentation](#build-chart-documentation)
   - [Contributors](#contributors)
 - [:memo: License](#memo-license)
+- [:mortar\_board: Research](#mortar_board-research)
+  - [Publications](#publications)
 - [:handshake: Thanks](#handshake-thanks)
 
 ## :package: Application stack
@@ -179,6 +181,25 @@ docker run --rm -u $(id -u) --name helm-docs \
 
 This Helm chart is distributed under the Apache License 2.0. See [LICENSE](LICENSE) for more information.
 
+## :mortar_board: Research
+
+An overview of the Smart District Data Infrastructure (SDDI) Project is available
+at the Chair of Geoinformatics, Technical University of Munich
+[homepage](https://www.asg.ed.tum.de/gis)
+in [english](https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure/)
+and [german](https://www.asg.ed.tum.de/gis/projekte/sddi/).
+
+### Publications
+
+The full list of SDDI publications is available
+[here](https://www.asg.ed.tum.de/gis/projekte/sddi/#c11942).
+
+Key publications:
+
+- [**Knezevic et al. (2022)**](https://mediatum.ub.tum.de/node?id=1689713):
+  *Managing Urban Digital Twins with an Extended Catalog Service*,
+  Proceedings of the 7th International Smart Data and Smart Cities (SDSC) Conference 2022, ISPRS Annals of the Photogrammetry, Remote Sensing and Spatial Information Sciences,
+  [10.5194/isprs-annals-X-4-W3-2022-119-2022](https://doi.org/10.5194/isprs-annals-X-4-W3-2022-119-2022).
 ## :handshake: Thanks
 
 - This repo is inspired by the
