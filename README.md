@@ -191,16 +191,23 @@ and [german](https://www.asg.ed.tum.de/gis/projekte/sddi/).
 
 ### Publications
 
-The full list of SDDI publications is available
-[here](https://www.asg.ed.tum.de/gis/projekte/sddi/#c11942).
-
-Key publications:
+The full list of SDDI related publications is available
+[here](https://www.asg.ed.tum.de/gis/projekte/sddi/#c11942). Some key publications
+are listed below:
 
 - [**Knezevic et al. (2022)**](https://mediatum.ub.tum.de/node?id=1689713):
   *Managing Urban Digital Twins with an Extended Catalog Service*,
-  Proceedings of the 7th International Smart Data and Smart Cities (SDSC) Conference 2022, ISPRS Annals of the Photogrammetry, Remote Sensing and Spatial Information Sciences,
+  Proceedings of the 7th International Smart Data and Smart Cities (SDSC) Conference 2022, ISPRS Annals of Photogrammetry, Remote Sensing and Spatial Information Sciences,
   [10.5194/isprs-annals-X-4-W3-2022-119-2022](https://doi.org/10.5194/isprs-annals-X-4-W3-2022-119-2022).
+
+- [**Deigele, W. et al. (2021)**](https://mediatum.ub.tum.de/node?id=1684529):
+  *Leitfaden – Geobasierter Digitaler Zwilling nach der SDDI-Methode*,
+  Ed.: Bayern Innovativ, ZD.B – Themenplattform Smart Cities and Regions.
+
 ## :handshake: Thanks
+
+We would like to thank following institutions and persons for their contributions
+to the SDDI concepts, tools, documentations, education, and funding over the past years.
 
 - This repo is inspired by the
   [CKAN Helm chart](https://github.com/keitaroinc/ckan-helm) by
