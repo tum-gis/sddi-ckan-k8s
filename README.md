@@ -52,10 +52,10 @@ For local testing check out the [examples](examples).
   - [Repository setup](#repository-setup)
     - [Build Chart documentation](#build-chart-documentation)
   - [Contributors](#contributors)
-- [:memo: License](#memo-license)
 - [:mortar\_board: Research](#mortar_board-research)
   - [Publications](#publications)
 - [:handshake: Thanks](#handshake-thanks)
+- [:memo: License](#memo-license)
 
 ## :package: Application stack
 
@@ -177,10 +177,6 @@ docker run --rm -u $(id -u) --name helm-docs \
   <img src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
 </a>
 
-## :memo: License
-
-This Helm chart is distributed under the Apache License 2.0. See [LICENSE](LICENSE) for more information.
-
 ## :mortar_board: Research
 
 An overview of the Smart District Data Infrastructure (SDDI) Project is available
@@ -212,3 +208,7 @@ to the SDDI concepts, tools, documentations, education, and funding over the pas
 - This repo is inspired by the
   [CKAN Helm chart](https://github.com/keitaroinc/ckan-helm) by
   [Keitaro](https://github.com/keitaroinc). Many thank's for your great work!
+
+## :memo: License
+
+This Helm chart is distributed under the Apache License 2.0. See [LICENSE](LICENSE) for more information.
