@@ -195,6 +195,13 @@ for SDDI were realized at Technical University of Munich, Chair of Geoinformatic
 - [Bruno Willenborg](https://www.asg.ed.tum.de/gis/unser-team/lehrstuhlangehoerige/bruno-willenborg/):
   Technical University of Munich, Chair of Geoinformatics
 
+<p align="center" height="100" line-height="100">
+  <a href="https://www.asg.ed.tum.de/gis/startseite/" target="_blank">
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/tum_logo_h50.png"
+    alt="Technical University of Munich, Chair of Geoinformatics" height="50"/>
+  </a>
+</p>
+
 #### Github contributors to this repo
 
 <a href="https://github.com/tum-gis/sddi-ckan-k8s/graphs/contributors">
@@ -275,12 +282,6 @@ to the SDDI concepts, tools, documentations, education, and funding:
   <a href="https://www.bayern-innovativ.de" target="_blank">
     <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/bayernInnovativ_logo_h50.png"
     alt="Bayern Innovativ GmbH" height="50"/>
-  </a>
-  <br />
-  <br />
-  <a href="https://www.asg.ed.tum.de/gis/startseite/" target="_blank">
-    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/tum_logo_h50.png"
-    alt="Technical University of Munich, Chair of Geoinformatics" height="50"/>
   </a>
 </p>
 
