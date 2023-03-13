@@ -249,7 +249,7 @@ to the SDDI concepts, tools, documentations, education, and funding:
 
 <p align="center" height="100" line-height="100">
   <a href="https://twinby.bayern" target="_blank">
-    <img src="https://raw.githubusercontent.com/tum-gis/sddi-ckan-k8s/credits/twinBy_logo_h50.png"
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/twinBy_logo_h50.png"
     alt="TwinBy" height="50"/>
   </a>
   <br />
