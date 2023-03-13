@@ -9,7 +9,7 @@ sources:
   - https://github.com/tum-gis/sddi-ckan-k8s
   - https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure
 
-version: 0.6.0-beta2
+version: 0.6.0-beta3
 appVersion: "0.0.4"
 kubeVersion: ">= 1.23.0"
 
