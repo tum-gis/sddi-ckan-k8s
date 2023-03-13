@@ -58,7 +58,13 @@ data:
   # Activity stream settings
   CKAN__ACTIVITY_STREAMS_ENABLED: {{ .Values.activityStreams.enabled | quote }}
   CKAN__ACTIVITY_STREAMS_EMAIL_NOTIFICATIONS: {{ .Values.activityStreams.emailNotifications | quote }}
-
+  # Views and preview settings
+  CKAN__VIEWS__DEFAULT_VIEWS: {{ .Values.defaultViews | quote }}
+  CKAN__PREVIEW__TEXT_FORMATS: {{ .Values.preview.textFormats | quote }}
+  CKAN__PREVIEW__XML_FORMATS: {{ .Values.preview.xmlFormats | quote }}
+  CKAN__PREVIEW__JSON_FORMATS: {{ .Values.preview.jsonFormats | quote }}
+  CKAN__PREVIEW__JSONP_FORMATS: {{ .Values.preview.jsonpFormats | quote }}
+  CKAN__PREVIEW__IMAGE_FORMATS: {{ .Values.preview.imageFormats | quote }}
   # Others
   CKAN__DATASET__CREATE_ON_UI_REQUIRES_RESOURCES: {{ .Values.form.create_on_ui_requires_resources | quote }}
   {{- if .Values.webassets.path }}

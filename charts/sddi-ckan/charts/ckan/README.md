@@ -66,6 +66,7 @@ A Helm chart for SDDI enabled CKAN.
 | db.host | string | `"postgis"` | CKAN database host, used to build `sqlalchemy.url` see [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings) |
 | db.port | int | `5432` | CKAN database port, used to build `sqlalchemy.url` see [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings) |
 | debug | bool | `false` | Enable CKAN debug mode. Requires additional setup, see [CKAN configuration debug](https://docs.ckan.org/en/latest/maintaining/configuration.html#debug) |
+| defaultViews | string | `"image_view webpage_view recline_grid_view text_view geo_view geojson_view wmts_view shp_view datatables_view"` | [CKAN config dafault_views](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-views-default-views): **Note**: Make sure the required view plugins are loaded! |
 | enabled | bool | `true` | Enable/disable CKAN |
 | extraEnv | object | `{}` | Extra environment variables. Values need to be quoted. This can be used to overwrite or extend [CKAN settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-configuration-file). See [ckanext-envvars](https://github.com/okfn/ckanext-envvars) for variable naming conventions. |
 | favicon | string | `"/webassets/images/favicon.ico"` | Path to CKAN favicon. Custom logos will usually be located in `/webassets/`. See `webassets.path` setting. [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo) |
@@ -112,6 +113,11 @@ A Helm chart for SDDI enabled CKAN.
 | plugins | string | `""` | Override CKAN plugins/extensions specified in the CKAN image Warning: Only edit this if you know what you are doing. If the plugin list does not match the plugins installed in the image errors can occur. See and [CKAN configuration](https://docs.ckan.org/en/latest/maintaining/configuration.html#) [CKAN configuration plugins](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-plugins) |
 | podAnnotations | object | `{}` | Additional pod annotations |
 | podSecurityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
+| preview.imageFormats | string | `"png jpeg jpg gif"` | [CKAN config ImageView](https://docs.ckan.org/en/latest/maintaining/configuration.html#image-view-settings): Image preview formats. |
+| preview.jsonFormats | string | `"json"` | [CKAN config TextView](https://docs.ckan.org/en/latest/maintaining/configuration.html#text-view-settings): JSON preview formats. |
+| preview.jsonpFormats | string | `"jsonp"` | [CKAN config TextView](https://docs.ckan.org/en/latest/maintaining/configuration.html#text-view-settings): JSONP preview formats. |
+| preview.textFormats | string | `"txt plain"` | [CKAN config TextView](https://docs.ckan.org/en/latest/maintaining/configuration.html#text-view-settings): Text preview formats. |
+| preview.xmlFormats | string | `"xml rdf rss"` | [CKAN config TextView](https://docs.ckan.org/en/latest/maintaining/configuration.html#text-view-settings): XML preview formats. |
 | readiness.failureThreshold | int | `6` | Failure threshold for the liveness probe |
 | readiness.initialDelaySeconds | int | `20` | Initial delay for the liveness probe |
 | readiness.periodSeconds | int | `10` | Check interval for the liveness probe |

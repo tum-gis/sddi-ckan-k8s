@@ -144,6 +144,25 @@ debug: False
 # -- Enable/disable maintenance mode. This is used to set MAINTENANCE_MODE env var.
 # **Note:** Check, if this setting is supported by the CKAN image you are using. Set to "true" to enable.
 maintenanceMode: false
+# -- [CKAN config dafault_views](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-views-default-views):
+# **Note**: Make sure the required view plugins are loaded!
+defaultViews: "image_view webpage_view recline_grid_view text_view geo_view geojson_view wmts_view shp_view datatables_view"
+preview:
+  # -- [CKAN config TextView](https://docs.ckan.org/en/latest/maintaining/configuration.html#text-view-settings):
+  # Text preview formats.
+  textFormats: "txt plain"
+  # -- [CKAN config TextView](https://docs.ckan.org/en/latest/maintaining/configuration.html#text-view-settings):
+  # XML preview formats.
+  xmlFormats: "xml rdf rss"
+  # -- [CKAN config TextView](https://docs.ckan.org/en/latest/maintaining/configuration.html#text-view-settings):
+  # JSON preview formats.
+  jsonFormats: "json"
+  # -- [CKAN config TextView](https://docs.ckan.org/en/latest/maintaining/configuration.html#text-view-settings):
+  # JSONP preview formats.
+  jsonpFormats: "jsonp"
+  # -- [CKAN config ImageView](https://docs.ckan.org/en/latest/maintaining/configuration.html#image-view-settings):
+  # Image preview formats.
+  imageFormats: "png jpeg jpg gif"
 
 featured:
   # -- [CKAN featured groups settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-featured-groups)

@@ -17,6 +17,9 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 - Added setting to enable/disable MAINTENANCE_MODE, which is supported by some CKAN Docker image.
   - Maintenance mode skips CKAN initialization steps like database init.
   - Supported e.g. by `keitaroinc/docker-ckan`, `ckan/ckan-base`, `tum-gis/ckan-docker` images
+- Expose config options `ckan.views.default_views`, `ckan.preview.text_formats`, `ckan.preview.xml_formats`,
+  `ckan.preview.json_formats`, `ckan.preview.jsonp_formats`, `ckan.preview.image_formats`
+  in values.
 
 ### Changed
 
