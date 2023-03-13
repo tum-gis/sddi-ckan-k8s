@@ -194,40 +194,79 @@ are listed below:
 - [**Knezevic et al. (2022)**](https://mediatum.ub.tum.de/node?id=1689713):
   *Managing Urban Digital Twins with an Extended Catalog Service*,
   Proceedings of the 7th International Smart Data and Smart Cities (SDSC) Conference 2022, ISPRS Annals of Photogrammetry, Remote Sensing and Spatial Information Sciences,
-  [Volltext / DOI] (https://doi.org/10.5194/isprs-annals-X-4-W3-2022-119-2022).
+  [PDF download / DOI](https://doi.org/10.5194/isprs-annals-X-4-W3-2022-119-2022).
 
 - [**Deigele, W. et al. (2021)**](https://mediatum.ub.tum.de/node?id=1684529):
   *Leitfaden – Geobasierter Digitaler Zwilling nach der SDDI-Methode*,
   Ed.: Bayern Innovativ, ZD.B – Themenplattform Smart Cities and Regions.
-  
+
 - [**Gackstetter, D. et al. (2021)**](https://mediatum.ub.tum.de/node?id=1636657):
   *Smart Rural Areas Data Infrastructure (SRADI) – an information logistics framework for digital agriculture based on open standards*,
-  41. GIL-Jahrestagung 2021 - Fokus: Informations- und Kommunikationstechnologie in kritischen Zeiten, Gesellschaft für Informatik e.V. (GI), [Volltext / DOI](https://dl.gi.de/bitstream/handle/20.500.12116/35656/GIL2021_Gackstetter_109-114.pdf?sequence=1&isAllowed=y).
+  41. GIL-Jahrestagung 2021 - Fokus: Informations- und Kommunikationstechnologie in kritischen Zeiten, Gesellschaft für Informatik e.V. (GI), [PDF download / DOI](https://dl.gi.de/bitstream/handle/20.500.12116/35656/GIL2021_Gackstetter_109-114.pdf?sequence=1&isAllowed=y).
 
 - [**Kolbe, T. H. et al. (2020)**](https://mediatum.ub.tum.de/node?id=1554725):
-  *The Data Integration Challenge in Smart City Projects*, 
+  *The Data Integration Challenge in Smart City Projects*,
   Chair of Geoinformatics, Technical University of Munich,
-  [Volltext / DOI] (https://mediatum.ub.tum.de/doc/1554725/671062.pdf).
+  [PDF download / DOI](https://mediatum.ub.tum.de/doc/1554725/671062.pdf).
 
 - [**Moshrefzadeh, M. et al. (2020)**](https://mediatum.ub.tum.de/node?id=1540127):
   *Towards a Distributed Digital Twin of the Agricultural Landscape*,
   Journal of Digital Landscape Architecture (5),
-  [Volltext / DOI] (https://gispoint.de/fileadmin/user_upload/paper_gis_open/DLA_2020/537690019.pdf).
-  
+  [PDF download / DOI](https://gispoint.de/fileadmin/user_upload/paper_gis_open/DLA_2020/537690019.pdf).
+
 ## :handshake: Thanks
 
 We would like to thank following institutions and persons for their contributions
-to the SDDI concepts, tools, documentations, education, and funding over the past years:
-- ZD.B-Themenplattform : Willi Steinke, [Bayern Innovativ GmbH] (https://www.bayern-innovativ.de/de?gclid=Cj0KCQjwk7ugBhDIARIsAGuvgPZkLiU4AhX1Xz-07vLIt0vpixwjF1wCrHau3PkGEMyl2ZoU_pn1hPMaAnALEALw_wcB) und Lutz Morich,
-- [Bayerisches Staatsministerium für Digitales] (https://www.stmd.bayern.de/) : Stefan Bobinger,
-- Landeshauptstadt München - Kommunalreferat – GeodatenService: Mandana Moshrefzadeh, 
-- [CUT Project] (https://www.connectedurbantwins.de/en/) and [SAVeNoW Project] (https://savenow.de/en/), 
-- [Tome Cirun] (https://github.com/TomeCirun) ,
-- TUM - Chair of Geoinformatics (Bruno Willenborg, Marija Knezevic).
+to the SDDI concepts, tools, documentations, education, and funding:
 
-- This repo is inspired by the
-  [CKAN Helm chart](https://github.com/keitaroinc/ckan-helm) by
-  [Keitaro](https://github.com/keitaroinc). Many thank's for your great work!
+- [ZD.B-Themenplattform Smart Cities and Regions](https://www.bayern-innovativ.de/de/netzwerke-und-thinknet/uebersicht-digitalisierung/digitales-planen-und-bauen-smart-cities-and-regions/seite/zd-b-themenplattform-smart-cities-and-regions): Willi Steinke at [Bayern Innovativ GmbH](https://www.bayern-innovativ.de/de?gclid=Cj0KCQjwk7ugBhDIARIsAGuvgPZkLiU4AhX1Xz-07vLIt0vpixwjF1wCrHau3PkGEMyl2ZoU_pn1hPMaAnALEALw_wcB)
+  und [Lutz Morich](https://www.linkedin.com/in/lutz-morich-in), for funding and  supporting the SDDI development for several years.
+
+- [Bayerisches Staatsministerium für Digitales](https://www.stmd.bayern.de/): Stefan Bobinger, for funding the
+  [TwinBy project](https://twinby.bayern) and many contributions to SDDI concepts and documentation.
+
+- [Mandana Moshrefzadeh](https://www.linkedin.com/in/mandana-moshrefzadeh-a4666454)
+  at Landeshauptstadt München - Kommunalreferat – GeodatenService, who started the
+  work on the SDDI concept and delivered the
+  [initial implementation](https://github.com/tum-gis/SDDI-CKAN-Docker) based on CKAN.
+
+- [CUT research project](https://www.connectedurbantwins.de/en/) and [SAVeNoW research project](https://savenow.de/en/)
+  for funding the work on SDDI concepts and implementation.
+
+- [Marija Knezevic](https://www.asg.ed.tum.de/en/gis/our-team/staff/marija-knezevic/)  and
+  [Bruno Willenborg](https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/)
+  at Technical University of Munich, Chair of Geoinformatics for the realization of the
+  CKAN SDDI extensions ([ckanext-grouphierarchy](https://github.com/tum-gis/ckanext-grouphierarchy-sddi),
+  [ckanext-relation](https://github.com/tum-gis/ckanext-relation-sddi))
+  [Docker images](https://github.com/tum-gis/ckan-docker)
+  and [Helm chart](https://github.com/tum-gis/sddi-ckan-k8s).
+
+- [Tome Cirun](https://github.com/TomeCirun) :raised_hands: for professional support
+  with CKAN and CKAN extension development.
+
+- [KEITARO](https://www.keitaro.com/) for their [CKAN Docker images](https://github.com/keitaroinc/docker-ckan)
+  and [CKAN Helm chart](https://github.com/keitaroinc/ckan-helm) that inspired this work.
+
+<p align="center" height="100" line-height="100">
+  <a href="https://twinby.bayern" target="_blank">
+    <img src="docs/img/twinBy_logo_h500.png" alt="TwinBy" height="50"/>
+  </a>
+  <br />
+  <br />
+  <a href="https://www.stmd.bayern.de" target="_blank">
+    <img src="https://www.stmd.bayern.de/wp-content/themes/bayernde/images/logo_bay_staatsregierung_100p.png" alt="Bayerische Staatsministerium für Digitales" height="50" />
+  </a>
+  <br />
+  <br />
+  <a href="https://www.bayern-innovativ.de" target="_blank">
+    <img src="https://www.bayern-innovativ.de/assets/images/logo/bain.svg" alt="Bayern Innovativ GmbH" height="50"/>
+  </a>
+  <br />
+  <br />
+  <a href="https://www.asg.ed.tum.de/gis/startseite/" target="_blank">
+    <img src="https://www.asg.ed.tum.de/typo3/ext/tumtheme/Resources/Public/Icons/Org/tum-logo.png" alt="Technical University of Munich, Chair of Geoinformatics" height="50"/>
+  </a>
+</p>
 
 ## :memo: License
 
