@@ -241,7 +241,7 @@ to the SDDI concepts, tools, documentations, education, and funding:
   [Docker images](https://github.com/tum-gis/ckan-docker)
   and [Helm chart](https://github.com/tum-gis/sddi-ckan-k8s).
 
-- [Tome Cirun](https://github.com/TomeCirun) :raised_hands: for professional support
+- [Tome Petrovski](https://github.com/TomeCirun) :raised_hands: for professional support
   with CKAN and CKAN extension development.
 
 - [KEITARO](https://www.keitaro.com/) for their [CKAN Docker images](https://github.com/keitaroinc/docker-ckan)
