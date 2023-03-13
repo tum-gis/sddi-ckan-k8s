@@ -249,22 +249,26 @@ to the SDDI concepts, tools, documentations, education, and funding:
 
 <p align="center" height="100" line-height="100">
   <a href="https://twinby.bayern" target="_blank">
-    <img src="docs/img/twinBy_logo_h500.png" alt="TwinBy" height="50"/>
+    <img src="https://www.bayern-innovativ.de/uwao-api/faila/files/byid?id=39b13163-a4b2-4f98-b0b9-480fef1c9e5d&tn=1&s=logo"
+    alt="TwinBy" height="50"/>
   </a>
   <br />
   <br />
   <a href="https://www.stmd.bayern.de" target="_blank">
-    <img src="https://www.stmd.bayern.de/wp-content/themes/bayernde/images/logo_bay_staatsregierung_100p.png" alt="Bayerische Staatsministerium für Digitales" height="50" />
+    <img src="https://www.stmd.bayern.de/wp-content/themes/bayernde/images/logo_bay_staatsregierung_100p.png"
+    alt="Bayerische Staatsministerium für Digitales" height="50" />
   </a>
   <br />
   <br />
   <a href="https://www.bayern-innovativ.de" target="_blank">
-    <img src="https://www.bayern-innovativ.de/assets/images/logo/bain.svg" alt="Bayern Innovativ GmbH" height="50"/>
+    <img src="https://www.bayern-innovativ.de/assets/images/logo/bain.svg"
+    alt="Bayern Innovativ GmbH" height="50"/>
   </a>
   <br />
   <br />
   <a href="https://www.asg.ed.tum.de/gis/startseite/" target="_blank">
-    <img src="https://www.asg.ed.tum.de/typo3/ext/tumtheme/Resources/Public/Icons/Org/tum-logo.png" alt="Technical University of Munich, Chair of Geoinformatics" height="50"/>
+    <img src="https://www.asg.ed.tum.de/typo3/ext/tumtheme/Resources/Public/Icons/Org/tum-logo.png"
+    alt="Technical University of Munich, Chair of Geoinformatics" height="50"/>
   </a>
 </p>
 
