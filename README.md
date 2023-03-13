@@ -261,7 +261,7 @@ to the SDDI concepts, tools, documentations, education, and funding:
   <br />
   <br />
   <a href="https://www.bayern-innovativ.de" target="_blank">
-    <img src="https://www.bayern-innovativ.de/assets/images/logo/bain.svg"
+    <img src="https://www.gategarching.com/wp-content/uploads/sites/2/2021/12/bayern-innovativ-logo-rgb.png"
     alt="Bayern Innovativ GmbH" height="50"/>
   </a>
   <br />
