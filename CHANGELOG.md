@@ -30,7 +30,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Removed
 
-- Default values for `ckan.webassets.path` for better support of different CKAN Docker images.
+- Dropped default values for `ckan.webassets.path` for better support of different CKAN Docker images.
 - Removed debug mode from values, as it has no effect. Debug mode needs to be enabled using
   a CKAN image with debug dependencies installed and `debug: true` in `ckan.ini`. See
   [docs](https://docs.ckan.org/en/latest/maintaining/configuration.html#debug) for more.
