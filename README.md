@@ -52,6 +52,7 @@ For local testing check out the [examples](examples).
   - [Repository setup](#repository-setup)
     - [Build Chart documentation](#build-chart-documentation)
   - [Contributors](#contributors)
+    - [Github contributors to this repo](#github-contributors-to-this-repo)
 - [:mortar\_board: Research](#mortar_board-research)
   - [Publications](#publications)
 - [:handshake: Thanks](#handshake-thanks)
@@ -173,8 +174,31 @@ docker run --rm -u $(id -u) --name helm-docs \
 
 ### Contributors
 
+[Marija Knezevic](https://www.asg.ed.tum.de/en/gis/our-team/staff/marija-knezevic/) and
+[Bruno Willenborg](https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/)
+at Technical University of Munich, Chair of Geoinformatics realized the
+CKAN SDDI extensions ([ckanext-grouphierarchy](https://github.com/tum-gis/ckanext-grouphierarchy-sddi),
+[ckanext-relation](https://github.com/tum-gis/ckanext-relation-sddi))
+[Docker images](https://github.com/tum-gis/ckan-docker)
+and [Helm chart](https://github.com/tum-gis/sddi-ckan-k8s).
+
+The core concepts, documentation, and [initial implementation](https://github.com/tum-gis/SDDI-CKAN-Docker)
+for SDDI were realized at Technical University of Munich, Chair of Geoinformatics by:
+
+- [Mandana Moshrefzadeh](https://www.linkedin.com/in/mandana-moshrefzadeh-a4666454): Landeshauptstadt München, Kommunalreferat – GeodatenService
+- [Prof. Thomas H. Kolbe](https://www.asg.ed.tum.de/gis/unser-team/lehrstuhlangehoerige/prof-thomas-h-kolbe/):
+  Technical University of Munich, Chair of Geoinformatics
+- [Dr. Andreas Donaubauer](https://www.asg.ed.tum.de/gis/unser-team/lehrstuhlangehoerige/dr-andreas-donaubauer/):
+  Technical University of Munich, Chair of Geoinformatics
+- [Marija Knezevic](https://www.asg.ed.tum.de/gis/unser-team/lehrstuhlangehoerige/marija-knezevic/):
+  Technical University of Munich, Chair of Geoinformatics
+- [Bruno Willenborg](https://www.asg.ed.tum.de/gis/unser-team/lehrstuhlangehoerige/bruno-willenborg/):
+  Technical University of Munich, Chair of Geoinformatics
+
+#### Github contributors to this repo
+
 <a href="https://github.com/tum-gis/sddi-ckan-k8s/graphs/contributors">
-  <img  style="width: 5vw; min-width: 5px;" src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
+  <img height="40" src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
 </a>
 
 ## :mortar_board: Research
@@ -219,27 +243,15 @@ are listed below:
 We would like to thank following institutions and persons for their contributions
 to the SDDI concepts, tools, documentations, education, and funding:
 
-- [ZD.B-Themenplattform Smart Cities and Regions](https://www.bayern-innovativ.de/de/netzwerke-und-thinknet/uebersicht-digitalisierung/digitales-planen-und-bauen-smart-cities-and-regions/seite/zd-b-themenplattform-smart-cities-and-regions): Willi Steinke at [Bayern Innovativ GmbH](https://www.bayern-innovativ.de/de?gclid=Cj0KCQjwk7ugBhDIARIsAGuvgPZkLiU4AhX1Xz-07vLIt0vpixwjF1wCrHau3PkGEMyl2ZoU_pn1hPMaAnALEALw_wcB)
-  und [Lutz Morich](https://www.linkedin.com/in/lutz-morich-in), for funding and  supporting the SDDI development for several years.
+- [ZD.B-Themenplattform Smart Cities and Regions](https://www.bayern-innovativ.de/de/netzwerke-und-thinknet/uebersicht-digitalisierung/digitales-planen-und-bauen-smart-cities-and-regions/seite/zd-b-themenplattform-smart-cities-and-regions):
+  Willi Steincke at [Bayern Innovativ GmbH](https://www.bayern-innovativ.de/de?gclid=Cj0KCQjwk7ugBhDIARIsAGuvgPZkLiU4AhX1Xz-07vLIt0vpixwjF1wCrHau3PkGEMyl2ZoU_pn1hPMaAnALEALw_wcB)
+  und [Lutz Morich](https://www.linkedin.com/in/lutz-morich-in), for funding and supporting the SDDI development for several years.
 
 - [Bayerisches Staatsministerium für Digitales](https://www.stmd.bayern.de/): Stefan Bobinger, for funding the
   [TwinBy project](https://twinby.bayern) and many contributions to SDDI concepts and documentation.
 
-- [Mandana Moshrefzadeh](https://www.linkedin.com/in/mandana-moshrefzadeh-a4666454)
-  at Landeshauptstadt München - Kommunalreferat – GeodatenService, who started the
-  work on the SDDI concept and delivered the
-  [initial implementation](https://github.com/tum-gis/SDDI-CKAN-Docker) based on CKAN.
-
-- [CUT research project](https://www.connectedurbantwins.de/en/) and [SAVeNoW research project](https://savenow.de/en/)
+- [Connected Urban Twins (CUT) research project](https://www.connectedurbantwins.de/en/), [SAVeNoW research project](https://savenow.de/en/),
   for funding the work on SDDI concepts and implementation.
-
-- [Marija Knezevic](https://www.asg.ed.tum.de/en/gis/our-team/staff/marija-knezevic/)  and
-  [Bruno Willenborg](https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/)
-  at Technical University of Munich, Chair of Geoinformatics for the realization of the
-  CKAN SDDI extensions ([ckanext-grouphierarchy](https://github.com/tum-gis/ckanext-grouphierarchy-sddi),
-  [ckanext-relation](https://github.com/tum-gis/ckanext-relation-sddi))
-  [Docker images](https://github.com/tum-gis/ckan-docker)
-  and [Helm chart](https://github.com/tum-gis/sddi-ckan-k8s).
 
 - [Tome Petrovski](https://github.com/TomeCirun) :raised_hands: for professional support
   with CKAN and CKAN extension development.
