@@ -194,16 +194,36 @@ are listed below:
 - [**Knezevic et al. (2022)**](https://mediatum.ub.tum.de/node?id=1689713):
   *Managing Urban Digital Twins with an Extended Catalog Service*,
   Proceedings of the 7th International Smart Data and Smart Cities (SDSC) Conference 2022, ISPRS Annals of Photogrammetry, Remote Sensing and Spatial Information Sciences,
-  [10.5194/isprs-annals-X-4-W3-2022-119-2022](https://doi.org/10.5194/isprs-annals-X-4-W3-2022-119-2022).
+  [Volltext / DOI] (https://doi.org/10.5194/isprs-annals-X-4-W3-2022-119-2022).
 
 - [**Deigele, W. et al. (2021)**](https://mediatum.ub.tum.de/node?id=1684529):
   *Leitfaden – Geobasierter Digitaler Zwilling nach der SDDI-Methode*,
   Ed.: Bayern Innovativ, ZD.B – Themenplattform Smart Cities and Regions.
+  
+- [**Gackstetter, D. et al. (2021)**](https://mediatum.ub.tum.de/node?id=1636657):
+  *Smart Rural Areas Data Infrastructure (SRADI) – an information logistics framework for digital agriculture based on open standards*,
+  41. GIL-Jahrestagung 2021 - Fokus: Informations- und Kommunikationstechnologie in kritischen Zeiten, Gesellschaft für Informatik e.V. (GI), [Volltext / DOI](https://dl.gi.de/bitstream/handle/20.500.12116/35656/GIL2021_Gackstetter_109-114.pdf?sequence=1&isAllowed=y).
 
+- [**Kolbe, T. H. et al. (2020)**](https://mediatum.ub.tum.de/node?id=1554725):
+  *The Data Integration Challenge in Smart City Projects*, 
+  Chair of Geoinformatics, Technical University of Munich,
+  [Volltext / DOI] (https://mediatum.ub.tum.de/doc/1554725/671062.pdf).
+
+- [**Moshrefzadeh, M. et al. (2020)**](https://mediatum.ub.tum.de/node?id=1540127):
+  *Towards a Distributed Digital Twin of the Agricultural Landscape*,
+  Journal of Digital Landscape Architecture (5),
+  [Volltext / DOI] (https://gispoint.de/fileadmin/user_upload/paper_gis_open/DLA_2020/537690019.pdf).
+  
 ## :handshake: Thanks
 
 We would like to thank following institutions and persons for their contributions
-to the SDDI concepts, tools, documentations, education, and funding over the past years.
+to the SDDI concepts, tools, documentations, education, and funding over the past years:
+- ZD.B-Themenplattform : Willi Steinke, [Bayern Innovativ GmbH] (https://www.bayern-innovativ.de/de?gclid=Cj0KCQjwk7ugBhDIARIsAGuvgPZkLiU4AhX1Xz-07vLIt0vpixwjF1wCrHau3PkGEMyl2ZoU_pn1hPMaAnALEALw_wcB) und Lutz Morich,
+- [Bayerisches Staatsministerium für Digitales] (https://www.stmd.bayern.de/) : Stefan Bobinger,
+- Landeshauptstadt München - Kommunalreferat – GeodatenService: Mandana Moshrefzadeh, 
+- [CUT Project] (https://www.connectedurbantwins.de/en/) and [SAVeNoW Project] (https://savenow.de/en/), 
+- [Tome Cirun] (https://github.com/TomeCirun) ,
+- TUM - Chair of Geoinformatics (Bruno Willenborg, Marija Knezevic).
 
 - This repo is inspired by the
   [CKAN Helm chart](https://github.com/keitaroinc/ckan-helm) by
