@@ -138,9 +138,6 @@ favicon: /webassets/images/favicon.ico
 # `nginx.ingress.kubernetes.io/proxy-body-size: "600m"` and
 # `nginx.org/client-max-body-size: "600m"` CKAN Ingress annotations too.
 maxUploadSizeMB: 250
-# -- Enable CKAN debug mode. Requires additional setup, see
-# [CKAN configuration debug](https://docs.ckan.org/en/latest/maintaining/configuration.html#debug)
-debug: False
 # -- Enable/disable maintenance mode. This is used to set MAINTENANCE_MODE env var.
 # **Note:** Check, if this setting is supported by the CKAN image you are using. Set to "true" to enable.
 maintenanceMode: false
