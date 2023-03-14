@@ -89,7 +89,7 @@ To get this up an running in seconds, check out the [examples](examples). You wi
 
 ## :grey_exclamation: Requirements
 
-- Kubernetes cluster with Kubernetes `>= v1.20`
+- Kubernetes cluster with Kubernetes `>= v1.23.0`
 
   - For testing 2 -3 nodes with 2-4 CPUs and 4-8 GiB RAM will be sufficient
 
