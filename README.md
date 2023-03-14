@@ -255,7 +255,7 @@ to the SDDI concepts, tools, documentations, education, and funding:
   und [Lutz Morich](https://www.linkedin.com/in/lutz-morich-in), for funding and supporting the SDDI development for several years.
 
 - [Bayerisches Staatsministerium für Digitales](https://www.stmd.bayern.de/) for funding the
-  [TwinBy project](https://twinby.bayern) and Stefan Bobinger for many contributions to SDDI concepts and documentation.
+  [project TwinBy](https://twinby.bayern) and Stefan Bobinger for many contributions to SDDI concepts and documentation.
 
 - [Digital Twin Munich / Digitaler Zwilling München](https://muenchen.digital/twin/),
   [Connected Urban Twins (CUT) research project](https://www.connectedurbantwins.de/en/),
