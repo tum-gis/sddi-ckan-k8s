@@ -254,7 +254,7 @@ to the SDDI concepts, tools, documentations, education, and funding:
   Willi Steincke at [Bayern Innovativ GmbH](https://www.bayern-innovativ.de/de?gclid=Cj0KCQjwk7ugBhDIARIsAGuvgPZkLiU4AhX1Xz-07vLIt0vpixwjF1wCrHau3PkGEMyl2ZoU_pn1hPMaAnALEALw_wcB)
   und [Lutz Morich](https://www.linkedin.com/in/lutz-morich-in), for funding and supporting the SDDI development for several years.
 
-- [Bayerisches Staatsministerium für Digitales](https://www.stmd.bayern.de/)for funding the
+- [Bayerisches Staatsministerium für Digitales](https://www.stmd.bayern.de/) for funding the
   [TwinBy project](https://twinby.bayern) and Stefan Bobinger for many contributions to SDDI concepts and documentation.
 
 - [Digital Twin Munich / Digitaler Zwilling München](https://muenchen.digital/twin/),
