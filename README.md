@@ -251,7 +251,7 @@ are listed below:
   [PDF download / DOI](https://mediatum.ub.tum.de/download/1350813/1350813.pdf).
  
 - [**Moshrefzadeh, M. and T.H. Kolbe (2016)**](https://mediatum.ub.tum.de/node?id=1304877):
-  * Smart Data Infrastructure for Smart and Sustainable Cities*,
+  *Smart Data Infrastructure for Smart and Sustainable Cities*,
   DDSS 2016,
   [PDF download / DOI](https://mediatum.ub.tum.de/doc/1304877/797209.pdf).
 
