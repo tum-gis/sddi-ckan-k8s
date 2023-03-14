@@ -245,6 +245,16 @@ are listed below:
   Journal of Digital Landscape Architecture (5),
   [PDF download / DOI](https://gispoint.de/fileadmin/user_upload/paper_gis_open/DLA_2020/537690019.pdf).
 
+- [**Moshrefzadeh, M. et al. (2017)**](https://mediatum.ub.tum.de/node?id=1350813):
+  *Integrating and Managing the Information for Smart Sustainable Districts - The Smart District Data Infrastructure (SDDI)*,
+  In: Kolbe, Thomas H.; Bill, Ralf; Donaubauer, Andreas (Hrsg.): Geoinformationssysteme 2017 – Beiträge zur 4. Münchner GI-Runde. . Wichmann Verlag,
+  [PDF download / DOI](https://mediatum.ub.tum.de/download/1350813/1350813.pdf).
+ 
+- [**Moshrefzadeh, M. and T.H. Kolbe (2016)**](https://mediatum.ub.tum.de/node?id=1304877):
+  * Smart Data Infrastructure for Smart and Sustainable Cities*,
+  DDSS 2016,
+  [PDF download / DOI](https://mediatum.ub.tum.de/doc/1304877/797209.pdf).
+
 ## :handshake: Thanks
 
 We would like to thank following institutions and persons for their contributions
