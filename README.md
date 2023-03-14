@@ -257,7 +257,8 @@ to the SDDI concepts, tools, documentations, education, and funding:
 - [Bayerisches Staatsministerium für Digitales](https://www.stmd.bayern.de/): Stefan Bobinger, for funding the
   [TwinBy project](https://twinby.bayern) and many contributions to SDDI concepts and documentation.
 
-- [Connected Urban Twins (CUT) research project](https://www.connectedurbantwins.de/en/),
+- [Digital Twin Munich / Digitaler Zwilling München](https://muenchen.digital/twin/),
+  [Connected Urban Twins (CUT) research project](https://www.connectedurbantwins.de/en/),
   [SAVeNoW research project](https://savenow.de/en/),
   [eit Climate-KIC](https://www.climate-kic.org/) (SDDI research project)
   for funding the work on SDDI concepts and implementation.
