@@ -27,6 +27,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 - Updated database initialization for Datapusher database backend
 - Don't use PostGIS headless service by default
 - Changed default logo from CKAN to SDDI logo
+- Reduced default resource requests for `postgis` and `solr`
 
 ### Removed
 

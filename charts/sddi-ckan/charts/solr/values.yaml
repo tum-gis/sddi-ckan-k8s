@@ -78,7 +78,7 @@ resources:
     memory: 8Gi
   requests:
     # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    cpu: 1000m
+    cpu: 500m
     # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     memory: 1Gi
 

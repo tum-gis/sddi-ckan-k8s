@@ -137,9 +137,9 @@ resources:
     memory: 4Gi
   requests:
     # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    cpu: 1000m
+    cpu: 500m
     # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    memory: 2Gi
+    memory: 1Gi
 
 # -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 nodeSelector: {}
