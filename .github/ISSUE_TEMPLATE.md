@@ -1,7 +1,11 @@
-Please fill in the template below as detailed as possible to allow
-us to help you.
+## How to post an issue
 
-Remove this message before posting the issue.
+1. Please fill in the template below as detailed as possible to allow us to help you.
+2. Please make use of Markown formatting for good readability, especially for source code and log messages.
+https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+3. Remove the "How to post an issue" section before posting the issue.
+
+Thank you for contributing to this repository, we are happy to help!
 
 ## Expected behavior
 
