@@ -176,10 +176,11 @@ docker run --rm -u $(id -u) --name helm-docs \
 
 [Marija Knezevic](https://www.asg.ed.tum.de/en/gis/our-team/staff/marija-knezevic/) and
 [Bruno Willenborg](https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/)
-at Technical University of Munich, Chair of Geoinformatics realized the
+at Technical University of Munich, Chair of Geoinformatics updated the
 CKAN SDDI extensions ([ckanext-grouphierarchy](https://github.com/tum-gis/ckanext-grouphierarchy-sddi),
-[ckanext-relation](https://github.com/tum-gis/ckanext-relation-sddi))
-[Docker images](https://github.com/tum-gis/ckan-docker)
+[ckanext-relation](https://github.com/tum-gis/ckanext-relation-sddi)) initially implemented by
+[Mandana Moshrefzadeh](https://www.linkedin.com/in/mandana-moshrefzadeh-a4666454)
+and realized the [Docker images](https://github.com/tum-gis/ckan-docker)
 and [Helm chart](https://github.com/tum-gis/sddi-ckan-k8s).
 
 The core concepts, documentation, and [initial implementation](https://github.com/tum-gis/SDDI-CKAN-Docker)
@@ -194,6 +195,8 @@ for SDDI were realized at Technical University of Munich, Chair of Geoinformatic
   Technical University of Munich, Chair of Geoinformatics
 - [Bruno Willenborg](https://www.asg.ed.tum.de/gis/unser-team/lehrstuhlangehoerige/bruno-willenborg/):
   Technical University of Munich, Chair of Geoinformatics
+- [Kanishk Chaturvedi](https://www.linkedin.com/in/dr-kanishk-chaturvedi), Software AG
+- [Son H. Nguyen](https://www.asg.ed.tum.de/en/gis/our-team/staff/son-h-nguyen/), Technical University of Munich, Chair of Geoinformatics
 
 <p align="center" height="100" line-height="100">
   <a href="https://www.asg.ed.tum.de/gis/startseite/" target="_blank">
@@ -249,7 +252,7 @@ are listed below:
   *Integrating and Managing the Information for Smart Sustainable Districts - The Smart District Data Infrastructure (SDDI)*,
   In: Kolbe, Thomas H.; Bill, Ralf; Donaubauer, Andreas (Hrsg.): Geoinformationssysteme 2017 – Beiträge zur 4. Münchner GI-Runde. . Wichmann Verlag,
   [PDF download / DOI](https://mediatum.ub.tum.de/download/1350813/1350813.pdf).
- 
+
 - [**Moshrefzadeh, M. and T.H. Kolbe (2016)**](https://mediatum.ub.tum.de/node?id=1304877):
   *Smart Data Infrastructure for Smart and Sustainable Cities*,
   DDSS 2016,
