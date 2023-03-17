@@ -122,7 +122,7 @@ siteTitle: My CKAN instance
 siteId: default
 # -- [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description)
 siteDescription: This is my CKAN instance for stuff.
-# -- CKAN config intro text](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-intro-text)
+# -- [CKAN config intro text](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-intro-text)
 siteIntroText: This is the intro to my CKAN instance.
 # -- Path to CKAN site logo image. Custom logos will usually be located in `/webassets/`.
 # See `webassets.path` setting.
