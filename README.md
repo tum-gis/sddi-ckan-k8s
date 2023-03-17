@@ -202,7 +202,7 @@ for SDDI were realized at Technical University of Munich, Chair of Geoinformatic
 
 <p align="center" height="100" line-height="100">
   <a href="https://www.asg.ed.tum.de/gis/startseite/" target="_blank">
-    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/tum_logo_h50.png"
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/main/docs/img/tum_logo_h50.png"
     alt="Technical University of Munich, Chair of Geoinformatics" height="50"/>
   </a>
 </p>
@@ -286,19 +286,19 @@ to the SDDI concepts, tools, documentations, education, and funding:
 
 <p align="center" height="100" line-height="100">
   <a href="https://twinby.bayern" target="_blank">
-    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/twinBy_logo_h50.png"
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/main/docs/img/twinBy_logo_h50.png"
     alt="TwinBy" height="50"/>
   </a>
   <br />
   <br />
   <a href="https://www.stmd.bayern.de" target="_blank">
-    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/bsd_logo_h50.png"
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/main/docs/img/bsd_logo_h50.png"
     alt="Bayerische Staatsministerium für Digitales" height="50" />
   </a>
   <br />
   <br />
   <a href="https://www.bayern-innovativ.de" target="_blank">
-    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/bayernInnovativ_logo_h50.png"
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/main/docs/img/bayernInnovativ_logo_h50.png"
     alt="Bayern Innovativ GmbH" height="50"/>
   </a>
 </p>
