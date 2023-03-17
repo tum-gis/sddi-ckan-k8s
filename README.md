@@ -176,12 +176,13 @@ docker run --rm -u $(id -u) --name helm-docs \
 
 [Marija Knezevic](https://www.asg.ed.tum.de/en/gis/our-team/staff/marija-knezevic/) and
 [Bruno Willenborg](https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/)
-at Technical University of Munich, Chair of Geoinformatics updated the
+at Technical University of Munich, Chair of Geoinformatics
+realized the current SDDI CKAN [Docker images](https://github.com/tum-gis/ckan-docker)
+and [Helm chart](https://github.com/tum-gis/sddi-ckan-k8s) and updated the
 CKAN SDDI extensions ([ckanext-grouphierarchy](https://github.com/tum-gis/ckanext-grouphierarchy-sddi),
 [ckanext-relation](https://github.com/tum-gis/ckanext-relation-sddi)) initially implemented by
 [Mandana Moshrefzadeh](https://www.linkedin.com/in/mandana-moshrefzadeh-a4666454)
-and realized the [Docker images](https://github.com/tum-gis/ckan-docker)
-and [Helm chart](https://github.com/tum-gis/sddi-ckan-k8s).
+and [Wolfgang Deigele](https://www.linkedin.com/in/wolfgang-deigele-329673189).
 
 The core concepts, documentation, and [initial implementation](https://github.com/tum-gis/SDDI-CKAN-Docker)
 for SDDI were realized at Technical University of Munich, Chair of Geoinformatics by:
@@ -197,6 +198,7 @@ for SDDI were realized at Technical University of Munich, Chair of Geoinformatic
   Technical University of Munich, Chair of Geoinformatics
 - [Kanishk Chaturvedi](https://www.linkedin.com/in/dr-kanishk-chaturvedi), Software AG
 - [Son H. Nguyen](https://www.asg.ed.tum.de/en/gis/our-team/staff/son-h-nguyen/), Technical University of Munich, Chair of Geoinformatics
+- [Wolfgang Deigele](https://www.linkedin.com/in/wolfgang-deigele-329673189), ESRI Deutschland
 
 <p align="center" height="100" line-height="100">
   <a href="https://www.asg.ed.tum.de/gis/startseite/" target="_blank">
