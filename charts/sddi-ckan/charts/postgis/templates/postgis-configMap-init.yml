@@ -13,7 +13,7 @@ data:
     #!/bin/bash
     set -e
 
-    echo "create roles..."
+    echo "Create roles..."
 
     export PGPASSWORD="$POSTGRES_PASSWORD"
     psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
@@ -29,7 +29,7 @@ data:
           RAISE NOTICE 'Role {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }} already exists. Skipping.';
       ELSE
         CREATE ROLE {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }}
-          NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+          SUPERUSER NOCREATEDB NOCREATEROLE LOGIN
           PASSWORD {{ .Values.global.db.auth.password | default .Values.db.auth.password | squote }};
       END IF;
     END
@@ -46,7 +46,7 @@ data:
           RAISE NOTICE 'Role {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }} already exists. Skipping.';
       ELSE
         CREATE ROLE {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
-          NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+          SUPERUSER NOCREATEDB NOCREATEROLE LOGIN
           PASSWORD {{ .Values.global.datastore.auth.rw.password | default .Values.datastore.auth.rw.password | squote }};
       END IF;
     END
@@ -65,6 +65,23 @@ data:
         CREATE ROLE {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }}
           NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
           PASSWORD {{ .Values.global.datastore.auth.ro.password | default .Values.datastore.auth.ro.password | squote }};
+      END IF;
+    END
+    \$do\$;
+
+    -- Datapusher
+    DO
+    \$do\$
+    BEGIN
+      IF EXISTS (
+          SELECT FROM pg_catalog.pg_roles
+          WHERE  rolname = {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | squote }}) THEN
+
+          RAISE NOTICE 'Role {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username  | quote }} already exists. Skipping.';
+      ELSE
+        CREATE ROLE {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | quote }}
+          SUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+          PASSWORD {{ .Values.global.datapusher.db.auth.password | default .Values.datapusher.auth.password  | squote }};
       END IF;
     END
     \$do\$;
@@ -103,6 +120,17 @@ data:
 
     EOSQL
 
+    # Datapusher jobs database
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" -tc \
+      "SELECT 1 FROM pg_database WHERE datname = {{ .Values.global.datapusher.db.dbname | default .Values.datapusher.dbname | squote }}" | grep -q 1 || \
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+
+      CREATE DATABASE {{ .Values.global.datapusher.db.dbname | default .Values.datapusher.dbname | quote }}
+      OWNER {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username  | quote }}
+      ENCODING 'utf-8';
+
+    EOSQL
+
     echo "Create databases...done!"
 
   03_createPostGIS.sh: |
@@ -122,5 +150,39 @@ data:
     EOSQL
 
     echo "Create PostGIS...done!"
+
+  04_setDatastorePersmissions.sh: |
+    #!/bin/bash
+    set -e
+
+    echo "Set datastore permissions..."
+
+    export PGPASSWORD="$POSTGRES_PASSWORD"
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" \
+      --dbname {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }} <<-EOSQL
+
+      -- Datastore ro user
+      GRANT CONNECT
+        ON DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
+        TO {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }};
+
+      GRANT SELECT ON ALL TABLES IN SCHEMA public
+        TO {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }};
+
+      ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT
+        SELECT ON TABLES
+        TO {{ .Values.global.datastore.auth.ro.username | default .Values.datastore.auth.ro.username | quote }};
+
+      -- Datapusher user
+      GRANT ALL PRIVILEGES
+      ON DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
+        TO {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | quote }};
+
+      GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON ALL TABLES IN SCHEMA public
+        TO {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | quote }};
+
+    EOSQL
+
+    echo "Alter default permissions on datastore...done!"
 
 {{- end -}}

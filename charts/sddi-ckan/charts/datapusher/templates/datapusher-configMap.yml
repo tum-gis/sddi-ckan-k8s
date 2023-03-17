@@ -9,13 +9,13 @@ metadata:
     app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: {{ .Values.component }}
 data:
-  DATAPUSHER_MAX_CONTENT_LENGTH: {{ .Values.maxContentLength | quote }}
-  DATAPUSHER_CHUNK_SIZE: {{ .Values.chunkSize | quote }}
-  DATAPUSHER_CHUNK_INSERT_ROWS: {{ .Values.insertRows | quote }}
-  DATAPUSHER_DOWNLOAD_TIMEOUT: {{ .Values.downloadTimeout | quote }}
-  DATAPUSHER_SSL_VERIFY: {{ .Values.datapusherSslVerify | quote }}
-  DATAPUSHER_REWRITE_RESOURCES: {{ .Values.datapusherRewriteResources | quote }}
-  DATAPUSHER_REWRITE_URL: {{ .Values.datapusherRewriteUrl | quote }}
+  DATAPUSHER_MAX_CONTENT_LENGTH: {{ .Values.maxContentLength | squote }}
+  DATAPUSHER_CHUNK_SIZE: {{ .Values.chunkSize | squote }}
+  DATAPUSHER_CHUNK_INSERT_ROWS: {{ .Values.insertRows | squote }}
+  DATAPUSHER_DOWNLOAD_TIMEOUT: {{ .Values.downloadTimeout | squote }}
+  DATAPUSHER_SSL_VERIFY: {{ .Values.datapusherSslVerify | squote }}
+  DATAPUSHER_REWRITE_RESOURCES: {{ .Values.datapusherRewriteResources | squote }}
+  DATAPUSHER_REWRITE_URL: {{ .Values.datapusherRewriteUrl | squote }}
   {{- with .Values.extraEnv }}
     {{- toYaml . | nindent 2 }}
   {{- end }}

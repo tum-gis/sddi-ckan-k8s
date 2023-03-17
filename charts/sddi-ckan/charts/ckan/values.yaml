@@ -112,7 +112,8 @@ ingress:
       secure: "false"
 
 # General settings
-# -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`.
+# -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`
+# and include the protocol e.g. (`https://my.domain.de`).
 # [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url)
 siteUrl: https://my-ckan.de
 # -- Title of the CKAN instance, displayed in Browser windows/tab name
@@ -264,7 +265,7 @@ persistence:
 db:
   # -- CKAN database host, used to build `sqlalchemy.url` see
   # [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings)
-  host: postgis-hl
+  host: postgis
   # -- CKAN database port, used to build `sqlalchemy.url` see
   # [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings)
   port: 5432
@@ -283,7 +284,7 @@ db:
 datastore:
   # -- CKAN datastore host, used to build `ckan.datastore.read/write_url` see
   # [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings)
-  host: postgis-hl
+  host: postgis
     # -- CKAN datastore port, used to build `ckan.datastore.read/write_url` see
   # [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings)
   port: 5432
@@ -326,8 +327,9 @@ solr:
 
 # DataPusher ------------------------------------------------------------------
 datapusher:
-  # -- See [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings)
-  api_token:
+  # -- Datapusher API token, see
+  # [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings)
+  apiToken:
   # -- This should be set to cluster internal ckan service domain.
   # # -- [CKAN DataPusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-datapusher-callback-url-base)
   callback_url_base: http://ckan:5000/

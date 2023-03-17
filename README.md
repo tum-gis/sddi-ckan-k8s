@@ -52,8 +52,11 @@ For local testing check out the [examples](examples).
   - [Repository setup](#repository-setup)
     - [Build Chart documentation](#build-chart-documentation)
   - [Contributors](#contributors)
-- [:memo: License](#memo-license)
+    - [Github contributors to this repo](#github-contributors-to-this-repo)
+- [:mortar\_board: Research](#mortar_board-research)
+  - [Publications](#publications)
 - [:handshake: Thanks](#handshake-thanks)
+- [:memo: License](#memo-license)
 
 ## :package: Application stack
 
@@ -86,7 +89,7 @@ To get this up an running in seconds, check out the [examples](examples). You wi
 
 ## :grey_exclamation: Requirements
 
-- Kubernetes cluster with Kubernetes `>= v1.20`
+- Kubernetes cluster with Kubernetes `>= v1.23.0`
 
   - For testing 2 -3 nodes with 2-4 CPUs and 4-8 GiB RAM will be sufficient
 
@@ -171,16 +174,135 @@ docker run --rm -u $(id -u) --name helm-docs \
 
 ### Contributors
 
+[Marija Knezevic](https://www.asg.ed.tum.de/en/gis/our-team/staff/marija-knezevic/) and
+[Bruno Willenborg](https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/)
+at Technical University of Munich, Chair of Geoinformatics
+realized the current SDDI CKAN [Docker images](https://github.com/tum-gis/ckan-docker)
+and [Helm chart](https://github.com/tum-gis/sddi-ckan-k8s) and updated the
+CKAN SDDI extensions ([ckanext-grouphierarchy](https://github.com/tum-gis/ckanext-grouphierarchy-sddi),
+[ckanext-relation](https://github.com/tum-gis/ckanext-relation-sddi)) initially implemented by
+[Mandana Moshrefzadeh](https://www.linkedin.com/in/mandana-moshrefzadeh-a4666454)
+and [Wolfgang Deigele](https://www.linkedin.com/in/wolfgang-deigele-329673189).
+
+The core concepts, documentation, and [initial implementation](https://github.com/tum-gis/SDDI-CKAN-Docker)
+for SDDI were realized at Technical University of Munich, Chair of Geoinformatics by:
+
+- [Mandana Moshrefzadeh](https://www.linkedin.com/in/mandana-moshrefzadeh-a4666454): Landeshauptstadt München, Kommunalreferat – GeodatenService
+- [Prof. Thomas H. Kolbe](https://www.asg.ed.tum.de/gis/unser-team/lehrstuhlangehoerige/prof-thomas-h-kolbe/):
+  Technical University of Munich, Chair of Geoinformatics
+- [Dr. Andreas Donaubauer](https://www.asg.ed.tum.de/gis/unser-team/lehrstuhlangehoerige/dr-andreas-donaubauer/):
+  Technical University of Munich, Chair of Geoinformatics
+- [Marija Knezevic](https://www.asg.ed.tum.de/gis/unser-team/lehrstuhlangehoerige/marija-knezevic/):
+  Technical University of Munich, Chair of Geoinformatics
+- [Bruno Willenborg](https://www.asg.ed.tum.de/gis/unser-team/lehrstuhlangehoerige/bruno-willenborg/):
+  Technical University of Munich, Chair of Geoinformatics
+- [Kanishk Chaturvedi](https://www.linkedin.com/in/dr-kanishk-chaturvedi), Software AG
+- [Son H. Nguyen](https://www.asg.ed.tum.de/en/gis/our-team/staff/son-h-nguyen/), Technical University of Munich, Chair of Geoinformatics
+- [Wolfgang Deigele](https://www.linkedin.com/in/wolfgang-deigele-329673189), ESRI Deutschland
+
+<p align="center" height="100" line-height="100">
+  <a href="https://www.asg.ed.tum.de/gis/startseite/" target="_blank">
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/tum_logo_h50.png"
+    alt="Technical University of Munich, Chair of Geoinformatics" height="50"/>
+  </a>
+</p>
+
+#### Github contributors to this repo
+
 <a href="https://github.com/tum-gis/sddi-ckan-k8s/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
+  <img height="40" src="https://contrib.rocks/image?repo=tum-gis/sddi-ckan-k8s" />
 </a>
+
+## :mortar_board: Research
+
+An overview of the Smart District Data Infrastructure (SDDI) Project is available
+at the Chair of Geoinformatics, Technical University of Munich
+[homepage](https://www.asg.ed.tum.de/gis)
+in [english](https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure/)
+and [german](https://www.asg.ed.tum.de/gis/projekte/sddi/).
+
+### Publications
+
+The full list of SDDI related publications is available
+[here](https://www.asg.ed.tum.de/gis/projekte/sddi/#c11942). Some key publications
+are listed below:
+
+- [**Knezevic et al. (2022)**](https://mediatum.ub.tum.de/node?id=1689713):
+  *Managing Urban Digital Twins with an Extended Catalog Service*,
+  Proceedings of the 7th International Smart Data and Smart Cities (SDSC) Conference 2022, ISPRS Annals of Photogrammetry, Remote Sensing and Spatial Information Sciences,
+  [PDF download / DOI](https://doi.org/10.5194/isprs-annals-X-4-W3-2022-119-2022).
+
+- [**Deigele, W. et al. (2021)**](https://mediatum.ub.tum.de/node?id=1684529):
+  *Leitfaden – Geobasierter Digitaler Zwilling nach der SDDI-Methode*,
+  Ed.: Bayern Innovativ, ZD.B – Themenplattform Smart Cities and Regions.
+
+- [**Gackstetter, D. et al. (2021)**](https://mediatum.ub.tum.de/node?id=1636657):
+  *Smart Rural Areas Data Infrastructure (SRADI) – an information logistics framework for digital agriculture based on open standards*,
+  41. GIL-Jahrestagung 2021 - Fokus: Informations- und Kommunikationstechnologie in kritischen Zeiten, Gesellschaft für Informatik e.V. (GI), [PDF download / DOI](https://dl.gi.de/bitstream/handle/20.500.12116/35656/GIL2021_Gackstetter_109-114.pdf?sequence=1&isAllowed=y).
+
+- [**Kolbe, T. H. et al. (2020)**](https://mediatum.ub.tum.de/node?id=1554725):
+  *The Data Integration Challenge in Smart City Projects*,
+  Chair of Geoinformatics, Technical University of Munich,
+  [PDF download / DOI](https://mediatum.ub.tum.de/doc/1554725/671062.pdf).
+
+- [**Moshrefzadeh, M. et al. (2020)**](https://mediatum.ub.tum.de/node?id=1540127):
+  *Towards a Distributed Digital Twin of the Agricultural Landscape*,
+  Journal of Digital Landscape Architecture (5),
+  [PDF download / DOI](https://gispoint.de/fileadmin/user_upload/paper_gis_open/DLA_2020/537690019.pdf).
+
+- [**Moshrefzadeh, M. et al. (2017)**](https://mediatum.ub.tum.de/node?id=1350813):
+  *Integrating and Managing the Information for Smart Sustainable Districts - The Smart District Data Infrastructure (SDDI)*,
+  In: Kolbe, Thomas H.; Bill, Ralf; Donaubauer, Andreas (Hrsg.): Geoinformationssysteme 2017 – Beiträge zur 4. Münchner GI-Runde. . Wichmann Verlag,
+  [PDF download / DOI](https://mediatum.ub.tum.de/download/1350813/1350813.pdf).
+
+- [**Moshrefzadeh, M. and T.H. Kolbe (2016)**](https://mediatum.ub.tum.de/node?id=1304877):
+  *Smart Data Infrastructure for Smart and Sustainable Cities*,
+  DDSS 2016,
+  [PDF download / DOI](https://mediatum.ub.tum.de/doc/1304877/797209.pdf).
+
+## :handshake: Thanks
+
+We would like to thank following institutions and persons for their contributions
+to the SDDI concepts, tools, documentations, education, and funding:
+
+- [ZD.B-Themenplattform Smart Cities and Regions](https://www.bayern-innovativ.de/de/netzwerke-und-thinknet/uebersicht-digitalisierung/digitales-planen-und-bauen-smart-cities-and-regions/seite/zd-b-themenplattform-smart-cities-and-regions):
+  Willi Steincke at [Bayern Innovativ GmbH](https://www.bayern-innovativ.de/de?gclid=Cj0KCQjwk7ugBhDIARIsAGuvgPZkLiU4AhX1Xz-07vLIt0vpixwjF1wCrHau3PkGEMyl2ZoU_pn1hPMaAnALEALw_wcB)
+  und [Lutz Morich](https://www.linkedin.com/in/lutz-morich-in), for funding and supporting the SDDI development for several years.
+
+- [Bayerisches Staatsministerium für Digitales](https://www.stmd.bayern.de/) for funding the
+  [project TwinBy](https://twinby.bayern) and Stefan Bobinger for many contributions to SDDI concepts and documentation.
+
+- [Digital Twin Munich / Digitaler Zwilling München](https://muenchen.digital/twin/),
+  [Connected Urban Twins (CUT) research project](https://www.connectedurbantwins.de/en/),
+  [SAVeNoW research project](https://savenow.de/en/),
+  [eit Climate-KIC](https://www.climate-kic.org/) (SDDI research project)
+  for funding the work on SDDI concepts and implementation.
+
+- [Tome Petrovski](https://github.com/TomeCirun) :raised_hands: for professional support
+  with CKAN and CKAN extension development.
+
+- [KEITARO](https://www.keitaro.com/) for their [CKAN Docker images](https://github.com/keitaroinc/docker-ckan)
+  and [CKAN Helm chart](https://github.com/keitaroinc/ckan-helm) that inspired this work.
+
+<p align="center" height="100" line-height="100">
+  <a href="https://twinby.bayern" target="_blank">
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/twinBy_logo_h50.png"
+    alt="TwinBy" height="50"/>
+  </a>
+  <br />
+  <br />
+  <a href="https://www.stmd.bayern.de" target="_blank">
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/bsd_logo_h50.png"
+    alt="Bayerische Staatsministerium für Digitales" height="50" />
+  </a>
+  <br />
+  <br />
+  <a href="https://www.bayern-innovativ.de" target="_blank">
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/bayernInnovativ_logo_h50.png"
+    alt="Bayern Innovativ GmbH" height="50"/>
+  </a>
+</p>
 
 ## :memo: License
 
 This Helm chart is distributed under the Apache License 2.0. See [LICENSE](LICENSE) for more information.
-
-## :handshake: Thanks
-
-- This repo is inspired by the
-  [CKAN Helm chart](https://github.com/keitaroinc/ckan-helm) by
-  [Keitaro](https://github.com/keitaroinc). Many thank's for your great work!

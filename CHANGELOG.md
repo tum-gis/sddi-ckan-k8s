@@ -8,7 +8,26 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
-## [sddi-ckan-0.5.0] - 2023-03-23
+## [sddi-ckan-0.6.0-beta1] - 2023-03-02
+
+### Added
+
+- Added init containers to CKAN and Datapusher to wait for DB to be ready (`pg_isready`)
+- Trigger chart releaser on pushes to `release/**` to enable pre-releases
+
+### Changed
+
+- Use own Datapusher image to support database backend
+- Updated database initialization for Datapusher database backend
+- Don't use PostGIS headless service by default
+
+### Removed
+
+### Fixed
+
+- `ckan.datapusher.api_token` was not set as env var
+
+## [sddi-ckan-0.5.0] - 2023-02-23
 
 ### Changed
 
@@ -121,6 +140,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Deprecated
 
+[sddi-ckan-0.6.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.5.0...sddi-ckan-0.6.0
 [sddi-ckan-0.5.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.4.0...sddi-ckan-0.5.0
 [sddi-ckan-0.4.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.3.2...sddi-ckan-0.4.0
 [sddi-ckan-0.3.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.3.1...sddi-ckan-0.3.2

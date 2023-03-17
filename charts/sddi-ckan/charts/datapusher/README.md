@@ -1,6 +1,6 @@
 # datapusher
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.17](https://img.shields.io/badge/AppVersion-0.0.17-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.19](https://img.shields.io/badge/AppVersion-0.0.19-informational?style=flat-square)
 
 A Helm chart for CKAN Datapusher.
 
@@ -30,15 +30,22 @@ A Helm chart for CKAN Datapusher.
 | autoscaling.targetMemoryUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | chunkSize | string | `"16384"` | Size of chunks of the data that is being downloaded in bytes |
 | component | string | `"datapusher"` | Role of CKAN Datapusher in this chart |
-| datapusherRewriteResources | string | `"True"` | Enable or disable (boolean) whether Datapusher should rewrite resources uploaded to CKAN's filestore, since Datapusher takes the CKAN Site URL value for generating the resource URL. Default: False |
+| databaseUri | string | `"sqlite:////tmp/job_store.db"` | SQLAlchemy Database URL for job store, see [Datapusher config](https://github.com/ckan/datapusher#datapusher-configuration) for more. Note: If `db.enabled` this setting is ignored. |
+| datapusherRewriteResources | bool | `true` | Enable or disable (boolean) whether Datapusher should rewrite resources uploaded to CKAN's filestore, since Datapusher takes the CKAN Site URL value for generating the resource URL. Default: False |
 | datapusherRewriteUrl | string | `"http://ckan:5000/"` | Sets the rewrite URL that Datapusher will rewrite resources that are uploaded to CKAN's filestore. Default: http://ckan:5000 |
-| datapusherSslVerify | string | `"False"` | Enable or disable (boolean) verification of SSL when trying to get resources. Default: True |
+| datapusherSslVerify | bool | `false` | Enable or disable (boolean) verification of SSL when trying to get resources. Default: True |
+| db.auth.password | string | `"changeMe"` | Jobs database password. If set, this values will overwrite the value in the Datapusher chart. Note: This values is overwritten by `global.datapusher.db.auth.password`, if set. |
+| db.auth.username | string | `"datapusher"` | Jobs database username. If set, this values will overwrite the value in the Datapusher chart. Note: This values is overwritten by `global.datapusher.db.auth.username`, if set. |
+| db.dbname | string | `"datapusher_jobs"` | Jobs database name. If set, this values will overwrite the value in the Datapusher chart. Note: This values is overwritten by `global.datapusher.db.dbname`, if set. |
+| db.enabled | bool | `true` | Enable/disable PostgreSQL as database backend for [Datapusher](https://github.com/ckan/datapusher#high-availability-setup). If set to false, `databaseUri` is used. Note: This values is overwritten by `global.datapusher.db.enabled`, if set. |
+| db.host | string | `"postgis"` | Jobs database host. If set, this values will overwrite the value in the Datapusher chart. Note: This values is overwritten by `global.datapusher.db.host`, if set. |
+| db.port | int | `5432` | Jobs database port. If set, this values will overwrite the value in the Datapusher chart. Note: This values is overwritten by `global.datapusher.db.port`, if set. |
 | downloadTimeout | string | `"30"` | Timeout limit of the download request |
 | enabled | bool | `true` | Enable/disable CKAN Datapusher |
 | extraEnv | object | `{}` | Extra environment variables. Values need to be quoted. This can be used to overwrite or extend [CKAN settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-configuration-file). See [ckanext-envvars](https://github.com/okfn/ckanext-envvars) for variable naming conventions. |
 | fullnameOverride | string | `"datapusher"` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |
-| image.repository | string | `"ghcr.io/keitaroinc/datapusher"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
+| image.repository | string | `"tumgis/ckan-datapusher"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
 | insertRows | string | `"250"` | Number of rows to take from the data and upload them as chunks to datastore |

@@ -11,7 +11,7 @@ fullnameOverride: datapusher
 
 image:
   # -- [Image repository](https://kubernetes.io/docs/concepts/containers/images/)
-  repository: ghcr.io/keitaroinc/datapusher
+  repository: tumgis/ckan-datapusher
   # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
    # -- Overrides the image tag whose default is the chart `appVersion`.
@@ -81,14 +81,48 @@ insertRows: "250"
 # -- Timeout limit of the download request
 downloadTimeout: "30"
 # -- Enable or disable (boolean) verification of SSL when trying to get resources. Default: True
-datapusherSslVerify: "False"
+datapusherSslVerify: False
 # -- Enable or disable (boolean) whether Datapusher should rewrite resources uploaded to CKAN's filestore,
 # since Datapusher takes the CKAN Site URL value for generating the resource URL.
 # Default: False
-datapusherRewriteResources: "True"
+datapusherRewriteResources: True
 # -- Sets the rewrite URL that Datapusher will rewrite resources that are uploaded to CKAN's filestore.
 # Default: http://ckan:5000
 datapusherRewriteUrl: http://ckan:5000/
+# -- SQLAlchemy Database URL for job store, see
+# [Datapusher config](https://github.com/ckan/datapusher#datapusher-configuration) for more.
+# Note: If `db.enabled` this setting is ignored.
+databaseUri: 'sqlite:////tmp/job_store.db'
+
+db:
+  # -- Enable/disable PostgreSQL as database backend for
+  # [Datapusher](https://github.com/ckan/datapusher#high-availability-setup).
+  # If set to false, `databaseUri` is used.
+  # Note: This values is overwritten by `global.datapusher.db.enabled`, if set.
+  enabled: true
+  # -- Jobs database host.
+  # If set, this values will overwrite the value in the Datapusher chart.
+  # Note: This values is overwritten by `global.datapusher.db.host`, if set.
+  host: postgis
+  # -- Jobs database port.
+  # If set, this values will overwrite the value in the Datapusher chart.
+  # Note: This values is overwritten by `global.datapusher.db.port`, if set.
+  port: 5432
+  # -- Jobs database name.
+  # If set, this values will overwrite the value in the Datapusher chart.
+  # Note: This values is overwritten by `global.datapusher.db.dbname`, if set.
+  dbname: datapusher_jobs
+  auth:
+    # -- Jobs database username.
+    # If set, this values will overwrite the value in the Datapusher chart.
+    # Note: This values is overwritten by `global.datapusher.db.auth.username`, if set.
+    username: datapusher
+    # -- Jobs database password.
+    # If set, this values will overwrite the value in the Datapusher chart.
+    # Note: This values is overwritten by `global.datapusher.db.auth.password`, if set.
+    password: changeMe
+
+
 
 resources:
   limits:
