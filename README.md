@@ -17,14 +17,18 @@
   </a>
 </p>
 
-This chart deploys a self contained [CKAN data catalog](https://ckan.org) with all of its dependencies. CKAN is extended to support the [Smart District Data Infrastructure (SDDI)](https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure/).
+This chart deploys a self contained [CKAN data catalog](https://ckan.org) with all of its dependencies.
+CKAN is extended to support the
+[Smart District Data Infrastructure (SDDI)](https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure/).
 
 ## :zzz: TL;DR
 
 Deploy a basic SDDI-CKAN setup in a Kubernetes cluster with
 [`ingress-nginx`](https://kubernetes.github.io/ingress-nginx) and
 [`cert-manager`](https://cert-manager.io/)
-available and a FQDN (e.g. `www.my-sddi-ckan.de`) pointing to your Ingress controller.
+**pre-installed** and a
+[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)
+(e.g. `www.my-sddi-ckan.de`) pointing to your Ingress controller.
 
 ```bash
 helm repo add sddi-ckan "https://tum-gis.github.io/sddi-ckan-k8s"
@@ -36,7 +40,11 @@ helm install ckan sddi-ckan/sddi-ckan \
   --set 'global.ingress.certManager.issuerEmail=myemailaddress@example.de'
 ```
 
-For local testing check out the [examples](examples).
+After the Helm deployment has finished, your SDDI CKAN instance is available
+at the FQDN you specified.
+The default username and password are: `admin: changeMe`.
+
+Instructions for *local* testing with e.g. `minikube` check out the [examples](examples) section.
 
 ## :book: Table of content
 
