@@ -28,6 +28,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 - Don't use PostGIS headless service by default
 - Changed default logo from CKAN to SDDI logo
 - Reduced default resource requests for `postgis` and `solr`
+- Several minor docs changes
 
 ### Removed
 
