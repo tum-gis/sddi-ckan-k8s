@@ -84,7 +84,9 @@ ingress:
   domains: []
   # -- Additional Ingress annotations
   annotations:
-    # nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  # -- Additional Ingress annotation for e.g. CORS, timeouts, SSL settings.
+  # See [nginx-ingress annotations docs](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md)
+  # for more.
   certManager:
     # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
     issuerEmail: me@example.com

@@ -78,6 +78,7 @@ A Helm chart for SDDI enabled CKAN.
 | image.tag | string | `"edge"` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
 | ingress.annotations | string | `nil` | Additional Ingress annotations |
+| ingress.certManager | object | `{"issuerEmail":"me@example.com","issuerName":"letsencrypt-staging","issuerType":"namespace"}` | Additional Ingress annotation for e.g. CORS, timeouts, SSL settings. See [nginx-ingress annotations docs](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md) for more. |
 | ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
 | ingress.certManager.issuerName | string | `"letsencrypt-staging"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available. |
 | ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |
