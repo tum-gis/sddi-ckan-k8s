@@ -3,6 +3,62 @@ entries:
   sddi-ckan:
   - apiVersion: v2
     appVersion: 0.0.4
+    created: "2023-03-22T14:55:41.310026389Z"
+    dependencies:
+    - condition: postgis.enabled
+      name: postgis
+      repository: ""
+      version: '*'
+    - condition: solr.enabled
+      name: solr
+      repository: ""
+      version: '*'
+    - condition: redis.enabled
+      name: redis
+      repository: ""
+      version: '*'
+    - condition: ckan.enabled
+      name: ckan
+      repository: ""
+      version: '*'
+    - condition: datapusher.enabled
+      name: datapusher
+      repository: ""
+      version: '*'
+    - condition: certIssuer.enabled
+      name: certIssuer
+      repository: ""
+      version: '*'
+    - alias: ingress-nginx
+      condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: ~4.4.0
+    - alias: cert-manager
+      condition: cert-manager.enabled
+      name: cert-manager
+      repository: https://charts.jetstack.io
+      version: ~1.11.0
+    description: 'Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md)
+      for changes. '
+    digest: 7686c988717ac08828c3cd33019ce013047420828e55290cf945191b211ede5e
+    home: https://github.com/tum-gis/sddi-ckan-k8s
+    kubeVersion: '>= 1.23.0'
+    maintainers:
+    - email: b.willenborg@tum.de
+      name: Bruno Willenborg
+      url: https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/
+    name: sddi-ckan
+    sources:
+    - https://github.com/tum-gis/sddi-ckan-k8s
+    - https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure
+    - https://github.com/tum-gis/ckan-docker
+    type: application
+    urls:
+    - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-0.6.0-beta7/sddi-ckan-0.6.0-beta7.tgz
+    version: 0.6.0-beta7
+  - apiVersion: v2
+    appVersion: 0.0.4
     created: "2023-03-15T08:32:13.031053465Z"
     dependencies:
     - condition: postgis.enabled
@@ -823,4 +879,4 @@ entries:
     urls:
     - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-0.1.0/sddi-ckan-0.1.0.tgz
     version: 0.1.0
-generated: "2023-03-15T08:32:13.031290968Z"
+generated: "2023-03-22T14:55:41.310468026Z"
