@@ -40,6 +40,9 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-path: {{ .Values.ingress.stickySessions.sessionCookie.path | quote }}
     nginx.ingress.kubernetes.io/session-cookie-change-on-failure: {{ .Values.ingress.stickySessions.sessionCookie.changeOnFailure | quote }}
     {{- end }}
+    {{- if .Values.ingress.cors.enabled }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    {{- end }}
 spec:
   ingressClassName: {{ .Values.global.ingress.className | default .Values.ingress.className }}
   tls:

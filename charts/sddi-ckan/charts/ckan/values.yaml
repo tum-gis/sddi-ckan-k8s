@@ -112,6 +112,11 @@ ingress:
       path: "/"
       # -- [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/)
       secure: "false"
+  cors:
+    # -- Enable/disable [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing).
+    # See [ingress-nginx cors settings](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md#enable-cors)
+    # for details on CORS configuration and default settings. Use `ingress.annotations` to overwrite the default configuration annotations.
+    enabled: true
 
 # General settings
 # -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`
