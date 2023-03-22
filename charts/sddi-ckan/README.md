@@ -1,6 +1,6 @@
 # sddi-ckan
 
-![Version: 0.6.0-beta6](https://img.shields.io/badge/Version-0.6.0--beta6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.4](https://img.shields.io/badge/AppVersion-0.0.4-informational?style=flat-square)
+![Version: 0.6.0-beta7](https://img.shields.io/badge/Version-0.6.0--beta7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.4](https://img.shields.io/badge/AppVersion-0.0.4-informational?style=flat-square)
 
 Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md) for changes.
 
@@ -16,6 +16,7 @@ Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/t
 
 * <https://github.com/tum-gis/sddi-ckan-k8s>
 * <https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure>
+* <https://github.com/tum-gis/ckan-docker>
 
 ## Requirements
 

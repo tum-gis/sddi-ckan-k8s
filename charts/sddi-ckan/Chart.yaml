@@ -8,8 +8,9 @@ home: https://github.com/tum-gis/sddi-ckan-k8s
 sources:
   - https://github.com/tum-gis/sddi-ckan-k8s
   - https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure
+  - https://github.com/tum-gis/ckan-docker
 
-version: 0.6.0-beta6
+version: 0.6.0-beta7
 appVersion: "0.0.4"
 kubeVersion: ">= 1.23.0"
 
