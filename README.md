@@ -1,18 +1,18 @@
 <h1 align="center">SDDI CKAN for Kubernetes</h1>
 
 <p align="center">
-    <em>
-      Helm chart for a <a title="SDDI" href="https://www.asg.ed.tum.de/gis/projekte/sddi/">SDDI</a>
-      enabled <a title="CKAN" href="https://ckan.org/">CKAN</a> catalog
-    </em>
-    <br />
-    <br />
-    <a href="https://github.com/tum-gis/sddi-ckan-k8s/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/tum-gis/sddi-ckan-k8s/issues">Request Feature</a>
-    <br />
-    <br />
-    <a href="https://github.com/tum-gis/sddi-ckan-k8s/releases" title="Latest release">
+  <em>
+    Helm chart for a <a title="SDDI" href="https://www.asg.ed.tum.de/gis/projekte/sddi/">SDDI</a>
+    enabled <a title="CKAN" href="https://ckan.org/">CKAN</a> catalog
+  </em>
+  <br />
+  <br />
+  <a href="https://github.com/tum-gis/sddi-ckan-k8s/issues">Report Bug</a>
+  ·
+  <a href="https://github.com/tum-gis/sddi-ckan-k8s/issues">Request Feature</a>
+  <br />
+  <br />
+  <a href="https://github.com/tum-gis/sddi-ckan-k8s/releases" title="Latest release">
     <img src="https://img.shields.io/github/v/release/tum-gis/sddi-ckan-k8s?sort=semver&style=for-the-badge">
   </a>
 </p>
@@ -63,6 +63,7 @@ Instructions for *local* testing with e.g. `minikube` check out the [examples](e
     - [Github contributors to this repo](#github-contributors-to-this-repo)
 - [:mortar\_board: Research](#mortar_board-research)
   - [Publications](#publications)
+  - [Cite this repository](#cite-this-repository)
 - [:handshake: Thanks](#handshake-thanks)
 - [:memo: License](#memo-license)
 
@@ -267,6 +268,14 @@ are listed below:
   *Smart Data Infrastructure for Smart and Sustainable Cities*,
   DDSS 2016,
   [PDF download / DOI](https://mediatum.ub.tum.de/doc/1304877/797209.pdf).
+
+### Cite this repository
+
+To cite this repository, please use the DOI provided by [Zenodo](https://zenodo.org).
+If you want to reference a specific release version of the software, click the badge
+and navigate to the desired version on the page.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7760480.svg?style=flat-square)](https://doi.org/10.5281/zenodo.7760480)
 
 ## :handshake: Thanks
 
