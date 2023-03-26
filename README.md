@@ -44,7 +44,7 @@ After the Helm deployment has finished, your SDDI CKAN instance is available
 at the FQDN you specified.
 The default username and password are: `admin: changeMe`.
 
-Instructions for *local* testing with e.g. `minikube` check out the [examples](examples) section.
+Instructions for *local* testing with e.g. `minikube` or `Docker Desktop` check out the [examples](examples) section.
 
 ## :book: Table of content
 
