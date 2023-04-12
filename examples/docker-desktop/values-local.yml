@@ -10,7 +10,7 @@ global:
 # This needs to be enabled, if you don't have nginx-ingress installed already
 # in your cluster.
 ingress-nginx:
-  enabled: false
+  enabled: true
 
 # cert-manager configuration --------------------------------------------------
 # Disable cert-manager and certIssuer for local testing, they are not required.

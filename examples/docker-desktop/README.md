@@ -39,13 +39,17 @@ This is especially useful for testing, developing, and for educational purposes.
     ```bash
     helm install ckan sddi-ckan/sddi-ckan \
       -n ckan --create-namespace \
-      --atomic --wait \
+      --atomic --wait --timeout 10m \
       --values "https://raw.githubusercontent.com/tum-gis/sddi-ckan-k8s/main/examples/docker-desktop/values-local.yml"
     ```
-    > **Tip**: In `docker-desktop` setups with low hardware resources the deployment may timeout,
+
+    > **Tip 1**: In `docker-desktop` setups with low hardware resources the deployment may timeout,
     > especially at first run, when all images have to be pulled.
-    > If you are running into timeouts, add `--timeout 10m` to the `helm install`
-    > command.
+    > If you are running into timeouts, use the `--timeout 10m` option of `helm install`
+    > to increase the time span until helm aborts the deployment.
+
+    > **Tip 2**: If you want to try out a development (`beta`, `alpha`) version of the helm chart,
+    > use the `--devel` option of helm.
 
 3. After the chart has installed successfully, CKAN is available at https://localhost.
    A system admin user has been created automatically. The credentials are:

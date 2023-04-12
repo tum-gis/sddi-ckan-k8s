@@ -1,30 +1,34 @@
 <h1 align="center">SDDI CKAN for Kubernetes</h1>
 
 <p align="center">
-    <em>
-      Helm chart for a <a title="SDDI" href="https://www.asg.ed.tum.de/gis/projekte/sddi/">SDDI</a>
-      enabled <a title="CKAN" href="https://ckan.org/">CKAN</a> catalog
-    </em>
-    <br />
-    <br />
-    <a href="https://github.com/tum-gis/sddi-ckan-k8s/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/tum-gis/sddi-ckan-k8s/issues">Request Feature</a>
-    <br />
-    <br />
-    <a href="https://github.com/tum-gis/sddi-ckan-k8s/releases" title="Latest release">
+  <em>
+    Helm chart for a <a title="SDDI" href="https://www.asg.ed.tum.de/gis/projekte/sddi/">SDDI</a>
+    enabled <a title="CKAN" href="https://ckan.org/">CKAN</a> catalog
+  </em>
+  <br />
+  <br />
+  <a href="https://github.com/tum-gis/sddi-ckan-k8s/issues">Report Bug</a>
+  ·
+  <a href="https://github.com/tum-gis/sddi-ckan-k8s/issues">Request Feature</a>
+  <br />
+  <br />
+  <a href="https://github.com/tum-gis/sddi-ckan-k8s/releases" title="Latest release">
     <img src="https://img.shields.io/github/v/release/tum-gis/sddi-ckan-k8s?sort=semver&style=for-the-badge">
   </a>
 </p>
 
-This chart deploys a self contained [CKAN data catalog](https://ckan.org) with all of its dependencies. CKAN is extended to support the [Smart District Data Infrastructure (SDDI)](https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure/).
+This chart deploys a self contained [CKAN data catalog](https://ckan.org) with all of its dependencies.
+CKAN is extended to support the
+[Smart District Data Infrastructure (SDDI)](https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure/).
 
 ## :zzz: TL;DR
 
 Deploy a basic SDDI-CKAN setup in a Kubernetes cluster with
 [`ingress-nginx`](https://kubernetes.github.io/ingress-nginx) and
 [`cert-manager`](https://cert-manager.io/)
-available and a FQDN (e.g. `www.my-sddi-ckan.de`) pointing to your Ingress controller.
+**pre-installed** and a
+[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)
+(e.g. `www.my-sddi-ckan.de`) pointing to your Ingress controller.
 
 ```bash
 helm repo add sddi-ckan "https://tum-gis.github.io/sddi-ckan-k8s"
@@ -36,7 +40,11 @@ helm install ckan sddi-ckan/sddi-ckan \
   --set 'global.ingress.certManager.issuerEmail=myemailaddress@example.de'
 ```
 
-For local testing check out the [examples](examples).
+After the Helm deployment has finished, your SDDI CKAN instance is available
+at the FQDN you specified.
+The default username and password are: `admin: changeMe`.
+
+Instructions for *local* testing with e.g. `minikube` or `Docker Desktop` check out the [examples](examples) section.
 
 ## :book: Table of content
 
@@ -55,6 +63,7 @@ For local testing check out the [examples](examples).
     - [Github contributors to this repo](#github-contributors-to-this-repo)
 - [:mortar\_board: Research](#mortar_board-research)
   - [Publications](#publications)
+  - [Cite this repository](#cite-this-repository)
 - [:handshake: Thanks](#handshake-thanks)
 - [:memo: License](#memo-license)
 
@@ -202,7 +211,7 @@ for SDDI were realized at Technical University of Munich, Chair of Geoinformatic
 
 <p align="center" height="100" line-height="100">
   <a href="https://www.asg.ed.tum.de/gis/startseite/" target="_blank">
-    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/tum_logo_h50.png"
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/main/docs/img/tum_logo_h50.png"
     alt="Technical University of Munich, Chair of Geoinformatics" height="50"/>
   </a>
 </p>
@@ -260,6 +269,14 @@ are listed below:
   DDSS 2016,
   [PDF download / DOI](https://mediatum.ub.tum.de/doc/1304877/797209.pdf).
 
+### Cite this repository
+
+To cite this repository, please use the DOI provided by [Zenodo](https://zenodo.org).
+If you want to reference a specific release version of the software, click the badge
+and navigate to the desired version on the page.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7760480.svg?style=flat-square)](https://doi.org/10.5281/zenodo.7760480)
+
 ## :handshake: Thanks
 
 We would like to thank following institutions and persons for their contributions
@@ -286,19 +303,19 @@ to the SDDI concepts, tools, documentations, education, and funding:
 
 <p align="center" height="100" line-height="100">
   <a href="https://twinby.bayern" target="_blank">
-    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/twinBy_logo_h50.png"
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/main/docs/img/twinBy_logo_h50.png"
     alt="TwinBy" height="50"/>
   </a>
   <br />
   <br />
   <a href="https://www.stmd.bayern.de" target="_blank">
-    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/bsd_logo_h50.png"
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/main/docs/img/bsd_logo_h50.png"
     alt="Bayerische Staatsministerium für Digitales" height="50" />
   </a>
   <br />
   <br />
   <a href="https://www.bayern-innovativ.de" target="_blank">
-    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/credits/docs/img/bayernInnovativ_logo_h50.png"
+    <img src="https://github.com/tum-gis/sddi-ckan-k8s/blob/main/docs/img/bayernInnovativ_logo_h50.png"
     alt="Bayern Innovativ GmbH" height="50"/>
   </a>
 </p>
