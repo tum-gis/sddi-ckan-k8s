@@ -29,7 +29,7 @@ data:
           RAISE NOTICE 'Role {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }} already exists. Skipping.';
       ELSE
         CREATE ROLE {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }}
-          SUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+          NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
           PASSWORD {{ .Values.global.db.auth.password | default .Values.db.auth.password | squote }};
       END IF;
     END
@@ -46,7 +46,7 @@ data:
           RAISE NOTICE 'Role {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }} already exists. Skipping.';
       ELSE
         CREATE ROLE {{ .Values.global.datastore.auth.rw.username | default .Values.datastore.auth.rw.username | quote }}
-          SUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+          NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
           PASSWORD {{ .Values.global.datastore.auth.rw.password | default .Values.datastore.auth.rw.password | squote }};
       END IF;
     END
