@@ -80,7 +80,7 @@ data:
           RAISE NOTICE 'Role {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username  | quote }} already exists. Skipping.';
       ELSE
         CREATE ROLE {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | quote }}
-          SUPERUSER NOCREATEDB NOCREATEROLE LOGIN
+          NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN
           PASSWORD {{ .Values.global.datapusher.db.auth.password | default .Values.datapusher.auth.password  | squote }};
       END IF;
     END
