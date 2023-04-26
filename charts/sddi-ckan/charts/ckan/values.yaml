@@ -150,7 +150,7 @@ maxUploadSizeMB: 250
 maintenanceMode: false
 # -- [CKAN config dafault_views](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-views-default-views):
 # **Note**: Make sure the required view plugins are loaded!
-defaultViews: "image_view text_view geo_view geojson_view wmts_view shp_view"
+defaultViews: "image_view recline_view text_view geo_view geojson_view wmts_view shp_view"
 preview:
   # -- [CKAN config TextView](https://docs.ckan.org/en/latest/maintaining/configuration.html#text-view-settings):
   # Text preview formats.
