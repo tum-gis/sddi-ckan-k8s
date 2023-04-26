@@ -20,7 +20,7 @@ spec:
     metadata:
       annotations:
         checksum/configmap: {{ include (print $.Template.BasePath "/datapusher-configMap.yml") . | sha256sum }}
-        checksum/configmap: {{ include (print $.Template.BasePath "/datapusher-sct-db.yml") . | sha256sum }}
+        checksum/secret-db: {{ include (print $.Template.BasePath "/datapusher-sct-db.yml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
