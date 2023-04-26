@@ -22,7 +22,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Deprecated
 
-## [sddi-ckan-0.6.0-beta7] - 2023-03-02
+## [sddi-ckan-0.6.0-beta8] - 2023-04-23
 
 ### Added
 
@@ -44,6 +44,9 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 - Changed default logo from CKAN to SDDI logo
 - Reduced default resource requests for `postgis` and `solr`
 - Several minor docs changes
+- Downgrade to Postgres 14 as Postgres 15 is not jet supported by `psycopg2==2.9.3`
+- Enable [`recline_view`](https://docs.ckan.org/en/2.9/maintaining/data-viewer.html#data-explorer)
+  as default data view
 
 ### Removed
 
@@ -56,6 +59,11 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 - `ckan.datapusher.api_token` was not set as env var
 - Only set `CKAN__WEBASSETS__PATH`, if a values is specified.
+- Duplicate annotation name in Datapusher deployment preventing pod restart on config change
+
+### Security
+
+- Reworked datastore database initialization to avoid superuser rights for datastore user
 
 ## [sddi-ckan-0.5.0] - 2023-02-23
 
@@ -171,7 +179,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Deprecated
 
 [Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.6.0-beta7...HEAD
-[sddi-ckan-0.6.0-beta7]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.5.0...sddi-ckan-0.6.0-beta7
+[sddi-ckan-0.6.0-beta8]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.5.0...sddi-ckan-0.6.0-beta8
 [sddi-ckan-0.5.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.4.0...sddi-ckan-0.5.0
 [sddi-ckan-0.4.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.3.2...sddi-ckan-0.4.0
 [sddi-ckan-0.3.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.3.1...sddi-ckan-0.3.2

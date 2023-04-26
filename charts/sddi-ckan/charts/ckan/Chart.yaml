@@ -9,7 +9,7 @@ sources:
   - https://github.com/tum-gis/ckan-docker
   - https://github.com/keitaroinc/docker-ckan
 
-version: 0.10.0
+version: 0.10.1
 appVersion: "0.0.4"
 
 maintainers:
