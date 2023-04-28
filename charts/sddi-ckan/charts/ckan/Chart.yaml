@@ -9,8 +9,8 @@ sources:
   - https://github.com/tum-gis/ckan-docker
   - https://github.com/keitaroinc/docker-ckan
 
-version: 0.10.1
-appVersion: "0.0.4"
+version: 1.0.0
+appVersion: "1.0.0"
 
 maintainers:
   - email: b.willenborg@tum.de

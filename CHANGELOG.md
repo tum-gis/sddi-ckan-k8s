@@ -8,23 +8,7 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
-## [Unreleased] - YYYY-MM-DD
-
-### Added
-
-### Changed
-
-### Removed
-
-### Fixed
-
-### Security
-
-### Deprecated
-
-### Known issues
-
-## [sddi-ckan-0.6.0-beta8] - 2023-04-23
+## [sddi-ckan-1.0.0] - 2023-04-28
 
 ### Added
 
@@ -49,6 +33,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 - Downgrade to Postgres 14 as Postgres 15 is not jet supported by `psycopg2==2.9.3`
 - Enable [`recline_view`](https://docs.ckan.org/en/2.9/maintaining/data-viewer.html#data-explorer)
   as default data view
+- Use `ghcr.io/tum-gis/ckan-sddi:1.0.0` CKAN image
 
 ### Removed
 
@@ -182,8 +167,24 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Known issues
 
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.6.0-beta7...HEAD
-[sddi-ckan-0.6.0-beta8]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.5.0...sddi-ckan-0.6.0-beta8
+## [Unreleased] - YYYY-MM-DD
+
+### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+### Security
+
+### Deprecated
+
+### Known issues
+
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.0...HEAD
+[sddi-ckan-1.0.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.5.0...sddi-ckan-1.0.0
 [sddi-ckan-0.5.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.4.0...sddi-ckan-0.5.0
 [sddi-ckan-0.4.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.3.2...sddi-ckan-0.4.0
 [sddi-ckan-0.3.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.3.1...sddi-ckan-0.3.2
