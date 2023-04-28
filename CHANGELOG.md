@@ -22,6 +22,8 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Deprecated
 
+### Known issues
+
 ## [sddi-ckan-0.6.0-beta8] - 2023-04-23
 
 ### Added
@@ -177,6 +179,8 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Security
 
 ### Deprecated
+
+### Known issues
 
 [Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.6.0-beta7...HEAD
 [sddi-ckan-0.6.0-beta8]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.5.0...sddi-ckan-0.6.0-beta8
