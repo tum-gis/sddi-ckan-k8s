@@ -1,4 +1,4 @@
-name: " 🐞 Bug Report"
+name: " 🐞 Bug report"
 description: File a bug report, security issue, documentation issue, ...
 title: "Type here what this issue is about..."
 labels: ["state: triage", "type: bug"]
