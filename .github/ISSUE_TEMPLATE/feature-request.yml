@@ -1,0 +1,42 @@
+name: " :bulb: Feature request"
+description: Suggest a new feature, improvement, idea, ...
+title: "Type here what this is about..."
+labels: ["state: triage", "type:feature"]
+assignees:
+  - BWibo
+body:
+  - type: markdown
+    attributes:
+      value: |
+        *Thanks for taking the time to submit this feature request!*
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature description
+      description: |-
+        Please describe the feature you are missing? What problem should be solved?
+        If applicable, add a screenshot (Drag & drop, see below).
+      placeholder: "I'm missing something to do stuff..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Suggested solution
+      description: |-
+        If you know how to get this done, you can let us know here.
+        If applicable, add a screenshot (Drag & drop, see below).
+      placeholder: "I'm missing something to do stuff..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: code-snippets
+    attributes:
+      label: Code snippets
+      description: |-
+        If you have a helpful code snippet to get this done, please add it here.
+        This will be automatically formatted into code, so no need for backticks.
+      render: Shell
