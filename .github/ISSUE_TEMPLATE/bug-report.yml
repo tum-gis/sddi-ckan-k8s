@@ -1,0 +1,95 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["state: triage"]
+assignees:
+  - BWibo
+body:
+  - type: markdown
+    attributes:
+      value: |
+        *Thanks for taking the time to fill out this bug report!*
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: |-
+        Describe the problem you are facing. Also tell us, what you did expect to happen?
+        If applicable, add a screenshot (Drag & drop, see below).
+      placeholder: Tell us what you see!
+      value: "A bug happened! I expected this to be like ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: how-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Tell us step-by-step how the bug can be reproduced!
+      placeholder: |
+        1. Deploy the Helm chart
+        2. See the logs using `kubectl get events`
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Configuration
+      description: |-
+        Please copy and paste you configuration YAML-file (`values.yml` for ``helm``) here. **Make sure to strip sensitive information.**
+        This will be automatically formatted into code, so no need for backticks.
+      render: YAML
+    validations:
+      required: true
+
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions and environment
+      description: |-
+        Tell us what software versions you are using?
+        If helpful, add information on your environment, e.g. relevant environment variables.
+      placeholder: |
+        - Operating system: Windows 10 `x.x.x`
+        - Version of the helm chart in this repo: `x.x.x`
+        - `helm` version: `x.x.x`
+        - `kubernetes` version: `x.x.x`
+        - other relevant software/tool/.... version: `x.x.x`
+      value: |
+        #### Version information
+        - tool/software/...: `x.x.x`
+
+        #### Environment information
+        - VARIABLE_NAME: `values`
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: If applicable, what browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: |
+        Please copy and paste any relevant log output (Browser logs, console logs, ...).
+        This will be automatically formatted into code, so no need for backticks.
+      render: Shell
+
+  - type: textarea
+    id: comments
+    attributes:
+      label: Additional information and comments
+      description: |
+        Please add any additional information or comment you find relevant regarding this issue here!
