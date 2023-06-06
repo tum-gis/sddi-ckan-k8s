@@ -1,4 +1,4 @@
-name: " :bulb: Feature request"
+name: "💡 Feature request"
 description: Suggest a new feature, improvement, idea, ...
 title: "Type here what this is about..."
 labels: ["state: triage", "type:feature"]
