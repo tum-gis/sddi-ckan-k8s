@@ -1,6 +1,6 @@
 name: Bug Report
 description: File a bug report
-title: "[Bug]: "
+title: "Type here what this issue is about..."
 labels: ["state: triage"]
 assignees:
   - BWibo
