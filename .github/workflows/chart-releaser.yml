@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - release/**
+    paths:
+      - charts/sddi-ckan/**
 
 jobs:
   release:
