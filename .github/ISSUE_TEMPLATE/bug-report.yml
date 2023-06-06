@@ -1,5 +1,5 @@
-name: " 🐛 Bug Report"
-description: File a bug report
+name: " 🐞 Bug Report"
+description: File a bug report, security issue, documentation issue, ...
 title: "Type here what this issue is about..."
 labels: ["state: triage"]
 assignees:
@@ -7,8 +7,9 @@ assignees:
 body:
   - type: markdown
     attributes:
-      value: |
+      value: |-
         *Thanks for taking the time to fill out this bug report!*
+        Before you begin, please search the issues of this repo if this problem has already been solved!
 
   - type: textarea
     id: what-happened
