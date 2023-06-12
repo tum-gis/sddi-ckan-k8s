@@ -8,6 +8,12 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
+## [sddi-ckan-1.0.2] - 2023-06-12
+
+### Fixed
+
+- Removed unused option `ckan.smtp.tls`: tum-gis/sddi-ckan-k8s#5
+
 ## [sddi-ckan-1.0.1] - 2023-05-22
 
 ### Changed
@@ -191,6 +197,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Known issues
 
 [Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.0...HEAD
+[sddi-ckan-1.0.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.1...sddi-ckan-1.0.2
 [sddi-ckan-1.0.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.0...sddi-ckan-1.0.1
 [sddi-ckan-1.0.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.5.0...sddi-ckan-1.0.0
 [sddi-ckan-0.5.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.4.0...sddi-ckan-0.5.0
