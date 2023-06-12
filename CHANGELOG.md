@@ -20,7 +20,6 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 - Bump SDDI CKAN Image `1.0.0` --> `1.0.1`
 
-
 ## [sddi-ckan-1.0.0] - 2023-04-28
 
 ### Added
