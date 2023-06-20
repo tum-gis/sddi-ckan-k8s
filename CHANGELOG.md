@@ -8,23 +8,15 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
-## [Unreleased] - YYYY-MM-DD
+## [sddi-ckan-1.0.3-beta1] - 2023-06-20
 
 ### Added
 
 - Exposed CKAN settings `email_to`, `error_email_from` in values
 
-### Changed
-
-### Removed
-
-### Fixed
-
-### Security
-
-### Deprecated
-
 ### Known issues
+
+- There are currently problems with some smtp providers/configurations, see #4
 
 ## [sddi-ckan-1.0.2] - 2023-06-12
 
@@ -213,7 +205,10 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Known issues
 
+
+
 [Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.0...HEAD
+[sddi-ckan-1.0.3-beta1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.1...sddi-ckan-1.0.3-beta1
 [sddi-ckan-1.0.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.1...sddi-ckan-1.0.2
 [sddi-ckan-1.0.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.0...sddi-ckan-1.0.1
 [sddi-ckan-1.0.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.5.0...sddi-ckan-1.0.0
