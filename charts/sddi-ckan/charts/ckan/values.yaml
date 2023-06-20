@@ -377,6 +377,10 @@ smtp:
   startTls: "true"
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   replyTo: "None"
+  # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
+  emailTo: "None"
+  # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
+  errorEmailFrom: "None"
 
 activityStreams:
   # -- [CKAN config enable activity streams](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-activity-streams-enabled)
