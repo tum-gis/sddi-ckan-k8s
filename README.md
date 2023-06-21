@@ -54,6 +54,11 @@ The default username and password are: `admin: changeMe`.
 
 Instructions for *local* testing with e.g. `minikube` or `Docker Desktop` check out the [examples](examples) section.
 
+> **Note:** To try out
+> `alpha`/`beta` [releases](https://github.com/tum-gis/sddi-ckan-k8s/releases),
+> add the [`--devel`](https://helm.sh/docs/helm/helm_install/#options)
+> option to the `helm install` command.
+
 ## :book: Table of content
 
 - [:zzz: TL;DR](#zzz-tldr)
