@@ -366,6 +366,8 @@ datapusher:
 
 smtp:
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
+  # **Note:** To use SSL auth, omit the port in the server string, if it is the default port 465. Also make
+  # sure to set `smtp.startTls = True`.
   server: "smtpServerURLorIP:port"
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   user: "smtpUser"
@@ -374,7 +376,8 @@ smtp:
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   mailFrom: "postmaster@domain.com"
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
-  startTls: "true"
+  # **Note:** To use SSL auth, make sure this settings is set to `True`. See the note for `smtp.server` too.
+  startTls: "True"
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   replyTo: "None"
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
