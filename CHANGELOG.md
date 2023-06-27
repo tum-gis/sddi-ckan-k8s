@@ -18,6 +18,8 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Fixed
 
+- Fixed docs for `ckan.session.beakerSessionSecret`
+
 ### Security
 
 ### Deprecated
