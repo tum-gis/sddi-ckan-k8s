@@ -136,7 +136,7 @@ A Helm chart for SDDI enabled CKAN.
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | session.beakerSessionKey | string | `"ckan-session"` | [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key), defaults to *ckan* if left empty. |
-| session.beakerSessionSecret | string | `nil` | [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret): If left empty, a [64 char random AlphaNum}(https://docs.gomplate.ca/functions/random/#random-alphanum) is used. **Note:** In a cluster environment this values need to be the same on each instance. |
+| session.beakerSessionSecret | string | `nil` | [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret): If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is used. **Note:** In a cluster environment this values need to be the same on each instance. |
 | siteAbout | string | `"My CKAN about info."` | [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about) |
 | siteDescription | string | `"This is my CKAN instance for stuff."` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description) |
 | siteId | string | `"default"` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id) |

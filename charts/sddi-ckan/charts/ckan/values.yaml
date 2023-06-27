@@ -218,7 +218,7 @@ sysadmin:
 
 session:
   # -- [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret):
-  # If left empty, a [64 char random AlphaNum}(https://docs.gomplate.ca/functions/random/#random-alphanum) is used.
+  # If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is used.
   # **Note:** In a cluster environment this values need to be the same on each instance.
   beakerSessionSecret:
   # -- [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key),
