@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.0](https://img.shields.io/badge/AppVersion-1.1.0-informational?style=flat-square)
+![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.1](https://img.shields.io/badge/AppVersion-1.1.1-informational?style=flat-square)
 
 A Helm chart for SDDI enabled CKAN.
 
@@ -48,6 +48,7 @@ A Helm chart for SDDI enabled CKAN.
 | autoscaling.minReplicas | int | `1` | Minimum number of replicas. **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and, if Pods run on different nodes, a storage that supports RWX. |
 | autoscaling.targetCPUUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | autoscaling.targetMemoryUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
+| backgroundImage | string | `"../base/images/hero.jpg"` | Set URL or path to [CKAN SDDI background image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation). |
 | component | string | `"ckan"` | Role of CKAN in this chart |
 | datapusher.apiToken | string | `nil` | Datapusher API token, see [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings) |
 | datapusher.callback_url_base | string | `"http://ckan:5000/"` | This should be set to cluster internal ckan service domain. [CKAN DataPusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-datapusher-callback-url-base) |
@@ -137,12 +138,13 @@ A Helm chart for SDDI enabled CKAN.
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | session.beakerSessionKey | string | `"ckan-session"` | [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key), defaults to *ckan* if left empty. |
 | session.beakerSessionSecret | string | `nil` | [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret): If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is used. **Note:** In a cluster environment this values need to be the same on each instance. |
-| siteAbout | string | `"My CKAN about info."` | [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about) |
-| siteDescription | string | `"This is my CKAN instance for stuff."` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description) |
+| siteAbout | string | `"My CKAN about info. You can use Markdown here."` | [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about) |
+| siteDescription | string | `"This is my SDDI CKAN instance description."` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description) |
 | siteId | string | `"default"` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id) |
-| siteIntroText | string | `"This is the intro to my CKAN instance."` | [CKAN config intro text](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-intro-text) |
-| siteLogo | string | `"/base/images/logo_left.png"` | Path to CKAN site logo image. Custom logos will usually be located in `/webassets/`. See `webassets.path` setting. [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo) |
-| siteTitle | string | `"My CKAN instance"` | Title of the CKAN instance, displayed in Browser windows/tab name |
+| siteIntroParagraph | string | `"This is the intro paragraph text to my SDDI CKAN instance."` | Set [CKAN SDDI intro paragraph](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation) |
+| siteIntroText | string | `"This is the intro text to my SDDI CKAN instance."` | [CKAN config intro text](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-intro-text) |
+| siteLogo | string | `"/base/images/logo_left.png"` |  |
+| siteTitle | string | `"My SDDI CKAN instance"` | Title of the CKAN instance, displayed in Browser windows/tab name |
 | siteUrl | string | `"https://my-ckan.de"` | CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains` and include the protocol e.g. (`https://my.domain.de`). [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url) |
 | smtp.emailTo | string | `"None"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.errorEmailFrom | string | `"None"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |

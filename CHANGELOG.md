@@ -8,11 +8,19 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
+## [sddi-ckan-1.1.1] - 2023-07-06
+
+### Changed
+
+- Bump SDDI CKAN Image `1.1.1` --> `1.1.1`
+  - New configuration options for styling are available, see
+    [here](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation).
+
 ## [sddi-ckan-1.1.0] - 2023-06-28
 
 ### Changed
 
-- Bump SDDI CKAN Image `1.0.0` --> `1.0.1`
+- Bump SDDI CKAN Image `1.0.0` --> `1.1.0`
 
 ### Fixed
 
@@ -217,6 +225,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 [Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.3...HEAD
 
+[sddi-ckan-1.1.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.0...sddi-ckan-1.1.1
 [sddi-ckan-1.1.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.3...sddi-ckan-1.1.0
 [sddi-ckan-1.0.3]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.1...sddi-ckan-1.0.3
 [sddi-ckan-1.0.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.1...sddi-ckan-1.0.2
