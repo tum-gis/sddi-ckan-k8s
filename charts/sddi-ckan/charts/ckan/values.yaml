@@ -124,19 +124,23 @@ ingress:
 # [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url)
 siteUrl: https://my-ckan.de
 # -- Title of the CKAN instance, displayed in Browser windows/tab name
-siteTitle: My CKAN instance
+siteTitle: My SDDI CKAN instance
 # -- [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id)
 siteId: default
 # -- [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description)
-siteDescription: This is my CKAN instance for stuff.
+siteDescription: This is my SDDI CKAN instance description.
 # -- [CKAN config intro text](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-intro-text)
-siteIntroText: This is the intro to my CKAN instance.
+siteIntroText: This is the intro text to my SDDI CKAN instance.
 # -- Path to CKAN site logo image. Custom logos will usually be located in `/webassets/`.
 # See `webassets.path` setting.
+# -- Set [CKAN SDDI intro paragraph](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation)
+siteIntroParagraph: This is the intro paragraph text to my SDDI CKAN instance.
+# -- Set URL or path to [CKAN SDDI background image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation).
+backgroundImage: "../base/images/hero.jpg"
 # [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo)
 siteLogo: /base/images/logo_left.png
 # -- [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about)
-siteAbout: My CKAN about info.
+siteAbout: My CKAN about info. You can use Markdown here.
 # -- Path to CKAN favicon. Custom logos will usually be located in `/webassets/`.
 # See `webassets.path` setting.
 # [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo)

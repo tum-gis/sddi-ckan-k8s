@@ -41,6 +41,8 @@ data:
   CKAN__SITE_TITLE: {{ .Values.siteTitle | quote }}
   CKAN__SITE_DESCRIPTION: {{ .Values.siteDescription | quote }}
   CKAN__SITE_INTRO_TEXT: {{ .Values.siteIntroText | quote }}
+  CKAN__SITE_INTRO_PARAGRAPH: {{ .Values.siteIntroParagraph | quote }}
+  CKAN__BACKGROUND_IMAGE: {{ .Values.backgroundImage | quote }}
   CKAN__SITE_LOGO: {{ .Values.siteLogo | quote }}
   CKAN__FAVICON: {{ .Values.favicon | quote }}
   CKAN__SITE_ABOUT: {{ .Values.siteAbout | quote }}
