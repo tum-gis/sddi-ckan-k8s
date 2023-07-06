@@ -14,7 +14,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 - Bump SDDI CKAN Image `1.1.1` --> `1.1.1`
   - New configuration options for styling are available, see
-    [here](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation).
+    [here](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation). Resolves #4, and partially #8
 
 ## [sddi-ckan-1.1.0] - 2023-06-28
 
