@@ -46,6 +46,8 @@ data:
   CKAN__SITE_LOGO: {{ .Values.siteLogo | quote }}
   CKAN__FAVICON: {{ .Values.favicon | quote }}
   CKAN__SITE_ABOUT: {{ .Values.siteAbout | quote }}
+  # SDDI CKAN settings
+  CKAN__GROUPHIERARCHY__INIT_DATA: {{ .Values.sddiInitDataJson | quote }}
   # Locale settings
   CKAN__LOCALE_DEFAULT: {{ .Values.locale.default | quote }}
   CKAN__LOCALE_ORDER: {{ .Values.locale.order | quote }}

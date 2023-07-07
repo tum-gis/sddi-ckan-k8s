@@ -135,12 +135,16 @@ siteIntroText: This is the intro text to my SDDI CKAN instance.
 # See `webassets.path` setting.
 # -- Set [CKAN SDDI intro paragraph](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation)
 siteIntroParagraph: This is the intro paragraph text to my SDDI CKAN instance.
+# -- [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about)
+siteAbout: My CKAN about info. You can use Markdown here.
+# -- Local path or URL to
+# [CKAN SDDI `init_data.json`](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json).
+# This file allows to specify pre-defined set of SDDI CKAN main categories, topics, and organizations.
+sddiInitDataJson: ckanext/grouphierarchy/name_init_data_file.json
 # -- Set URL or path to [CKAN SDDI background image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation).
 backgroundImage: "../base/images/hero.jpg"
 # [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo)
 siteLogo: /base/images/logo_left.png
-# -- [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about)
-siteAbout: My CKAN about info. You can use Markdown here.
 # -- Path to CKAN favicon. Custom logos will usually be located in `/webassets/`.
 # See `webassets.path` setting.
 # [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo)
