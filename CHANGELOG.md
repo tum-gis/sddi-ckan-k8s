@@ -8,7 +8,7 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
-## [Unreleased] - 2023-07-07
+## [sddi-ckan-1.1.2] - 2023-07-19
 
 ### Added
 
@@ -16,17 +16,9 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
   topics, and organizations. See [here](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#main-categories-and-topics)
   for more docs on this feature. Resolves #8
 
-### Changed
-
-### Removed
-
 ### Fixed
 
-### Security
-
-### Deprecated
-
-### Known issues
+- Fixed default `favicon.ico` path, resolves #6
 
 ## [sddi-ckan-1.1.1] - 2023-07-06
 
@@ -243,8 +235,9 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Known issues
 
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.3...HEAD
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.2...HEAD
 
+[sddi-ckan-1.1.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.1...sddi-ckan-1.1.2
 [sddi-ckan-1.1.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.0...sddi-ckan-1.1.1
 [sddi-ckan-1.1.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.3...sddi-ckan-1.1.0
 [sddi-ckan-1.0.3]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.1...sddi-ckan-1.0.3
