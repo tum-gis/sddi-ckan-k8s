@@ -145,10 +145,10 @@ sddiInitDataJson: "init_data.json"
 backgroundImage: "../base/images/hero.jpg"
 # [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo)
 siteLogo: /base/images/logo_left.png
-# -- Path to CKAN favicon. Custom logos will usually be located in `/webassets/`.
+# -- Path to CKAN favicon. Custom logos will be located in e.g. `/webassets/`.
 # See `webassets.path` setting.
 # [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo)
-favicon: /webassets/images/favicon.ico
+favicon: /base/images/ckan.ico
 # -- Max file upload size in MB. Note: This setting is mapped to the
 # `nginx.ingress.kubernetes.io/proxy-body-size: "600m"` and
 # `nginx.org/client-max-body-size: "600m"` CKAN Ingress annotations too.
