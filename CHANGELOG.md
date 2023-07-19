@@ -205,6 +205,8 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [template] - YYYY-MM-DD
 
+### Breaking changes
+
 ### Added
 
 ### Changed
@@ -220,6 +222,8 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Known issues
 
 ## [Unreleased] - YYYY-MM-DD
+
+### Breaking changes
 
 ### Added
 
