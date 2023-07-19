@@ -130,7 +130,7 @@ A Helm chart for SDDI enabled CKAN.
 | resources.limits.memory | string | `"1Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.requests.cpu | string | `"250m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.requests.memory | string | `"256Mi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
-| sddiInitDataJson | string | `"ckanext/grouphierarchy/name_init_data_file.json"` | Local path or URL to [CKAN SDDI `init_data.json`](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json). This file allows to specify pre-defined set of SDDI CKAN main categories, topics, and organizations. |
+| sddiInitDataJson | string | `"init_data.json"` | Local path or URL to File path or URL to [CKAN SDDI `init_data.json`](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json). This file allows to specify pre-defined set of SDDI CKAN main categories, topics, and organizations. |
 | securityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | service.port | int | `5000` | Service port for http |
 | service.type | string | `"ClusterIP"` | Type of service for http |
