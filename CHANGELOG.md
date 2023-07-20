@@ -18,7 +18,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Fixed
 
-- Fixed default `favicon.ico` path, resolves #6
+- Fixed default `favicon.ico` path, resolves tum-gis/sddi-ckan-k8s#6
 
 ## [sddi-ckan-1.1.1] - 2023-07-06
 
