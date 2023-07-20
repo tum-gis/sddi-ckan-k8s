@@ -52,7 +52,7 @@ After the Helm deployment has finished, your SDDI CKAN instance is available
 at the FQDN you specified.
 The default username and password are: `admin: changeMe`.
 
-Instructions for *local* testing with e.g. `minikube` or `Docker Desktop` check out the [examples](examples) section.
+Instructions for *local* testing with e.g. `minikube` or `Docker Desktop` are available in the [examples](examples) section.
 
 > **Note:** To try out
 > `alpha`/`beta` [releases](https://github.com/tum-gis/sddi-ckan-k8s/releases),
