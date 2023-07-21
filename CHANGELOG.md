@@ -14,7 +14,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 - Added `ckan.sddiInitDataJson` option to allow specifying custom CKAN SDDI categories,
   topics, and organizations. See [here](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#main-categories-and-topics)
-  for more docs on this feature. Resolves #8
+  for more docs on this feature. Resolves tum-gis/sddi-ckan-k8s#8
 
 ### Fixed
 
