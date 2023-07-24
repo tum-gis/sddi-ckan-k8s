@@ -247,8 +247,9 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Known issues
 
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.2...HEAD
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.3...HEAD
 
+[sddi-ckan-1.1.3]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.2...sddi-ckan-1.1.3
 [sddi-ckan-1.1.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.1...sddi-ckan-1.1.2
 [sddi-ckan-1.1.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.0...sddi-ckan-1.1.1
 [sddi-ckan-1.1.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.0.3...sddi-ckan-1.1.0
