@@ -8,6 +8,14 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
+## [sddi-ckan-1.1.3] - 2023-07-24
+
+### Changed
+
+- Bump SDDI CKAN Image `1.1.1` --> `1.1.2`
+
+  - Added delete button to remove existing resources. tum-gis/ckanext-relation-sddi#10
+
 ## [sddi-ckan-1.1.2] - 2023-07-19
 
 ### Added
