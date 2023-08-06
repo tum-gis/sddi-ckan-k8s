@@ -46,6 +46,7 @@ data:
   CKAN__SITE_LOGO: {{ .Values.siteLogo | quote }}
   CKAN__FAVICON: {{ .Values.favicon | quote }}
   CKAN__SITE_ABOUT: {{ .Values.siteAbout | quote }}
+  CKAN___LICENSES_GROUP_URL: {{ .Values.ckan.licensesGroupUrl | quote }}
   # SDDI CKAN settings
   CKAN__GROUPHIERARCHY__INIT_DATA: {{ .Values.sddiInitDataJson | quote }}
   # Locale settings
