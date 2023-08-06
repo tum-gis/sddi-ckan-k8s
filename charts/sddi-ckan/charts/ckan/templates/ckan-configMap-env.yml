@@ -46,6 +46,7 @@ data:
   CKAN__SITE_LOGO: {{ .Values.siteLogo | quote }}
   CKAN__FAVICON: {{ .Values.favicon | quote }}
   CKAN__SITE_ABOUT: {{ .Values.siteAbout | quote }}
+  CKAN___LICENSES_GROUP_URL: {{ .Values.ckan.licensesGroupUrl | quote }}
   # SDDI CKAN settings
   CKAN__GROUPHIERARCHY__INIT_DATA: {{ .Values.sddiInitDataJson | quote }}
   # Locale settings
@@ -74,7 +75,6 @@ data:
   {{- if .Values.webassets.path }}
   CKAN__WEBASSETS__PATH: {{ .Values.webassets.path | quote }}
   {{- end }}
-  MAINTENANCE_MODE: {{.Values.maintenanceMode | quote }}
   # Additional env vars from values.yaml
   {{- with .Values.extraEnv }}
     {{- toYaml . | nindent 2 }}

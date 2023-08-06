@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 1.1.3](https://img.shields.io/badge/Version-1.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.2](https://img.shields.io/badge/AppVersion-1.1.2-informational?style=flat-square)
+![Version: 1.1.4](https://img.shields.io/badge/Version-1.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.3](https://img.shields.io/badge/AppVersion-1.1.3-informational?style=flat-square)
 
 A Helm chart for SDDI enabled CKAN.
 
@@ -94,6 +94,7 @@ A Helm chart for SDDI enabled CKAN.
 | ingress.stickySessions.sessionCookie.name | string | `"route"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.path | string | `"/"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.secure | string | `"false"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
+| licensesGroupUrl | string | `"https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/licenses_SDDI.json"` | [CKAN licences group url](https://docs.ckan.org/en/latest/maintaining/configuration.html#licenses-group-url): A URL pointing to a JSON file containing a list of license objects. |
 | liveness.failureThreshold | int | `6` | Failure threshold for the liveness probe |
 | liveness.initialDelaySeconds | int | `20` | Initial delay for the liveness probe |
 | liveness.periodSeconds | int | `10` | Check interval for the liveness probe |
@@ -102,7 +103,6 @@ A Helm chart for SDDI enabled CKAN.
 | locale.filtered_out | string | `"en_GB"` | CKAN locales filtered out, see [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings) |
 | locale.offered | string | `"de en"` | CKAN locales offered, see [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings) |
 | locale.order | string | `"de en pt_BR ja it cs_CZ ca es fr el sv sr sr@latin no sk fi ru de pl nl bg ko_KR hu sa sl lv"` | CKAN locale order, see [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings) |
-| maintenanceMode | bool | `false` | Enable/disable maintenance mode. This is used to set MAINTENANCE_MODE env var. **Note:** Check, if this setting is supported by the CKAN image you are using. Set to "true" to enable. |
 | maxUploadSizeMB | int | `250` | Max file upload size in MB. Note: This setting is mapped to the `nginx.ingress.kubernetes.io/proxy-body-size: "600m"` and `nginx.org/client-max-body-size: "600m"` CKAN Ingress annotations too. |
 | nameOverride | string | `""` | Override name |
 | nodeSelector | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
