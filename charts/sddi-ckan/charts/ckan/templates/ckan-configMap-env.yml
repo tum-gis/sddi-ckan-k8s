@@ -74,7 +74,6 @@ data:
   {{- if .Values.webassets.path }}
   CKAN__WEBASSETS__PATH: {{ .Values.webassets.path | quote }}
   {{- end }}
-  MAINTENANCE_MODE: {{.Values.maintenanceMode | quote }}
   # Additional env vars from values.yaml
   {{- with .Values.extraEnv }}
     {{- toYaml . | nindent 2 }}

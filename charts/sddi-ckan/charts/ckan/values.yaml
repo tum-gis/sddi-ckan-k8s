@@ -153,9 +153,6 @@ favicon: /base/images/ckan.ico
 # `nginx.ingress.kubernetes.io/proxy-body-size: "600m"` and
 # `nginx.org/client-max-body-size: "600m"` CKAN Ingress annotations too.
 maxUploadSizeMB: 250
-# -- Enable/disable maintenance mode. This is used to set MAINTENANCE_MODE env var.
-# **Note:** Check, if this setting is supported by the CKAN image you are using. Set to "true" to enable.
-maintenanceMode: false
 # -- [CKAN config dafault_views](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-views-default-views):
 # **Note**: Make sure the required view plugins are loaded!
 defaultViews: "image_view recline_view text_view geo_view geojson_view wmts_view shp_view"
