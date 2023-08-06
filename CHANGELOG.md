@@ -8,6 +8,19 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
+## [sddi-ckan-1.1.4] - 2023-08-06
+
+### Added
+
+- Added `ckan.licensesGroupUrl` config option.
+
+### Changed
+
+- Bump SDDI CKAN Image `1.1.2` --> `1.1.3`
+
+  - Removed default filter "read", see tum-gis/ckanext-grouphierarchy-sddi#17
+  - [Extended licenses list](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/licenses_SDDI.json) required for SDDI added.
+
 ## [sddi-ckan-1.1.3] - 2023-07-24
 
 ### Changed
@@ -247,8 +260,9 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Known issues
 
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.3...HEAD
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.4...HEAD
 
+[sddi-ckan-1.1.4]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.3...sddi-ckan-1.1.4
 [sddi-ckan-1.1.3]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.2...sddi-ckan-1.1.3
 [sddi-ckan-1.1.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.1...sddi-ckan-1.1.2
 [sddi-ckan-1.1.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.0...sddi-ckan-1.1.1
