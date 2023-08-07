@@ -8,6 +8,12 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
+## [sddi-ckan-1.1.5] - 2023-08-07
+
+### Fixed
+
+- Fix false variable for `ckan.licensesGroupUrl` in CKAN configmap.
+
 ## [sddi-ckan-1.1.4] - 2023-08-06
 
 ### Added
@@ -264,8 +270,9 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Known issues
 
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.4...HEAD
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.5...HEAD
 
+[sddi-ckan-1.1.5]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.4...sddi-ckan-1.1.5
 [sddi-ckan-1.1.4]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.3...sddi-ckan-1.1.4
 [sddi-ckan-1.1.3]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.2...sddi-ckan-1.1.3
 [sddi-ckan-1.1.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.1...sddi-ckan-1.1.2
