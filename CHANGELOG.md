@@ -12,7 +12,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Fixed
 
-- Fix wrong URL to license file.
+- Fixed wrong URL to license file.
 
 ## [sddi-ckan-1.1.6] - 2023-08-07
 
