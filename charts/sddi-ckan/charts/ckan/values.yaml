@@ -229,6 +229,10 @@ session:
   # If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is used.
   # **Note:** In a cluster environment this values need to be the same on each instance.
   beakerSessionSecret:
+  # -- [CKAN beaker session validate key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-validate-key):
+  # If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is used.
+    # **Note:** In a cluster environment this values need to be the same on each instance.
+  beakerSessionValidateKey:
   # -- [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key),
   # defaults to *ckan* if left empty.
   beakerSessionKey: ckan-session
