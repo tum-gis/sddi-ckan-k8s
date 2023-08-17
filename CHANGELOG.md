@@ -8,6 +8,16 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
+## [sddi-ckan-1.2.0-beta1] - 2023-08-17
+
+### Added
+
+- Added `ckan.session.beakerSessionValidateKey` config option.
+
+### Changed
+
+- Update CKAN to `2.9.9`
+
 ## [sddi-ckan-1.1.7] - 2023-08-09
 
 ### Fixed

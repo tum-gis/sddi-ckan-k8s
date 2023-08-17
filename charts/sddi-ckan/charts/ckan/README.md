@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 1.1.6](https://img.shields.io/badge/Version-1.1.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.3](https://img.shields.io/badge/AppVersion-1.1.3-informational?style=flat-square)
+![Version: 1.1.6-beta1](https://img.shields.io/badge/Version-1.1.6--beta1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sddi-pr-36-b4a2471](https://img.shields.io/badge/AppVersion-sddi--pr--36--b4a2471-informational?style=flat-square)
 
 A Helm chart for SDDI enabled CKAN.
 
@@ -75,7 +75,7 @@ A Helm chart for SDDI enabled CKAN.
 | form.create_on_ui_requires_resources | bool | `false` | CKAN form settings, see [CKAN configuration form](https://docs.ckan.org/en/latest/maintaining/configuration.html#form-settings) |
 | fullnameOverride | string | `"ckan"` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |
-| image.repository | string | `"ghcr.io/tum-gis/ckan-sddi"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
+| image.repository | string | `"ghcr.io/tum-gis/ckan-sddi-dev"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
 | ingress.annotations | string | `nil` | Additional Ingress annotations |
