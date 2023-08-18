@@ -236,6 +236,11 @@ session:
   # -- [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key),
   # defaults to *ckan* if left empty.
   beakerSessionKey: ckan-session
+  beakerSessionType:
+  beakerSessionTimeout:
+  beakerSessionSecure:
+  beakerSamesite:
+  beakerSessionHttpOnly:
 
 apiToken:
   # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-nbytes)
