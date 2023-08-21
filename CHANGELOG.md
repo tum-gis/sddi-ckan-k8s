@@ -19,6 +19,8 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [sddi-ckan-1.2.0] - 2023-08-21
 
+**Warning:** Do not use this version, as it contains an error preventing that breaks CKAN's database connection.
+
 ### Added
 
 - Added config options in preparation for CKAN v2.10:
