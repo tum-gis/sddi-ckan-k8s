@@ -10,6 +10,13 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased] - YYYY-MM-DD
 
+## [sddi-ckan-1.2.1] - 2023-08-21
+
+### Fixed
+
+- Fixed error in SQL alchemy database URL
+- Several minor docs fixes
+
 ## [sddi-ckan-1.2.0] - 2023-08-21
 
 ### Added
@@ -285,10 +292,9 @@ is displayed when navigating to the _Datasets_ view of CKAN.
 
 ### Known issues
 
-## [Unreleased] - YYYY-MM-DD
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.1...HEAD
 
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.0...HEAD
-
+[sddi-ckan-1.2.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.0...sddi-ckan-1.2.1
 [sddi-ckan-1.2.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.7...sddi-ckan-1.2.0
 [sddi-ckan-1.1.7]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.6...sddi-ckan-1.1.7
 [sddi-ckan-1.1.6]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.5...sddi-ckan-1.1.6

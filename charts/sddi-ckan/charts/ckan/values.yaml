@@ -258,14 +258,14 @@ apiToken:
   # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-algorithm)
   algorithm: HS256
   # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-encode-secret):
-  # If left empty, a random 64 char alpha numberic string is generated.
+  # If left empty, a random 64 char alpha numeric string is generated.
   # **Note:** In a production environment the default needs to be overwritten.
-  # Check the docs! Depending on `apiToken.algorithm` additional restricitions apply to this settings.
+  # Check the docs! Depending on `apiToken.algorithm` additional restrictions apply to this settings.
   encodeSecret:
   # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-decode-secret):
-  # If left empty, a random 64 char alpha numberic string is generated.
+  # If left empty, a random 64 char alpha numeric string is generated.
   # **Note:** In a production environment the default needs to be overwritten.
-  # Check the docs! Depending on `apiToken.algorithm` additional restricitions apply to this settings.
+  # Check the docs! Depending on `apiToken.algorithm` additional restrictions apply to this settings.
   decodeSecret:
 
 locale:
@@ -357,7 +357,7 @@ datastore:
       # -- CKAN datastore read write username, used to build `ckan.datastore.write_url` see
       # [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings)
       username: datastore_rw
-      # -- CKAN datastore read write passowrd, used to build `ckan.datastore.write_url` see
+      # -- CKAN datastore read write password, used to build `ckan.datastore.write_url` see
       # [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings)
       password: changeMe
 

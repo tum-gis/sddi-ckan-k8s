@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
 
 A Helm chart for SDDI enabled CKAN.
 
@@ -26,8 +26,8 @@ A Helm chart for SDDI enabled CKAN.
 | activityStreams.enabled | bool | `true` | [CKAN config enable activity streams](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-activity-streams-enabled) |
 | affinity | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
 | apiToken.algorithm | string | `"HS256"` | [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-algorithm) |
-| apiToken.decodeSecret | string | `nil` | [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-decode-secret): If left empty, a random 64 char alpha numberic string is generated. **Note:** In a production environment the default needs to be overwritten. Check the docs! Depending on `apiToken.algorithm` additional restricitions apply to this settings. |
-| apiToken.encodeSecret | string | `nil` | [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-encode-secret): If left empty, a random 64 char alpha numberic string is generated. **Note:** In a production environment the default needs to be overwritten. Check the docs! Depending on `apiToken.algorithm` additional restricitions apply to this settings. |
+| apiToken.decodeSecret | string | `nil` | [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-decode-secret): If left empty, a random 64 char alpha numeric string is generated. **Note:** In a production environment the default needs to be overwritten. Check the docs! Depending on `apiToken.algorithm` additional restrictions apply to this settings. |
+| apiToken.encodeSecret | string | `nil` | [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-jwt-encode-secret): If left empty, a random 64 char alpha numeric string is generated. **Note:** In a production environment the default needs to be overwritten. Check the docs! Depending on `apiToken.algorithm` additional restrictions apply to this settings. |
 | apiToken.nBytes | int | `64` | [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-nbytes) |
 | auth.allow_dataset_collaborators | bool | `false` | CKAN authorization settings. See [CKAN configuration docs](https://docs.ckan.org/en/latest/maintaining/configuration.html#authorization-settings). |
 | auth.anon_create_dataset | bool | `false` |  |
@@ -56,7 +56,7 @@ A Helm chart for SDDI enabled CKAN.
 | datapusher.url | string | `"http://datapusher:8000/"` | DataPusher endpoint of CKAN. This should be set to the cluster internal DataPusher service domain. |
 | datastore.auth.ro.password | string | `"changeMe"` | CKAN datastore read only password, used to build `ckan.datastore.read_url` see [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings) |
 | datastore.auth.ro.username | string | `"datastore_ro"` | CKAN datastore read only username, used to build `ckan.datastore.read_url` see [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings) |
-| datastore.auth.rw.password | string | `"changeMe"` | CKAN datastore read write passowrd, used to build `ckan.datastore.write_url` see [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings) |
+| datastore.auth.rw.password | string | `"changeMe"` | CKAN datastore read write password, used to build `ckan.datastore.write_url` see [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings) |
 | datastore.auth.rw.username | string | `"datastore_rw"` | CKAN datastore read write username, used to build `ckan.datastore.write_url` see [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings) |
 | datastore.dbname | string | `"datastore"` | CKAN datastore database name, used to build `ckan.datastore.read/write_url` see [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings) |
 | datastore.host | string | `"postgis"` | CKAN datastore host, used to build `ckan.datastore.read/write_url` see [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings) |
