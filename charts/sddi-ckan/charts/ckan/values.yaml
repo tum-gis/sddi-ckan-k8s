@@ -12,7 +12,7 @@ fullnameOverride: ckan
 
 image:
   # -- [Image repository](https://kubernetes.io/docs/concepts/containers/images/)
-  repository: ghcr.io/tum-gis/ckan-sddi-dev
+  repository: ghcr.io/tum-gis/ckan-sddi
   # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart `appVersion`.
@@ -226,20 +226,30 @@ sysadmin:
 
 session:
   # -- [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret):
-  # If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is used.
+  # If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated.
   # **Note:** In a cluster environment this values need to be the same on each instance.
   beakerSessionSecret:
   # -- [CKAN beaker session validate key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-validate-key):
-  # If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is used.
-    # **Note:** In a cluster environment this values need to be the same on each instance.
+  # If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated.
+  # **Note:** In a cluster environment this values need to be the same on each instance.
   beakerSessionValidateKey:
   # -- [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key),
   # defaults to *ckan* if left empty.
   beakerSessionKey: ckan-session
+  # -- [CKAN beaker session type](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-type),
+  # -- defaults to "cookie"  if left empty.
   beakerSessionType:
+  # -- [CKAN beaker session timeout](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-timeout),
+  # -- defaults to 600 if left empty.
   beakerSessionTimeout:
+  # -- [CKAN beaker session secure](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secure),
+  # -- defaults to `False` if left empty.
   beakerSessionSecure:
+  # -- [CKAN beaker session samesite](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-samesite),
+  # -- defaults to "Lax" if left empty.
   beakerSamesite:
+  # -- [CKAN beaker session http only](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-httponly),
+  # -- defaults to `True` if left empty.
   beakerSessionHttpOnly:
 
 apiToken:

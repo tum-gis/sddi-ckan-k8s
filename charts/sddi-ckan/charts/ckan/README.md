@@ -75,7 +75,7 @@ A Helm chart for SDDI enabled CKAN.
 | form.create_on_ui_requires_resources | bool | `false` | CKAN form settings, see [CKAN configuration form](https://docs.ckan.org/en/latest/maintaining/configuration.html#form-settings) |
 | fullnameOverride | string | `"ckan"` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |
-| image.repository | string | `"ghcr.io/tum-gis/ckan-sddi-dev"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
+| image.repository | string | `"ghcr.io/tum-gis/ckan-sddi"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
 | ingress.annotations | string | `nil` | Additional Ingress annotations |
@@ -137,14 +137,14 @@ A Helm chart for SDDI enabled CKAN.
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
-| session.beakerSamesite | string | `nil` |  |
-| session.beakerSessionHttpOnly | string | `nil` |  |
+| session.beakerSamesite | string | `nil` | defaults to "Lax" if left empty. |
+| session.beakerSessionHttpOnly | string | `nil` | defaults to `True` if left empty. |
 | session.beakerSessionKey | string | `"ckan-session"` | [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key), defaults to *ckan* if left empty. |
-| session.beakerSessionSecret | string | `nil` | [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret): If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is used. **Note:** In a cluster environment this values need to be the same on each instance. |
-| session.beakerSessionSecure | string | `nil` |  |
-| session.beakerSessionTimeout | string | `nil` |  |
-| session.beakerSessionType | string | `nil` |  |
-| session.beakerSessionValidateKey | string | `nil` | [CKAN beaker session validate key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-validate-key): If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is used. **Note:** In a cluster environment this values need to be the same on each instance. |
+| session.beakerSessionSecret | string | `nil` | [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret): If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated. **Note:** In a cluster environment this values need to be the same on each instance. |
+| session.beakerSessionSecure | string | `nil` | defaults to `False` if left empty. |
+| session.beakerSessionTimeout | string | `nil` | defaults to 600 if left empty. |
+| session.beakerSessionType | string | `nil` | defaults to "cookie"  if left empty. |
+| session.beakerSessionValidateKey | string | `nil` | [CKAN beaker session validate key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-validate-key): If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated. **Note:** In a cluster environment this values need to be the same on each instance. |
 | siteAbout | string | `"My CKAN about info. You can use Markdown here."` | [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about) |
 | siteDescription | string | `"This is my SDDI CKAN instance description."` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description) |
 | siteId | string | `"default"` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id) |
