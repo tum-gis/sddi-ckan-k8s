@@ -10,7 +10,7 @@ sources:
   - https://github.com/keitaroinc/docker-ckan
 
 version: 1.2.0
-appVersion: "sddi-pr-36-b4a2471"
+appVersion: "1.2.0"
 
 maintainers:
   - email: b.willenborg@tum.de
