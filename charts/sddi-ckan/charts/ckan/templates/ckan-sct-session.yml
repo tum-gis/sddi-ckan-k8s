@@ -10,6 +10,12 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 type: Opaque
 stringData:
+  CKAN___BEAKER_SESSION_TYPE: {{ .Values.session.beakerSessionType | default "cookie" | quote }}
+  CKAN___BEAKER__SESSION_TIMEOUT: {{ .Values.session.beakerSessionTimeout | default "600" | quote }}
+  CKAN___BEAKER__SESSION_SECURE: {{ .Values.session.beakerSessionSecure | default "False" | quote }}
+  CKAN___BEAKER__SESSION_SAMESITE: {{ .Values.session.beakerSamesite | default "Lax" | quote }}
+  CKAN___BEAKER__SESSION_HTTPONLY: {{ .Values.session.beakerSessionHttpOnly | default "True" | quote }}
   CKAN___BEAKER__SESSION_KEY: {{ .Values.session.beakerSessionKey | default "ckan" | quote }}
   CKAN___BEAKER__SESSION__SECRET: {{ .Values.session.beakerSessionSecret | default (randAlphaNum 64) | quote }}
+  CKAN___BEAKER__SESSION_VALIDATE_KEY: {{ .Values.session.beakerSessionValidateKey | default (randAlphaNum 64) | quote }}
 {{- end -}}
