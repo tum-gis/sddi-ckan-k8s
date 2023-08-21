@@ -8,11 +8,19 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
-## [sddi-ckan-1.2.0-beta1] - 2023-08-17
+## [Unreleased] - YYYY-MM-DD
+
+## [sddi-ckan-1.2.0] - 2023-08-21
 
 ### Added
 
-- Added `ckan.session.beakerSessionValidateKey` config option.
+- Added config options in preparation for CKAN v2.10:
+  - `ckan.session.beakerSessionValidateKey`
+  - `ckan.session.beakerSessionType`
+  - `ckan.session.beakerSessionTimeout`
+  - `ckan.session.beakerSessionSecure`
+  - `ckan.session.beakerSamesite`
+  - `ckan.session.beakerSessionHttpOnly`
 
 ### Changed
 
@@ -279,24 +287,9 @@ is displayed when navigating to the _Datasets_ view of CKAN.
 
 ## [Unreleased] - YYYY-MM-DD
 
-### Breaking changes
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.0...HEAD
 
-### Added
-
-### Changed
-
-### Removed
-
-### Fixed
-
-### Security
-
-### Deprecated
-
-### Known issues
-
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.7...HEAD
-
+[sddi-ckan-1.2.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.7...sddi-ckan-1.2.0
 [sddi-ckan-1.1.7]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.6...sddi-ckan-1.1.7
 [sddi-ckan-1.1.6]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.5...sddi-ckan-1.1.6
 [sddi-ckan-1.1.5]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.4...sddi-ckan-1.1.5
