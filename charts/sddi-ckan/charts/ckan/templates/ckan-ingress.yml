@@ -50,7 +50,7 @@ spec:
   {{- range $domains }}
     - {{ . }}
   {{- end }}
-    secretName: tls
+    secretName: {{ (coalesce .Values.ingress.tls.secretName .Values.global.ingress.tls.secretName (printf "%s-%s" (first $domains) "tls" )) | quote }}
   rules:
   {{- range $domains }}
   - host: {{ . }}
