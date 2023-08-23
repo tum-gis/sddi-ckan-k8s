@@ -10,6 +10,8 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased] - YYYY-MM-DD
 
+## [sddi-ckan-1.2.2-beta1] - 2023-08-23
+
 ### Changed
 
 - Relax `kubeVersion` of chart for better compatibility with custom/pre-release Kubernetes versions
@@ -300,6 +302,7 @@ is displayed when navigating to the _Datasets_ view of CKAN.
 
 [Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.1...HEAD
 
+[sddi-ckan-1.2.2-beta1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.1...sddi-ckan-1.2.2-beta1
 [sddi-ckan-1.2.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.0...sddi-ckan-1.2.1
 [sddi-ckan-1.2.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.7...sddi-ckan-1.2.0
 [sddi-ckan-1.1.7]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.6...sddi-ckan-1.1.7
