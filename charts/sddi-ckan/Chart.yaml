@@ -12,7 +12,7 @@ sources:
 
 version: 1.2.1
 appVersion: "1.2.0"
-kubeVersion: ">= 1.23.0"
+kubeVersion: ">= 1.23.0-0"
 
 maintainers:
   - email: b.willenborg@tum.de

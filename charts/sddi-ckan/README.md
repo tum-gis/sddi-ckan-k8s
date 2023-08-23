@@ -20,7 +20,7 @@ Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/t
 
 ## Requirements
 
-Kubernetes: `>= 1.23.0`
+Kubernetes: `>= 1.23.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|

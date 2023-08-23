@@ -10,6 +10,10 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased] - YYYY-MM-DD
 
+### Changed
+
+- Relax `kubeVersion` of chart for better compatibility with custom/pre-release Kubernetes versions
+
 ## [sddi-ckan-1.2.1] - 2023-08-21
 
 ### Fixed
