@@ -8,19 +8,19 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
-## [Unreleased] - YYYY-MM-DD
+## [Unreleased]
 
-## [sddi-ckan-1.2.2-beta2] - 2023-08-24
+## [sddi-ckan-1.2.2] - 2023-08-24
 
 ## Added
 
 - Allow to specify a custom secret name for Ingress TLS secrets using `global.ingress.tls.secretName`
   or `ckan.ingress.tls.secretName`. **Note:** The default settings for the TLS secret name changed too.
-  If you are using a custom certificate, make sure to overwrite the name accordingly.
+  If you are using a custom certificate, make sure to overwrite the secret name accordingly. tum-gis/sddi-ckan-k8s#19
 
 ### Changed
 
-- Relax `kubeVersion` of chart for better compatibility with custom/pre-release Kubernetes versions
+- Relax `kubeVersion` constraints of chart to allow  custom/pre-release Kubernetes versions. tum-gis/sddi-ckan-k8s#20
 
 ## [sddi-ckan-1.2.1] - 2023-08-21
 
@@ -306,9 +306,9 @@ is displayed when navigating to the _Datasets_ view of CKAN.
 
 ### Known issues
 
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.1...HEAD
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.2...HEAD
 
-[sddi-ckan-1.2.2-beta2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.1...sddi-ckan-1.2.2-beta2
+[sddi-ckan-1.2.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.1...sddi-ckan-1.2.2
 [sddi-ckan-1.2.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.0...sddi-ckan-1.2.1
 [sddi-ckan-1.2.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.7...sddi-ckan-1.2.0
 [sddi-ckan-1.1.7]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.6...sddi-ckan-1.1.7
