@@ -10,7 +10,13 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased] - YYYY-MM-DD
 
-## [sddi-ckan-1.2.2-beta1] - 2023-08-23
+## [sddi-ckan-1.2.2-beta2] - 2023-08-24
+
+## Added
+
+- Allow to specify a custom secret name for Ingress TLS secrets using `global.ingress.tls.secretName`
+  or `ckan.ingress.tls.secretName`. **Note:** The default settings for the TLS secret name changed too.
+  If you are using a custom certificate, make sure to overwrite the name accordingly.
 
 ### Changed
 
@@ -302,7 +308,7 @@ is displayed when navigating to the _Datasets_ view of CKAN.
 
 [Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.1...HEAD
 
-[sddi-ckan-1.2.2-beta1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.1...sddi-ckan-1.2.2-beta1
+[sddi-ckan-1.2.2-beta2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.1...sddi-ckan-1.2.2-beta2
 [sddi-ckan-1.2.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.0...sddi-ckan-1.2.1
 [sddi-ckan-1.2.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.7...sddi-ckan-1.2.0
 [sddi-ckan-1.1.7]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.6...sddi-ckan-1.1.7
