@@ -67,6 +67,7 @@ Kubernetes: `>= 1.23.0-0`
 | global.ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |
 | global.ingress.className | string | `"nginx"` | Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class) to use in Ingress routes. |
 | global.ingress.domains | list | `["localhost"]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. The global setting overwrites this setting in subcharts. |
+| global.ingress.tls.secretName | string | `nil` | Specify a custom tls secret name. This my be overwritten by `ingress.tls.secretName` of subcharts. |
 | ingress-nginx.enabled | bool | `false` | Enable/disable Nginx ingress controller. |
 | nameOverride | string | `""` | Override name |
 | postgis.enabled | bool | `true` | Enable/disable database instance. Disable, if an external database is used. |

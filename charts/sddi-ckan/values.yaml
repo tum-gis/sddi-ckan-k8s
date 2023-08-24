@@ -21,6 +21,9 @@ global:
       # -- Name of the Issuer to use. For certManager.type = namespace
       # `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available.
       issuerName: letsencrypt-staging
+    tls:
+      # -- Specify a custom tls secret name. This my be overwritten by `ingress.tls.secretName` of subcharts.
+      secretName:
 
   db:
     # -- Database host of the CKAN database.

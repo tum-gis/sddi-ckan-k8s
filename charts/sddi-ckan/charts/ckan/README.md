@@ -94,6 +94,7 @@ A Helm chart for SDDI enabled CKAN.
 | ingress.stickySessions.sessionCookie.name | string | `"route"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.path | string | `"/"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.secure | string | `"false"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
+| ingress.tls.secretName | string | `nil` | Specify a custom tls secret name. This overwrites `global.ingress.tls.secretName`. |
 | licensesGroupUrl | string | `"https://raw.githubusercontent.com/tum-gis/ckanext-grouphierarchy-sddi/main/ckanext/grouphierarchy/licenses_SDDI.json"` | [CKAN licences group url](https://docs.ckan.org/en/latest/maintaining/configuration.html#licenses-group-url): A URL pointing to a JSON file containing a list of license objects. |
 | liveness.failureThreshold | int | `6` | Failure threshold for the liveness probe |
 | liveness.initialDelaySeconds | int | `20` | Initial delay for the liveness probe |

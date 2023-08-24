@@ -117,6 +117,9 @@ ingress:
     # See [ingress-nginx cors settings](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md#enable-cors)
     # for details on CORS configuration and default settings. Use `ingress.annotations` to overwrite the default configuration annotations.
     enabled: true
+  tls:
+    # -- Specify a custom tls secret name. This overwrites `global.ingress.tls.secretName`.
+    secretName:
 
 # General settings
 # -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`
