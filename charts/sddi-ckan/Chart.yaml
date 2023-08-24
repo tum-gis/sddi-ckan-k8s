@@ -10,7 +10,7 @@ sources:
   - https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure
   - https://github.com/tum-gis/ckan-docker
 
-version: 1.2.2-beta2
+version: 1.2.2
 appVersion: "1.2.0"
 kubeVersion: ">= 1.23.0-0"
 
