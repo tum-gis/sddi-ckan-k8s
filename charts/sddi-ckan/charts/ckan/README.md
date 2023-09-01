@@ -37,7 +37,7 @@ A Helm chart for SDDI enabled CKAN.
 | auth.create_user_via_api | bool | `false` |  |
 | auth.create_user_via_web | bool | `true` |  |
 | auth.public_activity_stream_detail | bool | `true` |  |
-| auth.public_user_details | bool | `true` |  |
+| auth.public_user_details | bool | `false` |  |
 | auth.roles_that_cascade_to_sub_groups | string | `"admin editor member"` |  |
 | auth.user_create_groups | bool | `false` |  |
 | auth.user_create_organizations | bool | `false` |  |

@@ -10,6 +10,12 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased]
 
+### Security
+
+- Changed default setting of `ckan.auth.public_user_details` to `False` to prevent
+  unauthorized leakage of user details. The `/user` page will now return `403 Forbidden`
+  by default.
+
 ## [sddi-ckan-1.2.2] - 2023-08-24
 
 ## Added
