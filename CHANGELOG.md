@@ -12,7 +12,14 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Fixed
 
-- `ckan.session.beakerSessionKey` had no effect due to false ENV var name
+- Multiple session variables had no effect due to false ENV var names. Affected options:
+  - `ckan.session.beakerSessionKey`
+  - `ckan.session.beakerSessionType`
+  - `ckan.session.beakerSessionTimeout`
+  - `ckan.session.beakerSessionSecure`
+  - `ckan.session.beakerSamesite`
+  - `ckan.session.beakerSessionHttpOnly`
+  - `ckan.session.beakerSessionValidateKey`
 
 ### Security
 
