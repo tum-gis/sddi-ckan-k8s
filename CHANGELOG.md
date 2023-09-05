@@ -10,6 +10,10 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased]
 
+### Fixed
+
+- `ckan.session.beakerSessionKey` had no effect due to false ENV var name
+
 ### Security
 
 - Changed default setting of `ckan.auth.public_user_details` to `False` to prevent
