@@ -144,3 +144,21 @@ cert-manager:
 certIssuer:
   # -- Enable/disable namespace Issuers for cert-manager.
   enabled: true
+
+clamav:
+  # -- Enable/disable [ClamAV](https://www.clamav.net/) virus scanning of uploaded files.
+  enabled: true
+
+  fullnameOverride: clamav
+
+  resources:
+    limits:
+      # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+      cpu: 1000m
+      # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+      memory: 2Gi
+    requests:
+      # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+      cpu: 500m
+      # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+      memory: 1Gi

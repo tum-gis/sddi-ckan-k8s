@@ -32,6 +32,7 @@ Kubernetes: `>= 1.23.0-0`
 |  | solr | * |
 | https://charts.jetstack.io | cert-manager(cert-manager) | ~1.11.0 |
 | https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ~4.4.0 |
+| https://wiremind.github.io/wiremind-helm-charts | clamav | ~2.8.0 |
 
 ## Values
 
@@ -39,6 +40,12 @@ Kubernetes: `>= 1.23.0-0`
 |-----|------|---------|-------------|
 | cert-manager.enabled | bool | `false` | Enable/disable cert-manager. |
 | certIssuer.enabled | bool | `true` | Enable/disable namespace Issuers for cert-manager. |
+| clamav.enabled | bool | `true` | Enable/disable [ClamAV](https://www.clamav.net/) virus scanning of uploaded files. |
+| clamav.fullnameOverride | string | `"clamav"` |  |
+| clamav.resources.limits.cpu | string | `"1000m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
+| clamav.resources.limits.memory | string | `"2Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
+| clamav.resources.requests.cpu | string | `"500m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
+| clamav.resources.requests.memory | string | `"1Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | datapusher.enabled | bool | `true` | Enable/disable Datapusher |
 | fullnameOverride | string | `""` | Override fullname |
 | global.datapusher.db.auth.password | string | `"changeMe"` | Jobs database password. If set, this values will overwrite the value in the Datapusher chart. |
