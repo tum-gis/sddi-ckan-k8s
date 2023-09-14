@@ -421,6 +421,13 @@ activityStreams:
   # -- [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings)
   emailNotifications: True
 
+clamav:
+  enabled: true
+  uploadUnscanned: "False"
+  host: clamav
+  port: 3310
+  timeout: 360
+
 resources:
   limits:
     # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
