@@ -10,6 +10,11 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased]
 
+### Added
+
+- Multiple configuration variables for session management:
+  - `ckan.session.beakersSessionSaveAccessedTime`
+
 ### Fixed
 
 - Multiple session variables had no effect due to false ENV var names. Affected options:

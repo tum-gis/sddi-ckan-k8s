@@ -243,17 +243,20 @@ session:
   # -- defaults to "cookie"  if left empty.
   beakerSessionType:
   # -- [CKAN beaker session timeout](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-timeout),
-  # -- defaults to 600 if left empty.
-  beakerSessionTimeout:
+  # -- defaults to 600. Requires `beakersSessionSaveAccessedTime` be `True`!
+  beakerSessionTimeout: 600
+  # -- [CKAN beaker session save access time](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-save-accessed-time),
+  # -- defaults to `True`.
+  beakersSessionSaveAccessedTime: True
   # -- [CKAN beaker session secure](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secure),
-  # -- defaults to `False` if left empty.
-  beakerSessionSecure:
+  # -- defaults to `True`.
+  beakerSessionSecure: True
   # -- [CKAN beaker session samesite](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-samesite),
   # -- defaults to "Lax" if left empty.
-  beakerSamesite:
+  beakerSamesite: "Strict"
   # -- [CKAN beaker session http only](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-httponly),
-  # -- defaults to `True` if left empty.
-  beakerSessionHttpOnly:
+  # -- defaults to `True`.
+  beakerSessionHttpOnly: "True"
 
 apiToken:
   # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-nbytes)

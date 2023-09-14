@@ -12,6 +12,7 @@ type: Opaque
 stringData:
   CKAN___BEAKER_SESSION__TYPE: {{ .Values.session.beakerSessionType | default "cookie" | quote }}
   CKAN___BEAKER__SESSION__TIMEOUT: {{ .Values.session.beakerSessionTimeout | default "600" | quote }}
+  CKAN___BEAKER__SESSION__SAVE_ACCESSED_TIME: {{ .Values.session.beakersSessionSaveAccessedTime | quote }}
   CKAN___BEAKER__SESSION__SECURE: {{ .Values.session.beakerSessionSecure | default "False" | quote }}
   CKAN___BEAKER__SESSION__SAMESITE: {{ .Values.session.beakerSamesite | default "Lax" | quote }}
   CKAN___BEAKER__SESSION__HTTPONLY: {{ .Values.session.beakerSessionHttpOnly | default "True" | quote }}
