@@ -142,7 +142,7 @@ A Helm chart for SDDI enabled CKAN.
 | session.beakerSessionAuto | bool | `false` | [CKAN beaker session auto](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-auto), defaults to `False`. |
 | session.beakerSessionCookieDomain | string | `nil` | [CKAN beaker session domain](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-cookie-domain), defaults to the current domain in its entirety. |
 | session.beakerSessionCookieExpires | bool | `true` | [CKAN beaker session cookie expires](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-cookie-expires), defaults to `True` seconds. |
-| session.beakerSessionHttpOnly | string | `"True"` | defaults to `True`. |
+| session.beakerSessionHttpOnly | bool | `true` | defaults to `True`. |
 | session.beakerSessionKey | string | `"ckan_session"` | [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key), defaults to `ckan_session`. |
 | session.beakerSessionSaveAccessedTime | bool | `true` | [CKAN beaker session save access time](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-save-accessed-time), defaults to `True`. |
 | session.beakerSessionSecret | string | `nil` | [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret): If left empty, a [128 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated. **Note:** In a cluster environment this values need to be the same on each instance. |

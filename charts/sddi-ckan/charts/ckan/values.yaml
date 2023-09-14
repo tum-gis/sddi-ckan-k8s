@@ -265,7 +265,7 @@ session:
   beakerSessionValidateKey:
   # -- [CKAN beaker session http only](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-httponly),
   # -- defaults to `True`.
-  beakerSessionHttpOnly: "True"
+  beakerSessionHttpOnly: True
   # -- [CKAN beaker session samesite](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-samesite),
   # -- defaults to "Lax" if left empty.
   beakerSamesite: "Strict"
