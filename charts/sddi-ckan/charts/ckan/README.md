@@ -151,6 +151,10 @@ A Helm chart for SDDI enabled CKAN.
 | session.beakerSessionType | string | `"cookie"` | [CKAN beaker session type](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-type), defaults to "cookie"  if left empty. |
 | session.beakerSessionValidateKey | string | `nil` | [CKAN beaker session validate key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-validate-key): If left empty, a [128 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated. **Note:** In a cluster environment this values need to be the same on each instance. |
 | session.userLastActiveInterval | int | `600` | [CKAN user last active interval](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-user-last-active-interval), defaults to 600. |
+| session.whoHttpOnly | bool | `true` | [CKAN who http only](https://docs.ckan.org/en/2.9/maintaining/configuration.html#who-httponly), defaults to `True`. |
+| session.whoSamesite | string | `"Strict"` | [CKAN who same site](https://docs.ckan.org/en/2.9/maintaining/configuration.html#who-samesite), defaults to `Strict`. |
+| session.whoSecure | bool | `true` | [CKAN who secure](https://docs.ckan.org/en/2.9/maintaining/configuration.html#who-secure), defaults to `True`. |
+| session.whoTimeout | int | `3600` | [CKAN who timeout](https://docs.ckan.org/en/2.9/maintaining/configuration.html#who-timeout), defaults to 3600. |
 | siteAbout | string | `"My CKAN about info. You can use Markdown here."` | [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about) |
 | siteDescription | string | `"This is my SDDI CKAN instance description."` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description) |
 | siteId | string | `"default"` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id) |

@@ -10,6 +10,7 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 type: Opaque
 stringData:
+  # Beaker settings
   CKAN__USER__LAST_ACTIVE_INTERVAL: {{ .Values.session.userLastActiveInterval | quote }}
   CKAN___BEAKER__SESSION__KEY: {{ .Values.session.beakerSessionKey | quote }}
   CKAN___BEAKER__SESSION__SECRET: {{ .Values.session.beakerSessionSecret | default (randAlphaNum 128) | quote }}
@@ -25,4 +26,9 @@ stringData:
   CKAN___BEAKER__SESSION__VALIDATE_KEY: {{ .Values.session.beakerSessionValidateKey | default (randAlphaNum 128) | quote }}
   CKAN___BEAKER__SESSION__HTTPONLY: {{ .Values.session.beakerSessionHttpOnly | quote }}
   CKAN___BEAKER__SESSION__SAMESITE: {{ .Values.session.beakerSamesite | quote }}
+  # Repoze - who.ini settings
+  CKAN___WHO__TIMEOUT: {{ .Values.session.whoTimeout | quote }}
+  CKAN___WHO__SECURE: {{ .Values.session.whoSecure | quote }}
+  CKAN___WHO__HTTPONLY: {{ .Values.session.whoHttpOnly | quote }}
+  CKAN___WHO__SAMESITE: {{ .Values.session.whoSamesite | quote }}
 {{- end -}}

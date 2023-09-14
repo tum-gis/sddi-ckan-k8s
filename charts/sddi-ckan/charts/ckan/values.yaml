@@ -269,12 +269,18 @@ session:
   # -- [CKAN beaker session samesite](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-samesite),
   # -- defaults to "Lax" if left empty.
   beakerSamesite: "Strict"
-
-
-
-
-
-
+  # -- [CKAN who timeout](https://docs.ckan.org/en/2.9/maintaining/configuration.html#who-timeout),
+  # defaults to 3600.
+  whoTimeout: 3600
+  # -- [CKAN who secure](https://docs.ckan.org/en/2.9/maintaining/configuration.html#who-secure),
+  # defaults to `True`.
+  whoSecure: True
+  # -- [CKAN who http only](https://docs.ckan.org/en/2.9/maintaining/configuration.html#who-httponly),
+  # defaults to `True`.
+  whoHttpOnly: True
+  # -- [CKAN who same site](https://docs.ckan.org/en/2.9/maintaining/configuration.html#who-samesite),
+  # defaults to `Strict`.
+  whoSamesite: "Strict"
 
 apiToken:
   # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-nbytes)
