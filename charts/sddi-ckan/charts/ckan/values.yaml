@@ -228,35 +228,53 @@ sysadmin:
   email: user@example.de
 
 session:
+  # -- [CKAN user last active interval](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-user-last-active-interval),
+  # defaults to 600.
+  userLastActiveInterval: 600
+  # -- [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key),
+  # defaults to `ckan_session`.
+  beakerSessionKey: ckan_session
   # -- [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret):
-  # If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated.
+  # If left empty, a [128 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated.
   # **Note:** In a cluster environment this values need to be the same on each instance.
   beakerSessionSecret:
+  # -- [CKAN beaker session auto](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-auto),
+  # defaults to `False`.
+  beakerSessionAuto: False
+  # -- [CKAN beaker session cookie expires](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-cookie-expires),
+  # defaults to `True` seconds.
+  beakerSessionCookieExpires: True
+  # -- [CKAN beaker session domain](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-cookie-domain),
+  # defaults to the current domain in its entirety.
+  beakerSessionCookieDomain:
+  # -- [CKAN beaker session save access time](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-save-accessed-time),
+  # defaults to `True`.
+  beakerSessionSaveAccessedTime: True
+  # -- [CKAN beaker session secure](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secure),
+  # defaults to `True`.
+  beakerSessionSecure: True
+  # -- [CKAN beaker session timeout](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-timeout),
+  # defaults to 3600 seconds. Requires `beakerSessionSaveAccessedTime` be `True`!
+  beakerSessionTimeout: 3600
+  # -- [CKAN beaker session type](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-type),
+  # defaults to "cookie"  if left empty.
+  beakerSessionType: cookie
   # -- [CKAN beaker session validate key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-validate-key):
-  # If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated.
+  # If left empty, a [128 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated.
   # **Note:** In a cluster environment this values need to be the same on each instance.
   beakerSessionValidateKey:
-  # -- [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key),
-  # defaults to *ckan* if left empty.
-  beakerSessionKey: ckan-session
-  # -- [CKAN beaker session type](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-type),
-  # -- defaults to "cookie"  if left empty.
-  beakerSessionType:
-  # -- [CKAN beaker session timeout](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-timeout),
-  # -- defaults to 600. Requires `beakersSessionSaveAccessedTime` be `True`!
-  beakerSessionTimeout: 600
-  # -- [CKAN beaker session save access time](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-save-accessed-time),
-  # -- defaults to `True`.
-  beakersSessionSaveAccessedTime: True
-  # -- [CKAN beaker session secure](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secure),
-  # -- defaults to `True`.
-  beakerSessionSecure: True
-  # -- [CKAN beaker session samesite](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-samesite),
-  # -- defaults to "Lax" if left empty.
-  beakerSamesite: "Strict"
   # -- [CKAN beaker session http only](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-httponly),
   # -- defaults to `True`.
   beakerSessionHttpOnly: "True"
+  # -- [CKAN beaker session samesite](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-samesite),
+  # -- defaults to "Lax" if left empty.
+  beakerSamesite: "Strict"
+
+
+
+
+
+
 
 apiToken:
   # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-nbytes)

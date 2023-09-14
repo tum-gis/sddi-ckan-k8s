@@ -139,14 +139,18 @@ A Helm chart for SDDI enabled CKAN.
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | session.beakerSamesite | string | `"Strict"` | defaults to "Lax" if left empty. |
+| session.beakerSessionAuto | bool | `false` | [CKAN beaker session auto](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-auto), defaults to `False`. |
+| session.beakerSessionCookieDomain | string | `nil` | [CKAN beaker session domain](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-cookie-domain), defaults to the current domain in its entirety. |
+| session.beakerSessionCookieExpires | bool | `true` | [CKAN beaker session cookie expires](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-cookie-expires), defaults to `True` seconds. |
 | session.beakerSessionHttpOnly | string | `"True"` | defaults to `True`. |
-| session.beakerSessionKey | string | `"ckan-session"` | [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key), defaults to *ckan* if left empty. |
-| session.beakerSessionSecret | string | `nil` | [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret): If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated. **Note:** In a cluster environment this values need to be the same on each instance. |
-| session.beakerSessionSecure | bool | `true` | defaults to `True`. |
-| session.beakerSessionTimeout | int | `600` | defaults to 600. Requires `beakersSessionSaveAccessedTime` be `True`! |
-| session.beakerSessionType | string | `nil` | defaults to "cookie"  if left empty. |
-| session.beakerSessionValidateKey | string | `nil` | [CKAN beaker session validate key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-validate-key): If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated. **Note:** In a cluster environment this values need to be the same on each instance. |
-| session.beakersSessionSaveAccessedTime | bool | `true` | defaults to `True`. |
+| session.beakerSessionKey | string | `"ckan_session"` | [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key), defaults to `ckan_session`. |
+| session.beakerSessionSaveAccessedTime | bool | `true` | [CKAN beaker session save access time](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-save-accessed-time), defaults to `True`. |
+| session.beakerSessionSecret | string | `nil` | [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret): If left empty, a [128 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated. **Note:** In a cluster environment this values need to be the same on each instance. |
+| session.beakerSessionSecure | bool | `true` | [CKAN beaker session secure](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secure), defaults to `True`. |
+| session.beakerSessionTimeout | int | `3600` | [CKAN beaker session timeout](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-timeout), defaults to 3600 seconds. Requires `beakerSessionSaveAccessedTime` be `True`! |
+| session.beakerSessionType | string | `"cookie"` | [CKAN beaker session type](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-type), defaults to "cookie"  if left empty. |
+| session.beakerSessionValidateKey | string | `nil` | [CKAN beaker session validate key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-validate-key): If left empty, a [128 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated. **Note:** In a cluster environment this values need to be the same on each instance. |
+| session.userLastActiveInterval | int | `600` | [CKAN user last active interval](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-user-last-active-interval), defaults to 600. |
 | siteAbout | string | `"My CKAN about info. You can use Markdown here."` | [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about) |
 | siteDescription | string | `"This is my SDDI CKAN instance description."` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description) |
 | siteId | string | `"default"` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id) |

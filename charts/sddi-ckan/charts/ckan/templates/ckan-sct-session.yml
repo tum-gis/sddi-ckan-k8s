@@ -10,13 +10,19 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 type: Opaque
 stringData:
-  CKAN___BEAKER__SESSION__TYPE: {{ .Values.session.beakerSessionType | default "cookie" | quote }}
-  CKAN___BEAKER__SESSION__TIMEOUT: {{ .Values.session.beakerSessionTimeout | default "600" | quote }}
-  CKAN___BEAKER__SESSION__SAVE_ACCESSED_TIME: {{ .Values.session.beakersSessionSaveAccessedTime | quote }}
-  CKAN___BEAKER__SESSION__SECURE: {{ .Values.session.beakerSessionSecure | default "False" | quote }}
-  CKAN___BEAKER__SESSION__SAMESITE: {{ .Values.session.beakerSamesite | default "Lax" | quote }}
-  CKAN___BEAKER__SESSION__HTTPONLY: {{ .Values.session.beakerSessionHttpOnly | default "True" | quote }}
-  CKAN___BEAKER__SESSION__KEY: {{ .Values.session.beakerSessionKey | default "ckan" | quote }}
-  CKAN___BEAKER__SESSION__SECRET: {{ .Values.session.beakerSessionSecret | default (randAlphaNum 64) | quote }}
-  CKAN___BEAKER__SESSION__VALIDATE_KEY: {{ .Values.session.beakerSessionValidateKey | default (randAlphaNum 64) | quote }}
+  CKAN__USER__LAST_ACTIVE_INTERVAL: {{ .Values.session.userLastActiveInterval | quote }}
+  CKAN___BEAKER__SESSION__KEY: {{ .Values.session.beakerSessionKey | quote }}
+  CKAN___BEAKER__SESSION__SECRET: {{ .Values.session.beakerSessionSecret | default (randAlphaNum 128) | quote }}
+  CKAN___BEAKER__SESSION__AUTO: {{ .Values.session.beakerSessionAuto | quote }}
+  CKAN___BEAKER__SESSION__COOKIE_EXPIRES: {{ .Values.session.beakerSessionCookieExpires | quote }}
+  {{- if .Values.session.beakerSessionCookieDomain }}
+  CKAN___BEAKER__SESSION__COOKIE_DOMAIN: {{ .Values.session.beakerSessionCookieDomain | quote }}
+  {{- end }}
+  CKAN___BEAKER__SESSION__SAVE_ACCESSED_TIME: {{ .Values.session.beakerSessionSaveAccessedTime | quote }}
+  CKAN___BEAKER__SESSION__SECURE: {{ .Values.session.beakerSessionSecure | quote }}
+  CKAN___BEAKER__SESSION__TIMEOUT: {{ .Values.session.beakerSessionTimeout | quote }}
+  CKAN___BEAKER__SESSION__TYPE: {{ .Values.session.beakerSessionType | quote }}
+  CKAN___BEAKER__SESSION__VALIDATE_KEY: {{ .Values.session.beakerSessionValidateKey | default (randAlphaNum 128) | quote }}
+  CKAN___BEAKER__SESSION__HTTPONLY: {{ .Values.session.beakerSessionHttpOnly | quote }}
+  CKAN___BEAKER__SESSION__SAMESITE: {{ .Values.session.beakerSamesite | quote }}
 {{- end -}}

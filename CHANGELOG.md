@@ -12,8 +12,12 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Added
 
-- Multiple configuration variables for session management:
-  - `ckan.session.beakersSessionSaveAccessedTime`
+- Added configuration variables for session management:
+  - `ckan.session.userLastActiveInterval`
+  - `ckan.session.beakerSessionSaveAccessedTime`
+  - `ckan.session.beakerSessionCookieDomain`
+  - `ckan.session.beakerSessionCookieExpires`
+  - `ckan.session.beakerSessionAuto`
 
 ### Fixed
 
@@ -31,6 +35,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 - Changed default setting of `ckan.auth.public_user_details` to `False` to prevent
   unauthorized leakage of user details. The `/user` page will now return `403 Forbidden`
   by default.
+- Changed various defaults of `ckan.session.*` settings for security hardening.
 
 ## [sddi-ckan-1.2.2] - 2023-08-24
 
