@@ -47,7 +47,7 @@ spec:
 
       initContainers:
       - name: init-data
-        image: busybox
+        image: "{{ .Values.initContainers.initdata.image.repository }}:{{ .Values.initContainers.initdata.image.tag }}"
         command: ["sh", "-c", "chown -Rv 92:92 {{ .Values.persistence.storagePath }}"]
         volumeMounts:
         - name: data
@@ -55,7 +55,7 @@ spec:
           readOnly: false
 
       - name: pg-ready
-        image: bwibo/k8s-init-container
+        image: "{{ .Values.initContainers.pgready.image.repository }}:{{ .Values.initContainers.pgready.image.tag }}"
         command:
           - pg_isready
         env:
