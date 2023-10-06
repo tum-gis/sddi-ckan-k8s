@@ -46,6 +46,7 @@ spec:
             claimName: {{ include "ckan.fullname" . }}
 
       initContainers:
+      {{ if .Values.initContainers.initdata.enabled }}
       - name: init-data
         image: "{{ .Values.initContainers.initdata.image.repository }}:{{ .Values.initContainers.initdata.image.tag }}"
         command: ["sh", "-c", "chown -Rv 92:92 {{ .Values.persistence.storagePath }}"]
@@ -53,6 +54,7 @@ spec:
         - name: data
           mountPath: {{ .Values.persistence.storagePath }}
           readOnly: false
+      {{ end }}
 
       - name: pg-ready
         image: "{{ .Values.initContainers.pgready.image.repository }}:{{ .Values.initContainers.pgready.image.tag }}"

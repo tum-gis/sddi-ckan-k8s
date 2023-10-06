@@ -23,6 +23,7 @@ imagePullSecrets: []
 
 initContainers:
   initdata:
+    enabled: true
     image:
       repository: busybox
       tag: latest
