@@ -44,6 +44,15 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "ckan.fullname" . }}
+        - name: production-ini
+          emptyDir:
+            sizeLimit: 500Mi
+        - name: srv-app-i18n
+          emptyDir:
+            sizeLimit: 500Mi
+        - name: srv-app-data
+          emptyDir:
+            sizeLimit: 500Mi
 
       initContainers:
       {{ if .Values.initContainers.initdata.enabled }}
@@ -55,6 +64,19 @@ spec:
           mountPath: {{ .Values.persistence.storagePath }}
           readOnly: false
       {{ end }}
+
+      ## get original /srv/app/production.ini from image
+      # and copy to /tmp/
+      # to mount it in a writable emtpty dir
+      - name: copy-productionini
+        ## same image as container {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        command: ["/bin/sh","-c"]
+        args: ["cp -v /srv/app/production.ini /tmp/production.ini"]
+        volumeMounts:
+        - name: production-ini
+          mountPath: /tmp
+
 
       - name: pg-ready
         image: "{{ .Values.initContainers.pgready.image.repository }}:{{ .Values.initContainers.pgready.image.tag }}"
@@ -105,6 +127,13 @@ spec:
           volumeMounts:
             - name: data
               mountPath: {{ .Values.persistence.storagePath }}
+            - name: production-ini
+              mountPath: /srv/app/production.ini
+              subPath: production.ini
+            - name: srv-app-data
+              mountPath: /srv/app/data/
+            - name: srv-app-i18n
+              mountPath: /srv/app/src/ckan/ckan/public/base/i18n/
 
           startupProbe:
             httpGet:
