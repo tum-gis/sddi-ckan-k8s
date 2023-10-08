@@ -10,16 +10,18 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased]
 
+@klml, @eidottermihi made their first contributions!
+
 ## Added
 
-- Allow configuration of images used for init containers
+- Allow configuration of images used for init containers. tum-gis/sddi-ckan-k8s#24
   - `ckan.initContainers.initdata.image`
   - `ckan.initContainers.pgready.image`
   - `datapusher.initContainers.pgready.image`
 
 ### Changed
 
-- Relax Solr security context fo OpenShift compatibility
+- Relax Solr security context fo OpenShift compatibility. tum-gis/sddi-ckan-k8s#24
 
 ### Fixed
 
