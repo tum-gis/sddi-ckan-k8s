@@ -10,7 +10,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased]
 
-@klml, @eidottermihi made their first contributions!
+[@klml](https://github.com/klml), [@eidottermihi](https://github.com/eidottermihi) made their first contributions!
 
 ## Added
 
@@ -21,7 +21,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Changed
 
-- Relax Solr security context fo OpenShift compatibility. tum-gis/sddi-ckan-k8s#24
+- Relax Solr security context for OpenShift compatibility. tum-gis/sddi-ckan-k8s#24
 
 ### Fixed
 
