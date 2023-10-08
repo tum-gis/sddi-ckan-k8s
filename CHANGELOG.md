@@ -8,7 +8,7 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
-## [Unreleased]
+## [sddi-ckan-1.3.0-beta1] - 2023-10-08
 
 [@klml](https://github.com/klml), [@eidottermihi](https://github.com/eidottermihi) made their first contributions!
 
