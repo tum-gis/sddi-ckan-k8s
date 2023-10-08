@@ -22,6 +22,7 @@ imagePullSecrets: []
 
 initContainers:
   pgready:
+    # -- Image used for testing PostgresSQL database readiness.
     image:
       repository: bwibo/k8s-init-container
       tag: latest

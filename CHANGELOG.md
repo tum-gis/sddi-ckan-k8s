@@ -10,6 +10,17 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased]
 
+## Added
+
+- Allow configuration of images used for init containers
+  - `ckan.initContainers.initdata.image`
+  - `ckan.initContainers.pgready.image`
+  - `datapusher.initContainers.pgready.image`
+
+### Changed
+
+- Relax Solr security context fo OpenShift compatibility
+
 ### Fixed
 
 - Multiple session variables had no effect due to false ENV var names. Affected options:

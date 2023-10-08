@@ -23,10 +23,12 @@ imagePullSecrets: []
 
 initContainers:
   initdata:
+    # -- Image used to initialize `persistence.storagePath`.
     image:
       repository: busybox
       tag: latest
   pgready:
+    # -- Image used for testing PostgresSQL database readiness.
     image:
       repository: bwibo/k8s-init-container
       tag: latest

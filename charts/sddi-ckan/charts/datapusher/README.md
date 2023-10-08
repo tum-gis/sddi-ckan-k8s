@@ -48,6 +48,7 @@ A Helm chart for CKAN Datapusher.
 | image.repository | string | `"tumgis/ckan-datapusher"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
+| initContainers.pgready.image | object | `{"repository":"bwibo/k8s-init-container","tag":"latest"}` | Image used for testing PostgresSQL database readiness. |
 | insertRows | string | `"250"` | Number of rows to take from the data and upload them as chunks to datastore |
 | maxContentLength | string | `"10485760"` | Maximum size of content to be uploaded in bytes. |
 | nameOverride | string | `""` | Override name |
