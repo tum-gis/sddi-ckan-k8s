@@ -44,7 +44,7 @@ spec:
       {{- if .Values.global.datapusher.db.enabled | default .Values.db.enabled }}
       initContainers:
       - name: pg-ready
-        image: bwibo/k8s-init-container
+        image: "{{ .Values.initContainers.pgready.image.repository }}:{{ .Values.initContainers.pgready.image.tag }}"
         command:
           - pg_isready
         env:

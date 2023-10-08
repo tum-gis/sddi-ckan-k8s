@@ -33,10 +33,10 @@ serviceAccount:
   name: ""
 
 # -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
-podSecurityContext:
-  runAsUser: 8983
-  runAsGroup: 8983
-  fsGroup: 8983
+podSecurityContext: {}
+  # runAsUser: 8983
+  # runAsGroup: 8983
+  # fsGroup: 8983
 
 # -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
 securityContext: {}

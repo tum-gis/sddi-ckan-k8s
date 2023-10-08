@@ -38,7 +38,7 @@ A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 | persistence.capacity | string | `"4Gi"` | Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity) |
 | persistence.storageClassName | string | `nil` | StorageClass to use, leave empty to use default StorageClass. |
 | podAnnotations | object | `{}` | Additional pod annotations |
-| podSecurityContext | object | `{"fsGroup":8983,"runAsGroup":8983,"runAsUser":8983}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
+| podSecurityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | resources.limits.cpu | string | `"2000m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.limits.memory | string | `"8Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.requests.cpu | string | `"500m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |

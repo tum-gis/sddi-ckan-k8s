@@ -21,6 +21,16 @@ image:
 # -- [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
 imagePullSecrets: []
 
+initContainers:
+  initdata:
+    image:
+      repository: busybox
+      tag: latest
+  pgready:
+    image:
+      repository: bwibo/k8s-init-container
+      tag: latest
+
 # -- Additional pod annotations
 podAnnotations: {}
 
