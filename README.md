@@ -119,7 +119,7 @@ To get this up an running in seconds, check out the [examples](examples). You wi
     [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/),
     usually a default for managed Kubernetes clusters.
 
-- Openshift `>= 4.13`
+- [Openshift](#openshift) `>= 4.13`
 
 ## :page_with_curl: Documentation
 
