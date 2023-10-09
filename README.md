@@ -119,6 +119,8 @@ To get this up an running in seconds, check out the [examples](examples). You wi
     [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/),
     usually a default for managed Kubernetes clusters.
 
+- Openshift `>= 4.13`
+
 ## :page_with_curl: Documentation
 
 The chart is documented in the chart directory: [charts/sddi-ckan](charts/sddi-ckan)
