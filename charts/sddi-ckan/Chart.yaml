@@ -48,3 +48,7 @@ dependencies:
     condition: cert-manager.enabled
     version: "~1.11.0"
     repository: https://charts.jetstack.io
+  - name: clamav
+    condition: clamav.enabled
+    version: "~2.8.0"
+    repository: https://wiremind.github.io/wiremind-helm-charts
