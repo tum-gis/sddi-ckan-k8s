@@ -180,6 +180,7 @@ clamav:
     Foreground yes
     StreamMaxLength 4000M
     LogVerbose yes
+    BytecodeTimeout 1000
 
     ###############
     # Results
