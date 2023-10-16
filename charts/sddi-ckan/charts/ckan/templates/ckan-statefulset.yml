@@ -53,6 +53,10 @@ spec:
         - name: srv-app-data
           emptyDir:
             sizeLimit: 500Mi
+        - name: uwsgi-conf
+          emptyDir:
+            sizeLimit: 500Mi
+
 
       initContainers:
       {{ if .Values.initContainers.initdata.enabled }}
@@ -76,6 +80,19 @@ spec:
         volumeMounts:
         - name: production-ini
           mountPath: /tmp
+      
+
+      ## get original /srv/app/uwsgi.conf from image,
+      # copy it to /tmp2/ and change listen value
+      # to mount it then in a writable emtpty dir
+      - name: copy-uwsgiconf
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        command: ["/bin/sh","-c"]
+        args: ["cp -v /srv/app/uwsgi.conf /tmp2/uwsgi.conf && sed -i 's/listen = 1000/listen = 100/g' /tmp2/uwsgi.conf"]
+        volumeMounts:
+        - name: uwsgi-conf
+          mountPath: /tmp2
+
 
 
       - name: pg-ready
@@ -134,6 +151,10 @@ spec:
               mountPath: /srv/app/data/
             - name: srv-app-i18n
               mountPath: /srv/app/src/ckan/ckan/public/base/i18n/
+            - name: uwsgi-conf
+              mountPath: /srv/app/uwsgi.conf
+              subPath: uwsgi.conf
+
 
           startupProbe:
             httpGet:
