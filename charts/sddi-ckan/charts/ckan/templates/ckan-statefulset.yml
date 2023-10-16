@@ -56,6 +56,9 @@ spec:
         - name: uwsgi-conf
           emptyDir:
             sizeLimit: 500Mi
+        - name: prerun-py
+          emptyDir:
+            sizeLimit: 500Mi
 
 
       initContainers:
@@ -92,7 +95,18 @@ spec:
         volumeMounts:
         - name: uwsgi-conf
           mountPath: /tmp2
+      
 
+      ## similar for /srv/app/prerun.py
+      - name: copy-prerunpy
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        command: ["/bin/sh","-c"]
+        args:
+          - >-
+            cp -v /srv/app/prerun.py /tmp3/prerun.py && sed -i '215 a def update_plugins():\n\n    plugins = os.environ.get("CKAN__PLUGINS", "")\n    print(("[prerun] Setting the following plugins in {}:".format(ckan_ini)))\n    print(plugins)\n    cmd = ["ckan", "config-tool", ckan_ini, "ckan.plugins = {}".format(plugins)]\n    subprocess.check_output(cmd, stderr=subprocess.STDOUT)\n    print("[prerun] Plugins set.")\n\n' /tmp3/prerun.py && sed -i '235 a # update plugins\n        update_plugins()' /tmp3/prerun.py
+        volumeMounts:
+        - name: prerun-py
+          mountPath: /tmp3
 
 
       - name: pg-ready
@@ -154,6 +168,9 @@ spec:
             - name: uwsgi-conf
               mountPath: /srv/app/uwsgi.conf
               subPath: uwsgi.conf
+            - name: prerun-py
+              mountPath: /srv/app/prerun.py
+              subPath: prerun.py
 
 
           startupProbe:
