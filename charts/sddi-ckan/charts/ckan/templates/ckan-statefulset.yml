@@ -61,9 +61,6 @@ spec:
           emptyDir:
             sizeLimit: 500Mi
         ########################################################
-        - name: prerun-py
-          emptyDir:
-            sizeLimit: 500Mi
 
 
       initContainers:
@@ -77,17 +74,24 @@ spec:
           readOnly: false
       {{ end }}
 
-      ## get original /srv/app/production.ini from image
-      # and copy to /tmp/
-      # to mount it in a writable emtpty dir
+      ## get original /srv/app/production.ini from image 
+      # copy to /tmp/
+      # change plugins with with ckan config-tool
+      # plugin list comes from included configMap
+      # mount production.ini in a writable emtpty dir
       - name: copy-productionini
         ## same image as container {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         command: ["/bin/sh","-c"]
-        args: ["cp -v /srv/app/production.ini /tmp/production.ini"]
+        args: 
+          - >-
+            cp -v /srv/app/production.ini /tmp/production.ini && ckan config-tool /tmp/production.ini "ckan.plugins = ${CKAN__PLUGINS}"
         volumeMounts:
         - name: production-ini
           mountPath: /tmp
+        envFrom:
+          - configMapRef:
+              name: {{ include "ckan.fullname" . }}-env
       
 
       ########################################################
@@ -105,18 +109,6 @@ spec:
         - name: uwsgi-conf
           mountPath: /tmp2
       ######################################################
-      
-
-      ## similar for /srv/app/prerun.py
-      - name: copy-prerunpy
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-        command: ["/bin/sh","-c"]
-        args:
-          - >-
-            cp -v /srv/app/prerun.py /tmp3/prerun.py && sed -i '215 a def update_plugins():\n\n    plugins = os.environ.get("CKAN__PLUGINS", "")\n    print(("[prerun] Setting the following plugins in {}:".format(ckan_ini)))\n    print(plugins)\n    cmd = ["ckan", "config-tool", ckan_ini, "ckan.plugins = {}".format(plugins)]\n    subprocess.check_output(cmd, stderr=subprocess.STDOUT)\n    print("[prerun] Plugins set.")\n\n' /tmp3/prerun.py && sed -i '235 a # update plugins\n        update_plugins()' /tmp3/prerun.py
-        volumeMounts:
-        - name: prerun-py
-          mountPath: /tmp3
 
 
       - name: pg-ready
@@ -182,9 +174,6 @@ spec:
               mountPath: /srv/app/uwsgi.conf
               subPath: uwsgi.conf
               #######################################################
-            - name: prerun-py
-              mountPath: /srv/app/prerun.py
-              subPath: prerun.py
 
 
           startupProbe:
