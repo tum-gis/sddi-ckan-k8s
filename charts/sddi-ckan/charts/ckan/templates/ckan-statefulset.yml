@@ -61,6 +61,9 @@ spec:
           emptyDir:
             sizeLimit: 500Mi
         ########################################################
+        - name: config-volume
+          configMap:
+            name: ckan-licenses
 
 
       initContainers:
@@ -174,7 +177,8 @@ spec:
               mountPath: /srv/app/uwsgi.conf
               subPath: uwsgi.conf
               #######################################################
-
+            - name: config-volume
+              mountPath: /srv/app/config/
 
           startupProbe:
             httpGet:
