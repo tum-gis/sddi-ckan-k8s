@@ -61,9 +61,13 @@ spec:
           emptyDir:
             sizeLimit: 500Mi
         ########################################################
-        - name: config-volume
+        # Create licenses-volume for ckan licensesGroup configMap
+        # Included only if licensesConfigMap is enabled
+        {{ if .Values.licensesConfigMap.enabled }}
+        - name: licenses-volume
           configMap:
-            name: ckan-licenses
+            name: {{ include "ckan.fullname" . }}-licenses
+        {{ end }}
 
 
       initContainers:
@@ -177,8 +181,12 @@ spec:
               mountPath: /srv/app/uwsgi.conf
               subPath: uwsgi.conf
               #######################################################
-            - name: config-volume
-              mountPath: /srv/app/config/
+              # Mount ckan licensesGroup configMap as licenses-volume
+              # Included only if licensesConfigMap is enabled
+              {{ if .Values.licensesConfigMap.enabled }}
+            - name: licenses-volume
+              mountPath: /srv/app/licenses/
+              {{ end }}
 
           startupProbe:
             httpGet:
