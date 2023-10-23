@@ -62,11 +62,18 @@ spec:
             sizeLimit: 500Mi
         ########################################################
         # Create licenses-volume for ckan licensesGroup configMap
-        # Included only if licensesConfigMap is enabled
+        # Included only if licensesConfigMap is enabled:
         {{ if .Values.licensesConfigMap.enabled }}
         - name: licenses-volume
           configMap:
             name: {{ include "ckan.fullname" . }}-licenses
+        {{ end }}
+        # Create local-ini volume for ckan local-ini configMap
+        # Included only if localIni is enabled:
+        {{ if .Values.localIni.enabled }}
+        - name: local-ini
+          configMap:
+            name: ckan-local-ini
         {{ end }}
 
 
@@ -81,21 +88,32 @@ spec:
           readOnly: false
       {{ end }}
 
-      ## get original /srv/app/production.ini from image 
-      # copy to /tmp/
-      # change plugins with with ckan config-tool
-      # plugin list comes from included configMap
-      # mount production.ini in a writable emtpty dir
+      ## Get original /srv/app/production.ini from image,
+      # copy to /tmp/ to mount it in a writable emtpty dir.
+      # If localIni is enabled, change plugins with with ckan config-tool 
+      # according to local.ini file which is included in a local configMap.
+      # Cp is used because when using ckan config-tool instead, 
+      # all comments and structure in production.ini would be overwritten.
       - name: copy-productionini
         ## same image as container {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         command: ["/bin/sh","-c"]
+        {{ if .Values.localIni.enabled }}
         args: 
           - >-
-            cp -v /srv/app/production.ini /tmp/production.ini && ckan config-tool /tmp/production.ini "ckan.plugins = ${CKAN__PLUGINS}"
+            cp -v /srv/app/production.ini /tmp/production.ini && ckan config-tool /tmp/production.ini -f /tmp2/local.ini
         volumeMounts:
+        - name: local-ini
+          mountPath: /tmp2
+        {{ else }}
+        args:
+          - >-
+            cp -v /srv/app/production.ini /tmp/production.ini
+        {{ end }}
         - name: production-ini
           mountPath: /tmp
+        
+        
         envFrom:
           - configMapRef:
               name: {{ include "ckan.fullname" . }}-env

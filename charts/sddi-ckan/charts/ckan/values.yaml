@@ -478,3 +478,10 @@ liveness:
   failureThreshold: 6
   # -- Timeout interval for the liveness probe
   timeoutSeconds: 10
+
+# -- Local.ini: Enable to adapt production.ini according to a local.ini file included in a local ConfigMap.
+# Plugins list and other configurations can be added in the local ConfigMap and override the given configurations.
+# This has been added because the setting ckan:plugins only changes the environment variable, 
+# but does not update activated plugins without update_plugins() function being part of prerun.py.
+localIni:
+    enabled: false
