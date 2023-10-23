@@ -101,17 +101,17 @@ spec:
         {{ if .Values.localIni.enabled }}
         args: 
           - >-
-            cp -v /srv/app/production.ini /tmp/production.ini && ckan config-tool /tmp/production.ini -f /tmp2/local.ini
+            cp -v /srv/app/production.ini /tmp/productionini/production.ini && ckan config-tool /tmp/productionini/production.ini -f /tmp/localini/local.ini
         volumeMounts:
         - name: local-ini
-          mountPath: /tmp2
+          mountPath: /tmp/localini
         {{ else }}
         args:
           - >-
-            cp -v /srv/app/production.ini /tmp/production.ini
+            cp -v /srv/app/production.ini /tmp/productionini/production.ini
         {{ end }}
         - name: production-ini
-          mountPath: /tmp
+          mountPath: /tmp/productionini
         
         
         envFrom:
