@@ -168,7 +168,7 @@ favicon: /base/images/ckan.ico
 # `nginx.org/client-max-body-size: "600m"` CKAN Ingress annotations too.
 maxUploadSizeMB: 250
 # -- [CKAN licences group url](https://docs.ckan.org/en/latest/maintaining/configuration.html#licenses-group-url):
-# A URL pointing to a JSON file containing a list of license objects.
+# A URL pointing to a JSON file containing a list of license objects. If licensesConfigMap is enabled set mounted file path here (file://..)
 licensesGroupUrl: "https://raw.githubusercontent.com/tum-gis/ckanext-grouphierarchy-sddi/main/ckanext/grouphierarchy/licenses_SDDI.json"
 # -- [CKAN config dafault_views](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-views-default-views):
 # **Note**: Make sure the required view plugins are loaded!
@@ -490,6 +490,3 @@ localIni:
 # to avoid dependency from https://raw.githubusercontent.com/
 licensesConfigMap:
     enabled: false
-licensesGroupUrl:
-# -- Specify URL or file path for ckan licenses
-# leave empty to use default URL https://raw.githubusercontent.com/tum-gis/ckanext-grouphierarchy-sddi/main/ckanext/grouphierarchy/licenses_SDDI.json
