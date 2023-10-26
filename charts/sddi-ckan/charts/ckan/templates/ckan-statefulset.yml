@@ -44,9 +44,6 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "ckan.fullname" . }}
-        - name: production-ini
-          emptyDir:
-            sizeLimit: 500Mi
         - name: srv-app-i18n
           emptyDir:
             sizeLimit: 500Mi
@@ -88,35 +85,6 @@ spec:
           readOnly: false
       {{ end }}
 
-      ## Get original /srv/app/production.ini from image,
-      # copy to /tmp/ to mount it in a writable emtpty dir.
-      # If localIni is enabled, change plugins with with ckan config-tool 
-      # according to local.ini file which is included in a local configMap.
-      # Cp is used because when using ckan config-tool instead, 
-      # all comments and structure in production.ini would be overwritten.
-      - name: copy-productionini
-        ## same image as container {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-        command: ["/bin/sh","-c"]
-        {{ if .Values.localIni.enabled }}
-        args: 
-          - >-
-            cp -v /srv/app/production.ini /tmp/productionini/production.ini && ckan config-tool /tmp/productionini/production.ini -f /tmp/localini/local.ini
-        volumeMounts:
-        - name: local-ini
-          mountPath: /tmp/localini
-        {{ else }}
-        args:
-          - >-
-            cp -v /srv/app/production.ini /tmp/productionini/production.ini
-        {{ end }}
-        - name: production-ini
-          mountPath: /tmp/productionini
-        
-        
-        envFrom:
-          - configMapRef:
-              name: {{ include "ckan.fullname" . }}-env
       
 
       ########################################################
@@ -185,7 +153,7 @@ spec:
           volumeMounts:
             - name: data
               mountPath: {{ .Values.persistence.storagePath }}
-            - name: production-ini
+            - name: local-ini
               mountPath: /srv/app/production.ini
               subPath: production.ini
             - name: srv-app-data
