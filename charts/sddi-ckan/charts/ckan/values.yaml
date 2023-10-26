@@ -485,3 +485,11 @@ liveness:
 # but does not update activated plugins without update_plugins() function being part of prerun.py.
 localIni:
     enabled: false
+
+# -- Enable if licensesGroupUrl should use file in ckan-configMap-licenses.yaml instead of URL
+# to avoid dependency from https://raw.githubusercontent.com/
+licensesConfigMap:
+    enabled: false
+licensesGroupUrl:
+# -- Specify URL or file path for ckan licenses
+# leave empty to use default URL https://raw.githubusercontent.com/tum-gis/ckanext-grouphierarchy-sddi/main/ckanext/grouphierarchy/licenses_SDDI.json

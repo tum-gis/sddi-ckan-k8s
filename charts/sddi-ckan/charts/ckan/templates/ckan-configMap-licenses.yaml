@@ -1,3 +1,4 @@
+{{- if .Values.licensesConfigMap.enabled }}
 kind: ConfigMap
 apiVersion: v1
 metadata:
@@ -266,3 +267,4 @@ data:
         "url": "https://www.apache.org/licenses/LICENSE-2.0"
       }
     ]
+{{- end }}
