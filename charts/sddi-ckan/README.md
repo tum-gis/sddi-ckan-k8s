@@ -30,8 +30,8 @@ Kubernetes: `>= 1.23.0-0`
 |  | postgis | * |
 |  | redis | * |
 |  | solr | * |
-| https://charts.jetstack.io | cert-manager(cert-manager) | ~1.11.0 |
-| https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ~4.4.0 |
+| https://charts.jetstack.io | cert-manager(cert-manager) | ^1 |
+| https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ^4 |
 
 ## Values
 
