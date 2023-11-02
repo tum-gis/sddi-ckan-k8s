@@ -10,11 +10,15 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [sddi-ckan-2.0.0] - 2023-11-02
 
+This release updates the sddi-ckan Docker image to `v2.0.0` bringing several security improvements
+and some breaking changes too. Make sure to check the
+[CHANGELOG](https://github.com/tum-gis/ckan-docker/blob/2.0.0/CHANGELOG.md) for all details.
+
 [@klml](https://github.com/klml), [@eidottermihi](https://github.com/eidottermihi) made their first contributions!
 
 ## Breaking
 
-- Removed default resource requirements/limits for all services, tum-gis/sddi-ckan-k8s#28, tum-gis/sddi-ckan-k8s#29
+- Removed default resource requirements/limits for all services. tum-gis/sddi-ckan-k8s#28, tum-gis/sddi-ckan-k8s#29
 
 ## Added
 
@@ -26,6 +30,8 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Changed
 
 - Relax Solr security context for OpenShift compatibility. tum-gis/sddi-ckan-k8s#24
+- Bump SDDI CKAN Image `1.2.0` --> `2.0.0`, see
+  [CHANGELOG](https://github.com/tum-gis/ckan-docker/blob/2.0.0/CHANGELOG.md) for more.
 
 ### Fixed
 
@@ -340,8 +346,9 @@ is displayed when navigating to the _Datasets_ view of CKAN.
 
 ### Known issues
 
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.2...HEAD
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-2.0.0...HEAD
 
+[sddi-ckan-2.0.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.2...sddi-ckan-2.0.0
 [sddi-ckan-1.2.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.1...sddi-ckan-1.2.2
 [sddi-ckan-1.2.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.0...sddi-ckan-1.2.1
 [sddi-ckan-1.2.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.1.7...sddi-ckan-1.2.0
