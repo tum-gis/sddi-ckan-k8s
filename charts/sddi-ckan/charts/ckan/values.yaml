@@ -433,18 +433,8 @@ activityStreams:
   # -- [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings)
   emailNotifications: True
 
-resources:
-  limits:
-    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    cpu: 500m
-    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    memory: 1Gi
-  requests:
-    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    cpu: 250m
-    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    memory: 256Mi
-
+# -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+resources: {}
 # -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 nodeSelector: {}
 # -- [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)

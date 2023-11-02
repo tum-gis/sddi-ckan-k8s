@@ -1,6 +1,6 @@
 # datapusher
 
-![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.19](https://img.shields.io/badge/AppVersion-0.0.19-informational?style=flat-square)
+![Version: 0.5.1](https://img.shields.io/badge/Version-0.5.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.19](https://img.shields.io/badge/AppVersion-0.0.19-informational?style=flat-square)
 
 A Helm chart for CKAN Datapusher.
 
@@ -56,10 +56,7 @@ A Helm chart for CKAN Datapusher.
 | podAnnotations | object | `{}` | Additional pod annotations |
 | podSecurityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | replicaCount | int | `1` | Number of replicas. Only used if `autoscaling.enabled = false`. |
-| resources.limits.cpu | string | `"1000m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
-| resources.limits.memory | string | `"500Mi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
-| resources.requests.cpu | string | `"250m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
-| resources.requests.memory | string | `"256Mi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
+| resources | object | `{}` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | securityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | service.port | int | `8000` | Service port |
 | service.type | string | `"ClusterIP"` | Type of service |

@@ -9,7 +9,7 @@ sources:
   - https://hub.docker.com/_/redis
 
 
-version: 0.2.0
+version: 0.2.1
 appVersion: "7.0.8-alpine"
 
 maintainers:
