@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 1.2.2](https://img.shields.io/badge/Version-1.2.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
 
 A Helm chart for SDDI enabled CKAN.
 
@@ -37,7 +37,7 @@ A Helm chart for SDDI enabled CKAN.
 | auth.create_user_via_api | bool | `false` |  |
 | auth.create_user_via_web | bool | `true` |  |
 | auth.public_activity_stream_detail | bool | `true` |  |
-| auth.public_user_details | bool | `true` |  |
+| auth.public_user_details | bool | `false` |  |
 | auth.roles_that_cascade_to_sub_groups | string | `"admin editor member"` |  |
 | auth.user_create_groups | bool | `false` |  |
 | auth.user_create_organizations | bool | `false` |  |
@@ -95,6 +95,8 @@ A Helm chart for SDDI enabled CKAN.
 | ingress.stickySessions.sessionCookie.path | string | `"/"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.secure | string | `"false"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.tls.secretName | string | `nil` | Specify a custom tls secret name. This overwrites `global.ingress.tls.secretName`. |
+| initContainers.initdata.image | object | `{"repository":"busybox","tag":"latest"}` | Image used to initialize `persistence.storagePath`. |
+| initContainers.pgready.image | object | `{"repository":"bwibo/k8s-init-container","tag":"latest"}` | Image used for testing PostgresSQL database readiness. |
 | licensesGroupUrl | string | `"https://raw.githubusercontent.com/tum-gis/ckanext-grouphierarchy-sddi/main/ckanext/grouphierarchy/licenses_SDDI.json"` | [CKAN licences group url](https://docs.ckan.org/en/latest/maintaining/configuration.html#licenses-group-url): A URL pointing to a JSON file containing a list of license objects. |
 | liveness.failureThreshold | int | `6` | Failure threshold for the liveness probe |
 | liveness.initialDelaySeconds | int | `20` | Initial delay for the liveness probe |
@@ -127,10 +129,7 @@ A Helm chart for SDDI enabled CKAN.
 | readiness.timeoutSeconds | int | `10` | Timeout interval for the liveness probe |
 | redis.url | string | `"redis://redis-hl:6379/0"` | Redis endpoint for CKAN. This should be set to cluster internal Redis service domain. [CKAN configuration Redis](https://docs.ckan.org/en/latest/maintaining/configuration.html#redis-settings) |
 | replicaCount | int | `1` | Number of replicas. Only used if `autoscaling.enabled = false`. **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and, if Pods run on different nodes, a storage that supports RWX. |
-| resources.limits.cpu | string | `"500m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
-| resources.limits.memory | string | `"1Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
-| resources.requests.cpu | string | `"250m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
-| resources.requests.memory | string | `"256Mi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
+| resources | object | `{}` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | sddiInitDataJson | string | `"init_data.json"` | Local path or URL to File path or URL to [CKAN SDDI `init_data.json`](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json). This file allows to specify pre-defined set of SDDI CKAN main categories, topics, and organizations. |
 | securityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | service.port | int | `5000` | Service port for http |

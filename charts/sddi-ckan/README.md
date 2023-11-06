@@ -1,6 +1,6 @@
 # sddi-ckan
 
-![Version: 1.2.2](https://img.shields.io/badge/Version-1.2.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
 
 Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md) for changes.
 
@@ -30,8 +30,8 @@ Kubernetes: `>= 1.23.0-0`
 |  | postgis | * |
 |  | redis | * |
 |  | solr | * |
-| https://charts.jetstack.io | cert-manager(cert-manager) | ~1.11.0 |
-| https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ~4.4.0 |
+| https://charts.jetstack.io | cert-manager(cert-manager) | ^1 |
+| https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ^4 |
 
 ## Values
 

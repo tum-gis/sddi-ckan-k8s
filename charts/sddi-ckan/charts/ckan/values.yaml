@@ -24,10 +24,12 @@ imagePullSecrets: []
 initContainers:
   initdata:
     enabled: true
+    # -- Image used to initialize `persistence.storagePath`.
     image:
       repository: busybox
       tag: latest
   pgready:
+    # -- Image used for testing PostgresSQL database readiness.
     image:
       repository: bwibo/k8s-init-container
       tag: latest
@@ -221,7 +223,7 @@ auth:
   create_user_via_api: false
   create_user_via_web: true
   public_activity_stream_detail: true
-  public_user_details: true
+  public_user_details: false
   roles_that_cascade_to_sub_groups:  admin editor member
   user_create_groups: false
   user_create_organizations: false
@@ -432,18 +434,8 @@ activityStreams:
   # -- [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings)
   emailNotifications: True
 
-resources:
-  limits:
-    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    cpu: 500m
-    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    memory: 1Gi
-  requests:
-    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    cpu: 250m
-    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    memory: 256Mi
-
+# -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+resources: {}
 # -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 nodeSelector: {}
 # -- [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
