@@ -85,24 +85,6 @@ spec:
           readOnly: false
       {{ end }}
 
-      
-
-      ########################################################
-      ##  ONLY TEMPORARY CHANGE UNTIL CAPK OPENSHIFT SERVER  
-      ##  IS UPDATED TO VERSION 4.13, EXPECTED FOR NOV 4, 2023
-      ########################################################
-      # get original /srv/app/uwsgi.conf from image,
-      # copy it to /tmp2/ and change listen value
-      # to mount it then in a writable emtpty dir
-      - name: copy-uwsgiconf
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-        command: ["/bin/sh","-c"]
-        args: ["cp -v /srv/app/uwsgi.conf /tmp2/uwsgi.conf && sed -i 's/listen = 1000/listen = 100/g' /tmp2/uwsgi.conf"]
-        volumeMounts:
-        - name: uwsgi-conf
-          mountPath: /tmp2
-      ######################################################
-
 
       - name: pg-ready
         image: "{{ .Values.initContainers.pgready.image.repository }}:{{ .Values.initContainers.pgready.image.tag }}"
@@ -160,13 +142,6 @@ spec:
               mountPath: /srv/app/data/
             - name: srv-app-i18n
               mountPath: /srv/app/src/ckan/ckan/public/base/i18n/
-              ########################################################
-              ##  ONLY TEMPORARY CHANGE UNTIL CAPK OPENSHIFT SERVER 
-              ##  IS UPDATED TO VERSION 4.13, EXPECTED FOR NOV 4, 2023
-            - name: uwsgi-conf
-              mountPath: /srv/app/uwsgi.conf
-              subPath: uwsgi.conf
-              #######################################################
               # Mount ckan licensesGroup configMap as licenses-volume
               # Included only if licensesConfigMap is enabled
               {{ if .Values.licensesConfigMap.enabled }}
