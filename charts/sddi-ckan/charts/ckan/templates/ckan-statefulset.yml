@@ -51,13 +51,6 @@ spec:
           emptyDir:
             sizeLimit: 500Mi
         ########################################################
-        ##  ONLY TEMPORARY CHANGE UNTIL CAPK OPENSHIFT SERVER 
-        ##  IS UPDATED TO VERSION 4.13, EXPECTED FOR NOV 4, 2023
-        ########################################################
-        - name: uwsgi-conf
-          emptyDir:
-            sizeLimit: 500Mi
-        ########################################################
         # Create licenses-volume for ckan licensesGroup configMap
         # Included only if licensesConfigMap is enabled:
         {{ if .Values.licensesConfigMap.enabled }}
