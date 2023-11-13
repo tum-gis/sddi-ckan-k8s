@@ -50,7 +50,6 @@ spec:
         - name: srv-app-data
           emptyDir:
             sizeLimit: 500Mi
-        ########################################################
         # Create licenses-volume for ckan licensesGroup configMap
         # Included only if licensesConfigMap is enabled:
         {{ if .Values.licensesConfigMap.enabled }}
