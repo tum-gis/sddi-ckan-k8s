@@ -482,8 +482,3 @@ localIni:
 # to avoid dependency from https://raw.githubusercontent.com/
 licensesConfigMap:
     enabled: false
-
-# -- Enable if sddiInitDataJson should use file in ckan-configMap-sddi-initdate.yaml
-# for custom groups and organizations
-sddiInitDataConfigMap:
-  enbled: false

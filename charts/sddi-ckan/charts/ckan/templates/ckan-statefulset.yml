@@ -64,13 +64,6 @@ spec:
           configMap:
             name: ckan-local-ini
         {{ end }}
-        # Create sddi-initdata volume for custom ckan sddi init data (groups, organizations)
-        # Included only if sddiInitDataConfigMap is enabled:
-        {{ if .Values.sddiInitDataConfigMap.enabled }}
-        - name: sddi-initdata
-          configMap:
-            name: ckan-sddi-initdata
-        {{ end }}
 
 
       initContainers:
@@ -146,13 +139,6 @@ spec:
               {{ if .Values.licensesConfigMap.enabled }}
             - name: licenses-volume
               mountPath: /srv/app/licenses/
-              {{ end }}
-              # Mount init_data.json in ckan-sddi-initdata configMap
-              # Included only if sddiInitDataConfigMap is enabled
-              {{ if .Values.sddiInitDataConfigMap.enabled }}
-            - name: sddi-initdata
-              mountPath: /srv/app/init_data.json
-              subPath: init_data.json
               {{ end }}
 
           startupProbe:
