@@ -479,6 +479,6 @@ localIni:
     enabled: false
 
 # -- Enable if licensesGroupUrl should use file in ckan-configMap-licenses.yaml instead of URL
-# to avoid dependency from https://raw.githubusercontent.com/
+# to avoid dependency from https://raw.githubusercontent.com/ on container startup
 licensesConfigMap:
     enabled: false
