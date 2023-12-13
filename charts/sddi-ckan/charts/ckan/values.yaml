@@ -482,3 +482,8 @@ localIni:
 # to avoid dependency from https://raw.githubusercontent.com/ on container startup
 licensesConfigMap:
     enabled: false
+
+# -- Enable if custom ckan-schema in local configMap should be used with extension ckanext-scheming
+# See [ckanext-scheming](https://github.com/ckan/ckanext-scheming) 
+schemaConfigMap:
+    enabled: false

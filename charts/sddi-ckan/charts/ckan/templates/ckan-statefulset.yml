@@ -64,6 +64,12 @@ spec:
           configMap:
             name: ckan-local-ini
         {{ end }}
+        # Create schema-volume for ckan-custom-schema configMap
+        {{ if .Values.schemaConfigMap.enabled }}
+        - name: schema-volume
+          configMap:
+            name: ckan-custom-schema
+        {{ end }}
 
 
       initContainers:
@@ -139,6 +145,11 @@ spec:
               {{ if .Values.licensesConfigMap.enabled }}
             - name: licenses-volume
               mountPath: /srv/app/licenses/
+              {{ end }}
+              # Mount schema-volume
+              {{ if .Values.schemaConfigMap.enabled }}
+            - name: schema-volume
+              mountPath: /srv/app/schema/
               {{ end }}
 
           startupProbe:
