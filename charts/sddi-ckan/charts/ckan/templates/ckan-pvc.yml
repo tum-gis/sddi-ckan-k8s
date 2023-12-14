@@ -15,11 +15,7 @@ metadata:
   {{- end }}
 spec:
   {{ if .Values.persistence.storageClassName }}
-  {{ if eq .Values.persistence.storageClassName "no-class" }}
-  storageClassName: ""
-  {{ else }}
   storageClassName: {{ .Values.persistence.storageClassName }}
-  {{ end }}
   {{ end }}
   accessModes:
   {{- range .Values.persistence.accessModes }}

@@ -316,7 +316,7 @@ persistence:
   # -- Enable/disable persistent data storage. Note: Persistence should only be disabled for testing!
   # With persistence disabled CKAN data is stored in an ephemeral emptyDir volume!
   enabled: true
-  # -- StorageClass to use, leave empty to use default StorageClass, set "no-class" to avoid default and get storageClassName: ''
+  # -- StorageClass to use, leave empty to use default StorageClass.
   storageClassName:
   # -- Mount path of the CKAN storage. Omit trailing `/`! This option is used
   # for CKAN__STORAGE_PATH env var too!
