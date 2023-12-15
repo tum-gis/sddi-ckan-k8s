@@ -44,21 +44,22 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "ckan.fullname" . }}
+        # Create emptyDir volumes to get directories with write permission in openShift
+        {{ if .Values.openShift.enabled }}
         - name: srv-app-i18n
           emptyDir:
             sizeLimit: 500Mi
         - name: srv-app-data
           emptyDir:
             sizeLimit: 500Mi
+        {{ end }}
         # Create licenses-volume for ckan licensesGroup configMap
-        # Included only if licensesConfigMap is enabled:
         {{ if .Values.licensesConfigMap.enabled }}
         - name: licenses-volume
           configMap:
             name: {{ include "ckan.fullname" . }}-licenses
         {{ end }}
         # Create local-ini volume for ckan local-ini configMap
-        # Included only if localIni is enabled:
         {{ if .Values.localIni.enabled }}
         - name: local-ini
           configMap:
@@ -133,24 +134,29 @@ spec:
           volumeMounts:
             - name: data
               mountPath: {{ .Values.persistence.storagePath }}
-            - name: local-ini
-              mountPath: /srv/app/production.ini
-              subPath: production.ini
+            # Mount emptyDir volumes
+            {{ if .Values.openShift.enabled }}
             - name: srv-app-data
               mountPath: /srv/app/data/
             - name: srv-app-i18n
               mountPath: /srv/app/src/ckan/ckan/public/base/i18n/
-              # Mount ckan licensesGroup configMap as licenses-volume
-              # Included only if licensesConfigMap is enabled
-              {{ if .Values.licensesConfigMap.enabled }}
+            {{ end }}
+            # Mount licenses-volume
+            {{ if .Values.licensesConfigMap.enabled }}
             - name: licenses-volume
               mountPath: /srv/app/licenses/
-              {{ end }}
-              # Mount schema-volume
-              {{ if .Values.schemaConfigMap.enabled }}
+            {{ end }}
+            # Mount local-ini volume
+            {{ if .Values.localIni.enabled }}
+            - name: local-ini
+              mountPath: /srv/app/production.ini
+              subPath: production.ini
+            {{ end }}
+            # Mount schema-volume
+            {{ if .Values.schemaConfigMap.enabled }}
             - name: schema-volume
               mountPath: /srv/app/schema/
-              {{ end }}
+            {{ end }}
 
           startupProbe:
             httpGet:

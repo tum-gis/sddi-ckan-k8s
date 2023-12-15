@@ -23,6 +23,7 @@ imagePullSecrets: []
 
 initContainers:
   initdata:
+    # -- Makes the use of an initdata initContainer configurable. This should be disabled for a deploy to OpenShift.
     enabled: true
     # -- Image used to initialize `persistence.storagePath`.
     image:
@@ -172,6 +173,11 @@ maxUploadSizeMB: 250
 # -- [CKAN licences group url](https://docs.ckan.org/en/latest/maintaining/configuration.html#licenses-group-url):
 # A URL pointing to a JSON file containing a list of license objects. If licensesConfigMap is enabled set mounted file path here (file://..)
 licensesGroupUrl: "https://raw.githubusercontent.com/tum-gis/ckanext-grouphierarchy-sddi/main/ckanext/grouphierarchy/licenses_SDDI.json"
+# -- Licenses ConfigMap
+# Enable if licensesGroupUrl should use the license file in ckan-configMap-licenses.yaml instead of URL
+# to avoid dependency from https://raw.githubusercontent.com/ on container startup
+licensesConfigMap:
+  enabled: false
 # -- [CKAN config dafault_views](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-views-default-views):
 # **Note**: Make sure the required view plugins are loaded!
 defaultViews: "image_view recline_view text_view geo_view geojson_view wmts_view shp_view"
@@ -471,19 +477,26 @@ liveness:
   # -- Timeout interval for the liveness probe
   timeoutSeconds: 10
 
-# -- Local.ini: Enable to adapt production.ini according to a local.ini file included in a local ConfigMap.
-# Plugins list and other configurations can be added in the local ConfigMap and override the given configurations.
-# This has been added because the setting ckan:plugins only changes the environment variable, 
+# -- Local production.ini
+# Enable to use a local production.ini file included in a local configMap where ckan.plugins and
+# other configurations can be changed and added.
+# This has been added because setting values in ckan:plugins only changes the environment variable, 
 # but does not update activated plugins without update_plugins() function being part of prerun.py.
+# Also some other configurations like e.g. scheming.dataset_schemas cannot be changed by using
+# extra environment variables (extraEnv), but by editing the local production.ini.
+# For a deployment to OpenShift, production.ini musst either be prefilled with some values (e.g. 
+# beaker.session.secret) or it musst be writable. Prefilling can be done in a local production.ini.
 localIni:
-    enabled: false
+  enabled: false
 
-# -- Enable if licensesGroupUrl should use file in ckan-configMap-licenses.yaml instead of URL
-# to avoid dependency from https://raw.githubusercontent.com/ on container startup
-licensesConfigMap:
-    enabled: false
-
-# -- Enable if custom ckan-schema in local configMap should be used with extension ckanext-scheming
+# -- Schema ConfigMap
+# Enable if a custom ckan-schema in a local configMap should be used with extension ckanext-scheming.
 # See [ckanext-scheming](https://github.com/ckan/ckanext-scheming) 
 schemaConfigMap:
-    enabled: false
+  enabled: false
+
+# -- OpenShift
+# Enable for deployment to Openshift. This creates emptyDir volumes for /srv/app/data/ and 
+# /srv/app/src/ckan/ckan/public/base/i18n/ to make these directories writable. 
+openShift:
+  enabled: false
