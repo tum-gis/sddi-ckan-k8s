@@ -74,7 +74,7 @@ spec:
 
 
       initContainers:
-      {{ if .Values.initContainers.initdata.enabled }}
+      {{ if not .Values.openShift.enabled }}
       - name: init-data
         image: "{{ .Values.initContainers.initdata.image.repository }}:{{ .Values.initContainers.initdata.image.tag }}"
         command: ["sh", "-c", "chown -Rv 92:92 {{ .Values.persistence.storagePath }}"]

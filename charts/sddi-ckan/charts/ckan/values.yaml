@@ -23,8 +23,6 @@ imagePullSecrets: []
 
 initContainers:
   initdata:
-    # -- Makes the use of an initdata initContainer configurable. This should be disabled for a deploy to OpenShift.
-    enabled: true
     # -- Image used to initialize `persistence.storagePath`.
     image:
       repository: busybox
@@ -497,6 +495,7 @@ schemaConfigMap:
 
 # -- OpenShift
 # Enable for deployment to Openshift. This creates emptyDir volumes for /srv/app/data/ and 
-# /srv/app/src/ckan/ckan/public/base/i18n/ to make these directories writable. 
+# /srv/app/src/ckan/ckan/public/base/i18n/ to make these directories writable and disables 
+# the initContainer init-data, which interferes with an OpenShift deployment.
 openShift:
   enabled: false
