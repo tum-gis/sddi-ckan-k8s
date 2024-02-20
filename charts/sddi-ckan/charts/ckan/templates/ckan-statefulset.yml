@@ -45,32 +45,20 @@ spec:
           persistentVolumeClaim:
             claimName: {{ include "ckan.fullname" . }}
 
+      # GREP
       initContainers:
-      - name: init-data
-        image: "{{ .Values.initContainers.initdata.image.repository }}:{{ .Values.initContainers.initdata.image.tag }}"
-        command: ["sh", "-c", "chown -Rv 92:92 {{ .Values.persistence.storagePath }}"]
-        volumeMounts:
+      {{- if .Values.initContainers }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.initContainers  "context" $ ) | nindent 8 }}
+      {{- end }}
+
+      {{- if .Values.extraInitContainers }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.extraInitContainers  "context" $ ) | nindent 8 }}
+      {{- end }}
+
+      volumeMounts:
         - name: data
           mountPath: {{ .Values.persistence.storagePath }}
           readOnly: false
-
-      - name: pg-ready
-        image: "{{ .Values.initContainers.pgready.image.repository }}:{{ .Values.initContainers.pgready.image.tag }}"
-        command:
-          - pg_isready
-        env:
-          - name: PGHOST
-            value: {{ .Values.global.db.host | default .Values.db.host | quote }}
-          - name: PGPORT
-            value: {{ .Values.global.db.port | default .Values.db.port | quote }}
-          - name: PGDATABASE
-            value: {{ .Values.global.db.dbname | default .Values.db.dbname | quote }}
-          - name: PGUSER
-            value: {{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }}
-          - name: PGPASSWORD
-            value: {{ .Values.global.db.auth.password | default .Values.db.auth.password | quote }}
-
-
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

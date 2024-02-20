@@ -1,4 +1,3 @@
-
 # -- Enable/disable CKAN
 enabled: true
 
@@ -21,17 +20,43 @@ image:
 # -- [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
 imagePullSecrets: []
 
+# -- Sets `initContainers`. Note: Set to `[]` to disable the default init containers or any list
+# of init container definition to overwrite the default init containers. Use `extraInitContainers` to
+# extend the default init containers.
 initContainers:
-  initdata:
-    # -- Image used to initialize `persistence.storagePath`.
-    image:
-      repository: busybox
-      tag: latest
-  pgready:
-    # -- Image used for testing PostgresSQL database readiness.
-    image:
-      repository: bwibo/k8s-init-container
-      tag: latest
+  - name: pg-ready
+    image: bwibo/k8s-init-container:latest
+    command:
+      - pg_isready
+    env:
+      - name: PGHOST
+        value: "{{ .Values.global.db.host | default .Values.db.host | quote }}"
+      - name: PGPORT
+        value: "{{ .Values.global.db.port | default .Values.db.port | quote }}"
+      - name: PGDATABASE
+        value: "{{ .Values.global.db.dbname | default .Values.db.dbname | quote }}"
+      - name: PGUSER
+        value: "{{ .Values.global.db.auth.username | default .Values.db.auth.username | quote }}"
+      - name: PGPASSWORD
+        value: "{{ .Values.global.db.auth.password | default .Values.db.auth.password | quote }}"
+  - name: init-data
+    image: busybox:latest
+    command:
+      ["sh", "-c", "chown -Rv 92:92 {{ .Values.persistence.storagePath }}"]
+
+extraInitContainers: []
+
+# initContainersImages:
+#   initdata:
+#     # -- Image used to initialize `persistence.storagePath`.
+#     image:
+#       repository: busybox
+#       tag: latest
+#   pgready:
+#     # -- Image used for testing PostgresSQL database readiness.
+#     image:
+#       repository: bwibo/k8s-init-container
+#       tag: latest
 
 # -- Additional pod annotations
 podAnnotations: {}
@@ -46,11 +71,13 @@ serviceAccount:
   name: ""
 
 # -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
 # -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -65,8 +92,8 @@ service:
   port: 5000
 
 # -- Number of replicas. Only used if `autoscaling.enabled = false`.
-  # **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and,
-  # if Pods run on different nodes, a storage that supports RWX.
+# **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and,
+# if Pods run on different nodes, a storage that supports RWX.
 replicaCount: 1
 autoscaling:
   # -- Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods.
@@ -223,7 +250,7 @@ auth:
   create_user_via_web: true
   public_activity_stream_detail: true
   public_user_details: false
-  roles_that_cascade_to_sub_groups:  admin editor member
+  roles_that_cascade_to_sub_groups: admin editor member
   user_create_groups: false
   user_create_organizations: false
   user_delete_groups: false
@@ -307,7 +334,8 @@ webassets:
 # -- Extra environment variables. Values need to be quoted. This can be used to overwrite or
 # extend [CKAN settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-configuration-file).
 # See [ckanext-envvars](https://github.com/okfn/ckanext-envvars) for variable naming conventions.
-extraEnv: {}
+extraEnv:
+  {}
   # CKAN___SOME_VARIABLE: "someValues"
 
 # Persistence -----------------------------------------------------------------
@@ -321,7 +349,7 @@ persistence:
   # for CKAN__STORAGE_PATH env var too!
   storagePath: /var/lib/ckan
   accessModes:
-  # -- [k8s: Persistent volume access modes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
+    # -- [k8s: Persistent volume access modes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
     - ReadWriteOnce
   # -- Storage [capacity](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity)
   capacity: 4Gi
@@ -342,21 +370,23 @@ db:
   # [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings)
   dbname: ckan_default
   auth:
-  # -- CKAN database username, used to build `sqlalchemy.url` see
-  # [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings)
+    # -- CKAN database username, used to build `sqlalchemy.url` see
+    # [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings)
     username: ckan
-  # -- CKAN database password, used to build `sqlalchemy.url` see
-  # [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings)
+    # -- CKAN database password, used to build `sqlalchemy.url` see
+    # [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings)
     password: changeMe
 
 # Datastore -------------------------------------------------------------------
 datastore:
   # -- CKAN datastore host, used to build `ckan.datastore.read/write_url` see
   # [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings)
-  host: postgis
+  host:
+    postgis
     # -- CKAN datastore port, used to build `ckan.datastore.read/write_url` see
   # [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings)
-  port: 5432
+  port:
+    5432
     # -- CKAN datastore database name, used to build `ckan.datastore.read/write_url` see
   # [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings)
   dbname: datastore
