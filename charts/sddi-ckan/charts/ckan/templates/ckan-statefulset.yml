@@ -40,12 +40,16 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
-      volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ include "ckan.fullname" . }}
-
       # GREP
+      volumes:
+      {{- if .Values.volumes }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.volumes  "context" $ ) | nindent 8 }}
+      {{- end }}
+
+      {{- if .Values.extraVolumes }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.extraVolumes  "context" $ ) | nindent 8 }}
+      {{- end }}
+
       initContainers:
       {{- if .Values.initContainers }}
       {{- include "common.tplvalues.render" ( dict "value" .Values.initContainers  "context" $ ) | nindent 8 }}
@@ -59,6 +63,7 @@ spec:
         - name: data
           mountPath: {{ .Values.persistence.storagePath }}
           readOnly: false
+
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
