@@ -362,6 +362,20 @@ volumes:
 # The volumes specified here, are appended to the ones specified in `volumes.`
 extraVolumes: []
 
+# VolumeMounts ----------------------------------------------------------------
+# -- Sets [`volumeMounts`](https://kubernetes.io/docs/concepts/storage/volumes).
+# Note: Set to `[]` to disable the default volumeMounts.
+# Set to any list of volumeMount definitions to overwrite the default volumeMounts.
+# Use `extraVolumeMounts` to extend the default volumeMounts.
+volumeMounts:
+  - name: data
+    mountPath: "{{ .Values.persistence.storagePath }}"
+    readOnly: false
+
+# -- Sets additional [`volumeMounts`](https://kubernetes.io/docs/concepts/storage/volumes).
+# The volumeMounts specified here, are appended to the ones specified in `volumeMounts.`
+extraVolumeMounts: []
+
 # CKAN database ---------------------------------------------------------------
 db:
   # -- CKAN database host, used to build `sqlalchemy.url` see

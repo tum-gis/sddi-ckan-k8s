@@ -60,9 +60,13 @@ spec:
       {{- end }}
 
       volumeMounts:
-        - name: data
-          mountPath: {{ .Values.persistence.storagePath }}
-          readOnly: false
+      {{- if .Values.volumeMounts }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.volumeMounts  "context" $ ) | nindent 8 }}
+      {{- end }}
+
+      {{- if .Values.extraVolumeMounts }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.extraVolumeMounts  "context" $ ) | nindent 8 }}
+      {{- end }}
 
       containers:
         - name: {{ .Chart.Name }}
