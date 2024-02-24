@@ -193,9 +193,11 @@ favicon: /base/images/ckan.ico
 maxUploadSizeMB: 250
 # -- [CKAN licences group url](https://docs.ckan.org/en/latest/maintaining/configuration.html#licenses-group-url):
 # A URL pointing to a JSON file containing a list of license objects.
+# @default -- See `values.yml` for the default values.
 licensesGroupUrl: "https://raw.githubusercontent.com/tum-gis/ckanext-grouphierarchy-sddi/main/ckanext/grouphierarchy/licenses_SDDI.json"
 # -- [CKAN config dafault_views](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-views-default-views):
 # **Note**: Make sure the required view plugins are loaded!
+# @default -- See `values.yml` for the default values.
 defaultViews: "image_view recline_view text_view geo_view geojson_view wmts_view shp_view"
 preview:
   # -- [CKAN config TextView](https://docs.ckan.org/en/latest/maintaining/configuration.html#text-view-settings):
@@ -312,6 +314,7 @@ locale:
   default: de
   # -- CKAN locale order, see
   # [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings)
+  # @default -- See `values.yml` for the default value.
   order: de en pt_BR ja it cs_CZ ca es fr el sv sr sr@latin no sk fi ru de pl nl bg ko_KR hu sa sl lv
   # -- CKAN locales offered, see
   # [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings)

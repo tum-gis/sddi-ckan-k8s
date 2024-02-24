@@ -66,7 +66,7 @@ A Helm chart for SDDI enabled CKAN.
 | db.dbname | string | `"ckan_default"` | CKAN database database name, used to build `sqlalchemy.url` see [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings) |
 | db.host | string | `"postgis"` | CKAN database host, used to build `sqlalchemy.url` see [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings) |
 | db.port | int | `5432` | CKAN database port, used to build `sqlalchemy.url` see [CKAN database settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#database-settings) |
-| defaultViews | string | `"image_view recline_view text_view geo_view geojson_view wmts_view shp_view"` | [CKAN config dafault_views](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-views-default-views): **Note**: Make sure the required view plugins are loaded! |
+| defaultViews | string | See `values.yml` for the default values. | [CKAN config dafault_views](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-views-default-views): **Note**: Make sure the required view plugins are loaded! |
 | enabled | bool | `true` | Enable/disable CKAN |
 | extraEnv | object | `{}` | Extra environment variables. Values need to be quoted. This can be used to overwrite or extend [CKAN settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-configuration-file). See [ckanext-envvars](https://github.com/okfn/ckanext-envvars) for variable naming conventions. |
 | extraInitContainers | list | `[]` | Sets additional [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/). The initContainers specified here, are appended to the ones specified in `initContainers`. |
@@ -99,7 +99,7 @@ A Helm chart for SDDI enabled CKAN.
 | ingress.stickySessions.sessionCookie.secure | string | `"false"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.tls.secretName | string | `nil` | Specify a custom tls secret name. This overwrites `global.ingress.tls.secretName`. |
 | initContainers | list | See `values.yml` for the list of default initContainers. | Sets [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/). Set to `[]` to disable the default initContainers. Set to any list of initContainer definitions to overwrite the default initContainers. Use `extraInitContainers` to extend the default initContainers. |
-| licensesGroupUrl | string | `"https://raw.githubusercontent.com/tum-gis/ckanext-grouphierarchy-sddi/main/ckanext/grouphierarchy/licenses_SDDI.json"` | [CKAN licences group url](https://docs.ckan.org/en/latest/maintaining/configuration.html#licenses-group-url): A URL pointing to a JSON file containing a list of license objects. |
+| licensesGroupUrl | string | See `values.yml` for the default values. | [CKAN licences group url](https://docs.ckan.org/en/latest/maintaining/configuration.html#licenses-group-url): A URL pointing to a JSON file containing a list of license objects. |
 | liveness.failureThreshold | int | `6` | Failure threshold for the liveness probe |
 | liveness.initialDelaySeconds | int | `20` | Initial delay for the liveness probe |
 | liveness.periodSeconds | int | `10` | Check interval for the liveness probe |
@@ -107,7 +107,7 @@ A Helm chart for SDDI enabled CKAN.
 | locale.default | string | `"de"` | CKAN default locale, see [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings) |
 | locale.filtered_out | string | `"en_GB"` | CKAN locales filtered out, see [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings) |
 | locale.offered | string | `"de en"` | CKAN locales offered, see [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings) |
-| locale.order | string | `"de en pt_BR ja it cs_CZ ca es fr el sv sr sr@latin no sk fi ru de pl nl bg ko_KR hu sa sl lv"` | CKAN locale order, see [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings) |
+| locale.order | string | See `values.yml` for the default value. | CKAN locale order, see [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings) |
 | maxUploadSizeMB | int | `250` | Max file upload size in MB. Note: This setting is mapped to the `nginx.ingress.kubernetes.io/proxy-body-size: "600m"` and `nginx.org/client-max-body-size: "600m"` CKAN Ingress annotations too. |
 | nameOverride | string | `""` | Override name |
 | nodeSelector | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
