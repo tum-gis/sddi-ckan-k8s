@@ -122,7 +122,7 @@ ingress:
   # -- Additional Ingress annotation for e.g. CORS, timeouts, SSL settings.
   # See [nginx-ingress annotations docs](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md)
   # for more.
-  # @default -- See `values.yml` for the default values.
+  # @default -- See [`values.yml`](values.yml) for the default values.
   certManager:
     # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
     issuerEmail: me@example.com
@@ -194,11 +194,11 @@ favicon: /base/images/ckan.ico
 maxUploadSizeMB: 250
 # -- [CKAN licences group url](https://docs.ckan.org/en/latest/maintaining/configuration.html#licenses-group-url):
 # A URL pointing to a JSON file containing a list of license objects.
-# @default -- See `values.yml` for the default values.
+# @default -- See [`values.yml`](values.yml) for the default values.
 licensesGroupUrl: "https://raw.githubusercontent.com/tum-gis/ckanext-grouphierarchy-sddi/main/ckanext/grouphierarchy/licenses_SDDI.json"
 # -- [CKAN config dafault_views](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-views-default-views):
 # **Note**: Make sure the required view plugins are loaded!
-# @default -- See `values.yml` for the default values.
+# @default -- See [`values.yml`](values.yml) for the default values.
 defaultViews: "image_view recline_view text_view geo_view geojson_view wmts_view shp_view"
 preview:
   # -- [CKAN config TextView](https://docs.ckan.org/en/latest/maintaining/configuration.html#text-view-settings):
@@ -315,7 +315,7 @@ locale:
   default: de
   # -- CKAN locale order, see
   # [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings)
-  # @default -- See `values.yml` for the default value.
+  # @default -- See [`values.yml`](values.yml) for the default values.
   order: de en pt_BR ja it cs_CZ ca es fr el sv sr sr@latin no sk fi ru de pl nl bg ko_KR hu sa sl lv
   # -- CKAN locales offered, see
   # [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings)
@@ -363,7 +363,7 @@ persistence:
 # Set to `[]` to disable the default volumes.
 # Set to any list of volume definitions to overwrite the default volumes.
 # Use `extraVolumes` to extend the default volumes.
-# @default -- See `values.yml` for the list of default volumes.
+# @default -- See [`values.yml`](values.yml) for the list of default volumes.
 volumes:
   - name: data
     persistentVolumeClaim:
@@ -378,7 +378,7 @@ extraVolumes: []
 # Set to `[]` to disable the default volumeMounts.
 # Set to any list of volumeMount definitions to overwrite the default volumeMounts.
 # Use `extraVolumeMounts` to extend the default volumeMounts.
-# @default -- See `values.yml` for the list of default volumeMounts.
+# @default -- See [`values.yml`](values.yml) for the list of default volumeMounts.
 volumeMounts:
   - name: data
     mountPath: "{{ .Values.persistence.storagePath }}"
