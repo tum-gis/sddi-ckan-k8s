@@ -25,6 +25,7 @@ imagePullSecrets: []
 # Set to `[]` to disable the default initContainers.
 # Set to any list of initContainer definitions to overwrite the default initContainers.
 # Use `extraInitContainers` to extend the default initContainers.
+# @default -- See `values.yml` for the list of default initContainers.
 initContainers:
   - name: pg-ready
     image: bwibo/k8s-init-container:latest
@@ -358,6 +359,7 @@ persistence:
 # Set to `[]` to disable the default volumes.
 # Set to any list of volume definitions to overwrite the default volumes.
 # Use `extraVolumes` to extend the default volumes.
+# @default -- See `values.yml` for the list of default volumes.
 volumes:
   - name: data
     persistentVolumeClaim:
@@ -372,6 +374,7 @@ extraVolumes: []
 # Set to `[]` to disable the default volumeMounts.
 # Set to any list of volumeMount definitions to overwrite the default volumeMounts.
 # Use `extraVolumeMounts` to extend the default volumeMounts.
+# @default -- See `values.yml` for the list of default volumeMounts.
 volumeMounts:
   - name: data
     mountPath: "{{ .Values.persistence.storagePath }}"
