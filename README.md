@@ -190,7 +190,7 @@ the repo root.
 
 ```shell
 docker run --rm -u $(id -u) --name helm-docs \
-    --volume "$PWD/sddi-ckan/charts:/helm-docs" \
+    --volume "$PWD/charts/sddi-ckan:/helm-docs" \
   jnorwood/helm-docs:latest
 ```
 
