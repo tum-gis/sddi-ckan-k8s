@@ -33,10 +33,7 @@ serviceAccount:
   name: ""
 
 # -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
-podSecurityContext:
-  runAsUser: 8983
-  runAsGroup: 8983
-  fsGroup: 8983
+podSecurityContext: {}
 
 # -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
 securityContext: {}
@@ -69,6 +66,25 @@ persistence:
   # Set helm.sh/resource-policy: keep to avoid deletion of PVC on helm upgrade/uninstall
   annotations:
   # helm.sh/resource-policy: keep
+
+# initContainers --------------------------------------------------------------
+# -- Sets [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
+# Set to `[]` to disable the default initContainers.
+# Set to any list of initContainer definitions to overwrite the default initContainers.
+# Use `extraInitContainers` to extend the default initContainers.
+# @default -- See `values.yml` for the list of default initContainers.
+initContainers:
+  - name: init-data
+    image: busybox:latest
+    command:
+      ["sh", "-c", "chown -Rv 8983:8983 /var/solr/data"]
+    volumeMounts:
+      - name: data
+        mountPath: "/var/solr/data"
+
+# -- Sets additional [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
+# The initContainers specified here, are appended to the ones specified in `initContainers`.
+extraInitContainers: []
 
 # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 resources: {}
