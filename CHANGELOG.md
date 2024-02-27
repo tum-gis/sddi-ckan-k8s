@@ -23,6 +23,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
   for possible breaking changes or necessary manual migration steps.
   - [Major changes in Solr9](https://solr.apache.org/guide/solr/latest/upgrade-notes/major-changes-in-solr-9.html)
   - [Reindex aufter upgrade](https://solr.apache.org/guide/solr/latest/upgrade-notes/major-changes-in-solr-9.html#reindexing-after-upgrade)
+- Upgrade Redis `7.0.8` -> `7.2.4`
 
 ## [sddi-ckan-2.0.0] - 2023-11-02
 
