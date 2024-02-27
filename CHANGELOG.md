@@ -356,7 +356,7 @@ is displayed when navigating to the _Datasets_ view of CKAN.
 
 ### Known issues
 
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-2.0.0...HEAD
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-2.0.1...HEAD
 
 [sddi-ckan-3.0.0-beta1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-2.0.0...sddi-ckan-3.0.0-beta1
 [sddi-ckan-2.0.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.2...sddi-ckan-2.0.0
