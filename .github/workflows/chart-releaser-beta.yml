@@ -4,8 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'releases/**-alpha'
-      - 'releases/**-beta'
+      - 'release/**-alpha*'
+      - 'release/**-beta*'
+      - 'releases/**-alpha*'
+      - 'releases/**-beta*'
     paths:
       - charts/sddi-ckan/**
 

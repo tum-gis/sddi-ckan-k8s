@@ -6,8 +6,11 @@ on:
     branches:
       - main
       - release/**
-      - '!releases/**-alpha'
-      - '!releases/**-beta'
+      - '!release/**-alpha*'
+      - '!release/**-beta*'
+      - releases/**
+      - '!releases/**-alpha*'
+      - '!releases/**-beta*'
     paths:
       - charts/sddi-ckan/**
 
