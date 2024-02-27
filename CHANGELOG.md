@@ -17,13 +17,18 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Changed
 
 - Revert 313c09c: Relax Solr security context for OpenShift compatibility. tum-gis/sddi-ckan-k8s#24, tum-gis/sddi-ckan-k8s#33
-- Upgrade Solr 8 -> Solr 9: **Warning**: The upgrade from 8.x to Solr 9.x introduces several major changes that you should be
+- Upgrade Solr `8.11.2` -> `9.2.1`: **Warning**: The upgrade from 8.x to Solr 9.x introduces several major changes that you should be
   aware of before upgrading. Make sure to thoroughly go though the
   [docs for upgrading Solr](https://solr.apache.org/guide/solr/latest/upgrade-notes/solr-upgrade-notes.html#upgrading-to-9-x-from-8-x-releases)
   for possible breaking changes or necessary manual migration steps.
   - [Major changes in Solr9](https://solr.apache.org/guide/solr/latest/upgrade-notes/major-changes-in-solr-9.html)
   - [Reindex aufter upgrade](https://solr.apache.org/guide/solr/latest/upgrade-notes/major-changes-in-solr-9.html#reindexing-after-upgrade)
 - Upgrade Redis `7.0.8` -> `7.2.4`
+- Upgrade Postgresql/PostGIS `14-3.3` -> `14-3.4`
+
+### Fixed
+
+- CKAN ingress `pathType` warning
 
 ## [sddi-ckan-2.0.0] - 2023-11-02
 
