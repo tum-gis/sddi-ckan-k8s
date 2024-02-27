@@ -1,13 +1,11 @@
-name: Release Charts
+name: Release Charts beta
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - main
-      - release/**
-      - '!releases/**-alpha'
-      - '!releases/**-beta'
+      - 'releases/**-alpha'
+      - 'releases/**-beta'
     paths:
       - charts/sddi-ckan/**
 
@@ -37,7 +35,7 @@ jobs:
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         with:
-          mark_as_latest: true
+          mark_as_latest: false
           skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
