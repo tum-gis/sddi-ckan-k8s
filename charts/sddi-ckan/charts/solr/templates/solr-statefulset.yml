@@ -10,6 +10,7 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 spec:
   serviceName: {{ include "solr.fullname" . }}-hl
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       {{- include "solr.selectorLabels" . | nindent 6 }}

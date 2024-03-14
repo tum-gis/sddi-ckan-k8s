@@ -67,6 +67,11 @@ persistence:
   annotations:
   # helm.sh/resource-policy: keep
 
+# -- Number of replicas.
+# **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and,
+# if Pods run on different nodes, a storage that supports RWX.
+replicaCount: 1
+
 # initContainers --------------------------------------------------------------
 # -- Sets [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 # Set to `[]` to disable the default initContainers.
