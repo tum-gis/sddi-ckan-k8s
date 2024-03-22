@@ -65,12 +65,16 @@ Create the name of the service account to use
 SQL alchemy url
 */}}
 {{- define "datapusher-plus.sqlalchemy.url" -}}
+  {{- if .Values.global.datapusher.db.enabled | default .Values.db.enabled -}}
     postgresql://
     {{- .Values.global.datapusher.db.auth.username | default .Values.db.auth.username -}}:
     {{- .Values.global.datapusher.db.auth.password | default .Values.db.auth.password -}}@
     {{- .Values.global.datapusher.db.host | default .Values.db.host -}}:
     {{- .Values.global.datapusher.db.port | default .Values.db.port -}}/
     {{- .Values.global.datapusher.db.dbname | default .Values.db.dbname -}}
+  {{- else -}}
+    {{ .Values.databaseUri }}
+  {{- end }}
 {{- end }}
 
 {{/*
