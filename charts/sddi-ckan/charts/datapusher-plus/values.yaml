@@ -11,7 +11,7 @@ fullnameOverride: datapusher
 
 image:
   # -- [Image repository](https://kubernetes.io/docs/concepts/containers/images/)
-  repository: tumgis/ckan-datapusher
+  repository: tumgis/ckan-datapusher-plus
   # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
    # -- Overrides the image tag whose default is the chart `appVersion`.
@@ -54,7 +54,7 @@ service:
   # -- Type of service
   type: ClusterIP
   # -- Service port
-  port: 8000
+  port: 8800
 
 # -- Number of replicas. Only used if `autoscaling.enabled = false`.
 replicaCount: 1
@@ -93,8 +93,13 @@ datapusherRewriteUrl: http://ckan:5000/
 # [Datapusher config](https://github.com/ckan/datapusher#datapusher-configuration) for more.
 # Note: If `db.enabled` this setting is ignored.
 
-# -- Datapusher plus write engine URL
-writeEngineUrl: 'postgresql://datapusher:changeMe@postgis:5432/datastore'
+datastore:
+  # -- Datapusher plus write engine URL host
+  host: postgis
+  # -- Datapusher plus write engine URL port
+  port: 5432
+  # -- Datapusher plus write engine URL dbname
+  dbname: datastore
 
 db:
   # -- Enable/disable PostgreSQL as database backend for
