@@ -41,6 +41,7 @@ spec:
           configMap:
             name: {{ include "datapusher-plus.fullname" . }}
 
+      {{- if .Values.global.datapusher.db.enabled | default .Values.db.enabled }}
       initContainers:
       - name: pg-ready
         image: bwibo/k8s-init-container
@@ -57,6 +58,7 @@ spec:
             value: {{ .Values.global.datapusher.db.auth.username | default .Values.db.auth.username | quote }}
           - name: PGPASSWORD
             value: {{ .Values.global.datapusher.db.auth.password | default .Values.db.auth.password | quote }}
+      {{- end }}
 
       containers:
         - name: {{ .Chart.Name }}
