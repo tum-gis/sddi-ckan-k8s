@@ -1,0 +1,102 @@
+{{- if .Values.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "datapusher-plus.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "datapusher-plus.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "datapusher-plus.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: {{ .Values.component }}
+  template:
+    metadata:
+      annotations:
+        checksum/configmap: {{ include (print $.Template.BasePath "/datapusher-configMap.yml") . | sha256sum }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/datapusher-sct-db.yml") . | sha256sum }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "datapusher-plus.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: {{ .Values.component }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "datapusher-plus.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "datapusher-plus.fullname" . }}
+
+      initContainers:
+
+        - name: pg-ready
+          image: bwibo/k8s-init-container
+          command:
+            - pg_isready
+          env:
+            - name: PGHOST
+              value: {{ .Values.global.db.host | quote }}
+            - name: PGPORT
+              value: {{ .Values.global.db.port | quote }}
+            - name: PGDATABASE
+              value: {{ .Values.global.db.dbname | quote }}
+            - name: PGUSER
+              value: {{ .Values.global.db.auth.username | quote }}
+            - name: PGPASSWORD
+              value: {{ .Values.global.db.auth.password | quote }}
+
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8800
+              protocol: TCP
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "datapusher-plus.fullname" . }}
+            - secretRef:
+                name: {{ include "datapusher-plus.fullname" . }}-sct-db
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8800
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8800
+
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+{{- end -}}

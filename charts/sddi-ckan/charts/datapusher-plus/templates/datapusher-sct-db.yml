@@ -1,0 +1,15 @@
+{{- if .Values.enabled -}}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "datapusher-plus.fullname" . }}-sct-db
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "ckan.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+type: Opaque
+stringData:
+  WRITE_ENGINE_URL: {{ .Values.writeEngineUrl | squote }}
+  SQLALCHEMY_DATABASE_URI: {{ include "datapusher-plus.sqlalchemy.url" . | squote }}
+{{- end -}}
