@@ -258,7 +258,7 @@ data:
     psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" \
       --dbname {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }} <<-EOSQL
 
-      -- GRANT CREATE, CONNECT, TEMPORARY, SUPERUSER
+      -- GRANT ALL on jobs database
       GRANT ALL PRIVILEGES
       ON DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
         TO {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | quote }};
