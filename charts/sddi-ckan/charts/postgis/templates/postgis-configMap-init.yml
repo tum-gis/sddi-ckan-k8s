@@ -248,4 +248,39 @@ data:
 
     echo "Set datastore permissions...done!"
 
+###############################################################
+Template
+###############################################################
+
+  05_datapusherPlusInit.sh: |
+    #!/bin/bash
+    set -e
+
+    echo "Init datapusher-plus..."
+
+    export PGPASSWORD="$POSTGRES_PASSWORD"
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" \
+      --dbname {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }} <<-EOSQL
+
+      -- CREATE ROLE {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | quote }}
+      --   LOGIN PASSWORD {{ .Values.global.datapusher.db.auth.password | default .Values.datapusher.auth.password | squote }};
+
+      -- GRANT CREATE, CONNECT, TEMPORARY, SUPERUSER
+      GRANT ALL PRIVILEGES
+      ON DATABASE {{ .Values.global.datastore.dbname | default .Values.datastore.dbname | quote }}
+        TO {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | quote }};
+
+      GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON ALL TABLES IN SCHEMA public
+        TO {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | quote }};
+
+      ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT
+        SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON TABLES
+        TO {{ .Values.global.datapusher.db.auth.username | default .Values.datapusher.auth.username | quote }};
+
+    EOSQL
+
+    echo "Init datapusher-plus...done!"
+
+
+  {{- end }}
 {{- end -}}
