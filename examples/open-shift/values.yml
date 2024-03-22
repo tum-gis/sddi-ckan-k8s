@@ -1,0 +1,83 @@
+global:
+  ingress:
+    className: nginx
+    certManager:
+      issuerEmail: me@example.com
+    domains:
+      - https://test.de
+
+# Nginx ingress configuration -------------------------------------------------
+# This needs to be enabled, if you don't have nginx-ingress installed already
+# in your cluster.
+ingress-nginx:
+  enabled: true
+
+# cert-manager configuration --------------------------------------------------
+# Disable cert-manager and certIssuer for local testing, they are not required.
+# Nginx ingress will create a self-signed certificate for testing automatically.
+
+# If you want to try out cert-manager, make sure install CRDs BEFORE you install the chart.
+# Make sure to enable certIssuer and configure ingress settings accordingly, see above.
+# For local testing issuerType = namespace and issuerName = self-signed is recommended.
+# (see here: https://cert-manager.io/docs/installation/helm/#3-install-customresourcedefinitions )
+cert-manager:
+  enabled: false
+
+certIssuer:
+  enabled: false
+
+# ckan configuration ----------------------------------------------------------
+ckan:
+  # Host for Route, if used instead of Ingress.
+  # Same as `ckan.siteUrl`, but without protocol: `https://` or `http://`.
+  host: test.de
+  # Replace default initContainers
+
+  siteUrl: https://test.de
+
+  initContainers:
+    - name: pg-ready
+      image: bwibo/k8s-init-container:latest
+      command:
+        - pg_isready
+      env:
+      - name: PGHOST
+        value: "{{ .Values.global.db.host | default .Values.db.host }}"
+      - name: PGPORT
+        value: "{{ .Values.global.db.port | default .Values.db.port }}"
+      - name: PGDATABASE
+        value: "{{ .Values.global.db.dbname | default .Values.db.dbname }}"
+      - name: PGUSER
+        value: "{{ .Values.global.db.auth.username | default .Values.db.auth.usernme }}"
+      - name: PGPASSWORD
+        value: "{{ .Values.global.db.auth.password | default .Values.db.auth.password }}"
+
+  # Extra Volumes
+  extraVolumes:
+    # Volumes for paths that need to be writable
+    - name: srv-app-i18n
+      emptyDir:
+        sizeLimit: 500Mi
+    - name: srv-app-data
+      emptyDir:
+        sizeLimit: 500Mi
+
+  # Extra Volume Mounts
+  extraVolumeMounts:
+    # Mount emptyDir volumes for paths that need to be writable
+    - name: srv-app-data
+      mountPath: /srv/app/data/
+    - name: srv-app-i18n
+      mountPath: /srv/app/src/ckan/ckan/public/base/i18n/
+
+# Remove Solr initContainer
+solr:
+  initContainers: []
+
+# Disable datapusher.
+datapusher:
+  enabled: false
+
+# Disable cerIssuer
+certIssuer:
+  enabled: false

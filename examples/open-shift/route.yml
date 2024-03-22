@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: ckan
+spec:
+  host: {{ .Values.ckan.host }}
+  port:
+    targetPort: http
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: ckan
+    weight: 100
+  wildcardPolicy: None

@@ -14,6 +14,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 - Allow setting CKAN `initContainers`, `extraInitContainers`, `volumes`, `extraVolumes`. tum-gis/sddi-ckan-k8s#32
 - Allow setting Solr `initContainers`, `extraInitContainers`. tum-gis/sddi-ckan-k8s#33
+- Basic example for OpenShift usage, see [here](examples/open-shift).
 
 ### Changed
 
