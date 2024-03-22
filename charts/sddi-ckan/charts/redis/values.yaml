@@ -68,6 +68,8 @@ persistence:
     # helm.sh/resource-policy: keep
 
 # -- Number of replicas. Only used if `autoscaling.enabled = false`.
+# **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and,
+# if Pods run on different nodes, a storage that supports RWX.
 replicaCount: 1
 autoscaling:
   # -- Enable/disable pod autoscaling, if disabled `replicaCount` is used to set number of pods.

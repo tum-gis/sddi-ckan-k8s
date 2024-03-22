@@ -11,6 +11,9 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 spec:
   serviceName: {{ include "redis.fullname" . }}-hl
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "redis.selectorLabels" . | nindent 6 }}
