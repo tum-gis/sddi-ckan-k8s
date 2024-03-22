@@ -462,7 +462,7 @@ datapusher:
   # -- This should be set to cluster internal ckan service domain.
   # [CKAN DataPusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-datapusher-callback-url-base)
   callback_url_base: http://ckan:5000/
-  formats: "csv xls tsv application/csv"
+  formats: "csv xls xlsx xlsm xlsb tsv tab application/csv application/vnd.ms-excel application/vnd.openxmlformats-officedocument.spreadsheetml.sheet ods application/vnd.oasis.opendocument.spreadsheet"
   # -- DataPusher endpoint of CKAN. This should be set to the cluster internal DataPusher service domain.
   url: http://datapusher:8000/
 

@@ -52,7 +52,7 @@ A Helm chart for SDDI enabled CKAN.
 | component | string | `"ckan"` | Role of CKAN in this chart |
 | datapusher.apiToken | string | `nil` | Datapusher API token, see [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings) |
 | datapusher.callback_url_base | string | `"http://ckan:5000/"` | This should be set to cluster internal ckan service domain. [CKAN DataPusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-datapusher-callback-url-base) |
-| datapusher.formats | string | `"csv xls tsv application/csv"` |  |
+| datapusher.formats | string | `"csv xls xlsx xlsm xlsb tsv tab application/csv application/vnd.ms-excel application/vnd.openxmlformats-officedocument.spreadsheetml.sheet ods application/vnd.oasis.opendocument.spreadsheet"` |  |
 | datapusher.url | string | `"http://datapusher:8000/"` | DataPusher endpoint of CKAN. This should be set to the cluster internal DataPusher service domain. |
 | datastore.auth.ro.password | string | `"changeMe"` | CKAN datastore read only password, used to build `ckan.datastore.read_url` see [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings) |
 | datastore.auth.ro.username | string | `"datastore_ro"` | CKAN datastore read only username, used to build `ckan.datastore.read_url` see [CKAN datastore settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datastore-settings) |
