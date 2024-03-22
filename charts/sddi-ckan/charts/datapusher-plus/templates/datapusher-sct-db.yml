@@ -10,6 +10,6 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 type: Opaque
 stringData:
-  WRITE_ENGINE_URL: {{ .Values.writeEngineUrl | squote }}
+  WRITE_ENGINE_URL: {{ include "datapusher-plus.writeEngine.url" . | squote }}
   SQLALCHEMY_DATABASE_URI: {{ include "datapusher-plus.sqlalchemy.url" . | squote }}
 {{- end -}}
