@@ -8,7 +8,7 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
-## [sddi-ckan-3.0.0-beta1] - 2024-02-24
+## [sddi-ckan-3.0.0] - 2024-03-22
 
 ## Added
 
@@ -373,9 +373,9 @@ is displayed when navigating to the _Datasets_ view of CKAN.
 
 ### Known issues
 
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-2.0.1...HEAD
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-3.0.0...HEAD
 
-[sddi-ckan-3.0.0-beta1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-2.0.0...sddi-ckan-3.0.0-beta1
+[sddi-ckan-3.0.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-2.0.0...sddi-ckan-3.0.0
 [sddi-ckan-2.0.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.2...sddi-ckan-2.0.0
 [sddi-ckan-1.2.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.1...sddi-ckan-1.2.2
 [sddi-ckan-1.2.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-1.2.0...sddi-ckan-1.2.1
