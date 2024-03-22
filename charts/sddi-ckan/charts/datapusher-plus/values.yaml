@@ -92,7 +92,9 @@ datapusherRewriteUrl: http://ckan:5000/
 # -- SQLAlchemy Database URL for job store, see
 # [Datapusher config](https://github.com/ckan/datapusher#datapusher-configuration) for more.
 # Note: If `db.enabled` this setting is ignored.
-databaseUri: 'sqlite:////tmp/job_store.db'
+
+# -- Datapusher plus write engine URL
+writeEngineUrl: 'postgresql://datapusher:changeMe@postgis:5432/datastore'
 
 db:
   # -- Enable/disable PostgreSQL as database backend for
@@ -121,8 +123,6 @@ db:
     # If set, this values will overwrite the value in the Datapusher chart.
     # Note: This values is overwritten by `global.datapusher.db.auth.password`, if set.
     password: changeMe
-
-
 
 resources:
   limits:
