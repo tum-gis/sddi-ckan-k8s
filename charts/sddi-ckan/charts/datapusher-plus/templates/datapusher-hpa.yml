@@ -3,17 +3,17 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "datapusher.fullname" . }}
+  name: {{ include "datapusher-plus.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    {{- include "datapusher.labels" . | nindent 4 }}
+    {{- include "datapusher-plus.labels" . | nindent 4 }}
     app.kubernetes.io/component: {{ .Values.component }}
     app.kubernetes.io/part-of: sddi-ckan
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "datapusher.fullname" . }}
+    name: {{ include "datapusher-plus.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

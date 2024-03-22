@@ -23,11 +23,11 @@ A Helm chart for sa simple PostGIS database pre-configured for CKAN.
 |-----|------|---------|-------------|
 | affinity | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
 | component | string | `"database"` | Role of PostGIS database in this chart |
-| datapusher.auth.password | string | `"changeMe"` |  |
-| datapusher.auth.username | string | `"datapusher"` |  |
-| datapusher.dbname | string | `"datapusher_jobs"` |  |
-| datapusher.host | string | `"postgis"` |  |
-| datapusher.port | int | `5432` |  |
+| datapusher.auth.password | string | `"changeMe"` | CKAN Datapusher+ database password |
+| datapusher.auth.username | string | `"datapusher"` | CKAN Datapusher+ database username |
+| datapusher.dbname | string | `"datapusher_jobs"` | CKAN Datapusher+ database name |
+| datapusher.host | string | `"postgis"` | CKAN Datapusher+ database host |
+| datapusher.port | int | `5432` | CKAN Datapusher+ database port |
 | datastore.auth.ro.password | string | `"changeMe"` | CKAN datastore database read-only password. Note: This values is overwritten by `global.datastore.auth.ro.password`, if set. |
 | datastore.auth.ro.username | string | `"datastore_ro"` | CKAN datastore database read-only username. Note: This values is overwritten by `global.datastore.auth.ro.username`, if set. |
 | datastore.auth.rw.password | string | `"changeMe"` | CKAN datastore database read-write password. Note: This values is overwritten by `global.datastore.auth.rw.password`, if set. |

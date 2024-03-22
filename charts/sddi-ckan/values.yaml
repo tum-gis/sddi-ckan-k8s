@@ -130,8 +130,14 @@ redis:
   enabled: true
 
 datapusher:
-  # -- Enable/disable Datapusher
+  # -- Enable/disable Datapusher.
+  # Only one of `datapusher` or `datapusher-plus` should be enabled.
   enabled: true
+
+datapusher-plus:
+  # -- Enable/disable Datapusher-plus.
+  # Only one of `datapusher` or `datapusher-plus` should be enabled.
+  enabled: false
 
 ingress-nginx:
   # -- Enable/disable Nginx ingress controller.

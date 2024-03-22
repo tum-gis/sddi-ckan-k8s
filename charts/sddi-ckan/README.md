@@ -27,6 +27,7 @@ Kubernetes: `>= 1.23.0-0`
 |  | certIssuer | * |
 |  | ckan | * |
 |  | datapusher | * |
+|  | datapusher-plus | * |
 |  | postgis | * |
 |  | redis | * |
 |  | solr | * |
@@ -40,7 +41,8 @@ Kubernetes: `>= 1.23.0-0`
 |-----|------|---------|-------------|
 | cert-manager.enabled | bool | `false` | Enable/disable cert-manager. |
 | certIssuer.enabled | bool | `true` | Enable/disable namespace Issuers for cert-manager. |
-| datapusher.enabled | bool | `true` | Enable/disable Datapusher |
+| datapusher-plus.enabled | bool | `false` | Enable/disable Datapusher-plus. Only one of `datapusher` or `datapusher-plus` should be enabled. |
+| datapusher.enabled | bool | `true` | Enable/disable Datapusher. Only one of `datapusher` or `datapusher-plus` should be enabled. |
 | fullnameOverride | string | `""` | Override fullname |
 | global.datapusher.db.auth.password | string | `"changeMe"` | Jobs database password. If set, this values will overwrite the value in the Datapusher chart. |
 | global.datapusher.db.auth.username | string | `"datapusher"` | Jobs database username. If set, this values will overwrite the value in the Datapusher chart. |

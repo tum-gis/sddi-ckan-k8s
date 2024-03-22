@@ -35,6 +35,9 @@ dependencies:
   - name: datapusher
     version: "*"
     condition: datapusher.enabled
+  - name: datapusher-plus
+    version: "*"
+    condition: datapusher-plus.enabled
   - name: certIssuer
     version: "*"
     condition: certIssuer.enabled
