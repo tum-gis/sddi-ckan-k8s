@@ -60,6 +60,15 @@ and some breaking changes too. Make sure to check the
 - Bump SDDI CKAN Image `1.2.0` --> `2.0.0`, see
   [CHANGELOG](https://github.com/tum-gis/ckan-docker/blob/2.0.0/CHANGELOG.md) for more.
 
+### Added
+
+- Added configuration variables for session management:
+  - `ckan.session.userLastActiveInterval`
+  - `ckan.session.beakerSessionSaveAccessedTime`
+  - `ckan.session.beakerSessionCookieDomain`
+  - `ckan.session.beakerSessionCookieExpires`
+  - `ckan.session.beakerSessionAuto`
+
 ### Fixed
 
 - Multiple session variables had no effect due to false ENV var names. Affected options:
@@ -76,6 +85,7 @@ and some breaking changes too. Make sure to check the
 - Changed default setting of `ckan.auth.public_user_details` to `False` to prevent
   unauthorized leakage of user details. The `/user` page will now return `403 Forbidden`
   by default.
+- Changed various defaults of `ckan.session.*` settings for security hardening.
 
 ## [sddi-ckan-1.2.2] - 2023-08-24
 
