@@ -30,10 +30,7 @@ metadata:
     {{- end }}
     nginx.ingress.kubernetes.io/proxy-body-size: "{{ .Values.maxUploadSizeMB }}m"
     nginx.org/client-max-body-size: "{{ .Values.maxUploadSizeMB }}m"
-    {{- range .Values.ingress.configurationSnippet }}
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      {{ . | quote }}
-    {{- end }}
+    nginx.ingress.kubernetes.io/configuration-snippet: {{- .Values.ingress.configurationSnippet | toYaml | indent 4 }}
     {{- if .Values.ingress.stickySessions.enabled }}
     # https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/
     nginx.ingress.kubernetes.io/affinity: "cookie"

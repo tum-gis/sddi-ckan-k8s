@@ -132,9 +132,11 @@ ingress:
   tls:
     # -- Specify a custom tls secret name. This overwrites `global.ingress.tls.secretName`.
     secretName:
-  configurationSnippet:
-    - more_set_headers "X-Frame-Options: Deny";
-    - more_set_headers "X-XSS-Protection: 1; mode=block";
+  configurationSnippet: |
+    more_set_headers "X-Frame-Options: DENY";
+    more_set_headers "X-Xss-Protection: 0";
+    more_set_headers "X-Content-Type-Options: nosniff";
+    more_set_headers "Content-Security-Policy: default-src 'self'; object-src 'none'; child-src 'self'; frame-ancestors 'none'; base-uri 'none'; upgrade-insecurerequests; blockall-mixed-content; require-trustedtypes-for 'script'";
 
 # General settings
 # -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`
