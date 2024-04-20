@@ -1,21 +1,18 @@
-name: Release Charts
+name: Release Charts beta
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - main
-      - release/**
-      - '!release/**-alpha*'
-      - '!release/**-beta*'
-      - releases/**
-      - '!releases/**-alpha*'
-      - '!releases/**-beta*'
+      - 'release/**-alpha*'
+      - 'release/**-beta*'
+      - 'releases/**-alpha*'
+      - 'releases/**-beta*'
     paths:
       - charts/sddi-ckan/**
 
 jobs:
-  release:
+  release-beta:
     # depending on default permission settings for your org (contents being read-only or read-write for workloads), you will have to add permissions
     # see: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
     permissions:
@@ -40,7 +37,7 @@ jobs:
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         with:
-          mark_as_latest: true
+          mark_as_latest: false
           skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

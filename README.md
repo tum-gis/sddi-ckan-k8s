@@ -54,8 +54,8 @@ The default username and password are: `admin: changeMe`.
 
 Instructions for *local* testing with e.g. `minikube` or `Docker Desktop` are available in the [examples](examples) section.
 
-> **Note:** To try out
-> `alpha`/`beta` [releases](https://github.com/tum-gis/sddi-ckan-k8s/releases),
+> [!TIP]
+> To try out `alpha`/`beta` [releases](https://github.com/tum-gis/sddi-ckan-k8s/releases),
 > add the [`--devel`](https://helm.sh/docs/helm/helm_install/#options)
 > option to the `helm install` command.
 
@@ -190,7 +190,7 @@ the repo root.
 
 ```shell
 docker run --rm -u $(id -u) --name helm-docs \
-    --volume "$PWD/sddi-ckan/charts:/helm-docs" \
+    --volume "$PWD/charts/sddi-ckan:/helm-docs" \
   jnorwood/helm-docs:latest
 ```
 

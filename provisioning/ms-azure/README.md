@@ -2,7 +2,7 @@
 
 This folder contains a basic example for provisioning a "Managed Kubernetes Cluster"
 from Microsoft Azure using [Terraform](https://www.terraform.io/).
-The Terrafom scripts deploy an instance of
+The Terraform scripts deploy an instance of
 [Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-us/products/kubernetes-service/) with two [node pools](https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes#clusters-and-nodes)
 of customizable
 [Azure VM types](https://docs.microsoft.com/de-de/azure/virtual-machines/sizes-general)
@@ -33,7 +33,7 @@ options visit the [`azurerm_kubernetes_cluster`](https://registry.terraform.io/p
     ```
 
 3. Decide for [Azure VM types](https://docs.microsoft.com/de-de/azure/virtual-machines/sizes-general) and count
-   for both node pools, a name of the `ressource group`, and provide one or more eMail addresses for budget warning notifications. Pass these options to
+   for both node pools, a name of the `resource group`, and provide one or more email addresses for budget warning notifications. Pass these options to
    `terraform plan` to create an execution plan.
 
     ```bash
@@ -54,4 +54,4 @@ options visit the [`azurerm_kubernetes_cluster`](https://registry.terraform.io/p
 
 5. The access credentials of the AKS instance are output in `.kubeconfig`.
    Store the credentials in a safe place and add them to your
-   `~/.kube/config` file to use them with e.g. `kubectl`. After that it is recommended to delete the file.
+   `~/.kube/config` file to use them with e.g. `kubectl`. After that, it is recommended to delete the file.

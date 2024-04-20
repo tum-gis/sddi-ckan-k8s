@@ -36,6 +36,7 @@ metadata:
     nginx.org/proxy-connect-timeout: "360"
     nginx.org/proxy-read-timeout: "360"
     nginx.org/proxy-send-timeout: "360"
+    nginx.ingress.kubernetes.io/configuration-snippet: {{- .Values.ingress.configurationSnippet | toYaml | indent 4 }}
     {{- if .Values.ingress.stickySessions.enabled }}
     # https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/
     nginx.ingress.kubernetes.io/affinity: "cookie"
@@ -63,7 +64,7 @@ spec:
     http:
       paths:
       - path: /(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: {{ $fullName }}
