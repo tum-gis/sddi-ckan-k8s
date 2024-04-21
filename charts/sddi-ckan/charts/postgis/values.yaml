@@ -98,11 +98,16 @@ datastore:
       password: changeMe
 
 datapusher:
+  # -- CKAN Datapusher+ database host
   host: postgis
+  # -- CKAN Datapusher+ database port
   port: 5432
+  # -- CKAN Datapusher+ database name
   dbname: datapusher_jobs
   auth:
+    # -- CKAN Datapusher+ database username
     username: datapusher
+    # -- CKAN Datapusher+ database password
     password: changeMe
 
 # -- Extra environment variables for PostGIS.

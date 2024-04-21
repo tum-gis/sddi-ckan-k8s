@@ -1,0 +1,18 @@
+apiVersion: v2
+name: datapusher-plus
+description: A Helm chart for CKAN Datapusher-plus.
+type: application
+
+home: https://github.com/tum-gis/sddi-ckan-k8s
+sources:
+  - https://github.com/tum-gis/sddi-ckan-k8s
+  - https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/datapusher-plus
+  - https://github.com/dathere/datapusher-plus
+
+version: 0.1.0
+appVersion: "0.10.1"
+
+maintainers:
+  - email: b.willenborg@tum.de
+    name: Bruno Willenborg
+    url: https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/
