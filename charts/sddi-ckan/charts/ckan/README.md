@@ -49,6 +49,11 @@ A Helm chart for SDDI enabled CKAN.
 | autoscaling.targetCPUUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | autoscaling.targetMemoryUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | backgroundImage | string | `"../base/images/hero.jpg"` | Set URL or path to [CKAN SDDI background image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation). |
+| clamav.enabled | bool | `true` |  |
+| clamav.host | string | `"clamav"` |  |
+| clamav.port | int | `3310` |  |
+| clamav.timeout | int | `360` |  |
+| clamav.uploadUnscanned | string | `"False"` |  |
 | component | string | `"ckan"` | Role of CKAN in this chart |
 | datapusher.apiToken | string | `nil` | Datapusher API token, see [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings) |
 | datapusher.callback_url_base | string | `"http://ckan:5000/"` | This should be set to cluster internal ckan service domain. [CKAN DataPusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-datapusher-callback-url-base) |
@@ -90,7 +95,7 @@ A Helm chart for SDDI enabled CKAN.
 | ingress.cors.enabled | bool | `true` | Enable/disable [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing). See [ingress-nginx cors settings](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md#enable-cors) for details on CORS configuration and default settings. Use `ingress.annotations` to overwrite the default configuration annotations. |
 | ingress.domains | list | `[]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. Note: Set `siteUrl` accordingly! |
 | ingress.enabled | bool | `true` | Enable/disable Ingress. |
-| ingress.stickySessions.enabled | bool | `true` | Enable/disable sticks sessions, see [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/). |
+| ingress.stickySessions.enabled | bool | `false` | Enable/disable sticks sessions, see [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/). |
 | ingress.stickySessions.sessionCookie.affinityMode | string | `"balanced"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.changeOnFailure | string | `"true"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.maxAge | string | `"172800"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |

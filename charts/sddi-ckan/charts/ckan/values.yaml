@@ -134,7 +134,7 @@ ingress:
   stickySessions:
     # -- Enable/disable sticks sessions, see
     # [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/).
-    enabled: true
+    enabled: false
     sessionCookie:
       # -- [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/)
       affinityMode: "balanced"
@@ -497,6 +497,25 @@ activityStreams:
   enabled: True
   # -- [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings)
   emailNotifications: True
+
+clamav:
+  enabled: true
+  uploadUnscanned: "False"
+  host: clamav
+  port: 3310
+  timeout: 360
+
+resources:
+  limits:
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+    cpu: 500m
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+    memory: 1Gi
+  requests:
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+    cpu: 250m
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+    memory: 256Mi
 
 # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 resources: {}
