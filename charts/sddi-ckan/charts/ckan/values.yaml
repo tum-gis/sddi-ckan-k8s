@@ -499,10 +499,15 @@ activityStreams:
   emailNotifications: True
 
 clamav:
+  # -- [CKAN config enable ClamAV]
   enabled: true
+  # -- [CKAN config ClamAV upload unscanned files]
   uploadUnscanned: "False"
+  # -- [CKAN config ClamAV host]
   host: clamav
+  # -- [CKAN config ClamAV port]
   port: 3310
+  # -- [CKAN config ClamAV connection timeout]
   timeout: 360
 
 resources:
@@ -517,8 +522,6 @@ resources:
     # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
     memory: 256Mi
 
-# -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-resources: {}
 # -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 nodeSelector: {}
 # -- [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
