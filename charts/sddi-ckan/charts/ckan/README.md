@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
+![Version: 3.1.0-beta1](https://img.shields.io/badge/Version-3.1.0--beta1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.1.2](https://img.shields.io/badge/AppVersion-2.1.2-informational?style=flat-square)
 
 A Helm chart for SDDI enabled CKAN.
 
@@ -49,6 +49,11 @@ A Helm chart for SDDI enabled CKAN.
 | autoscaling.targetCPUUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | autoscaling.targetMemoryUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | backgroundImage | string | `"../base/images/hero.jpg"` | Set URL or path to [CKAN SDDI background image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation). |
+| clamav.enabled | bool | `true` | [CKAN config enable ClamAV] |
+| clamav.host | string | `"clamav"` | [CKAN config ClamAV host] |
+| clamav.port | int | `3310` | [CKAN config ClamAV port] |
+| clamav.timeout | int | `360` | [CKAN config ClamAV connection timeout] |
+| clamav.uploadUnscanned | string | `"False"` | [CKAN config ClamAV upload unscanned files] |
 | component | string | `"ckan"` | Role of CKAN in this chart |
 | datapusher.apiToken | string | `nil` | Datapusher API token, see [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings) |
 | datapusher.callback_url_base | string | `"http://ckan:5000/"` | This should be set to cluster internal ckan service domain. [CKAN DataPusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-datapusher-callback-url-base) |
@@ -87,10 +92,11 @@ A Helm chart for SDDI enabled CKAN.
 | ingress.certManager.issuerName | string | `"letsencrypt-staging"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available. |
 | ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |
 | ingress.className | string | `"nginx"` | Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class) to use in Ingress routes. |
+| ingress.configurationSnippet | string | `"more_set_headers \"X-Frame-Options: DENY\";\nmore_set_headers \"X-Xss-Protection: 0\";\nmore_set_headers \"X-Content-Type-Options: nosniff\";\nmore_set_headers \"Content-Security-Policy: object-src 'none'; child-src 'self'; frame-ancestors 'none'; base-uri 'none'; upgrade-insecurerequests; blockall-mixed-content; require-trustedtypes-for 'script'\";\n"` |  |
 | ingress.cors.enabled | bool | `true` | Enable/disable [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing). See [ingress-nginx cors settings](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md#enable-cors) for details on CORS configuration and default settings. Use `ingress.annotations` to overwrite the default configuration annotations. |
 | ingress.domains | list | `[]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. Note: Set `siteUrl` accordingly! |
 | ingress.enabled | bool | `true` | Enable/disable Ingress. |
-| ingress.stickySessions.enabled | bool | `true` | Enable/disable sticks sessions, see [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/). |
+| ingress.stickySessions.enabled | bool | `false` | Enable/disable sticks sessions, see [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/). |
 | ingress.stickySessions.sessionCookie.affinityMode | string | `"balanced"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.changeOnFailure | string | `"true"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.maxAge | string | `"172800"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
@@ -131,7 +137,10 @@ A Helm chart for SDDI enabled CKAN.
 | readiness.timeoutSeconds | int | `10` | Timeout interval for the liveness probe |
 | redis.url | string | `"redis://redis-hl:6379/0"` | Redis endpoint for CKAN. This should be set to cluster internal Redis service domain. [CKAN configuration Redis](https://docs.ckan.org/en/latest/maintaining/configuration.html#redis-settings) |
 | replicaCount | int | `1` | Number of replicas. Only used if `autoscaling.enabled = false`. **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and, if Pods run on different nodes, a storage that supports RWX. |
-| resources | object | `{}` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
+| resources.limits.cpu | string | `"500m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
+| resources.limits.memory | string | `"1Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
+| resources.requests.cpu | string | `"250m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
+| resources.requests.memory | string | `"256Mi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | sddiInitDataJson | string | `"init_data.json"` | Local path or URL to File path or URL to [CKAN SDDI `init_data.json`](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json). This file allows to specify pre-defined set of SDDI CKAN main categories, topics, and organizations. |
 | securityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | service.port | int | `5000` | Service port for http |
@@ -179,3 +188,5 @@ A Helm chart for SDDI enabled CKAN.
 | volumes | list | See [`values.yml`](values.yml) for the list of default volumes. | Sets [`volumes`](https://kubernetes.io/docs/concepts/storage/volumes). Set to `[]` to disable the default volumes. Set to any list of volume definitions to overwrite the default volumes. Use `extraVolumes` to extend the default volumes. |
 | webassets.path | string | `nil` | Webassets storage path, see [CKAN webassets settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#webassets-settings) This should point to the location of webassets in the CKAN image. The path may vary depending on the CKAN Docker image used. |
 
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.13.1](https://github.com/norwoodj/helm-docs/releases/v1.13.1)

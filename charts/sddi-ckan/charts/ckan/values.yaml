@@ -134,7 +134,7 @@ ingress:
   stickySessions:
     # -- Enable/disable sticks sessions, see
     # [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/).
-    enabled: true
+    enabled: false
     sessionCookie:
       # -- [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/)
       affinityMode: "balanced"
@@ -156,6 +156,11 @@ ingress:
   tls:
     # -- Specify a custom tls secret name. This overwrites `global.ingress.tls.secretName`.
     secretName:
+  configurationSnippet: |
+    more_set_headers "X-Frame-Options: DENY";
+    more_set_headers "X-Xss-Protection: 0";
+    more_set_headers "X-Content-Type-Options: nosniff";
+    more_set_headers "Content-Security-Policy: object-src 'none'; child-src 'self'; frame-ancestors 'none'; base-uri 'none'; upgrade-insecurerequests; blockall-mixed-content; require-trustedtypes-for 'script'";
 
 # General settings
 # -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`
@@ -493,8 +498,30 @@ activityStreams:
   # -- [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings)
   emailNotifications: True
 
-# -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-resources: {}
+clamav:
+  # -- [CKAN config enable ClamAV]
+  enabled: true
+  # -- [CKAN config ClamAV upload unscanned files]
+  uploadUnscanned: "False"
+  # -- [CKAN config ClamAV host]
+  host: clamav
+  # -- [CKAN config ClamAV port]
+  port: 3310
+  # -- [CKAN config ClamAV connection timeout]
+  timeout: 360
+
+resources:
+  limits:
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+    cpu: 500m
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+    memory: 1Gi
+  requests:
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+    cpu: 250m
+    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+    memory: 256Mi
+
 # -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 nodeSelector: {}
 # -- [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)

@@ -10,8 +10,8 @@ sources:
   - https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure
   - https://github.com/tum-gis/ckan-docker
 
-version: 3.0.0
-appVersion: "2.0.0"
+version: "3.1.0-beta1"
+appVersion: "2.1.2"
 kubeVersion: ">= 1.23.0-0"
 
 maintainers:
@@ -48,6 +48,10 @@ dependencies:
     condition: cert-manager.enabled
     version: "^1"
     repository: https://charts.jetstack.io
+  - name: clamav
+    condition: clamav.enabled
+    version: "~2.8.0"
+    repository: https://wiremind.github.io/wiremind-helm-charts
   - name: common
     repository: oci://registry-1.docker.io/bitnamicharts
     tags:
