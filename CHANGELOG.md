@@ -8,6 +8,26 @@ Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
+## [Unreleased] - 2024-10-18
+
+### Breaking changes
+
+### Added
+
+### Changed
+
+- Update Helm version in chart releaser workflows
+
+### Removed
+
+### Fixed
+
+### Security
+
+### Deprecated
+
+### Known issues
+
 ## [sddi-ckan-3.0.0] - 2024-03-22
 
 ## Added
