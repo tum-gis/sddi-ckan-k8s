@@ -33,9 +33,9 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
       volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ include "solr.fullname" . }}
+      {{- if .Values.volumes }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.volumes  "context" $ ) | nindent 8 }}
+      {{- end }}
 
       initContainers:
       {{- if .Values.initContainers }}
@@ -58,8 +58,9 @@ spec:
               protocol: TCP
 
           volumeMounts:
-            - name: data
-              mountPath: /var/solr/data
+          {{- if .Values.volumeMounts }}
+          {{- include "common.tplvalues.render" ( dict "value" .Values.volumeMounts  "context" $ ) | nindent 10 }}
+          {{- end }}
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
