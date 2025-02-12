@@ -12,7 +12,7 @@ global:
     # Note: All FQDNs will be used for Ingress hosts and TLS certificate.
     # The global setting overwrites this setting in subcharts.
     domains:
-      - localhost
+      - test.sddi.ckan.gis.lrg.tum.de
     certManager:
       # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
       issuerEmail: me@example.com
@@ -20,7 +20,7 @@ global:
       issuerType: namespace
       # -- Name of the Issuer to use. For certManager.type = namespace
       # `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available.
-      issuerName: letsencrypt-staging
+      issuerName: letsencrypt-production
     tls:
       # -- Specify a custom tls secret name. This my be overwritten by `ingress.tls.secretName` of subcharts.
       secretName:

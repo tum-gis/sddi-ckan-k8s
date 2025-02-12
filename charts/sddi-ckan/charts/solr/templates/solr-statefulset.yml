@@ -36,15 +36,9 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "solr.fullname" . }}
-
-      initContainers:
-      {{- if .Values.initContainers }}
-      {{- include "common.tplvalues.render" ( dict "value" .Values.initContainers  "context" $ ) | nindent 8 }}
-      {{- end }}
-
-      {{- if .Values.extraInitContainers }}
-      {{- include "common.tplvalues.render" ( dict "value" .Values.extraInitContainers  "context" $ ) | nindent 8 }}
-      {{- end }}
+        - name: init
+          configMap:
+            name: {{ include "solr.fullname" . }}-init
 
       containers:
         - name: {{ .Chart.Name }}
@@ -52,6 +46,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: CKAN_CORE_NAME
+              value: "ckan"
           ports:
             - name: solr
               containerPort: 8983
@@ -60,6 +57,22 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/solr/data
+            - name: init
+              mountPath: /docker-entrypoint-initdb.d/ckan_init_solr.sh
+              subPath: ckan_init_solr.sh
+
+          # livenessProbe:
+          #   periodSeconds: 10
+          #   timeoutSeconds: 2
+          #   exec:
+          #     command: [ sh, -c, "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB" ]
+
+          # readinessProbe:
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 10
+          #   timeoutSeconds: 2
+          #   exec:
+          #     command: [ sh, -c, "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB" ]
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

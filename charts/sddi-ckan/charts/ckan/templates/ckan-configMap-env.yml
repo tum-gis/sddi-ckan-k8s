@@ -70,6 +70,10 @@ data:
   CKAN__PREVIEW__JSON_FORMATS: {{ .Values.preview.jsonFormats | quote }}
   CKAN__PREVIEW__JSONP_FORMATS: {{ .Values.preview.jsonpFormats | quote }}
   CKAN__PREVIEW__IMAGE_FORMATS: {{ .Values.preview.imageFormats | quote }}
+  # Security
+  CKANEXT__SECURITY__REDIS__HOST: {{ .Values.security.redis.host | quote }}
+  CKANEXT__SECURITY__REDIS__PORT: {{ .Values.security.redis.port | quote }}
+  CKANEXT__SECURITY__REDIS__DB: {{ .Values.security.redis.db | quote }}
   # Others
   CKAN__DATASET__CREATE_ON_UI_REQUIRES_RESOURCES: {{ .Values.form.create_on_ui_requires_resources | quote }}
   {{- if .Values.webassets.path }}
@@ -82,6 +86,15 @@ data:
   CKANEXT__CLAMAV__TCP__HOST: {{ .Values.clamav.host | quote }}
   CKANEXT__CLAMAV__TCP__PORT: {{ .Values.clamav.port | quote }}
   CKANEXT__CLAMAV__TIMEOUT: {{ .Values.clamav.timeout | quote }}
+  # SMTP
+  CKAN___SMTP__SERVER: {{ .Values.smtp.server | quote }}
+  CKAN___SMTP__STARTTLS: {{ .Values.smtp.startTls | quote }}
+  CKAN___SMTP__USER: {{ .Values.smtp.user | quote }}
+  CKAN___SMTP__PASSWORD: {{ .Values.smtp.password | quote }}
+  CKAN___SMTP__MAIL_FROM: {{ .Values.smtp.mailFrom | quote }}
+  CKAN___SMTP__REPLY_TO: {{ .Values.smtp.replyTo | quote }}
+  EMAIL_TO: {{ .Values.smtp.emailTo | quote }}
+  ERROR_EMAIL_FROM: {{ .Values.smtp.errorEmailFrom | quote }}
   {{- end }}
   # Additional env vars from values.yaml
   {{- with .Values.extraEnv }}
