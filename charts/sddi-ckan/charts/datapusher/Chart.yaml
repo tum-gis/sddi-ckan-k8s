@@ -9,7 +9,7 @@ sources:
   - https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/datapusher
   - https://github.com/keitaroinc/docker-ckan
 
-version: 0.5.1
+version: 0.4.0
 appVersion: "0.0.19"
 
 maintainers:

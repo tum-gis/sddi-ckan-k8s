@@ -61,18 +61,18 @@ spec:
               mountPath: /docker-entrypoint-initdb.d/ckan_init_solr.sh
               subPath: ckan_init_solr.sh
 
-          # livenessProbe:
-          #   periodSeconds: 10
-          #   timeoutSeconds: 2
-          #   exec:
-          #     command: [ sh, -c, "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB" ]
+          livenessProbe:
+            periodSeconds: 10
+            timeoutSeconds: 3
+            tcpSocket:
+              port: 8983
 
-          # readinessProbe:
-          #   initialDelaySeconds: 15
-          #   periodSeconds: 10
-          #   timeoutSeconds: 2
-          #   exec:
-          #     command: [ sh, -c, "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB" ]
+          readinessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 3
+            tcpSocket:
+              port: 8983
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

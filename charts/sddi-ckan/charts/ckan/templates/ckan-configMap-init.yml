@@ -1,0 +1,28 @@
+{{- if .Values.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "ckan.fullname" . }}-init
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "ckan.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+data:
+  ckan_init_data.sh: |
+    #!/bin/bash
+
+    set -e
+
+    echo -e "\nSDDI theme data init"
+    ckan -c "${CKAN_INI}" theme-sddi init_data
+
+    echo -e "\nDB activity upgrade"
+    ckan -c "${CKAN_INI}" db upgrade -p activity
+
+    echo -e "\nDB heroslideradmin upgrade"
+    ckan -c "${CKAN_INI}" db upgrade -p heroslideradmin
+
+    echo -e "\nDB security upgrade"
+    ckan -c "${CKAN_INI}" db upgrade -p security
+{{- end -}}

@@ -44,14 +44,14 @@ spec:
       volumes:
         - name: data
           emptyDir: {}
+        - name: init
+          configMap:
+            name: {{ include "ckan.fullname" . }}-init
 
       initContainers:
       - name: init-data
         image: busybox
         command: ["sh", "-c", "chown -Rv 503:502 {{ .Values.persistence.storagePath }}"]
-        # securityContext:
-        #   runAsUser: 0
-        #   runAsGroup: 0
 
         volumeMounts:
         - name: data
@@ -89,6 +89,9 @@ spec:
           - name: data
             mountPath: {{ .Values.persistence.storagePath }}
             readOnly: false
+          - name: init
+            mountPath: /docker-entrypoint.d/ckan_init_data.sh
+            subPath: ckan_init_data.sh
 
           envFrom:
             - configMapRef:

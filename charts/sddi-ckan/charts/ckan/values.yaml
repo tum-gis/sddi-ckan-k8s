@@ -16,44 +16,10 @@ image:
   # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart `appVersion`.
-  tag: sddi-base-pr-71-c223a45
+  tag: sddi-pr-71-26dd815
 
 # -- [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
 imagePullSecrets: []
-
-# initContainers --------------------------------------------------------------
-# -- Sets [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
-# Set to `[]` to disable the default initContainers.
-# Set to any list of initContainer definitions to overwrite the default initContainers.
-# Use `extraInitContainers` to extend the default initContainers.
-# @default -- See `values.yml` for the list of default initContainers.
-initContainers:
-  - name: pg-ready
-    image: bwibo/k8s-init-container:latest
-    command:
-      - pg_isready
-    env:
-      - name: PGHOST
-        value: "{{ .Values.global.db.host | default .Values.db.host }}"
-      - name: PGPORT
-        value: "{{ .Values.global.db.port | default .Values.db.port }}"
-      - name: PGDATABASE
-        value: "{{ .Values.global.db.dbname | default .Values.db.dbname }}"
-      - name: PGUSER
-        value: "{{ .Values.global.db.auth.username | default .Values.db.auth.usernme }}"
-      - name: PGPASSWORD
-        value: "{{ .Values.global.db.auth.password | default .Values.db.auth.password }}"
-  - name: init-data
-    image: busybox:latest
-    command:
-      ["sh", "-c", "chown -Rv 92:92 {{ .Values.persistence.storagePath }}"]
-    volumeMounts:
-      - name: data
-        mountPath: "{{ .Values.persistence.storagePath }}"
-
-# -- Sets additional [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
-# The initContainers specified here, are appended to the ones specified in `initContainers`.
-extraInitContainers: []
 
 # -- Additional pod annotations
 podAnnotations: {}
@@ -124,7 +90,7 @@ ingress:
   # for more.
   certManager:
     # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
-    issuerEmail: me@example.com
+    issuerEmail: ilche.bedelovski@gmail.com
     # -- Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster".
     issuerType: namespace
     # -- Name of the Issuer to use. For certManager.type = namespace
@@ -155,11 +121,6 @@ ingress:
   tls:
     # -- Specify a custom tls secret name. This overwrites `global.ingress.tls.secretName`.
     secretName:
-  configurationSnippet: |
-    more_set_headers "X-Frame-Options: DENY";
-    more_set_headers "X-Xss-Protection: 0";
-    more_set_headers "X-Content-Type-Options: nosniff";
-    more_set_headers "Content-Security-Policy: object-src 'none'; child-src 'self'; frame-ancestors 'none'; base-uri 'none'; upgrade-insecurerequests; blockall-mixed-content; require-trustedtypes-for 'script'";
 
 # General settings
 # -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`
@@ -198,11 +159,9 @@ favicon: /base/images/ckan.ico
 maxUploadSizeMB: 250
 # -- [CKAN licences group url](https://docs.ckan.org/en/latest/maintaining/configuration.html#licenses-group-url):
 # A URL pointing to a JSON file containing a list of license objects.
-# @default -- See [`values.yml`](values.yml) for the default values.
 licensesGroupUrl: "https://raw.githubusercontent.com/tum-gis/ckanext-grouphierarchy-sddi/main/ckanext/grouphierarchy/licenses_SDDI.json"
 # -- [CKAN config dafault_views](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-views-default-views):
 # **Note**: Make sure the required view plugins are loaded!
-# @default -- See [`values.yml`](values.yml) for the default values.
 defaultViews: "image_view recline_view text_view geo_view geojson_view wmts_view shp_view"
 preview:
   # -- [CKAN config TextView](https://docs.ckan.org/en/latest/maintaining/configuration.html#text-view-settings):
@@ -446,7 +405,7 @@ smtp:
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   # **Note:** To use SSL auth, omit the port in the server string, if it is the default port 465. Also make
   # sure to set `smtp.startTls = True`.
-  server: "smtpServerURLorIP:port"
+  server: "smtpServerURLorIP:465"
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   user: "smtpUser"
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)

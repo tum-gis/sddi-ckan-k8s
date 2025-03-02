@@ -9,8 +9,8 @@ sources:
   - https://hub.docker.com/_/redis
 
 
-version: 0.3.0
-appVersion: "7.2.4-alpine"
+version: 0.2.0
+appVersion: "7.0.8-alpine"
 
 maintainers:
   - email: b.willenborg@tum.de

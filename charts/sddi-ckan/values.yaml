@@ -15,7 +15,7 @@ global:
       - test.sddi.ckan.gis.lrg.tum.de
     certManager:
       # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
-      issuerEmail: me@example.com
+      issuerEmail: ilche.bedelovski@gmail.com
       # -- Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster".
       issuerType: namespace
       # -- Name of the Issuer to use. For certManager.type = namespace
