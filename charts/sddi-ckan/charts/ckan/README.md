@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 1.2.2](https://img.shields.io/badge/Version-1.2.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.0.0](https://img.shields.io/badge/AppVersion-3.0.0-informational?style=flat-square)
 
 A Helm chart for SDDI enabled CKAN.
 
@@ -52,7 +52,7 @@ A Helm chart for SDDI enabled CKAN.
 | clamav.enabled | bool | `true` |  |
 | clamav.host | string | `"clamav"` |  |
 | clamav.port | int | `3310` |  |
-| clamav.timeout | int | `360` |  |
+| clamav.timeout | int | `3600` |  |
 | clamav.uploadUnscanned | string | `"False"` |  |
 | component | string | `"ckan"` | Role of CKAN in this chart |
 | datapusher.apiToken | string | `nil` | Datapusher API token, see [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings) |
@@ -80,19 +80,19 @@ A Helm chart for SDDI enabled CKAN.
 | form.create_on_ui_requires_resources | bool | `true` | CKAN form settings, see [CKAN configuration form](https://docs.ckan.org/en/latest/maintaining/configuration.html#form-settings) |
 | fullnameOverride | string | `"ckan"` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |
-| image.repository | string | `"ghcr.io/tum-gis/ckan-sddi"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
-| image.tag | string | `""` | Overrides the image tag whose default is the chart `appVersion`. |
+| image.repository | string | `"ghcr.io/tum-gis/ckan-sddi-dev"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
+| image.tag | string | `"sddi-pr-71-26dd815"` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
 | ingress.annotations | string | `nil` | Additional Ingress annotations |
-| ingress.certManager | object | `{"issuerEmail":"me@example.com","issuerName":"letsencrypt-staging","issuerType":"namespace"}` | Additional Ingress annotation for e.g. CORS, timeouts, SSL settings. See [nginx-ingress annotations docs](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md) for more. |
-| ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
-| ingress.certManager.issuerName | string | `"letsencrypt-staging"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available. |
+| ingress.certManager | object | `{"issuerEmail":"ilche.bedelovski@gmail.com","issuerName":"letsencrypt-prod","issuerType":"namespace"}` | Additional Ingress annotation for e.g. CORS, timeouts, SSL settings. See [nginx-ingress annotations docs](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md) for more. |
+| ingress.certManager.issuerEmail | string | `"ilche.bedelovski@gmail.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
+| ingress.certManager.issuerName | string | `"letsencrypt-prod"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available. |
 | ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |
 | ingress.className | string | `"nginx"` | Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class) to use in Ingress routes. |
 | ingress.cors.enabled | bool | `true` | Enable/disable [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing). See [ingress-nginx cors settings](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md#enable-cors) for details on CORS configuration and default settings. Use `ingress.annotations` to overwrite the default configuration annotations. |
-| ingress.domains | list | `[]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. Note: Set `siteUrl` accordingly! |
+| ingress.domains | list | `["test.sddi.ckan.gis.lrg.tum.de"]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. Note: Set `siteUrl` accordingly! |
 | ingress.enabled | bool | `true` | Enable/disable Ingress. |
-| ingress.stickySessions.enabled | bool | `true` | Enable/disable sticks sessions, see [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/). |
+| ingress.stickySessions.enabled | bool | `false` | Enable/disable sticks sessions, see [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/). |
 | ingress.stickySessions.sessionCookie.affinityMode | string | `"balanced"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.changeOnFailure | string | `"true"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.maxAge | string | `"172800"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
@@ -137,6 +137,9 @@ A Helm chart for SDDI enabled CKAN.
 | resources.requests.cpu | string | `"250m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | resources.requests.memory | string | `"256Mi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | sddiInitDataJson | string | `"init_data.json"` | Local path or URL to File path or URL to [CKAN SDDI `init_data.json`](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json). This file allows to specify pre-defined set of SDDI CKAN main categories, topics, and organizations. |
+| security.redis.db | int | `1` |  |
+| security.redis.host | string | `"redis-hl"` |  |
+| security.redis.port | int | `6379` |  |
 | securityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | service.port | int | `5000` | Service port for http |
 | service.type | string | `"ClusterIP"` | Type of service for http |
@@ -158,13 +161,13 @@ A Helm chart for SDDI enabled CKAN.
 | siteIntroText | string | `"This is the intro text to my SDDI CKAN instance."` | [CKAN config intro text](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-intro-text) |
 | siteLogo | string | `"/base/images/logo_left.png"` |  |
 | siteTitle | string | `"My SDDI CKAN instance"` | Title of the CKAN instance, displayed in Browser windows/tab name |
-| siteUrl | string | `"https://my-ckan.de"` | CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains` and include the protocol e.g. (`https://my.domain.de`). [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url) |
+| siteUrl | string | `"https://test.sddi.ckan.gis.lrg.tum.de"` | CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains` and include the protocol e.g. (`https://my.domain.de`). [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url) |
 | smtp.emailTo | string | `"None"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.errorEmailFrom | string | `"None"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.mailFrom | string | `"postmaster@domain.com"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.password | string | `"smtpPassword"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.replyTo | string | `"None"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
-| smtp.server | string | `"smtpServerURLorIP:port"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) **Note:** To use SSL auth, omit the port in the server string, if it is the default port 465. Also make sure to set `smtp.startTls = True`. |
+| smtp.server | string | `"smtpServerURLorIP:465"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) **Note:** To use SSL auth, omit the port in the server string, if it is the default port 465. Also make sure to set `smtp.startTls = True`. |
 | smtp.startTls | string | `"True"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) **Note:** To use SSL auth, make sure this settings is set to `True`. See the note for `smtp.server` too. |
 | smtp.user | string | `"smtpUser"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | solr.password | string | `nil` | # [CKAN configuration Solr user](https://docs.ckan.org/en/latest/maintaining/configuration.html#solr-password) |
@@ -181,5 +184,3 @@ A Helm chart for SDDI enabled CKAN.
 | tolerations | list | `[]` | [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |
 | webassets.path | string | `nil` | Webassets storage path, see [CKAN webassets settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#webassets-settings) This should point to the location of webassets in the CKAN image. The path may vary depending on the CKAN Docker image used. |
 
-----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.11.0](https://github.com/norwoodj/helm-docs/releases/v1.11.0)
