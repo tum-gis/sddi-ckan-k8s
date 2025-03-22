@@ -14,6 +14,9 @@ data:
 
     set -e
 
+    echo -e "\nSearch and replace for the site_url"
+    sed -i 's|^ckan\.site_url *= *.*|ckan.site_url = {{ .Values.siteUrl }}|' ckan.ini
+
     echo -e "\nSDDI theme data init"
     ckan -c "${CKAN_INI}" theme-sddi init_data
 
