@@ -12,10 +12,10 @@ global:
     # Note: All FQDNs will be used for Ingress hosts and TLS certificate.
     # The global setting overwrites this setting in subcharts.
     domains:
-      - test.sddi.ckan.gis.lrg.tum.de
+      - localhost
     certManager:
       # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
-      issuerEmail: ilche.bedelovski@gmail.com
+      issuerEmail: me@example.com
       # -- Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster".
       issuerType: namespace
       # -- Name of the Issuer to use. For certManager.type = namespace
