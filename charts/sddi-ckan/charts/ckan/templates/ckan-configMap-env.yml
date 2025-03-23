@@ -86,6 +86,7 @@ data:
   CKANEXT__CLAMAV__TCP__HOST: {{ .Values.clamav.host | quote }}
   CKANEXT__CLAMAV__TCP__PORT: {{ .Values.clamav.port | quote }}
   CKANEXT__CLAMAV__TIMEOUT: {{ .Values.clamav.timeout | quote }}
+  {{- end }}
   # SMTP
   CKAN___SMTP__SERVER: {{ .Values.smtp.server | quote }}
   CKAN___SMTP__STARTTLS: {{ .Values.smtp.startTls | quote }}
@@ -95,7 +96,6 @@ data:
   CKAN___SMTP__REPLY_TO: {{ .Values.smtp.replyTo | quote }}
   EMAIL_TO: {{ .Values.smtp.emailTo | quote }}
   ERROR_EMAIL_FROM: {{ .Values.smtp.errorEmailFrom | quote }}
-  {{- end }}
   # Additional env vars from values.yaml
   {{- with .Values.extraEnv }}
     {{- toYaml . | nindent 2 }}
