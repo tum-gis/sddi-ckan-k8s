@@ -96,6 +96,10 @@ ingress:
     # -- Name of the Issuer to use. For certManager.type = namespace
     # `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available.
     issuerName: letsencrypt-prod
+  proxy:
+    connectTimeout: "360"
+    sendTimeout: "360"
+    readTimeout: "360"
   stickySessions:
     # -- Enable/disable sticks sessions, see
     # [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/).
@@ -126,7 +130,7 @@ ingress:
 # -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`
 # and include the protocol e.g. (`https://my.domain.de`).
 # [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url)
-siteUrl: https://test.sddi.ckan.gis.lrg.tum.de
+siteUrl: https://localhost
 # -- Title of the CKAN instance, displayed in Browser windows/tab name
 siteTitle: My SDDI CKAN instance
 # -- [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id)

@@ -129,20 +129,6 @@ db:
     # Note: This values is overwritten by `global.datapusher.db.auth.password`, if set.
     password: changeMe
 
-
-
-resources:
-  limits:
-    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    cpu: 1000m
-    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    memory: 500Mi
-  requests:
-    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    cpu: 250m
-    # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-    memory: 256Mi
-
 # -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 nodeSelector: {}
 # -- [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)

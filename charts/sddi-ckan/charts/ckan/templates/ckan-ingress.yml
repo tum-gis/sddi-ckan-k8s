@@ -30,12 +30,12 @@ metadata:
     {{- end }}
     nginx.ingress.kubernetes.io/proxy-body-size: "{{ .Values.maxUploadSizeMB }}m"
     nginx.org/client-max-body-size: "{{ .Values.maxUploadSizeMB }}m"
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: "360"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "360"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "360"
-    nginx.org/proxy-connect-timeout: "360"
-    nginx.org/proxy-read-timeout: "360"
-    nginx.org/proxy-send-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "{{ .Values.ingress.proxy.connectTimeout }}"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "{{ .Values.ingress.proxy.sendTimeout }}"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "{{ .Values.ingress.proxy.readTimeout }}"
+    nginx.org/proxy-connect-timeout: "{{ .Values.ingress.proxy.connectTimeout }}"
+    nginx.org/proxy-read-timeout: "{{ .Values.ingress.proxy.sendTimeout }}"
+    nginx.org/proxy-send-timeout: "{{ .Values.ingress.proxy.readTimeout }}"
     {{- if .Values.ingress.stickySessions.enabled }}
     # https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/
     nginx.ingress.kubernetes.io/affinity: "cookie"
@@ -63,7 +63,7 @@ spec:
     http:
       paths:
       - path: /(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: {{ $fullName }}

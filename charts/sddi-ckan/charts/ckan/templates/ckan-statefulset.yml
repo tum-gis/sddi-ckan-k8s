@@ -44,6 +44,9 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "ckan.fullname" . }}
+        - name: init
+          configMap:
+            name: {{ include "ckan.fullname" . }}-init
 
       initContainers:
       - name: init-data
@@ -101,6 +104,9 @@ spec:
           volumeMounts:
             - name: data
               mountPath: {{ .Values.persistence.storagePath }}
+            - name: init
+              mountPath: /docker-entrypoint.d/ckan_init_data.sh
+              subPath: ckan_init_data.sh
 
           startupProbe:
             httpGet:
