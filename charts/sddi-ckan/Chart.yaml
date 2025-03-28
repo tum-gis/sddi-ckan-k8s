@@ -48,6 +48,11 @@ dependencies:
     condition: cert-manager.enabled
     version: "~1.17.1"
     repository: https://charts.jetstack.io
+  - name: common
+    repository: oci://registry-1.docker.io/bitnamicharts
+    tags:
+    - bitnami-common
+    version: 2.x.x
   - name: clamav
     condition: clamav.enabled
     version: "~2.8.0"

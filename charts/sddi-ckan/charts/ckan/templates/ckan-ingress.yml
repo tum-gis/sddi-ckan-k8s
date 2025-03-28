@@ -33,9 +33,6 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "{{ .Values.ingress.proxy.connectTimeout }}"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "{{ .Values.ingress.proxy.sendTimeout }}"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "{{ .Values.ingress.proxy.readTimeout }}"
-    nginx.org/proxy-connect-timeout: "{{ .Values.ingress.proxy.connectTimeout }}"
-    nginx.org/proxy-read-timeout: "{{ .Values.ingress.proxy.sendTimeout }}"
-    nginx.org/proxy-send-timeout: "{{ .Values.ingress.proxy.readTimeout }}"
     {{- if .Values.ingress.stickySessions.enabled }}
     # https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/
     nginx.ingress.kubernetes.io/affinity: "cookie"
