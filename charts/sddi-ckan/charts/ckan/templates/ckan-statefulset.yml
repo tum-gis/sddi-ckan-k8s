@@ -75,6 +75,8 @@ spec:
             - secretRef:
                 name: {{ include "ckan.fullname" . }}-sct-db
             - secretRef:
+                name: {{ include "ckan.fullname" . }}-sct-smtp
+            - secretRef:
                 name: {{ include "ckan.fullname" . }}-sct-solr
             - secretRef:
                 name: {{ include "ckan.fullname" . }}-sct-session

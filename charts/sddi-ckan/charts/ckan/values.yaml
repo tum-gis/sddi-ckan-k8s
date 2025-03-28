@@ -46,7 +46,7 @@ initContainers:
   - name: init-data
     image: busybox:latest
     command:
-      ["sh", "-c", "chown -Rv 92:92 {{ .Values.persistence.storagePath }}"]
+      ["sh", "-c", "chown -Rv 503:502 {{ .Values.persistence.storagePath }}"]
     volumeMounts:
       - name: data
         mountPath: "{{ .Values.persistence.storagePath }}"
@@ -115,8 +115,7 @@ ingress:
   className: nginx
   # -- List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress.
   # Note: All FQDNs will be used for Ingress hosts and TLS certificate. Note: Set `siteUrl` accordingly!
-  domains:
-    - localhost
+  domains: []
   # -- Additional Ingress annotations
   annotations:
   # -- Additional Ingress annotation for e.g. CORS, timeouts, SSL settings.
@@ -164,7 +163,7 @@ ingress:
 # -- CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains`
 # and include the protocol e.g. (`https://my.domain.de`).
 # [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url)
-siteUrl: https://localhost
+siteUrl: https://my-ckan.de
 # -- Title of the CKAN instance, displayed in Browser windows/tab name
 siteTitle: My SDDI CKAN instance
 # -- [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id)
