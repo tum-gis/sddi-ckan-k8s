@@ -33,6 +33,13 @@ ckan:
   persistence:
     enabled: false
 
+  volumes:
+    - name: data
+      emptyDir: {}
+    - name: init
+      configMap:
+        name: '{{ include "ckan.fullname" . }}-init'
+
   siteUrl: https://myhost.info
 
   # Startup -------------------------------------------------------------------

@@ -40,6 +40,15 @@ spec:
           configMap:
             name: {{ include "solr.fullname" . }}-init
 
+      initContainers:
+      {{- if .Values.initContainers }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.initContainers  "context" $ ) | nindent 8 }}
+      {{- end }}
+
+      {{- if .Values.extraInitContainers }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.extraInitContainers  "context" $ ) | nindent 8 }}
+      {{- end }}
+
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
