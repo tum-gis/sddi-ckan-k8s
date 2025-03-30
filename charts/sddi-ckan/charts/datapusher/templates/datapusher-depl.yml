@@ -37,27 +37,21 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
       volumes:
-        - name: config
-          configMap:
-            name: {{ include "datapusher.fullname" . }}
+      {{- if .Values.volumes }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.volumes  "context" $ ) | nindent 8 }}
+      {{- end }}
 
-      {{- if .Values.global.datapusher.db.enabled | default .Values.db.enabled }}
+      {{- if .Values.extraVolumes }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.extraVolumes  "context" $ ) | nindent 8 }}
+      {{- end }}
+
       initContainers:
-      - name: pg-ready
-        image: bwibo/k8s-init-container
-        command:
-          - pg_isready
-        env:
-          - name: PGHOST
-            value: {{ .Values.global.datapusher.db.host | default .Values.db.host | quote }}
-          - name: PGPORT
-            value: {{ .Values.global.datapusher.db.port | default .Values.db.port | quote }}
-          - name: PGDATABASE
-            value: {{ .Values.global.datapusher.db.dbname | default .Values.db.dbname | quote }}
-          - name: PGUSER
-            value: {{ .Values.global.datapusher.db.auth.username | default .Values.db.auth.username | quote }}
-          - name: PGPASSWORD
-            value: {{ .Values.global.datapusher.db.auth.password | default .Values.db.auth.password | quote }}
+      {{- if .Values.initContainers }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.initContainers  "context" $ ) | nindent 8 }}
+      {{- end }}
+
+      {{- if .Values.extraInitContainers }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.extraInitContainers  "context" $ ) | nindent 8 }}
       {{- end }}
 
       containers:

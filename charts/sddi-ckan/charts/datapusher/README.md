@@ -43,12 +43,15 @@ A Helm chart for CKAN Datapusher.
 | downloadTimeout | string | `"30"` | Timeout limit of the download request |
 | enabled | bool | `true` | Enable/disable CKAN Datapusher |
 | extraEnv | object | `{}` | Extra environment variables. Values need to be quoted. This can be used to overwrite or extend [CKAN settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-configuration-file). See [ckanext-envvars](https://github.com/okfn/ckanext-envvars) for variable naming conventions. |
+| extraInitContainers | list | `[]` | Sets additional [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/). The initContainers specified here, are appended to the ones specified in `initContainers`. |
+| extraVolumeMounts | list | `[]` | Sets additional [`volumeMounts`](https://kubernetes.io/docs/concepts/storage/volumes). The volumeMounts specified here, are appended to the ones specified in `volumeMounts`. |
+| extraVolumes | list | `[]` | Sets additional [`volumes`](https://kubernetes.io/docs/concepts/storage/volumes). The volumes specified here, are appended to the ones specified in `volumes`. |
 | fullnameOverride | string | `"datapusher"` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |
 | image.repository | string | `"tumgis/ckan-datapusher"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
-| initContainers.pgready.image | object | `{"repository":"postgres","tag":"alpine"}` | Image used for testing PostgresSQL database readiness. |
+| initContainers | list | See `values.yml` for the list of default initContainers. | Sets [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/). Set to `[]` to disable the default initContainers. Set to any list of initContainer definitions to overwrite the default initContainers. Use `extraInitContainers` to extend the default initContainers. |
 | insertRows | string | `"250"` | Number of rows to take from the data and upload them as chunks to datastore |
 | maxContentLength | string | `"10485760"` | Maximum size of content to be uploaded in bytes. |
 | nameOverride | string | `""` | Override name |
@@ -63,4 +66,6 @@ A Helm chart for CKAN Datapusher.
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | tolerations | list | `[]` | [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |
+| volumeMounts | list | See [`values.yml`](values.yml) for the list of default volumeMounts. | Sets [`volumeMounts`](https://kubernetes.io/docs/concepts/storage/volumes). Set to `[]` to disable the default volumeMounts. Set to any list of volumeMount definitions to overwrite the default volumeMounts. Use `extraVolumeMounts` to extend the default volumeMounts. |
+| volumes | list | See [`values.yml`](values.yml) for the list of default volumes. | Sets [`volumes`](https://kubernetes.io/docs/concepts/storage/volumes). Set to `[]` to disable the default volumes. Set to any list of volume definitions to overwrite the default volumes. Use `extraVolumes` to extend the default volumes. |
 
