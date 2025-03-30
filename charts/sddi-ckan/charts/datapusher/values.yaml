@@ -122,13 +122,6 @@ db:
     # Note: This values is overwritten by `global.datapusher.db.auth.password`, if set.
     password: changeMe
 
-# -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
-nodeSelector: {}
-# -- [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
-tolerations: []
-# -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
-affinity: {}
-
 # initContainers --------------------------------------------------------------
 # -- Sets [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 # Set to `[]` to disable the default initContainers.
@@ -188,3 +181,12 @@ volumeMounts:
 # -- Sets additional [`volumeMounts`](https://kubernetes.io/docs/concepts/storage/volumes).
 # The volumeMounts specified here, are appended to the ones specified in `volumeMounts`.
 extraVolumeMounts: []
+
+# -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+resources: {}
+# -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
+nodeSelector: {}
+# -- [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
+tolerations: []
+# -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
+affinity: {}

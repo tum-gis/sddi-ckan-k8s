@@ -59,6 +59,7 @@ A Helm chart for CKAN Datapusher.
 | podAnnotations | object | `{}` | Additional pod annotations |
 | podSecurityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | replicaCount | int | `1` | Number of replicas. Only used if `autoscaling.enabled = false`. |
+| resources | object | `{}` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | securityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | service.port | int | `8000` | Service port |
 | service.type | string | `"ClusterIP"` | Type of service |
