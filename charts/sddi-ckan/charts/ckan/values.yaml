@@ -121,6 +121,9 @@ ingress:
   # -- Additional Ingress annotation for e.g. CORS, timeouts, SSL settings.
   # See [nginx-ingress annotations docs](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md)
   # for more.
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "360"
   certManager:
     # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
     issuerEmail: me@example.com
@@ -129,10 +132,6 @@ ingress:
     # -- Name of the Issuer to use. For certManager.type = namespace
     # `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available.
     issuerName: letsencrypt-prod
-  proxy:
-    connectTimeout: "360"
-    sendTimeout: "360"
-    readTimeout: "360"
   stickySessions:
     # -- Enable/disable sticks sessions, see
     # [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/).
@@ -502,8 +501,9 @@ activityStreams:
   emailNotifications: True
 
 clamav:
-  enabled: true
+  enabled: false
   uploadUnscanned: "False"
+  socketType: tcp
   host: clamav
   port: 3310
   timeout: 3600
