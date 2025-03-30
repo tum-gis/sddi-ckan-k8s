@@ -10,12 +10,12 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 type: Opaque
 stringData:
-  CKAN___SMTP__SERVER: {{ .Values.smtp.server | quote }}
-  CKAN___SMTP__STARTTLS: {{ .Values.smtp.startTls | quote }}
-  CKAN___SMTP__USER: {{ .Values.smtp.user | quote }}
-  CKAN___SMTP__PASSWORD: {{ .Values.smtp.password | quote }}
-  CKAN___SMTP__MAIL_FROM: {{ .Values.smtp.mailFrom | quote }}
+  CKAN_SMTP_SERVER: {{ .Values.smtp.server | quote }}
+  CKAN_SMTP_STARTTLS: {{ .Values.smtp.startTls | quote }}
+  CKAN_SMTP_USER: {{ .Values.smtp.user | quote }}
+  CKAN_SMTP_PASSWORD: {{ .Values.smtp.password | quote }}
+  CKAN_SMTP_MAIL_FROM: {{ .Values.smtp.mailFrom | quote }}
   CKAN___SMTP__REPLY_TO: {{ .Values.smtp.replyTo | quote }}
-  EMAIL_TO: {{ .Values.smtp.emailTo | quote }}
-  ERROR_EMAIL_FROM: {{ .Values.smtp.errorEmailFrom | quote }}
+  CKAN___EMAIL_TO: {{ .Values.smtp.emailTo | quote }}
+  CKAN___ERROR_EMAIL_FROM: {{ .Values.smtp.errorEmailFrom | quote }}
 {{- end -}}
