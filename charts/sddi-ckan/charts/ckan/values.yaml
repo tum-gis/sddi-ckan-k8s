@@ -29,7 +29,7 @@ imagePullSecrets: []
 # @default -- See `values.yml` for the list of default initContainers.
 initContainers:
   - name: pg-ready
-    image: bwibo/k8s-init-container:latest
+    image: postgres:alpine
     command:
       - pg_isready
     env:
