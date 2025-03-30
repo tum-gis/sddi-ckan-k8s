@@ -79,10 +79,10 @@ data:
   {{- if .Values.webassets.path }}
   CKAN__WEBASSETS__PATH: {{ .Values.webassets.path | quote }}
   {{- end }}
+  # Clamav settings
   {{- if .Values.clamav.enabled }}
-  # CKANEXT__CLAMAV__SOCKET_PATH: /your/path/to/socket.file
   CKANEXT__CLAMAV__UPLOAD_UNSCANNED: {{ .Values.clamav.uploadUnscanned | quote }}
-  CKANEXT__CLAMAV__SOCKET_TYPE: tcp
+  CKANEXT__CLAMAV__SOCKET_TYPE: {{ .Values.clamav.socketType | quote }}
   CKANEXT__CLAMAV__TCP__HOST: {{ .Values.clamav.host | quote }}
   CKANEXT__CLAMAV__TCP__PORT: {{ .Values.clamav.port | quote }}
   CKANEXT__CLAMAV__TIMEOUT: {{ .Values.clamav.timeout | quote }}
