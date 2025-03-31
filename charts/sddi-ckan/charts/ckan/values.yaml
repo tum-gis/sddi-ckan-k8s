@@ -267,8 +267,9 @@ sysadmin:
   enabled: true
   # -- CKAN admin username
   user: admin
-  # -- CKAN admin password: Note: Min. password length = 8 chars!
-  password: changeMe
+  # -- CKAN admin password
+  # **Note:** Min. password length = 8 chars! The password must at least contain one digit, one uppercase letter and one lowercase letter.
+  password: changeMe123
   # -- CKAN admin eMail address
   email: user@example.de
 

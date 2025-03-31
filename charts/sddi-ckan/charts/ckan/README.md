@@ -180,7 +180,7 @@ A Helm chart for SDDI enabled CKAN.
 | startup.timeoutSeconds | int | `2` | Timeout interval for the startup probe |
 | sysadmin.email | string | `"user@example.de"` | CKAN admin eMail address |
 | sysadmin.enabled | bool | `true` | Enable/disable creating of a CKAN admin user at first startup. |
-| sysadmin.password | string | `"changeMe"` | CKAN admin password: Note: Min. password length = 8 chars! |
+| sysadmin.password | string | `"changeMe123"` | CKAN admin password **Note:** Min. password length = 8 chars! The password must at least contain one digit, one uppercase letter and one lowercase letter. |
 | sysadmin.user | string | `"admin"` | CKAN admin username |
 | tolerations | list | `[]` | [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |
 | volumeMounts | list | See [`values.yml`](values.yml) for the list of default volumeMounts. | Sets [`volumeMounts`](https://kubernetes.io/docs/concepts/storage/volumes). Set to `[]` to disable the default volumeMounts. Set to any list of volumeMount definitions to overwrite the default volumeMounts. Use `extraVolumeMounts` to extend the default volumeMounts. |
