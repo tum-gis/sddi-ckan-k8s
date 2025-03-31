@@ -497,19 +497,29 @@ smtp:
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   errorEmailFrom: "None"
 
+# ClamAV ----------------------------------------------------------------------
+clamav:
+  # [Enable/disable ClamAV extension settings](https://github.com/DataShades/ckanext-clamav)
+  # **Note:** These setting only have effect, when the ClamAV extension is installed in the CKAN image.
+  # This option does not enable/disable the ClamAV extension in the image.
+  enabled: false
+  # [Decide, if unscanned files are uploaded or not](https://github.com/DataShades/ckanext-clamav#config-settings)
+  uploadUnscanned: "False"
+  # [ClamAV connection mechanism](https://github.com/DataShades/ckanext-clamav#config-settings): For this chart `tcp`
+  # is the only supported option.
+  socketType: tcp
+  # [ClamAV TCP/IP hostname](https://github.com/DataShades/ckanext-clamav#config-settings)
+  host: clamav
+  # [ClamAV TCP/IP hostname](https://github.com/DataShades/ckanext-clamav#config-settings)
+  port: 3310
+  # [ClamAV connection timeout](https://github.com/DataShades/ckanext-clamav#config-settings)
+  timeout: 3600
+
 activityStreams:
   # -- [CKAN config enable activity streams](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-activity-streams-enabled)
   enabled: True
   # -- [CKAN config activity stream](https://docs.ckan.org/en/latest/maintaining/configuration.html#activity-streams-settings)
   emailNotifications: True
-
-clamav:
-  enabled: false
-  uploadUnscanned: "False"
-  socketType: tcp
-  host: clamav
-  port: 3310
-  timeout: 3600
 
 # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 resources: {}
