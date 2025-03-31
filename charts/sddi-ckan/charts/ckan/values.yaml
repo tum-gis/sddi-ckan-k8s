@@ -121,8 +121,11 @@ ingress:
   # for more.
   # @default -- See [`values.yml`](values.yml) for the default values.
   annotations:
+    # @ignored
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "360"
+    # @ignored
     nginx.ingress.kubernetes.io/proxy-send-timeout: "360"
+    # @ignored
     nginx.ingress.kubernetes.io/proxy-read-timeout: "360"
   certManager:
     # -- eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace.
