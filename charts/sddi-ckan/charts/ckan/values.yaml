@@ -130,8 +130,8 @@ ingress:
     # -- Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster".
     issuerType: namespace
     # -- Name of the Issuer to use. For certManager.type = namespace
-    # `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available.
-    issuerName: letsencrypt-prod
+    # `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available.
+    issuerName: letsencrypt-production
   stickySessions:
     # -- Enable/disable sticks sessions, see
     # [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/).
