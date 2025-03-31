@@ -87,8 +87,7 @@ A Helm chart for SDDI enabled CKAN.
 | image.repository | string | `"ghcr.io/tum-gis/ckan-sddi"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
-| ingress.annotations | object | `{"nginx.ingress.kubernetes.io/proxy-connect-timeout":"360","nginx.ingress.kubernetes.io/proxy-read-timeout":"360","nginx.ingress.kubernetes.io/proxy-send-timeout":"360"}` | Additional Ingress annotations |
-| ingress.annotations."nginx.ingress.kubernetes.io/proxy-connect-timeout" | string | See [`values.yml`](values.yml) for the default values. | Additional Ingress annotation for e.g. CORS, timeouts, SSL settings. See [nginx-ingress annotations docs](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md) for more. |
+| ingress.annotations | object | See [`values.yml`](values.yml) for the default values. | Additional Ingress annotation for e.g. CORS, timeouts, SSL settings. See [nginx-ingress annotations docs](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md) for more. |
 | ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
 | ingress.certManager.issuerName | string | `"letsencrypt-production"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available. |
 | ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |
