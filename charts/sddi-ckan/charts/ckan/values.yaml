@@ -121,6 +121,7 @@ ingress:
   # -- Additional Ingress annotation for e.g. CORS, timeouts, SSL settings.
   # See [nginx-ingress annotations docs](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md)
   # for more.
+  # @default -- See [`values.yml`](values.yml) for the default values.
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "360"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "360"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "360"
