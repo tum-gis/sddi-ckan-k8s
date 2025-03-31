@@ -322,6 +322,7 @@ locale:
   default: de
   # -- CKAN locale order, see
   # [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings)
+  # @default -- See [`values.yml`](values.yml) for the default values.
   order: de en pt_BR ja it cs_CZ ca es fr el sv sr sr@latin no sk fi ru de pl nl bg ko_KR hu sa sl lv
   # -- CKAN locales offered, see
   # [CKAN internationalization settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#internationalisation-settings)
@@ -479,7 +480,7 @@ smtp:
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   # **Note:** To use SSL auth, omit the port in the server string, if it is the default port 465. Also make
   # sure to set `smtp.startTls = True`.
-  server: "smtpServerURLorIP:465"
+  server: "smtpServerURLorIP:port"
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   user: "smtpUser"
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
