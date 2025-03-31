@@ -499,20 +499,20 @@ smtp:
 
 # ClamAV ----------------------------------------------------------------------
 clamav:
-  # [Enable/disable ClamAV extension settings](https://github.com/DataShades/ckanext-clamav)
+  # -- [Enable/disable ClamAV extension settings](https://github.com/DataShades/ckanext-clamav)
   # **Note:** These setting only have effect, when the ClamAV extension is installed in the CKAN image.
   # This option does not enable/disable the ClamAV extension in the image.
   enabled: false
-  # [Decide, if unscanned files are uploaded or not](https://github.com/DataShades/ckanext-clamav#config-settings)
+  # -- [Decide, if unscanned files are uploaded or not](https://github.com/DataShades/ckanext-clamav#config-settings)
   uploadUnscanned: "False"
-  # [ClamAV connection mechanism](https://github.com/DataShades/ckanext-clamav#config-settings): For this chart `tcp`
+  # -- [ClamAV connection mechanism](https://github.com/DataShades/ckanext-clamav#config-settings): For this chart `tcp`
   # is the only supported option.
   socketType: tcp
-  # [ClamAV TCP/IP hostname](https://github.com/DataShades/ckanext-clamav#config-settings)
+  # -- [ClamAV TCP/IP hostname](https://github.com/DataShades/ckanext-clamav#config-settings)
   host: clamav
-  # [ClamAV TCP/IP hostname](https://github.com/DataShades/ckanext-clamav#config-settings)
+  # -- [ClamAV TCP/IP hostname](https://github.com/DataShades/ckanext-clamav#config-settings)
   port: 3310
-  # [ClamAV connection timeout](https://github.com/DataShades/ckanext-clamav#config-settings)
+  # -- [ClamAV connection timeout](https://github.com/DataShades/ckanext-clamav#config-settings)
   timeout: 3600
 
 activityStreams:

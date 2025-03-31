@@ -49,12 +49,12 @@ A Helm chart for SDDI enabled CKAN.
 | autoscaling.targetCPUUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | autoscaling.targetMemoryUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | backgroundImage | string | `"../base/images/hero.jpg"` | Set URL or path to [CKAN SDDI background image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation). |
-| clamav.enabled | bool | `false` |  |
-| clamav.host | string | `"clamav"` |  |
-| clamav.port | int | `3310` |  |
-| clamav.socketType | string | `"tcp"` |  |
-| clamav.timeout | int | `3600` |  |
-| clamav.uploadUnscanned | string | `"False"` |  |
+| clamav.enabled | bool | `false` | [Enable/disable ClamAV extension settings](https://github.com/DataShades/ckanext-clamav) **Note:** These setting only have effect, when the ClamAV extension is installed in the CKAN image. This option does not enable/disable the ClamAV extension in the image. |
+| clamav.host | string | `"clamav"` | [ClamAV TCP/IP hostname](https://github.com/DataShades/ckanext-clamav#config-settings) |
+| clamav.port | int | `3310` | [ClamAV TCP/IP hostname](https://github.com/DataShades/ckanext-clamav#config-settings) |
+| clamav.socketType | string | `"tcp"` | [ClamAV connection mechanism](https://github.com/DataShades/ckanext-clamav#config-settings): For this chart `tcp` is the only supported option. |
+| clamav.timeout | int | `3600` | [ClamAV connection timeout](https://github.com/DataShades/ckanext-clamav#config-settings) |
+| clamav.uploadUnscanned | string | `"False"` | [Decide, if unscanned files are uploaded or not](https://github.com/DataShades/ckanext-clamav#config-settings) |
 | component | string | `"ckan"` | Role of CKAN in this chart |
 | datapusher.apiToken | string | `nil` | Datapusher API token, see [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings) |
 | datapusher.callback_url_base | string | `"http://ckan:5000/"` | This should be set to cluster internal ckan service domain. [CKAN DataPusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-datapusher-callback-url-base) |
