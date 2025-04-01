@@ -138,9 +138,14 @@ A Helm chart for SDDI enabled CKAN.
 | replicaCount | int | `1` | Number of replicas. Only used if `autoscaling.enabled = false`. **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and, if Pods run on different nodes, a storage that supports RWX. |
 | resources | object | `{}` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | sddiInitDataJson | string | `"init_data.json"` | Local path or URL to File path or URL to [CKAN SDDI `init_data.json`](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json). This file allows to specify pre-defined set of SDDI CKAN main categories, topics, and organizations. |
-| security.redis.db | int | `1` |  |
-| security.redis.host | string | `"redis-hl"` |  |
-| security.redis.port | int | `6379` |  |
+| security.brute_force_key | string | `"user_name"` | [ckanext-security brute force key](https://github.com/MarijaKnezevic/ckanext-security#brute-force-protection) |
+| security.disable_password_reset_override | bool | `true` | [ckanext-security password reset overrride](https://github.com/MarijaKnezevic/ckanext-security#additional-settings-for-sddi) |
+| security.enable_totp | bool | `false` | [ckanext-security enable/disable 2FA](https://github.com/MarijaKnezevic/ckanext-security#additional-settings-for-sddi) |
+| security.lock_timeout | int | `900` | [ckanext-security brute force lock timeout](https://github.com/MarijaKnezevic/ckanext-security#brute-force-protection) |
+| security.login_max_count | int | `3` | [ckanext-security brute force lock count](https://github.com/MarijaKnezevic/ckanext-security#brute-force-protection) |
+| security.redis.db | int | `1` | [ckanext-security redis db](https://github.com/MarijaKnezevic/ckanext-security#additional-settings-for-sddi) **Note:** This needs to be a different database than the CKAN redis database. See `redis.url`. |
+| security.redis.host | string | `"redis-hl"` | [ckanext-security redis host](https://github.com/MarijaKnezevic/ckanext-security#additional-settings-for-sddi) |
+| security.redis.port | int | `6379` | [ckanext-security redis port](https://github.com/MarijaKnezevic/ckanext-security#additional-settings-for-sddi) |
 | securityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | service.port | int | `5000` | Service port for http |
 | service.type | string | `"ClusterIP"` | Type of service for http |
