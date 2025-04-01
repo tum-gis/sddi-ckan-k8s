@@ -288,32 +288,36 @@ sysadmin:
   email: user@example.de
 
 session:
-  # -- [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret):
-  # If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated.
-  # **Note:** In a cluster environment this values need to be the same on each instance.
-  beakerSessionSecret:
-  # -- [CKAN beaker session validate key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-validate-key):
-  # If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated.
-  # **Note:** In a cluster environment this values need to be the same on each instance.
-  beakerSessionValidateKey:
-  # -- [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key),
-  # defaults to *ckan* if left empty.
-  beakerSessionKey: ckan-session
-  # -- [CKAN beaker session type](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-type),
-  # -- defaults to "cookie"  if left empty.
-  beakerSessionType:
-  # -- [CKAN beaker session timeout](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-timeout),
-  # -- defaults to 600 if left empty.
-  beakerSessionTimeout:
-  # -- [CKAN beaker session secure](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secure),
-  # -- defaults to `False` if left empty.
-  beakerSessionSecure:
-  # -- [CKAN beaker session samesite](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-samesite),
-  # -- defaults to "Lax" if left empty.
-  beakerSamesite:
-  # -- [CKAN beaker session http only](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-httponly),
-  # -- defaults to `True` if left empty.
-  beakerSessionHttpOnly:
+  # [CKAN secret key](https://docs.ckan.org/en/latest/maintaining/configuration.html#secret-key)
+  # **Note:** In a cluster this must be the same on all instances.
+  # -- defaults to 64 char long AlphaNumeric random string if left empty.
+  secretKey:
+  # -- [CKAN session type](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-type),
+  # -- defaults to "cookie" if left empty.
+  type: cookie
+  # -- [CKAN session permanent](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-permanent),
+  # -- defaults to `true` if left empty.
+  permanent: true
+  # -- [CKAN permanent session lifetime](https://docs.ckan.org/en/2.11/maintaining/configuration.html#permanent-session-lifetime),
+  # -- defaults to "3600" if left empty.
+  permanentSessionLifetime: 3600
+  # -- [CKAN permanent session refresh each request](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-refresh-each-request),
+  # -- defaults to "False" if left empty.
+  refreshEachRequest: false
+  cookie:
+    # -- [CKAN session name](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-name),
+    # defaults to *ckan* if left empty.
+    name: ckan
+    # -- [CKAN session cookie domain](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-domain),
+    domain:
+    # -- [CKAN session cookie path](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-path),
+    path:
+    # -- [CKAN session cookie http only](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-httponly),
+    httpOnly: true
+    # -- [CKAN session cookie secure](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-secure),
+    secure: true
+    # -- [CKAN session cookie samesite](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-samesite),
+    sameSite: Lax
 
 apiToken:
   # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-nbytes)
