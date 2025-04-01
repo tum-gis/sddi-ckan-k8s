@@ -35,6 +35,7 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-secure: {{ .Values.ingress.stickySessions.sessionCookie.secure | quote }}
     nginx.ingress.kubernetes.io/session-cookie-path: {{ .Values.ingress.stickySessions.sessionCookie.path | quote }}
     nginx.ingress.kubernetes.io/session-cookie-change-on-failure: {{ .Values.ingress.stickySessions.sessionCookie.changeOnFailure | quote }}
+    nginx.ingress.kubernetes.io/session-cookie-samesite: {{ .Values.ingress.stickySessions.sessionCookie.sameSite | quote }}
     {{- end }}
     {{- if .Values.ingress.cors.enabled }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
