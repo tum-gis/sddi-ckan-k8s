@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 type: Opaque
 stringData:
-  CKAN___SEKRET_KEY: {{ .Values.session.secretKey | default (randAlphaNum 20) | quote }}
+  CKAN___SECRET_KEY: {{ .Values.session.secretKey | default (randAlphaNum 20) | quote }}
   CKAN___SESSION_TYPE: {{ .Values.session.type | default "cookie" | quote }}
   CKAN___SESSION_PERMANENT: {{ .Values.session.permanent | default "True" | quote }}
   CKAN___PERMANENT_SESSION_LIFETIME: {{ .Values.session.permanentSessionLifetime | default "3600" | quote }}
