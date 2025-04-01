@@ -157,10 +157,10 @@ A Helm chart for SDDI enabled CKAN.
 | session.cookie.httpOnly | bool | `true` | [CKAN session cookie http only](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-httponly), |
 | session.cookie.name | string | `"ckan"` | [CKAN session name](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-name), defaults to *ckan* if left empty. |
 | session.cookie.path | string | `nil` | [CKAN session cookie path](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-path), |
-| session.cookie.sameSite | string | `"Lax"` | [CKAN session cookie samesite](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-samesite), |
+| session.cookie.sameSite | string | `"Strict"` | [CKAN session cookie samesite](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-samesite), |
 | session.cookie.secure | bool | `true` | [CKAN session cookie secure](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-secure), |
 | session.permanent | bool | `true` | defaults to `true` if left empty. |
-| session.permanentSessionLifetime | int | `3600` | defaults to "3600" if left empty. |
+| session.permanentSessionLifetime | int | `172800` | defaults to "3600" if left empty. |
 | session.refreshEachRequest | bool | `false` | defaults to "False" if left empty. |
 | session.secretKey | string | `nil` | defaults to 64 char long AlphaNumeric random string if left empty. |
 | session.type | string | `"cookie"` | defaults to "cookie" if left empty. |

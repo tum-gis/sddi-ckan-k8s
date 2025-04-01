@@ -302,7 +302,7 @@ session:
   permanent: true
   # -- [CKAN permanent session lifetime](https://docs.ckan.org/en/2.11/maintaining/configuration.html#permanent-session-lifetime),
   # -- defaults to "3600" if left empty.
-  permanentSessionLifetime: 3600
+  permanentSessionLifetime: 172800
   # -- [CKAN permanent session refresh each request](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-refresh-each-request),
   # -- defaults to "False" if left empty.
   refreshEachRequest: false
@@ -319,7 +319,7 @@ session:
     # -- [CKAN session cookie secure](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-secure),
     secure: true
     # -- [CKAN session cookie samesite](https://docs.ckan.org/en/2.11/maintaining/configuration.html#session-cookie-samesite),
-    sameSite: Lax
+    sameSite: Strict
 
 apiToken:
   # -- [CKAN API token settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#api-token-nbytes)
