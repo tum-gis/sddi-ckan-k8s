@@ -33,12 +33,13 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
       volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ include "solr.fullname" . }}
-        - name: init
-          configMap:
-            name: {{ include "solr.fullname" . }}-init
+      {{- if .Values.volumes }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.volumes  "context" $ ) | nindent 8 }}
+      {{- end }}
+
+      {{- if .Values.extraVolumes }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.extraVolumes  "context" $ ) | nindent 8 }}
+      {{- end }}
 
       initContainers:
       {{- if .Values.initContainers }}
@@ -64,11 +65,13 @@ spec:
               protocol: TCP
 
           volumeMounts:
-            - name: data
-              mountPath: /var/solr/data
-            - name: init
-              mountPath: /docker-entrypoint-initdb.d/ckan_init_solr.sh
-              subPath: ckan_init_solr.sh
+          {{- if .Values.volumeMounts }}
+          {{- include "common.tplvalues.render" ( dict "value" .Values.volumeMounts  "context" $ ) | nindent 10 }}
+          {{- end }}
+
+          {{- if .Values.extraVolumeMounts }}
+          {{- include "common.tplvalues.render" ( dict "value" .Values.extraVolumeMounts  "context" $ ) | nindent 10 }}
+          {{- end }}
 
           livenessProbe:
             periodSeconds: 10

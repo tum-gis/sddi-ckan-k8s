@@ -87,11 +87,40 @@ initContainers:
 # The initContainers specified here, are appended to the ones specified in `initContainers`.
 extraInitContainers: []
 
+# Volumes ---------------------------------------------------------------------
+# -- Sets [`volumes`](https://kubernetes.io/docs/concepts/storage/volumes).
+# Set to `[]` to disable the default volumes.
+# Set to any list of volume definitions to overwrite the default volumes.
+# Use `extraVolumes` to extend the default volumes.
+# @default -- See [`values.yml`](values.yml) for the list of default volumes.
+volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: '{{ include "solr.fullname" . }}'
+
+# -- Sets additional [`volumes`](https://kubernetes.io/docs/concepts/storage/volumes).
+# The volumes specified here, are appended to the ones specified in `volumes`.
+extraVolumes: []
+
+# VolumeMounts ----------------------------------------------------------------
+# -- Sets [`volumeMounts`](https://kubernetes.io/docs/concepts/storage/volumes).
+# Set to `[]` to disable the default volumeMounts.
+# Set to any list of volumeMount definitions to overwrite the default volumeMounts.
+# Use `extraVolumeMounts` to extend the default volumeMounts.
+# @default -- See [`values.yml`](values.yml) for the list of default volumeMounts.
+volumeMounts:
+  - name: data
+    mountPath: /var/solr/data
+
+# -- Sets additional [`volumeMounts`](https://kubernetes.io/docs/concepts/storage/volumes).
+# The volumeMounts specified here, are appended to the ones specified in `volumeMounts`.
+extraVolumeMounts: []
+
 # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 resources: {}
 # -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 nodeSelector: {}
-# -- [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
+# -- [k8s: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 tolerations: []
 # -- [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 affinity: {}
