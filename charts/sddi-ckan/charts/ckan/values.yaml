@@ -198,7 +198,7 @@ maxUploadSizeMB: 250
 # -- [CKAN licences group url](https://docs.ckan.org/en/latest/maintaining/configuration.html#licenses-group-url):
 # A URL pointing to a JSON file containing a list of license objects.
 # @default -- See [`values.yml`](values.yml) for the default values.
-licensesGroupUrl: "https://raw.githubusercontent.com/tum-gis/ckanext-grouphierarchy-sddi/main/ckanext/grouphierarchy/licenses_SDDI.json"
+licensesGroupUrl: "https://github.com/MarijaKnezevic/ckanext-theme-sddi/blob/main/ckanext/theme_sddi/licenses_SDDI.json"
 # -- [CKAN config dafault_views](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-views-default-views):
 # **Note**: Make sure the required view plugins are loaded!
 # @default -- See [`values.yml`](values.yml) for the default values.
