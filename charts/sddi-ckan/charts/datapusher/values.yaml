@@ -135,15 +135,15 @@ initContainers:
       - pg_isready
     env:
       - name: PGHOST
-        value: '{{ .Values.global.db.host | default .Values.db.host }}'
+        value: '{{ .Values.global.datapusher.db.host | default .Values.db.host }}'
       - name: PGPORT
-        value: '{{ .Values.global.db.port | default .Values.db.port }}'
+        value: '{{ .Values.global.datapusher.db.port | default .Values.db.port }}'
       - name: PGDATABASE
-        value: '{{ .Values.global.db.dbname | default .Values.db.dbname }}'
+        value: '{{ .Values.global.datapusher.db.dbname | default .Values.db.dbname }}'
       - name: PGUSER
-        value: '{{ .Values.global.db.auth.username | default .Values.db.auth.usernme }}'
+        value: '{{ .Values.global.datapusher.db.auth.username | default .Values.db.auth.usernme }}'
       - name: PGPASSWORD
-        value: '{{ .Values.global.db.auth.password | default .Values.db.auth.password }}'
+        value: '{{ .Values.global.datapusher.db.auth.password | default .Values.db.auth.password }}'
 
 # -- Sets additional [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 # The initContainers specified here, are appended to the ones specified in `initContainers`.
