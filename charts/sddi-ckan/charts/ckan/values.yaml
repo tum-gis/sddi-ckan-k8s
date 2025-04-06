@@ -512,9 +512,9 @@ smtp:
   # **Note:** To use SSL auth, make sure this settings is set to `True`. See the note for `smtp.server` too.
   startTls: "True"
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
-  replyTo: "None"
+  replyTo: ""
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
-  emailTo: "None"
+  emailTo: ""
   # -- [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings)
   errorEmailFrom: "None"
 

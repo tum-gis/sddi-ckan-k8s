@@ -46,9 +46,7 @@ data:
   CKAN__SITE_LOGO: {{ .Values.siteLogo | quote }}
   CKAN__FAVICON: {{ .Values.favicon | quote }}
   CKAN__SITE_ABOUT: {{ .Values.siteAbout | quote }}
-  CKAN___LICENSES_GROUP_URL: {{ .Values.licensesGroupUrl | quote }}
   # SDDI CKAN settings
-  CKAN__THEME-SDDI__INIT_DATA: {{ .Values.sddiInitDataJson | quote }}
   # Locale settings
   CKAN__LOCALE_DEFAULT: {{ .Values.locale.default | quote }}
   CKAN__LOCALE_ORDER: {{ .Values.locale.order | quote }}
@@ -79,6 +77,10 @@ data:
   CKANEXT__SECURITY__BRUTE_FORCE_KEY: {{ .Values.security.brute_force_key | quote }}
   CKANEXT__SECURITY__DISABLE_PASSWORD_RESET_OVERRIDE: {{ .Values.security.disable_password_reset_override | quote }}
   CKANEXT__SECURITY__ENABLE_TOTP: {{ .Values.security.enable_totp | quote }}
+  # SDDI
+  CKAN___LICENSES_GROUP_URL: {{ .Values.licensesGroupUrl | quote }}
+  CKAN___GROUPHIERARCHY__INIT_DATA: {{ .Values.sddiInitDataJson | quote }}
+  CKAN___THEME-SDDI__INIT_DATA: {{ .Values.sddiInitDataJson | quote }}
 
   # Others
   CKAN__DATASET__CREATE_ON_UI_REQUIRES_RESOURCES: {{ .Values.form.create_on_ui_requires_resources | quote }}

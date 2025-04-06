@@ -172,11 +172,11 @@ A Helm chart for SDDI enabled CKAN.
 | siteLogo | string | `"/base/images/logo_left.png"` |  |
 | siteTitle | string | `"My SDDI CKAN instance"` | Title of the CKAN instance, displayed in Browser windows/tab name |
 | siteUrl | string | `"https://my-ckan.de"` | CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains` and include the protocol e.g. (`https://my.domain.de`). [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url) |
-| smtp.emailTo | string | `"None"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
+| smtp.emailTo | string | `""` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.errorEmailFrom | string | `"None"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.mailFrom | string | `"postmaster@domain.com"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.password | string | `"smtpPassword"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
-| smtp.replyTo | string | `"None"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
+| smtp.replyTo | string | `""` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.server | string | `"smtpServerURLorIP:port"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) **Note:** To use SSL auth, omit the port in the server string, if it is the default port 465. Also make sure to set `smtp.startTls = True`. |
 | smtp.startTls | string | `"True"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) **Note:** To use SSL auth, make sure this settings is set to `True`. See the note for `smtp.server` too. |
 | smtp.user | string | `"smtpUser"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
