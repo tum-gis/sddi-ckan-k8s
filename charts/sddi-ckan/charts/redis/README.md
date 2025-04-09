@@ -1,6 +1,6 @@
 # redis
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.2.4-alpine](https://img.shields.io/badge/AppVersion-7.2.4--alpine-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.4.2-alpine](https://img.shields.io/badge/AppVersion-7.4.2--alpine-informational?style=flat-square)
 
 A Helm chart for basic Redis for use with CKAN.
 
