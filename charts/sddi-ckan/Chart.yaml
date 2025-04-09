@@ -46,7 +46,7 @@ dependencies:
   - name: cert-manager
     alias: cert-manager
     condition: cert-manager.enabled
-    version: "~1.17.1"
+    version: "~1.17.0"
     repository: https://charts.jetstack.io
   - name: common
     repository: oci://registry-1.docker.io/bitnamicharts

@@ -30,7 +30,7 @@ Kubernetes: `>= 1.23.0-0`
 |  | postgis | * |
 |  | redis | * |
 |  | solr | * |
-| https://charts.jetstack.io | cert-manager(cert-manager) | ~1.17.1 |
+| https://charts.jetstack.io | cert-manager(cert-manager) | ~1.17.0 |
 | https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ~4.12.0 |
 | https://wiremind.github.io/wiremind-helm-charts | clamav | ~2.8.0 |
 | oci://registry-1.docker.io/bitnamicharts | common | 2.x.x |
