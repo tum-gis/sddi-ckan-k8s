@@ -25,11 +25,7 @@ metadata:
     cert-manager.io/issuer: {{ .Values.global.ingress.certManager.issuerName | default .Values.ingress.certManager.issuerName | quote }}
     {{- end }}
     nginx.ingress.kubernetes.io/rewrite-target: "/$1"
-    {{- with .Values.ingress.annotations }}
-    {{- toYaml . | nindent 4 }}
-    {{- end }}
     nginx.ingress.kubernetes.io/proxy-body-size: "{{ .Values.maxUploadSizeMB }}m"
-    nginx.org/client-max-body-size: "{{ .Values.maxUploadSizeMB }}m"
     {{- if .Values.ingress.stickySessions.enabled }}
     # https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/
     nginx.ingress.kubernetes.io/affinity: "cookie"
@@ -39,9 +35,13 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-secure: {{ .Values.ingress.stickySessions.sessionCookie.secure | quote }}
     nginx.ingress.kubernetes.io/session-cookie-path: {{ .Values.ingress.stickySessions.sessionCookie.path | quote }}
     nginx.ingress.kubernetes.io/session-cookie-change-on-failure: {{ .Values.ingress.stickySessions.sessionCookie.changeOnFailure | quote }}
+    nginx.ingress.kubernetes.io/session-cookie-samesite: {{ .Values.ingress.stickySessions.sessionCookie.sameSite | quote }}
     {{- end }}
     {{- if .Values.ingress.cors.enabled }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
+    {{- end }}
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
   ingressClassName: {{ .Values.global.ingress.className | default .Values.ingress.className }}

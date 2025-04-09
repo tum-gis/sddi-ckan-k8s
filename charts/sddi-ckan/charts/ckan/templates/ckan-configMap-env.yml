@@ -46,9 +46,7 @@ data:
   CKAN__SITE_LOGO: {{ .Values.siteLogo | quote }}
   CKAN__FAVICON: {{ .Values.favicon | quote }}
   CKAN__SITE_ABOUT: {{ .Values.siteAbout | quote }}
-  CKAN___LICENSES_GROUP_URL: {{ .Values.licensesGroupUrl | quote }}
   # SDDI CKAN settings
-  CKAN__GROUPHIERARCHY__INIT_DATA: {{ .Values.sddiInitDataJson | quote }}
   # Locale settings
   CKAN__LOCALE_DEFAULT: {{ .Values.locale.default | quote }}
   CKAN__LOCALE_ORDER: {{ .Values.locale.order | quote }}
@@ -70,10 +68,32 @@ data:
   CKAN__PREVIEW__JSON_FORMATS: {{ .Values.preview.jsonFormats | quote }}
   CKAN__PREVIEW__JSONP_FORMATS: {{ .Values.preview.jsonpFormats | quote }}
   CKAN__PREVIEW__IMAGE_FORMATS: {{ .Values.preview.imageFormats | quote }}
+  # Security
+  CKANEXT__SECURITY__REDIS__HOST: {{ .Values.security.redis.host | quote }}
+  CKANEXT__SECURITY__REDIS__PORT: {{ .Values.security.redis.port | quote }}
+  CKANEXT__SECURITY__REDIS__DB: {{ .Values.security.redis.db | quote }}
+  CKANEXT__SECURITY__LOCK_TIMEOUT: {{ .Values.security.lock_timeout | quote }}
+  CKANEXT__SECURITY__LOGIN_MAX_COUNT: {{ .Values.security.login_max_count | quote }}
+  CKANEXT__SECURITY__BRUTE_FORCE_KEY: {{ .Values.security.brute_force_key | quote }}
+  CKANEXT__SECURITY__DISABLE_PASSWORD_RESET_OVERRIDE: {{ .Values.security.disable_password_reset_override | quote }}
+  CKANEXT__SECURITY__ENABLE_TOTP: {{ .Values.security.enable_totp | quote }}
+  # SDDI
+  CKAN___LICENSES_GROUP_URL: {{ .Values.licensesGroupUrl | quote }}
+  CKAN___GROUPHIERARCHY__INIT_DATA: {{ .Values.sddiInitDataJson | quote }}
+  CKAN___THEME-SDDI__INIT_DATA: {{ .Values.sddiInitDataJson | quote }}
+
   # Others
   CKAN__DATASET__CREATE_ON_UI_REQUIRES_RESOURCES: {{ .Values.form.create_on_ui_requires_resources | quote }}
   {{- if .Values.webassets.path }}
   CKAN__WEBASSETS__PATH: {{ .Values.webassets.path | quote }}
+  {{- end }}
+  # Clamav settings
+  {{- if .Values.clamav.enabled }}
+  CKANEXT__CLAMAV__UPLOAD_UNSCANNED: {{ .Values.clamav.uploadUnscanned | quote }}
+  CKANEXT__CLAMAV__SOCKET_TYPE: {{ .Values.clamav.socketType | quote }}
+  CKANEXT__CLAMAV__TCP__HOST: {{ .Values.clamav.host | quote }}
+  CKANEXT__CLAMAV__TCP__PORT: {{ .Values.clamav.port | quote }}
+  CKANEXT__CLAMAV__TIMEOUT: {{ .Values.clamav.timeout | quote }}
   {{- end }}
   # Additional env vars from values.yaml
   {{- with .Values.extraEnv }}

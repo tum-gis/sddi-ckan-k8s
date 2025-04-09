@@ -1,0 +1,31 @@
+{{- if .Values.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "ckan.fullname" . }}-init
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "ckan.labels" . | nindent 4 }}
+    app.kubernetes.io/part-of: sddi-ckan
+    app.kubernetes.io/component: {{ .Values.component }}
+data:
+  ckan_init_data.sh: |
+    #!/bin/bash
+
+    set -e
+
+    echo -e "\nSearch and replace for the site_url"
+    sed -i 's|^ckan\.site_url *= *.*|ckan.site_url = {{ .Values.siteUrl }}|' ckan.ini
+
+    echo -e "\nSDDI theme data init"
+    ckan -c "${CKAN_INI}" theme-sddi init_data || true
+
+    echo -e "\nDB activity upgrade"
+    ckan -c "${CKAN_INI}" db upgrade -p activity || true
+
+    echo -e "\nDB heroslideradmin upgrade"
+    ckan -c "${CKAN_INI}" db upgrade -p heroslideradmin || true
+
+    echo -e "\nDB security upgrade"
+    ckan -c "${CKAN_INI}" db upgrade -p security || true
+{{- end -}}

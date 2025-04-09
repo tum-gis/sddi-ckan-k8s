@@ -1,6 +1,6 @@
 # ckan
 
-![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
+![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.1.0](https://img.shields.io/badge/AppVersion-3.1.0-informational?style=flat-square)
 
 A Helm chart for SDDI enabled CKAN.
 
@@ -35,7 +35,7 @@ A Helm chart for SDDI enabled CKAN.
 | auth.create_default_api_keys | bool | `false` |  |
 | auth.create_unowned_dataset | bool | `false` |  |
 | auth.create_user_via_api | bool | `false` |  |
-| auth.create_user_via_web | bool | `true` |  |
+| auth.create_user_via_web | bool | `false` |  |
 | auth.public_activity_stream_detail | bool | `true` |  |
 | auth.public_user_details | bool | `false` |  |
 | auth.roles_that_cascade_to_sub_groups | string | `"admin editor member"` |  |
@@ -49,6 +49,12 @@ A Helm chart for SDDI enabled CKAN.
 | autoscaling.targetCPUUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | autoscaling.targetMemoryUtilizationPercentage | string | `nil` | [HorizontalPodAutoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/). |
 | backgroundImage | string | `"../base/images/hero.jpg"` | Set URL or path to [CKAN SDDI background image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi#personalisation). |
+| clamav.enabled | bool | `false` | [Enable/disable ClamAV extension settings](https://github.com/DataShades/ckanext-clamav) **Note:** These setting only have effect, when the ClamAV extension is installed in the CKAN image. This option does not enable/disable the ClamAV extension in the image. |
+| clamav.host | string | `"clamav"` | [ClamAV TCP/IP hostname](https://github.com/DataShades/ckanext-clamav#config-settings) |
+| clamav.port | int | `3310` | [ClamAV TCP/IP hostname](https://github.com/DataShades/ckanext-clamav#config-settings) |
+| clamav.socketType | string | `"tcp"` | [ClamAV connection mechanism](https://github.com/DataShades/ckanext-clamav#config-settings): For this chart `tcp` is the only supported option. |
+| clamav.timeout | int | `3600` | [ClamAV connection timeout](https://github.com/DataShades/ckanext-clamav#config-settings) |
+| clamav.uploadUnscanned | string | `"False"` | [Decide, if unscanned files are uploaded or not](https://github.com/DataShades/ckanext-clamav#config-settings) |
 | component | string | `"ckan"` | Role of CKAN in this chart |
 | datapusher.apiToken | string | `nil` | Datapusher API token, see [CKAN Datapusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#datapusher-settings) |
 | datapusher.callback_url_base | string | `"http://ckan:5000/"` | This should be set to cluster internal ckan service domain. [CKAN DataPusher settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-datapusher-callback-url-base) |
@@ -75,16 +81,15 @@ A Helm chart for SDDI enabled CKAN.
 | favicon | string | `"/base/images/ckan.ico"` | Path to CKAN favicon. Custom logos will be located in e.g. `/webassets/`. See `webassets.path` setting. [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-logo) |
 | featured.groups | string | `"dataset online-application online-service project software method device geoobject"` | [CKAN featured groups settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-featured-groups) |
 | featured.orgs | string | `"bayerische-vermessungsverwaltung lehrstuhl-fur-geoinformatik bayern-innovativ"` | [CKAN featured orgs settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-featured-orgs) |
-| form.create_on_ui_requires_resources | bool | `false` | CKAN form settings, see [CKAN configuration form](https://docs.ckan.org/en/latest/maintaining/configuration.html#form-settings) |
+| form.create_on_ui_requires_resources | bool | `true` | CKAN form settings, see [CKAN configuration form](https://docs.ckan.org/en/latest/maintaining/configuration.html#form-settings) |
 | fullnameOverride | string | `"ckan"` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |
 | image.repository | string | `"ghcr.io/tum-gis/ckan-sddi"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
-| ingress.annotations | string | `nil` | Additional Ingress annotations |
-| ingress.certManager | object | See [`values.yml`](values.yml) for the default values. | Additional Ingress annotation for e.g. CORS, timeouts, SSL settings. See [nginx-ingress annotations docs](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md) for more. |
+| ingress.annotations | object | See [`values.yml`](values.yml) for the default values. | Additional Ingress annotation for e.g. CORS, timeouts, SSL settings. See [nginx-ingress annotations docs](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md) for more. |
 | ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
-| ingress.certManager.issuerName | string | `"letsencrypt-staging"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-prod` and `self-signed` are available. |
+| ingress.certManager.issuerName | string | `"letsencrypt-production"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available. |
 | ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |
 | ingress.className | string | `"nginx"` | Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class) to use in Ingress routes. |
 | ingress.cors.enabled | bool | `true` | Enable/disable [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing). See [ingress-nginx cors settings](https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md#enable-cors) for details on CORS configuration and default settings. Use `ingress.annotations` to overwrite the default configuration annotations. |
@@ -92,11 +97,12 @@ A Helm chart for SDDI enabled CKAN.
 | ingress.enabled | bool | `true` | Enable/disable Ingress. |
 | ingress.stickySessions.enabled | bool | `true` | Enable/disable sticks sessions, see [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/). |
 | ingress.stickySessions.sessionCookie.affinityMode | string | `"balanced"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
-| ingress.stickySessions.sessionCookie.changeOnFailure | string | `"true"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
+| ingress.stickySessions.sessionCookie.changeOnFailure | bool | `true` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.maxAge | string | `"172800"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
-| ingress.stickySessions.sessionCookie.name | string | `"route"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
+| ingress.stickySessions.sessionCookie.name | string | `"ckan-route"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.stickySessions.sessionCookie.path | string | `"/"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
-| ingress.stickySessions.sessionCookie.secure | string | `"false"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
+| ingress.stickySessions.sessionCookie.sameSite | string | `"Strict"` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
+| ingress.stickySessions.sessionCookie.secure | bool | `true` | [Nginx Ingress Controller Sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/) |
 | ingress.tls.secretName | string | `nil` | Specify a custom tls secret name. This overwrites `global.ingress.tls.secretName`. |
 | initContainers | list | See `values.yml` for the list of default initContainers. | Sets [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/). Set to `[]` to disable the default initContainers. Set to any list of initContainer definitions to overwrite the default initContainers. Use `extraInitContainers` to extend the default initContainers. |
 | licensesGroupUrl | string | See [`values.yml`](values.yml) for the default values. | [CKAN licences group url](https://docs.ckan.org/en/latest/maintaining/configuration.html#licenses-group-url): A URL pointing to a JSON file containing a list of license objects. |
@@ -133,20 +139,31 @@ A Helm chart for SDDI enabled CKAN.
 | replicaCount | int | `1` | Number of replicas. Only used if `autoscaling.enabled = false`. **Note:** Running multiple replicas requires to enable persistent data storage (`persistence.enabled = true`) and, if Pods run on different nodes, a storage that supports RWX. |
 | resources | object | `{}` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | sddiInitDataJson | string | `"init_data.json"` | Local path or URL to File path or URL to [CKAN SDDI `init_data.json`](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json). This file allows to specify pre-defined set of SDDI CKAN main categories, topics, and organizations. |
+| security.brute_force_key | string | `"user_name"` | [ckanext-security brute force key](https://github.com/MarijaKnezevic/ckanext-security#brute-force-protection) |
+| security.disable_password_reset_override | bool | `true` | [ckanext-security password reset overrride](https://github.com/MarijaKnezevic/ckanext-security#additional-settings-for-sddi) |
+| security.enable_totp | bool | `false` | [ckanext-security enable/disable 2FA](https://github.com/MarijaKnezevic/ckanext-security#additional-settings-for-sddi) |
+| security.lock_timeout | int | `900` | [ckanext-security brute force lock timeout](https://github.com/MarijaKnezevic/ckanext-security#brute-force-protection) |
+| security.login_max_count | int | `3` | [ckanext-security brute force lock count](https://github.com/MarijaKnezevic/ckanext-security#brute-force-protection) |
+| security.redis.db | int | `1` | [ckanext-security redis db](https://github.com/MarijaKnezevic/ckanext-security#additional-settings-for-sddi) **Note:** This needs to be a different database than the CKAN redis database. See `redis.url`. |
+| security.redis.host | string | `"redis-hl"` | [ckanext-security redis host](https://github.com/MarijaKnezevic/ckanext-security#additional-settings-for-sddi) |
+| security.redis.port | int | `6379` | [ckanext-security redis port](https://github.com/MarijaKnezevic/ckanext-security#additional-settings-for-sddi) |
 | securityContext | object | `{}` | [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 | service.port | int | `5000` | Service port for http |
 | service.type | string | `"ClusterIP"` | Type of service for http |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
-| session.beakerSamesite | string | `nil` | defaults to "Lax" if left empty. |
-| session.beakerSessionHttpOnly | string | `nil` | defaults to `True` if left empty. |
-| session.beakerSessionKey | string | `"ckan-session"` | [CKAN beaker session key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-key), defaults to *ckan* if left empty. |
-| session.beakerSessionSecret | string | `nil` | [CKAN beaker session secret](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-secret): If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated. **Note:** In a cluster environment this values need to be the same on each instance. |
-| session.beakerSessionSecure | string | `nil` | defaults to `False` if left empty. |
-| session.beakerSessionTimeout | string | `nil` | defaults to 600 if left empty. |
-| session.beakerSessionType | string | `nil` | defaults to "cookie"  if left empty. |
-| session.beakerSessionValidateKey | string | `nil` | [CKAN beaker session validate key](https://docs.ckan.org/en/latest/maintaining/configuration.html#beaker-session-validate-key): If left empty, a [64 char random AlphaNum](https://docs.gomplate.ca/functions/random/#random-alphanum) is generated. **Note:** In a cluster environment this values need to be the same on each instance. |
+| session.cookie.domain | string | `nil` | [CKAN session cookie domain](https://docs.ckan.org/en/latest/maintaining/configuration.html#session-cookie-domain), |
+| session.cookie.httpOnly | bool | `true` | [CKAN session cookie http only](https://docs.ckan.org/en/latest/maintaining/configuration.html#session-cookie-httponly), |
+| session.cookie.name | string | `"ckan"` | [CKAN session name](https://docs.ckan.org/en/latest/maintaining/configuration.html#session-cookie-name), defaults to *ckan* if left empty. |
+| session.cookie.path | string | `nil` | [CKAN session cookie path](https://docs.ckan.org/en/latest/maintaining/configuration.html#session-cookie-path), |
+| session.cookie.sameSite | string | `"Strict"` | [CKAN session cookie samesite](https://docs.ckan.org/en/latest/maintaining/configuration.html#session-cookie-samesite), |
+| session.cookie.secure | bool | `true` | [CKAN session cookie secure](https://docs.ckan.org/en/latest/maintaining/configuration.html#session-cookie-secure), |
+| session.permanent | bool | `true` | defaults to `true` if left empty. |
+| session.permanentSessionLifetime | int | `172800` | defaults to "3600" if left empty. |
+| session.refreshEachRequest | bool | `false` | defaults to "False" if left empty. |
+| session.secretKey | string | `nil` | defaults to 64 char long AlphaNumeric random string if left empty. |
+| session.type | string | `"cookie"` | defaults to "cookie" if left empty. |
 | siteAbout | string | `"My CKAN about info. You can use Markdown here."` | [CKAN config about](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-about) |
 | siteDescription | string | `"This is my SDDI CKAN instance description."` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-description) |
 | siteId | string | `"default"` | [CKAN config site_id](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-id) |
@@ -155,11 +172,11 @@ A Helm chart for SDDI enabled CKAN.
 | siteLogo | string | `"/base/images/logo_left.png"` |  |
 | siteTitle | string | `"My SDDI CKAN instance"` | Title of the CKAN instance, displayed in Browser windows/tab name |
 | siteUrl | string | `"https://my-ckan.de"` | CKAN site url. This should match a domain name of CKAN specified in `ingress.domains`/`global.ingress.domains` and include the protocol e.g. (`https://my.domain.de`). [CKAN configuration site settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#ckan-site-url) |
-| smtp.emailTo | string | `"None"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
+| smtp.emailTo | string | `""` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.errorEmailFrom | string | `"None"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.mailFrom | string | `"postmaster@domain.com"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.password | string | `"smtpPassword"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
-| smtp.replyTo | string | `"None"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
+| smtp.replyTo | string | `""` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
 | smtp.server | string | `"smtpServerURLorIP:port"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) **Note:** To use SSL auth, omit the port in the server string, if it is the default port 465. Also make sure to set `smtp.startTls = True`. |
 | smtp.startTls | string | `"True"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) **Note:** To use SSL auth, make sure this settings is set to `True`. See the note for `smtp.server` too. |
 | smtp.user | string | `"smtpUser"` | [CKAN SMTP settings](https://docs.ckan.org/en/latest/maintaining/configuration.html#email-settings) |
@@ -172,7 +189,7 @@ A Helm chart for SDDI enabled CKAN.
 | startup.timeoutSeconds | int | `2` | Timeout interval for the startup probe |
 | sysadmin.email | string | `"user@example.de"` | CKAN admin eMail address |
 | sysadmin.enabled | bool | `true` | Enable/disable creating of a CKAN admin user at first startup. |
-| sysadmin.password | string | `"changeMe"` | CKAN admin password: Note: Min. password length = 8 chars! |
+| sysadmin.password | string | `"changeMe123"` | CKAN admin password **Note:** Min. password length = 8 chars! The password must at least contain one digit, one uppercase letter and one lowercase letter. |
 | sysadmin.user | string | `"admin"` | CKAN admin username |
 | tolerations | list | `[]` | [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |
 | volumeMounts | list | See [`values.yml`](values.yml) for the list of default volumeMounts. | Sets [`volumeMounts`](https://kubernetes.io/docs/concepts/storage/volumes). Set to `[]` to disable the default volumeMounts. Set to any list of volumeMount definitions to overwrite the default volumeMounts. Use `extraVolumeMounts` to extend the default volumeMounts. |

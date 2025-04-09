@@ -1,6 +1,6 @@
 # solr
 
-![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![AppVersion: 2.9-solr9-spatial](https://img.shields.io/badge/AppVersion-2.9--solr9--spatial-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![AppVersion: 2.11-solr9-spatial](https://img.shields.io/badge/AppVersion-2.11--solr9--spatial-informational?style=flat-square)
 
 A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 
@@ -26,6 +26,8 @@ A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 | component | string | `"index"` | Role of Solr in this chart |
 | enabled | bool | `true` | Enable/disable Solr |
 | extraInitContainers | list | `[]` | Sets additional [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/). The initContainers specified here, are appended to the ones specified in `initContainers`. |
+| extraVolumeMounts | list | `[]` | Sets additional [`volumeMounts`](https://kubernetes.io/docs/concepts/storage/volumes). The volumeMounts specified here, are appended to the ones specified in `volumeMounts`. |
+| extraVolumes | list | `[]` | Sets additional [`volumes`](https://kubernetes.io/docs/concepts/storage/volumes). The volumes specified here, are appended to the ones specified in `volumes`. |
 | fullnameOverride | string | `"solr"` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |
 | image.repository | string | `"ckan/ckan-solr"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
@@ -48,5 +50,7 @@ A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
-| tolerations | list | `[]` | [k8S: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |
+| tolerations | list | `[]` | [k8s: Taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |
+| volumeMounts | list | See [`values.yml`](values.yml) for the list of default volumeMounts. | Sets [`volumeMounts`](https://kubernetes.io/docs/concepts/storage/volumes). Set to `[]` to disable the default volumeMounts. Set to any list of volumeMount definitions to overwrite the default volumeMounts. Use `extraVolumeMounts` to extend the default volumeMounts. |
+| volumes | list | See [`values.yml`](values.yml) for the list of default volumes. | Sets [`volumes`](https://kubernetes.io/docs/concepts/storage/volumes). Set to `[]` to disable the default volumes. Set to any list of volume definitions to overwrite the default volumes. Use `extraVolumes` to extend the default volumes. |
 

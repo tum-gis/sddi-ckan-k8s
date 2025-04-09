@@ -8,8 +8,8 @@ sources:
   - https://github.com/tum-gis/sddi-ckan-k8s/tree/main/sddi-ckan/charts/charts/postgis
   - https://registry.hub.docker.com/r/postgis/postgis/
 
-version: 0.7.0
-appVersion: "14-3.4"
+version: 0.8.0
+appVersion: "17-3.5"
 
 maintainers:
   - email: b.willenborg@tum.de

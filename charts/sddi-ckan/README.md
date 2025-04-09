@@ -1,6 +1,6 @@
 # sddi-ckan
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.0.0](https://img.shields.io/badge/AppVersion-3.0.0-informational?style=flat-square)
 
 Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md) for changes.
 
@@ -30,8 +30,9 @@ Kubernetes: `>= 1.23.0-0`
 |  | postgis | * |
 |  | redis | * |
 |  | solr | * |
-| https://charts.jetstack.io | cert-manager(cert-manager) | ^1 |
-| https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ^4 |
+| https://charts.jetstack.io | cert-manager(cert-manager) | ~1.17.0 |
+| https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ~4.12.0 |
+| https://wiremind.github.io/wiremind-helm-charts | clamav | ~2.8.0 |
 | oci://registry-1.docker.io/bitnamicharts | common | 2.x.x |
 
 ## Values
@@ -40,6 +41,14 @@ Kubernetes: `>= 1.23.0-0`
 |-----|------|---------|-------------|
 | cert-manager.enabled | bool | `false` | Enable/disable cert-manager. |
 | certIssuer.enabled | bool | `true` | Enable/disable namespace Issuers for cert-manager. |
+| clamav.clamdConfig | string | `"###############\n# General\n###############\n\nDatabaseDirectory /data\nTemporaryDirectory /tmp\nLogTime yes\n# CUSTOM: Use pid file in tmp\nPidFile /tmp/clamd.pid\nLocalSocket /tmp/clamd.sock\n# CUSTOM: Set local socket group to defined group id\nLocalSocketGroup 2000\nTCPSocket 3310\nForeground yes\nStreamMaxLength 4000M\nLogVerbose yes\nBytecodeTimeout 1000\n\n###############\n# Results\n###############\n\nDetectPUA yes\nExcludePUA NetTool\nExcludePUA PWTool\nHeuristicAlerts yes\nBytecode yes\n\n###############\n# Scan\n###############\n\nScanPE yes\nDisableCertCheck yes\nScanELF yes\nAlertBrokenExecutables yes\nScanOLE2 yes\nScanPDF yes\nScanSWF yes\nScanMail yes\nPhishingSignatures yes\nPhishingScanURLs yes\nScanHTML yes\nScanArchive yes\n\n###############\n# Scan\n###############\n\nMaxScanSize 150M\nMaxFileSize 30M\nMaxRecursion 10\nMaxFiles 15000\nMaxEmbeddedPE 10M\nMaxHTMLNormalize 10M\nMaxHTMLNoTags 2M\nMaxScriptNormalize 5M\nMaxZipTypeRcg 1M\nMaxPartitions 128\nMaxIconsPE 200\nPCREMatchLimit 10000\nPCRERecMatchLimit 10000\n"` |  |
+| clamav.enabled | bool | `true` | Enable/disable [ClamAV](https://www.clamav.net/) virus scanning of uploaded files. |
+| clamav.freshclamConfig | string | `"###############\n# General\n###############\n\nDatabaseDirectory /data\nUpdateLogFile /dev/stdout\nLogTime yes\n# CUSTOM: Use pid file in tmp\nPidFile /tmp/freshclam.pid\n# CUSTOM: Set defined user\nDatabaseOwner 2000\n\n###############\n# Updates\n###############\n\nDatabaseMirror database.clamav.net\nScriptedUpdates yes\nNotifyClamd /etc/clamav/clamd.conf\nBytecode yes\n"` |  |
+| clamav.fullnameOverride | string | `"clamav"` |  |
+| clamav.resources.limits.cpu | string | `"4000m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
+| clamav.resources.limits.memory | string | `"8Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
+| clamav.resources.requests.cpu | string | `"1500m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
+| clamav.resources.requests.memory | string | `"2Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | datapusher.enabled | bool | `true` | Enable/disable Datapusher |
 | fullnameOverride | string | `""` | Override fullname |
 | global.datapusher.db.auth.password | string | `"changeMe"` | Jobs database password. If set, this values will overwrite the value in the Datapusher chart. |
@@ -64,7 +73,7 @@ Kubernetes: `>= 1.23.0-0`
 | global.db.port | int | `5432` | Database port of the CKAN database. |
 | global.db.postgresDbname | string | `"postgres"` | Postgres database username. This is the name of the default superuser database. Used to set `POSTGRES_DB`, see [Postgres Docker docs](https://hub.docker.com/_/postgres/) for more. This is used in the PostGIS chart for database initialization. If set, this values will overwrite the value in the PostGIS chart. |
 | global.ingress.certManager.issuerEmail | string | `"me@example.com"` | eMail address for ACME registration with Let's Encrypt. Only used for issuerType = namespace. |
-| global.ingress.certManager.issuerName | string | `"letsencrypt-staging"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available. |
+| global.ingress.certManager.issuerName | string | `"letsencrypt-production"` | Name of the Issuer to use. For certManager.type = namespace `letsencrypt-staging`, `letsencrypt-production` and `self-signed` are available. |
 | global.ingress.certManager.issuerType | string | `"namespace"` | Type of [cert-manager](https://cert-manager.io/docs/) Issuer: Use either "namespace" or "cluster". |
 | global.ingress.className | string | `"nginx"` | Name of the [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class) to use in Ingress routes. |
 | global.ingress.domains | list | `["localhost"]` | List of [FQDNs](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) for this Ingress. Note: All FQDNs will be used for Ingress hosts and TLS certificate. The global setting overwrites this setting in subcharts. |

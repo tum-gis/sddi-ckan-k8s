@@ -65,7 +65,7 @@ Create the name of the service account to use
 SQL alchemy url
 */}}
 {{- define "ckan.sqlalchemy.url" -}}
-  postgres://
+  postgresql://
   {{- .Values.global.db.auth.username | default .Values.db.auth.username -}}:
   {{- .Values.global.db.auth.password | default .Values.db.auth.password -}}@
   {{- .Values.global.db.host | default .Values.db.host -}}:

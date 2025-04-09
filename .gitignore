@@ -1,6 +1,7 @@
 # Debugging files
 /*.sh
 full.yml
+/temp
 
 # Local files
 /*.yml

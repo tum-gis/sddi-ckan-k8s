@@ -10,12 +10,15 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 type: Opaque
 stringData:
-  CKAN___BEAKER_SESSION__TYPE: {{ .Values.session.beakerSessionType | default "cookie" | quote }}
-  CKAN___BEAKER__SESSION__TIMEOUT: {{ .Values.session.beakerSessionTimeout | default "600" | quote }}
-  CKAN___BEAKER__SESSION__SECURE: {{ .Values.session.beakerSessionSecure | default "False" | quote }}
-  CKAN___BEAKER__SESSION__SAMESITE: {{ .Values.session.beakerSamesite | default "Lax" | quote }}
-  CKAN___BEAKER__SESSION__HTTPONLY: {{ .Values.session.beakerSessionHttpOnly | default "True" | quote }}
-  CKAN___BEAKER__SESSION__KEY: {{ .Values.session.beakerSessionKey | default "ckan" | quote }}
-  CKAN___BEAKER__SESSION__SECRET: {{ .Values.session.beakerSessionSecret | default (randAlphaNum 64) | quote }}
-  CKAN___BEAKER__SESSION__VALIDATE_KEY: {{ .Values.session.beakerSessionValidateKey | default (randAlphaNum 64) | quote }}
+  CKAN___SECRET_KEY: {{ .Values.session.secretKey | default (randAlphaNum 20) | quote }}
+  CKAN___SESSION_TYPE: {{ .Values.session.type | default "cookie" | quote }}
+  CKAN___SESSION_PERMANENT: {{ .Values.session.permanent | default "True" | quote }}
+  CKAN___PERMANENT_SESSION_LIFETIME: {{ .Values.session.permanentSessionLifetime | default "3600" | quote }}
+  CKAN___SESSION_REFRESH_EACH_REQUEST: {{ .Values.session.refreshEachRequest | default "False" | quote }}
+  CKAN___SESSION_COOKIE_NAME: {{ .Values.session.cookie.name | default "ckan" | quote }}
+  CKAN___SESSION_COOKIE_DOMAIN: {{ .Values.session.cookie.domain | default "" | quote }}
+  CKAN___SESSION_COOKIE_PATH: {{ .Values.session.cookie.path | default "" | quote }}
+  CKAN___SESSION_COOKIE_HTTPONLY: {{ .Values.session.cookie.httpOnly | default "True" | quote }}
+  CKAN___SESSION_COOKIE_SECURE: {{ .Values.session.cookie.secure | default "False" | quote }}
+  CKAN___SESSION_COOKIE_SAMESITE: {{ .Values.session.cookie.sameSite | default "Lax" | quote }}
 {{- end -}}

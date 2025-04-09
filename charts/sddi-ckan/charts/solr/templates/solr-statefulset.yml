@@ -33,9 +33,13 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
       volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ include "solr.fullname" . }}
+      {{- if .Values.volumes }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.volumes  "context" $ ) | nindent 8 }}
+      {{- end }}
+
+      {{- if .Values.extraVolumes }}
+      {{- include "common.tplvalues.render" ( dict "value" .Values.extraVolumes  "context" $ ) | nindent 8 }}
+      {{- end }}
 
       initContainers:
       {{- if .Values.initContainers }}
@@ -52,14 +56,35 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: CKAN_CORE_NAME
+              value: "ckan"
           ports:
             - name: solr
               containerPort: 8983
               protocol: TCP
 
           volumeMounts:
-            - name: data
-              mountPath: /var/solr/data
+          {{- if .Values.volumeMounts }}
+          {{- include "common.tplvalues.render" ( dict "value" .Values.volumeMounts  "context" $ ) | nindent 10 }}
+          {{- end }}
+
+          {{- if .Values.extraVolumeMounts }}
+          {{- include "common.tplvalues.render" ( dict "value" .Values.extraVolumeMounts  "context" $ ) | nindent 10 }}
+          {{- end }}
+
+          livenessProbe:
+            periodSeconds: 10
+            timeoutSeconds: 3
+            tcpSocket:
+              port: 8983
+
+          readinessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 3
+            tcpSocket:
+              port: 8983
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
