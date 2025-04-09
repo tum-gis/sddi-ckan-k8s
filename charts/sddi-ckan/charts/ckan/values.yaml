@@ -252,7 +252,7 @@ auth:
   create_user_via_web: false
   public_activity_stream_detail: true
   public_user_details: false
-  roles_that_cascade_to_sub_groups:  admin editor member
+  roles_that_cascade_to_sub_groups: admin editor member
   user_create_groups: false
   user_create_organizations: false
   user_delete_groups: false
