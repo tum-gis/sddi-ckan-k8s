@@ -31,8 +31,8 @@ resource "azurerm_consumption_budget_resource_group" "budget-k8s" {
 resource "azurerm_consumption_budget_resource_group" "budget-k8s-nodes" {
   name              = local.budget_name_nodes
   resource_group_id = data.azurerm_resource_group.k8s-node.id
-  amount     = 300
-  time_grain = "Monthly"
+  amount            = 300
+  time_grain        = "Monthly"
 
   time_period {
     start_date = formatdate("YYYY-MM-01'T'hh:mm:ssZ", timestamp())
