@@ -130,3 +130,6 @@ scheduler.json
 # */charts
 requirements.lock
 Chart.lock
+
+# Terraform
+*.tfvars
