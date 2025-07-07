@@ -5,7 +5,7 @@ resource "azurerm_kubernetes_cluster" "this" {
   resource_group_name       = azurerm_resource_group.this.name
   node_resource_group       = local.resource_group_nodes_name
   dns_prefix                = local.k8s_service_name
-  automatic_channel_upgrade = "stable"
+  automatic_upgrade_channel = "stable"
 
   tags = local.tags
 
