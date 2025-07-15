@@ -15,6 +15,12 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Changed
 
 - Upgrade to SDDI CKAN `3.1.1`
+- Upgrade `ingress-nginx` subchart to `4.13.x`
+- Upgrade `cert-manager` subchart to `1.18.x`
+
+### Fixed
+
+- `cert-manager` Issuers Ingress class name config key change
 
 ## [sddi-ckan-4.0.0] - 2025-04-08
 

@@ -1,6 +1,6 @@
 # sddi-ckan
 
-![Version: 4.1.0-beta1](https://img.shields.io/badge/Version-4.1.0--beta1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.1.1](https://img.shields.io/badge/AppVersion-3.1.1-informational?style=flat-square)
+![Version: 4.1.0-beta2](https://img.shields.io/badge/Version-4.1.0--beta2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.1.1](https://img.shields.io/badge/AppVersion-3.1.1-informational?style=flat-square)
 
 Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md) for changes.
 
@@ -30,8 +30,8 @@ Kubernetes: `>= 1.23.0-0`
 |  | postgis | * |
 |  | redis | * |
 |  | solr | * |
-| https://charts.jetstack.io | cert-manager(cert-manager) | ~1.17.0 |
-| https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ~4.12.0 |
+| https://charts.jetstack.io | cert-manager(cert-manager) | ~1.18.0 |
+| https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ~4.13.0 |
 | https://wiremind.github.io/wiremind-helm-charts | clamav | ~2.8.0 |
 | oci://registry-1.docker.io/bitnamicharts | common | 2.x.x |
 

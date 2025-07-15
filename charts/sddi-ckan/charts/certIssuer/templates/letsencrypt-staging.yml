@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "certIssuer.labels" . | nindent 4 }}
-    app.kubernetes.io/part-of: tum-gis-iot-stack-k8s
+    app.kubernetes.io/part-of: sddi-ckan
     app.kubernetes.io/component: acme-ssl
 spec:
   acme:
@@ -21,5 +21,5 @@ spec:
     solvers:
     - http01:
         ingress:
-          class: {{ .Values.global.ingress.className | default .Values.className }}
+          ingressClassName: {{ .Values.global.ingress.className | default .Values.className }}
 {{- end -}}

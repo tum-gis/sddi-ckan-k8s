@@ -10,7 +10,7 @@ sources:
   - https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure
   - https://github.com/tum-gis/ckan-docker
 
-version: 4.1.0-beta1
+version: 4.1.0-beta2
 appVersion: "3.1.1"
 kubeVersion: ">= 1.23.0-0"
 
@@ -41,12 +41,12 @@ dependencies:
   - name: ingress-nginx
     alias: ingress-nginx
     condition: ingress-nginx.enabled
-    version: "~4.12.0"
+    version: "~4.13.0"
     repository: https://kubernetes.github.io/ingress-nginx
   - name: cert-manager
     alias: cert-manager
     condition: cert-manager.enabled
-    version: "~1.17.0"
+    version: "~1.18.0"
     repository: https://charts.jetstack.io
   - name: common
     repository: oci://registry-1.docker.io/bitnamicharts
