@@ -12,6 +12,10 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [sddi-ckan-4.1.0] - 2025-07-14
 
+### Added
+
+- Allow to specify additional sreach fields for CKAN Solr schema
+
 ### Changed
 
 - Upgrade to SDDI CKAN `3.1.1`
@@ -21,6 +25,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Fixed
 
 - `cert-manager` Issuers Ingress class name config key change
+- CKAN not being able to search for topics
 
 ## [sddi-ckan-4.0.0] - 2025-04-08
 

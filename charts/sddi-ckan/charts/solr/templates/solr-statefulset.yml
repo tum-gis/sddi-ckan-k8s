@@ -41,6 +41,12 @@ spec:
       {{- include "common.tplvalues.render" ( dict "value" .Values.extraVolumes  "context" $ ) | nindent 8 }}
       {{- end }}
 
+      {{- if and .Values.additionalSearchFields.enabled .Values.additionalSearchFields.fields }}
+        - name: search-fields-config
+          configMap:
+            name: {{ include "solr.fullname" . }}-search-fields
+      {{- end }}
+
       initContainers:
       {{- if .Values.initContainers }}
       {{- include "common.tplvalues.render" ( dict "value" .Values.initContainers  "context" $ ) | nindent 8 }}
