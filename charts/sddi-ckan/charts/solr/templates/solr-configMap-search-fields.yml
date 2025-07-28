@@ -10,7 +10,6 @@ metadata:
     app.kubernetes.io/component: {{ .Values.component }}
 data:
   search-fields.xml: |
-<field name="topic" type="string" indexed="true" stored="true" multiValued="true"/>
 {{- range .Values.additionalSearchFields.fields }}
     {{ . }}
 {{- end }}

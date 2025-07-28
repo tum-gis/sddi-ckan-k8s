@@ -42,53 +42,14 @@ spec:
       {{- end }}
 
       {{- if and .Values.additionalSearchFields.enabled .Values.additionalSearchFields.fields }}
-      - name: search-fields-config
-        configMap:
-          name: {{ include "solr.fullname" . }}-search-fields
+        - name: search-fields-config
+          configMap:
+            name: {{ include "solr.fullname" . }}-search-fields
       {{- end }}
+
       initContainers:
       {{- if .Values.initContainers }}
       {{- include "common.tplvalues.render" ( dict "value" .Values.initContainers  "context" $ ) | nindent 8 }}
-      {{- end }}
-
-      {{- if and .Values.additionalSearchFields.enabled .Values.additionalSearchFields.fields }}
-      - name: init-search-fields
-        image: alpine:latest
-        command:
-          - sh
-          - -c
-          - |
-            # Wait for the data volume to be ready and copy the initial schema if needed
-            if [ ! -f /var/solr/data/ckan/conf/managed-schema ]; then
-              echo "Waiting for Solr data initialization..."
-              sleep 10
-            fi
-
-            # Check if the schema file exists
-            SOLR_SCHEMA_FILE="/var/solr/data/ckan/conf/managed-schema"
-            if [ -f "$SOLR_SCHEMA_FILE" ]; then
-              echo "Adding additional search fields to managed-schema..."
-
-              # Read additional fields from the config file
-              while IFS= read -r line; do
-                if [ -n "$line" ] && [ "$line" != "    " ]; then
-                  # Remove leading whitespace and add the field after <fields> tag
-                  CLEAN_LINE=$(echo "$line" | sed 's/^[[:space:]]*//')
-                  sed -i "/<fields>/a\\  $CLEAN_LINE" "$SOLR_SCHEMA_FILE"
-                  echo "Added field: $CLEAN_LINE"
-                fi
-              done < /tmp/search-fields/search-fields.xml
-
-              echo "Additional search fields have been added to the schema."
-            else
-              echo "Warning: Schema file not found at $SOLR_SCHEMA_FILE"
-            fi
-        volumeMounts:
-          - name: data
-            mountPath: /var/solr/data
-          - name: search-fields-config
-            mountPath: /tmp/search-fields
-            readOnly: true
       {{- end }}
 
       {{- if .Values.extraInitContainers }}
