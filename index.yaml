@@ -3,7 +3,7 @@ entries:
   sddi-ckan:
   - apiVersion: v2
     appVersion: 3.1.1
-    created: "2025-07-15T11:46:01.864616693Z"
+    created: "2025-07-28T14:19:24.903532366Z"
     dependencies:
     - condition: postgis.enabled
       name: postgis
@@ -50,7 +50,7 @@ entries:
       version: ~2.8.0
     description: 'Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md)
       for changes. '
-    digest: a24ed7aa9cb2c61ebc6abc2b4bab921ec7440a63e1a18c48e461618d536fc353
+    digest: f37c969118ff8d7b79f5f9c7409119c85b94ed1fe4502ccd53825548ddf54c22
     home: https://github.com/tum-gis/sddi-ckan-k8s
     kubeVersion: '>= 1.23.0-0'
     maintainers:
@@ -64,8 +64,8 @@ entries:
     - https://github.com/tum-gis/ckan-docker
     type: application
     urls:
-    - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-4.1.0-beta2/sddi-ckan-4.1.0-beta2.tgz
-    version: 4.1.0-beta2
+    - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-4.1.0-beta3/sddi-ckan-4.1.0-beta3.tgz
+    version: 4.1.0-beta3
   - apiVersion: v2
     appVersion: 3.1.1
     created: "2025-07-28T08:45:56.71884406Z"
@@ -116,6 +116,71 @@ entries:
     description: 'Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md)
       for changes. '
     digest: 1464beb1d6e87e6d5546f934e617176af0e505620c47fd5f6280fb9796ffba96
+    home: https://github.com/tum-gis/sddi-ckan-k8s
+    kubeVersion: '>= 1.23.0-0'
+    maintainers:
+    - email: b.willenborg@tum.de
+      name: Bruno Willenborg
+      url: https://www.asg.ed.tum.de/en/gis/our-team/staff/bruno-willenborg/
+    name: sddi-ckan
+    sources:
+    - https://github.com/tum-gis/sddi-ckan-k8s
+    - https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure
+    - https://github.com/tum-gis/ckan-docker
+    type: application
+    urls:
+    - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-4.1.0-beta2/sddi-ckan-4.1.0-beta2.tgz
+    version: 4.1.0-beta2
+  - apiVersion: v2
+    appVersion: 3.1.1
+    created: "2025-07-15T11:46:01.864616693Z"
+    dependencies:
+    - condition: postgis.enabled
+      name: postgis
+      repository: ""
+      version: '*'
+    - condition: solr.enabled
+      name: solr
+      repository: ""
+      version: '*'
+    - condition: redis.enabled
+      name: redis
+      repository: ""
+      version: '*'
+    - condition: ckan.enabled
+      name: ckan
+      repository: ""
+      version: '*'
+    - condition: datapusher.enabled
+      name: datapusher
+      repository: ""
+      version: '*'
+    - condition: certIssuer.enabled
+      name: certIssuer
+      repository: ""
+      version: '*'
+    - alias: ingress-nginx
+      condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: ~4.13.0
+    - alias: cert-manager
+      condition: cert-manager.enabled
+      name: cert-manager
+      repository: https://charts.jetstack.io
+      version: ~1.18.0
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    - condition: clamav.enabled
+      name: clamav
+      repository: https://wiremind.github.io/wiremind-helm-charts
+      version: ~2.8.0
+    description: 'Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md)
+      for changes. '
+    digest: a24ed7aa9cb2c61ebc6abc2b4bab921ec7440a63e1a18c48e461618d536fc353
     home: https://github.com/tum-gis/sddi-ckan-k8s
     kubeVersion: '>= 1.23.0-0'
     maintainers:
@@ -2679,4 +2744,4 @@ entries:
     urls:
     - https://github.com/tum-gis/sddi-ckan-k8s/releases/download/sddi-ckan-0.1.0/sddi-ckan-0.1.0.tgz
     version: 0.1.0
-generated: "2025-07-28T08:45:56.71924172Z"
+generated: "2025-07-28T14:19:24.904129697Z"
