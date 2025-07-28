@@ -1,6 +1,6 @@
 # solr
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![AppVersion: 2.11-solr9-spatial](https://img.shields.io/badge/AppVersion-2.11--solr9--spatial-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![AppVersion: 2.11-solr9-spatial](https://img.shields.io/badge/AppVersion-2.11--solr9--spatial-informational?style=flat-square)
 
 A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 
@@ -22,6 +22,8 @@ A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| additionalSearchFields.enabled | bool | `true` | Enable/disable additional search fields |
+| additionalSearchFields.fields | list | `["<field name=\"topic\" type=\"string\" indexed=\"true\" stored=\"true\" multiValued=\"true\"/>"]` | List of additional search field XML snippets |
 | affinity | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
 | component | string | `"index"` | Role of Solr in this chart |
 | enabled | bool | `true` | Enable/disable Solr |

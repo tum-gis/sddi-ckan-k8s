@@ -36,7 +36,8 @@ serviceAccount:
 podSecurityContext: {}
 
 # -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -67,7 +68,6 @@ persistence:
   annotations:
   # helm.sh/resource-policy: keep
 
-
 # initContainers --------------------------------------------------------------
 # -- Sets [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 # Set to `[]` to disable the default initContainers.
@@ -77,8 +77,7 @@ persistence:
 initContainers:
   - name: init-data
     image: busybox:latest
-    command:
-      ["sh", "-c", "chown -Rv 8983:8983 /var/solr/data"]
+    command: ["sh", "-c", "chown -Rv 8983:8983 /var/solr/data"]
     volumeMounts:
       - name: data
         mountPath: "/var/solr/data"
@@ -115,6 +114,15 @@ volumeMounts:
 # -- Sets additional [`volumeMounts`](https://kubernetes.io/docs/concepts/storage/volumes).
 # The volumeMounts specified here, are appended to the ones specified in `volumeMounts`.
 extraVolumeMounts: []
+
+# Additional Search Fields Configuration ------------------------------------------
+# Configuration for additional Solr search fields
+additionalSearchFields:
+  # -- Enable/disable additional search fields
+  enabled: true
+  # -- List of additional search field XML snippets
+  fields:
+    - '<field name="topic" type="string" indexed="true" stored="true" multiValued="true"/>'
 
 # -- [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 resources: {}
