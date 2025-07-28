@@ -14,7 +14,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ### Added
 
-- Allow to specify additional sreach fields for CKAN Solr schema
+- Allow to specify additional sreach fields for CKAN Solr schema, tum-gis/sddi-ckan-k8s#32
 
 ### Changed
 
@@ -25,7 +25,7 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 ### Fixed
 
 - `cert-manager` Issuers Ingress class name config key change
-- CKAN not being able to search for topics
+- CKAN not being able to search for topics, tum-gis/sddi-ckan-k8s#32
 
 ## [sddi-ckan-4.0.0] - 2025-04-08
 
