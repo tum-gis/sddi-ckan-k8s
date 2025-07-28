@@ -20,6 +20,7 @@ spec:
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+        checksum/additional-search-fields: {{ include (print $.Template.BasePath "/solr-configMap-search-fields.yml") . | sha256sum }}
       labels:
         {{- include "solr.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: {{ .Values.component }}
