@@ -20,7 +20,6 @@ spec:
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-        checksum/additional-search-fields: {{ include (print $.Template.BasePath "/solr-configMap-search-fields.yml") . | sha256sum }}
       labels:
         {{- include "solr.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: {{ .Values.component }}
@@ -40,12 +39,6 @@ spec:
 
       {{- if .Values.extraVolumes }}
       {{- include "common.tplvalues.render" ( dict "value" .Values.extraVolumes  "context" $ ) | nindent 8 }}
-      {{- end }}
-
-      {{- if and .Values.additionalSearchFields.enabled .Values.additionalSearchFields.fields }}
-        - name: search-fields-config
-          configMap:
-            name: {{ include "solr.fullname" . }}-search-fields
       {{- end }}
 
       initContainers:

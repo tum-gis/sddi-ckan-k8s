@@ -11,7 +11,7 @@ fullnameOverride: solr
 
 image:
   # -- [Image repository](https://kubernetes.io/docs/concepts/containers/images/)
-  repository: ckan/ckan-solr
+  repository: ghcr.io/tum-gis/sddi-ckan-solr
   # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart `appVersion`.
@@ -68,15 +68,6 @@ persistence:
   annotations:
   # helm.sh/resource-policy: keep
 
-# Additional Search Fields Configuration --------------------------------------
-# Configuration for additional Solr search fields
-additionalSearchFields:
-  # -- Enable/disable additional search fields
-  enabled: true
-  # -- List of additional search field XML snippets
-  fields:
-    - '<field name="topic" type="string" indexed="true" stored="true" multiValued="true"/>'
-
 # initContainers --------------------------------------------------------------
 # -- Sets [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 # Set to `[]` to disable the default initContainers.
@@ -90,44 +81,6 @@ initContainers:
     volumeMounts:
       - name: data
         mountPath: "/var/solr/data"
-      # Note: This initContainer is required when `additionalSearchFields.enabled` is true
-      - name: init-search-fields
-        image: alpine:latest
-        command:
-          - sh
-          - -c
-          - |
-            # Wait for the data volume to be ready and copy the initial schema if needed
-            if [ ! -f /var/solr/data/ckan/conf/managed-schema ]; then
-              echo "Waiting for Solr data initialization..."
-              sleep 10
-            fi
-
-            # Check if the schema file exists
-            SOLR_SCHEMA_FILE="/var/solr/data/ckan/conf/managed-schema"
-            if [ -f "$SOLR_SCHEMA_FILE" ]; then
-              echo "Adding additional search fields to managed-schema..."
-
-              # Read additional fields from the config file
-              while IFS= read -r line; do
-                if [ -n "$line" ] && [ "$line" != "    " ]; then
-                  # Remove leading whitespace and add the field after <fields> tag
-                  CLEAN_LINE=$(echo "$line" | sed 's/^[[:space:]]*//')
-                  sed -i "/<fields>/a\\  $CLEAN_LINE" "$SOLR_SCHEMA_FILE"
-                  echo "Added field: $CLEAN_LINE"
-                fi
-              done < /tmp/search-fields/search-fields.xml
-
-              echo "Additional search fields have been added to the schema."
-            else
-              echo "Warning: Schema file not found at $SOLR_SCHEMA_FILE"
-            fi
-        volumeMounts:
-          - name: data
-            mountPath: /var/solr/data
-          - name: search-fields-config
-            mountPath: /tmp/search-fields
-            readOnly: true
 
 # -- Sets additional [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 # The initContainers specified here, are appended to the ones specified in `initContainers`.
