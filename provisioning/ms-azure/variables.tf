@@ -1,5 +1,10 @@
 # General ---------------------------------------------------------------------
 
+variable "subscription_id" {
+  type        = string
+  description = "ID of the Azure subscription."
+}
+
 variable "location" {
   type        = string
   default     = "West Europe"
@@ -10,6 +15,12 @@ variable "resource_group_name" {
   type        = string
   default     = "rg-k8s"
   description = "Name of the resource group in which all services shall be started."
+}
+
+variable "tags" {
+  type        = map(string)
+  default     = {}
+  description = "Map of tags."
 }
 
 # k8s -------------------------------------------------------------------------
