@@ -32,13 +32,21 @@ options visit the [`azurerm_kubernetes_cluster`](https://registry.terraform.io/p
     terraform init
     ```
 
-3. Decide for [Azure VM types](https://docs.microsoft.com/de-de/azure/virtual-machines/sizes-general) and count
+3. Get the Azure _subscription id_:
+
+   ```bash
+   az account show --query id --output tsv
+   ```
+
+4. Decide for [Azure VM types](https://docs.microsoft.com/de-de/azure/virtual-machines/sizes-general) and count
    for both node pools, a name of the `resource group`, and provide one or more email addresses for budget warning notifications. Pass these options to
    `terraform plan` to create an execution plan.
 
     ```bash
     terraform plan -out plan.json \
+      -var subscription_id="id_from_step_3" \
       -var resource_group_name="ckan-aks-rg" \
+      -var 'tags={key1="tag1",key2="tag2"}' \
       -var 'contact_emails=["me@example.com","other@example.com"]' \
       -var k8s_default_node_type="Standard_A2_v2" \
       -var k8s_default_node_count=2 \
@@ -46,12 +54,12 @@ options visit the [`azurerm_kubernetes_cluster`](https://registry.terraform.io/p
       -var k8s_database_node_count=1
     ```
 
-4. Apply the plan to book the specified resources.
+5. Apply the plan to book the specified resources.
 
     ```bash
     terraform apply plan.json
     ```
 
-5. The access credentials of the AKS instance are output in `.kubeconfig`.
+6. The access credentials of the AKS instance are output in `.kubeconfig`.
    Store the credentials in a safe place and add them to your
    `~/.kube/config` file to use them with e.g. `kubectl`. After that, it is recommended to delete the file.
