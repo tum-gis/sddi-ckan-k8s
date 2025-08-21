@@ -10,11 +10,11 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased] - 2025-04-08
 
-## [sddi-ckan-4.1.0] - 2025-07-14
+## [sddi-ckan-4.1.0] - 2025-08-21
 
 ### Added
 
-- Allow to specify additional sreach fields for CKAN Solr schema, tum-gis/sddi-ckan-k8s#32
+- Use `ghcr.io/tum-gis/sddi-ckan-solr:2.11-solr9-spatial` as new Solr image, to support indexing SDDI specific fields. tum-gis/sddi-ckan-k8s#50
 
 ### Changed
 

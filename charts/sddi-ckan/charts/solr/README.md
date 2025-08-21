@@ -22,8 +22,6 @@ A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalSearchFields.enabled | bool | `true` | Enable/disable additional search fields |
-| additionalSearchFields.fields | list | `["<field name=\"topic\" type=\"string\" indexed=\"true\" stored=\"true\" multiValued=\"true\"/>"]` | List of additional search field XML snippets |
 | affinity | object | `{}` | [k8s: Assign pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |
 | component | string | `"index"` | Role of Solr in this chart |
 | enabled | bool | `true` | Enable/disable Solr |
@@ -32,7 +30,7 @@ A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 | extraVolumes | list | `[]` | Sets additional [`volumes`](https://kubernetes.io/docs/concepts/storage/volumes). The volumes specified here, are appended to the ones specified in `volumes`. |
 | fullnameOverride | string | `"solr"` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |
-| image.repository | string | `"ckan/ckan-solr"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
+| image.repository | string | `"ghcr.io/tum-gis/sddi-ckan-solr"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
 | initContainers | list | See `values.yml` for the list of default initContainers. | Sets [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/). Set to `[]` to disable the default initContainers. Set to any list of initContainer definitions to overwrite the default initContainers. Use `extraInitContainers` to extend the default initContainers. |
