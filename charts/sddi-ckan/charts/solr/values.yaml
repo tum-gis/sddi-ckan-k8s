@@ -11,7 +11,7 @@ fullnameOverride: solr
 
 image:
   # -- [Image repository](https://kubernetes.io/docs/concepts/containers/images/)
-  repository: docker pull ghcr.io/tum-gis/sddi-ckan-solr
+  repository: ghcr.io/tum-gis/sddi-ckan-solr
   # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart `appVersion`.
