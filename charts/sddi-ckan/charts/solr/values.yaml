@@ -11,7 +11,7 @@ fullnameOverride: solr
 
 image:
   # -- [Image repository](https://kubernetes.io/docs/concepts/containers/images/)
-  repository: ckan/ckan-solr
+  repository: ghcr.io/tum-gis/sddi-ckan-solr
   # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart `appVersion`.
@@ -36,7 +36,8 @@ serviceAccount:
 podSecurityContext: {}
 
 # -- [k8s: Security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -67,7 +68,6 @@ persistence:
   annotations:
   # helm.sh/resource-policy: keep
 
-
 # initContainers --------------------------------------------------------------
 # -- Sets [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 # Set to `[]` to disable the default initContainers.
@@ -77,8 +77,7 @@ persistence:
 initContainers:
   - name: init-data
     image: busybox:latest
-    command:
-      ["sh", "-c", "chown -Rv 8983:8983 /var/solr/data"]
+    command: ["sh", "-c", "chown -Rv 8983:8983 /var/solr/data"]
     volumeMounts:
       - name: data
         mountPath: "/var/solr/data"

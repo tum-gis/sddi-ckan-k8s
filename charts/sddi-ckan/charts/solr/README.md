@@ -1,6 +1,6 @@
 # solr
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![AppVersion: 2.11-solr9-spatial](https://img.shields.io/badge/AppVersion-2.11--solr9--spatial-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![AppVersion: 2.11-solr9-spatial](https://img.shields.io/badge/AppVersion-2.11--solr9--spatial-informational?style=flat-square)
 
 A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 
@@ -30,7 +30,7 @@ A Helm chart for Solr pre-configured for CKAN  and ckanext-spatial.
 | extraVolumes | list | `[]` | Sets additional [`volumes`](https://kubernetes.io/docs/concepts/storage/volumes). The volumes specified here, are appended to the ones specified in `volumes`. |
 | fullnameOverride | string | `"solr"` | Override fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |
-| image.repository | string | `"ckan/ckan-solr"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
+| image.repository | string | `"ghcr.io/tum-gis/sddi-ckan-solr"` | [Image repository](https://kubernetes.io/docs/concepts/containers/images/) |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart `appVersion`. |
 | imagePullSecrets | list | `[]` | [Image pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) |
 | initContainers | list | See `values.yml` for the list of default initContainers. | Sets [`initContainers`](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/). Set to `[]` to disable the default initContainers. Set to any list of initContainer definitions to overwrite the default initContainers. Use `extraInitContainers` to extend the default initContainers. |
