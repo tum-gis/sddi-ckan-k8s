@@ -175,7 +175,7 @@ clamav:
     PidFile /tmp/clamd.pid
     LocalSocket /tmp/clamd.sock
     # CUSTOM: Set local socket group to defined group id
-    LocalSocketGroup 2000
+    # LocalSocketGroup 2000
     TCPSocket 3310
     Foreground yes
     StreamMaxLength 4000M
@@ -235,12 +235,11 @@ clamav:
     ###############
 
     DatabaseDirectory /data
-    UpdateLogFile /dev/stdout
     LogTime yes
     # CUSTOM: Use pid file in tmp
     PidFile /tmp/freshclam.pid
     # CUSTOM: Set defined user
-    DatabaseOwner 2000
+    # DatabaseOwner 2000
 
     ###############
     # Updates

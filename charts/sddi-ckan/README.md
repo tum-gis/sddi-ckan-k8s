@@ -1,6 +1,6 @@
 # sddi-ckan
 
-![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.1.1](https://img.shields.io/badge/AppVersion-3.1.1-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.1.1](https://img.shields.io/badge/AppVersion-3.1.1-informational?style=flat-square)
 
 Helm Chart for a SDDI enabled CKAN catalog. See [CHANGELOG](https://github.com/tum-gis/sddi-ckan-k8s/blob/main/CHANGELOG.md) for changes.
 
@@ -32,7 +32,7 @@ Kubernetes: `>= 1.23.0-0`
 |  | solr | * |
 | https://charts.jetstack.io | cert-manager(cert-manager) | ~1.18.0 |
 | https://kubernetes.github.io/ingress-nginx | ingress-nginx(ingress-nginx) | ~4.13.0 |
-| https://wiremind.github.io/wiremind-helm-charts | clamav | ~2.8.0 |
+| https://wiremind.github.io/wiremind-helm-charts | clamav | ~3.7.0 |
 | oci://registry-1.docker.io/bitnamicharts | common | 2.x.x |
 
 ## Values
@@ -41,9 +41,9 @@ Kubernetes: `>= 1.23.0-0`
 |-----|------|---------|-------------|
 | cert-manager.enabled | bool | `false` | Enable/disable cert-manager. |
 | certIssuer.enabled | bool | `true` | Enable/disable namespace Issuers for cert-manager. |
-| clamav.clamdConfig | string | `"###############\n# General\n###############\n\nDatabaseDirectory /data\nTemporaryDirectory /tmp\nLogTime yes\n# CUSTOM: Use pid file in tmp\nPidFile /tmp/clamd.pid\nLocalSocket /tmp/clamd.sock\n# CUSTOM: Set local socket group to defined group id\nLocalSocketGroup 2000\nTCPSocket 3310\nForeground yes\nStreamMaxLength 4000M\nLogVerbose yes\nBytecodeTimeout 1000\n\n###############\n# Results\n###############\n\nDetectPUA yes\nExcludePUA NetTool\nExcludePUA PWTool\nHeuristicAlerts yes\nBytecode yes\n\n###############\n# Scan\n###############\n\nScanPE yes\nDisableCertCheck yes\nScanELF yes\nAlertBrokenExecutables yes\nScanOLE2 yes\nScanPDF yes\nScanSWF yes\nScanMail yes\nPhishingSignatures yes\nPhishingScanURLs yes\nScanHTML yes\nScanArchive yes\n\n###############\n# Scan\n###############\n\nMaxScanSize 150M\nMaxFileSize 30M\nMaxRecursion 10\nMaxFiles 15000\nMaxEmbeddedPE 10M\nMaxHTMLNormalize 10M\nMaxHTMLNoTags 2M\nMaxScriptNormalize 5M\nMaxZipTypeRcg 1M\nMaxPartitions 128\nMaxIconsPE 200\nPCREMatchLimit 10000\nPCRERecMatchLimit 10000\n"` |  |
+| clamav.clamdConfig | string | `"###############\n# General\n###############\n\nDatabaseDirectory /data\nTemporaryDirectory /tmp\nLogTime yes\n# CUSTOM: Use pid file in tmp\nPidFile /tmp/clamd.pid\nLocalSocket /tmp/clamd.sock\n# CUSTOM: Set local socket group to defined group id\n# LocalSocketGroup 2000\nTCPSocket 3310\nForeground yes\nStreamMaxLength 4000M\nLogVerbose yes\nBytecodeTimeout 1000\n\n###############\n# Results\n###############\n\nDetectPUA yes\nExcludePUA NetTool\nExcludePUA PWTool\nHeuristicAlerts yes\nBytecode yes\n\n###############\n# Scan\n###############\n\nScanPE yes\nDisableCertCheck yes\nScanELF yes\nAlertBrokenExecutables yes\nScanOLE2 yes\nScanPDF yes\nScanSWF yes\nScanMail yes\nPhishingSignatures yes\nPhishingScanURLs yes\nScanHTML yes\nScanArchive yes\n\n###############\n# Scan\n###############\n\nMaxScanSize 150M\nMaxFileSize 30M\nMaxRecursion 10\nMaxFiles 15000\nMaxEmbeddedPE 10M\nMaxHTMLNormalize 10M\nMaxHTMLNoTags 2M\nMaxScriptNormalize 5M\nMaxZipTypeRcg 1M\nMaxPartitions 128\nMaxIconsPE 200\nPCREMatchLimit 10000\nPCRERecMatchLimit 10000\n"` |  |
 | clamav.enabled | bool | `true` | Enable/disable [ClamAV](https://www.clamav.net/) virus scanning of uploaded files. |
-| clamav.freshclamConfig | string | `"###############\n# General\n###############\n\nDatabaseDirectory /data\nUpdateLogFile /dev/stdout\nLogTime yes\n# CUSTOM: Use pid file in tmp\nPidFile /tmp/freshclam.pid\n# CUSTOM: Set defined user\nDatabaseOwner 2000\n\n###############\n# Updates\n###############\n\nDatabaseMirror database.clamav.net\nScriptedUpdates yes\nNotifyClamd /etc/clamav/clamd.conf\nBytecode yes\n"` |  |
+| clamav.freshclamConfig | string | `"###############\n# General\n###############\n\nDatabaseDirectory /data\nLogTime yes\n# CUSTOM: Use pid file in tmp\nPidFile /tmp/freshclam.pid\n# CUSTOM: Set defined user\n# DatabaseOwner 2000\n\n###############\n# Updates\n###############\n\nDatabaseMirror database.clamav.net\nScriptedUpdates yes\nNotifyClamd /etc/clamav/clamd.conf\nBytecode yes\n"` |  |
 | clamav.fullnameOverride | string | `"clamav"` |  |
 | clamav.resources.limits.cpu | string | `"4000m"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
 | clamav.resources.limits.memory | string | `"8Gi"` | [k8s: Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |
@@ -84,5 +84,3 @@ Kubernetes: `>= 1.23.0-0`
 | redis.enabled | bool | `true` | Enable/disable Redis instance. Disable, if an external Redis instance is used. |
 | solr.enabled | bool | `true` | Enable/disable Apache Solr instance. Disable, if an external Solr instance is used. |
 
-----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.14.2](https://github.com/norwoodj/helm-docs/releases/v1.14.2)

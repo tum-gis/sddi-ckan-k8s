@@ -43,5 +43,8 @@ volume. This example provides a basic setup to run this stack on OpenShift.
       --values values.yml
     ```
 
+    > [!WARNING]
+    > For `helm` version `4.x.x` the `--atomic` flag was renamed to `--rollback-on-failure`. See the [helm v4 overview](https://helm.sh/docs/overview/#cli-flags-renamed) for more.
+
     > [!TIP]
     > If you want to try out a development (`beta`, `alpha`) version of the helm chart, use the `--devel` option of helm.

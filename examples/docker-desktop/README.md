@@ -33,8 +33,7 @@ This is especially useful for testing, developing, and for educational purposes.
     helm repo update
     ```
 
-2. Deploy the chart with the default configuration specified in
-   [values-local.yml](values-local.yml):
+2. Deploy the chart with the default configuration specified in [values-local.yml](values-local.yml):
 
     ```bash
     helm install ckan sddi-ckan/sddi-ckan \
@@ -42,6 +41,9 @@ This is especially useful for testing, developing, and for educational purposes.
       --atomic --wait --timeout 10m \
       --values "https://raw.githubusercontent.com/tum-gis/sddi-ckan-k8s/main/examples/docker-desktop/values-local.yml"
     ```
+
+    > [!WARNING]
+    > For `helm` version `4.x.x` the `--atomic` flag was renamed to `--rollback-on-failure`. See the [helm v4 overview](https://helm.sh/docs/overview/#cli-flags-renamed) for more.
 
     > **Tip 1**: In `docker-desktop` setups with low hardware resources the deployment may timeout,
     > especially at first run, when all images have to be pulled.
@@ -72,3 +74,6 @@ helm install ckan sddi-ckan/sddi-ckan \
   --atomic --wait \
   --values my-local-values.yml
 ```
+
+> [!WARNING]
+> For `helm` version `4.x.x` the `--atomic` flag was renamed to `--rollback-on-failure`. See the [helm v4 overview](https://helm.sh/docs/overview/#cli-flags-renamed) for more.

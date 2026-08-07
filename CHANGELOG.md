@@ -2,13 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 Versions are prefixed with `sddi-ckan-` due to usage of
 [chart-releaser-action](https://github.com/helm/chart-releaser-action).
 For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased] - 2025-04-08
+
+## [sddi-ckan-4.2.0] - 2025-10-18
+
+### Changed
+
+- Upgrade `clamav` subchart to `3.7.x`
 
 ## [sddi-ckan-4.1.0] - 2025-08-21
 
@@ -431,8 +437,9 @@ is displayed when navigating to the _Datasets_ view of CKAN.
 
 ### Known issues
 
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-4.1.0...HEAD
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-4.2.0...HEAD
 
+[sddi-ckan-4.2.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-4.1.0...sddi-ckan-4.2.0
 [sddi-ckan-4.1.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-4.0.0...sddi-ckan-4.1.0
 [sddi-ckan-4.0.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-3.0.0...sddi-ckan-4.0.0
 [sddi-ckan-3.0.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-2.0.0...sddi-ckan-3.0.0
@@ -461,4 +468,4 @@ is displayed when navigating to the _Datasets_ view of CKAN.
 [sddi-ckan-0.2.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.2.0...sddi-ckan-0.2.1
 [sddi-ckan-0.2.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-0.1.0...sddi-ckan-0.2.0
 [sddi-ckan-0.1.0]: https://github.com/tum-gis/sddi-ckan-k8s/releases/tag/sddi-ckan-0.1.0
-[template]: https://keepachangelog.com/en/1.0.0/
+[template]: https://keepachangelog.com/en/1.1.0/
