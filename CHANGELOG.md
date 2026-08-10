@@ -10,7 +10,15 @@ For releases `< 1.0.0` minor version step indicate breaking changes.
 
 ## [Unreleased] - 2025-04-08
 
+## [sddi-ckan-4.2.2] - 2026-08-10
+
+### Fixed
+
+- Missing root context argument (`.`) in the `ckan.fullname` include call in `ckan-service.yaml`, tum-gis/sddi-ckan-k8s#55
+
 ## [sddi-ckan-4.2.1] - 2026-08-10
+
+**Broken - do not use** Contains a bug in the `ckan.fullname` include call (missing root context). Fixed in `4.2.2`.
 
 ### Changed
 
@@ -443,9 +451,9 @@ is displayed when navigating to the _Datasets_ view of CKAN.
 
 ### Known issues
 
-[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-4.2.1...HEAD
+[Unreleased]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-4.2.2...HEAD
 
-[sddi-ckan-4.2.1]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-4.2.0...sddi-ckan-4.2.1
+[sddi-ckan-4.2.2]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-4.2.1...sddi-ckan-4.2.2
 [sddi-ckan-4.2.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-4.1.0...sddi-ckan-4.2.0
 [sddi-ckan-4.1.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-4.0.0...sddi-ckan-4.1.0
 [sddi-ckan-4.0.0]: https://github.com/tum-gis/sddi-ckan-k8s/compare/sddi-ckan-3.0.0...sddi-ckan-4.0.0
